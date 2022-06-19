@@ -1,20 +1,15 @@
 package com;
 
 public class Articulo {
-    private int idArt;
-    private String descripcion;
-    private int cantida;
-    private float precio;
+    private String nombre;
+    private Integer cantida;
+    private Float precio;
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public int getCantida() {
+    public Integer getCantida() {
         return cantida;
     }
 
@@ -22,7 +17,7 @@ public class Articulo {
         this.cantida = cantida;
     }
 
-    public float getPrecio() {
+    public Float getPrecio() {
         return precio;
     }
 
