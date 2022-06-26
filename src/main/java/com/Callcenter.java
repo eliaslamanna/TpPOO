@@ -1,4 +1,8 @@
 package com;
 
-public class Callcenter extends Empleado {
+public class Callcenter extends Rol {
+    @Override
+    public void mostrarMenu() {
+
+    }
 }

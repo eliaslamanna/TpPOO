@@ -1,6 +1,8 @@
 package com;
 
+import java.util.List;
+
 public class Reparacion extends Visita {
-    private Articulo articulo;
+    private List<Articulo> articulo;
     private int tiempoTrabajado = 30;
 }

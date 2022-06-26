@@ -10,7 +10,10 @@ public class Empresa {
     public static Agenda agenda;
 
     //Mapa de los empleados de la empresa (clave legajo de empleado, valor instancia de Empleado)
-    private HashMap<Integer,Empleado> empleado;
+    private HashMap<Integer, Usuario> usuarios;
+
+    //Mapa de clientes
+    private HashMap<Integer, Cliente> clientes;
 
     private Integer proxLegajoEmpleado = 1;
     private Integer proxCliente = 1;

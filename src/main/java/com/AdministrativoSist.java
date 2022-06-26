@@ -2,7 +2,7 @@ package com;
 
 import com.exception.ArticuloNoExisteException;
 
-public class AdministrativoSist extends Empleado {
+public class AdministrativoSist extends Rol {
 
     public void agregarArticulo(Articulo articulo) {
 
@@ -45,5 +45,10 @@ public class AdministrativoSist extends Empleado {
         else if(articuloNuevo.getPrecio() != null) {
             articuloActual.setPrecio(articuloNuevo.getPrecio());
         }
+    }
+
+    @Override
+    public void mostrarMenu() {
+
     }
 }
