@@ -1,6 +1,6 @@
 package com;
 
-public class Usuario {
+public abstract class Usuario {
     private Rol rol;
     private int legajo;
     private String nombre;

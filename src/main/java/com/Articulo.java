@@ -2,26 +2,46 @@ package com;
 
 public class Articulo {
     private String nombre;
-    private Integer cantida;
-    private Float precio;
+    private Float stock;
+    private Float cantidad;
+    private Float precioUnidad;
+
+    public Articulo(String nombre, Float cantidad) {
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+    }
+
+    public Articulo(String nombre, Float cantidad, Float precioUnidad) {
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+        this.precioUnidad = precioUnidad;
+    }
 
     public String getNombre() {
         return nombre;
     }
 
-    public Integer getCantida() {
-        return cantida;
+    public Float getCantidad() {
+        return cantidad;
     }
 
-    public void setCantida(int cantida) {
-        this.cantida = cantida;
+    public void setCantidad(Float cantidad) {
+        this.cantidad = cantidad;
     }
 
-    public Float getPrecio() {
-        return precio;
+    public Float getPrecioUnidad() {
+        return precioUnidad;
     }
 
-    public void setPrecio(float precio) {
-        this.precio = precio;
+    public float getStock() {
+        return this.stock;
+    }
+
+    public void setPrecioUnidad(float precioUnidad) {
+        this.precioUnidad = precioUnidad;
+    }
+
+    public void setStock(float stock) {
+        this.stock = stock;
     }
 }

@@ -5,6 +5,12 @@ public class Factura {
     private float costo;
     private float precioFinal;
 
+    public Factura(int numeroFactura, float costo, float precioFinal) {
+        this.numeroFactura = numeroFactura;
+        this.costo = costo;
+        this.precioFinal = precioFinal;
+    }
+
     public int getNumeroFactura() {
         return numeroFactura;
     }

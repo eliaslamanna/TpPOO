@@ -4,6 +4,7 @@ public class Cliente {
     private int idCliente;
     private String nombre;
     private String Direccion;
+    private Agenda agenda = new Agenda();
 
     public int getIdCliente() {
         return idCliente;
@@ -27,5 +28,9 @@ public class Cliente {
 
     public void setDireccion(String direccion) {
         Direccion = direccion;
+    }
+
+    public Agenda getAgenda() {
+        return agenda;
     }
 }
