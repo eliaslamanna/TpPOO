@@ -1,23 +1,27 @@
 package com;
 
+import com.exception.UsuarioYaExisteException;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Empresa {
 
     private static Empresa instancia;
 
     //Mapa de stock de articulos de la empresa (clave nombre de articulo, valor instancia de Articulo, con contidad y sus atributos)
-    private HashMap<String,Articulo> stock;
+    private HashMap<String,Articulo> stock = new HashMap<>();
 
     //Mapa de los empleados de la empresa (clave legajo de empleado, valor instancia de Empleado)
-    private HashMap<Integer, Usuario> usuarios;
+    private List<Usuario> usuarios = new ArrayList<>();
 
     //Mapa de clientes
-    private HashMap<Integer, Cliente> clientes;
+    private List<Cliente> clientes = new ArrayList<>();
 
     //Mapa tecnicos
-    private List<Tecnico> tecnicos;
+    private List<Tecnico> tecnicos = new ArrayList<>();
 
     private Empresa() {
         stock.put("Cable Coaxil", new Articulo("Cable Coaxil", 100F, 50F));
@@ -37,15 +41,31 @@ public class Empresa {
         return instancia;
     }
 
+    public boolean signIn(String usuario, String password) {
+        return usuarios.stream().filter(u -> u.getUsuario().equals(usuario) && u.getPassword().equals(password)).collect(Collectors.toList()).size() > 0;
+    }
+
+    public Usuario singUp(String usuario, String password, Rol rol, int legajo) throws UsuarioYaExisteException {
+        Usuario usuarioNuevo = new Usuario(rol,legajo,usuario,password);
+
+        if(usuarios.contains(usuarioNuevo)) {
+            throw new UsuarioYaExisteException(legajo,usuario);
+        }
+
+        usuarios.add(usuarioNuevo);
+
+        return usuarioNuevo;
+    }
+
     public HashMap<String, Articulo> getStock() {
         return stock;
     }
 
-    public HashMap<Integer, Usuario> getUsuarios() {
+    public List<Usuario> getUsuarios() {
         return usuarios;
     }
 
-    public HashMap<Integer, Cliente> getClientes() {
+    public List<Cliente> getClientes() {
         return clientes;
     }
 
