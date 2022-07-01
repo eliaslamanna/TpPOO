@@ -1,17 +1,26 @@
 package com;
 
 public class Cliente {
+	
+	private static int generador = 0;
     private int idCliente;
     private String nombre;
     private String Direccion;
     private Agenda agenda = new Agenda();
+    
+    
 
-    public int getIdCliente() {
+    public Cliente(String nombre, String direccion, Agenda agenda) {
+		super();
+		Cliente.generador++;
+		this.idCliente = generador;
+		this.nombre = nombre;
+		Direccion = direccion;
+		this.agenda = agenda;
+	}
+
+	public int getIdCliente() {
         return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
     }
 
     public String getNombre() {
@@ -33,4 +42,12 @@ public class Cliente {
     public Agenda getAgenda() {
         return agenda;
     }
+
+	@Override
+	public String toString() {
+		return "Cliente [idCliente=" + idCliente + ", nombre=" + nombre + ", Direccion=" + Direccion + ", agenda="
+				+ agenda + "]";
+	}
+    
+    
 }

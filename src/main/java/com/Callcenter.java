@@ -11,12 +11,26 @@ import java.util.stream.Collectors;
 
 public class Callcenter extends Rol {
 
+	private List<Visita> visitas;
+	
+	public Callcenter() {
+		//Visita v1
+	}
+	
     @Override
     public void mostrarMenu() {
-
+    	
     }
 
-    public Visita agendarVisita(Integer horario, String dia, Cliente cliente, String tipoVisita, List<Articulo> gastosAdicionales, List<Articulo> otrosCostos, int cantidadTecnicos) throws HorarioReservadoException, StockInsuficienteException {
+    public List<Visita> getVisitas() {
+		return visitas;
+	}
+
+	public void setVisitas(List<Visita> visitas) {
+		this.visitas = visitas;
+	}
+
+	public Visita agendarVisita(Integer horario, String dia, Cliente cliente, String tipoVisita, List<Articulo> gastosAdicionales, List<Articulo> otrosCostos, int cantidadTecnicos) throws HorarioReservadoException, StockInsuficienteException {
         materialesEnStock(tipoVisita, otrosCostos);
         List<Tecnico> tecnicos = new ArrayList<>();
 

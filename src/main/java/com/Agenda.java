@@ -10,6 +10,8 @@ public class Agenda {
     private HashMap<String,HashMap<Integer,Boolean>> horarios;
 
     public Agenda() {
+    	
+    	horarios = new HashMap<String, HashMap<Integer,Boolean>>();
         HashMap<Integer,Boolean> horasLunes = new HashMap<>();
         horasLunes.put(800,false);
         horasLunes.put(830,false);

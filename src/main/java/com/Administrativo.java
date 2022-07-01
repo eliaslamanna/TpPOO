@@ -25,6 +25,10 @@ public class Administrativo extends Rol {
 
     @Override
     public void mostrarMenu() {
-
+    	System.out.println("\n\n\n\n");
+    	System.out.println("---------------------------------------------");
+    	System.out.println("*****\t\tAdministrativo\t\t*****\n\n");
+    	
+    	
     }
 }
