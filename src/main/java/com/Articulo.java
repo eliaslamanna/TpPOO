@@ -11,10 +11,11 @@ public class Articulo {
         this.cantidad = cantidad;
     }
 
-    public Articulo(String nombre, Float cantidad, Float precioUnidad) {
+    public Articulo(String nombre,Float stock, Float cantidad, Float precioUnidad) {
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.precioUnidad = precioUnidad;
+        this.stock = stock;
     }
 
     public String getNombre() {
@@ -34,7 +35,7 @@ public class Articulo {
     }
 
     public float getStock() {
-        return this.stock;
+        return stock;
     }
 
     public void setPrecioUnidad(float precioUnidad) {

@@ -42,6 +42,12 @@ public class Cliente {
     public Agenda getAgenda() {
         return agenda;
     }
+    
+	/*
+	 * public Cliente obtenerCliente(int id) {
+	 * 
+	 * return Empresa.getInstancia().getClientes().get(id); }
+	 */
 
 	@Override
 	public String toString() {

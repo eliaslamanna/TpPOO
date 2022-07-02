@@ -35,6 +35,14 @@ public class Usuario {
 	public int getLegajo() {
 		return legajo;
 	}
+
+	public Rol getRol() {
+		return rol;
+	}
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
     
 	
    

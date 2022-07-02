@@ -25,39 +25,51 @@ public class Empresa {
 	// Mapa tecnicos
 	private List<Tecnico> tecnicos;
 
-	
 	private Empresa() {
-		
-		Administrativo admin = new Administrativo();
-		AdministradorSist adminSist = new AdministradorSist();
-		Callcenter c = new Callcenter();
-		Tecnico t = new Tecnico();
-		/* AdministradorSist adminSist = new AdministradorSist(); */
-		Usuario aUsuario = new Usuario(admin, "Juan", "administrativo"); 
-		Usuario sUsuario = new Usuario(adminSist, "Rodrigo", "admin sistema"); 
-		Usuario cUsuario = new Usuario(c, "Dario", "call center"); 
-		Usuario tUsuario = new Usuario(t, "Leonel", "tecnico"); 
-		
-		this.usuarios.put(aUsuario.getLegajo(), aUsuario);
-		this.usuarios.put(sUsuario.getLegajo(), sUsuario);
-		this.usuarios.put(cUsuario.getLegajo(), cUsuario);
-		this.usuarios.put(tUsuario.getLegajo(), tUsuario);
-		
+
 		Visita pVisita = new Visita();
 		Visita sVisita = new Visita();
 		List<Visita> visitasJr = new ArrayList<>();
 		List<Visita> visitasSr = new ArrayList<>();
+		
+		List<Articulo> articulos = new ArrayList<>();
 		this.tecnicos = new ArrayList<>();
 		this.clientes = new HashMap<>();
 		this.usuarios = new HashMap<>();
 		this.stock = new HashMap<>();
-		
-		this.stock.put("Cable Coaxil", new Articulo("Cable Coaxil", 100F, 50F));
-		this.stock.put("Decodificador de TV", new Articulo("Decodificador de TV", 15F, 100.3F));
-		this.stock.put("Modem de Internet", new Articulo("Modem de Internet", 20F, 120.5F));
-		this.stock.put("Divisor Coaxial", new Articulo("Divisor Coaxial", 12F, 120F));
-		this.stock.put("Conectores RG6", new Articulo("Conectores RG6", 25F, 100F));
-		this.stock.put("Repuestos", new Articulo("Repuestos", 100F, 15F));
+		Administrativo admin = new Administrativo();
+		AdministradorSist adminSist = new AdministradorSist();
+		Callcenter cc = new Callcenter();
+
+		/* AdministradorSist adminSist = new AdministradorSist(); */
+		Usuario aUsuario = new Usuario(admin, "Juan", "administrativo");
+		Usuario sUsuario = new Usuario(adminSist, "Rodrigo", "admin sistema");
+		Usuario cUsuario = new Usuario(cc, "Dario", "call center");
+
+		// -----------------------------------------------------------------
+		Cliente c1 = new Cliente("Pablo", "Lez", new Agenda());
+		Cliente c2 = new Cliente("Pablo", "Lez", new Agenda());
+		Cliente c3 = new Cliente("Mario", "Bross", new Agenda());
+		// -----------------------------------------------------------------
+		this.usuarios.put(Integer.valueOf(aUsuario.getLegajo()), aUsuario);
+		this.usuarios.put(Integer.valueOf(sUsuario.getLegajo()), sUsuario);
+		this.usuarios.put(Integer.valueOf(cUsuario.getLegajo()), cUsuario);
+
+
+		Articulo artCable = new Articulo("Cable Coaxil", 10F, 100F, 50F);
+		Articulo deco = new Articulo("Decodificador de TV", 20F, 15F, 100.3F);
+		articulos.add(artCable);
+		articulos.add(deco);
+		this.stock.put("Cable Coaxil", artCable);
+		this.stock.put("Decodificador de TV", deco);
+		/*
+		 * this.stock.put("Modem de Internet", new Articulo("Modem de Internet", 20F,
+		 * 20F, 120.5F)); this.stock.put("Divisor Coaxial", new
+		 * Articulo("Divisor Coaxial", 30F, 12F, 120F));
+		 * this.stock.put("Conectores RG6", new Articulo("Conectores RG6", 10F, 25F,
+		 * 100F)); this.stock.put("Repuestos", new Articulo("Repuestos", 20F, 100F,
+		 * 15F));
+		 */
 
 		/*
 		 * try { pVisita = this.callCenter.agendarVisita(10, "Lunes", clientes.get(1),
@@ -68,13 +80,16 @@ public class Empresa {
 		 * e.printStackTrace(); }
 		 */
 
+		pVisita.setMateriales(articulos);
 		visitasJr.add(pVisita);
-		visitasSr.add(sVisita);
-		this.clientes.put(1, new Cliente("Pablo", "Lez", new Agenda()));
-		this.clientes.put(2, new Cliente("Test", "T1", new Agenda()));
-		this.clientes.put(3, new Cliente("Mario", "Bross", new Agenda()));
+		/* visitasSr.add(sVisita); */
 
-		
+		Tecnico t = new Tecnico(Seniority.JR, "Tarde", new Agenda(), visitasJr);
+		Usuario tUsuario = new Usuario(t, "Leonel", "tecnico");
+		this.usuarios.put(Integer.valueOf(tUsuario.getLegajo()), tUsuario);
+		this.clientes.put(c1.getIdCliente(), c1);
+		this.clientes.put(c2.getIdCliente(), c2);
+		this.clientes.put(c3.getIdCliente(), c3);
 
 		/*
 		 * this.tecnicos.add(new Tecnico(Seniority.JR, "tarde", new Agenda(),

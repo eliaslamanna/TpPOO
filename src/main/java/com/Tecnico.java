@@ -4,6 +4,7 @@ import com.exception.HorarioReservadoException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Tecnico extends Rol {
 
@@ -22,11 +23,11 @@ public class Tecnico extends Rol {
 	}
 
 	public Tecnico() {
-        agenda.setTurno(this.turno);
+		/* agenda.setTurno(this.turno); */
     }
 
     public List<Visita> listarServicios() {
-        return this.visitas;
+    	return this.visitas;
     }
 
     public boolean disponible(String dia, Integer horario) {
@@ -55,6 +56,14 @@ public class Tecnico extends Rol {
 
     @Override
     public void mostrarMenu() {
-
+    	int opc = 0;
+    	Scanner read = new Scanner(System.in);
+		System.out.println("\n\n\n\n");
+		System.out.println("---------------------------------------------");
+		System.out.println("*****\t\tTecnico\t\t*****\n\n");
+		System.out.println("Lista servicios:\n");
+		
+		
+		System.out.println();
     }
 }
