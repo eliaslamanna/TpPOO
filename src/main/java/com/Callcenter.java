@@ -23,7 +23,7 @@ public class Callcenter extends Rol {
 		int opc = 0;
 		Integer h = 0;
 		String dia;
-		String legajoC;
+		int legajoC;
 		String tipoVisita;
 		Cliente c;
 		int cantTec = 0;
@@ -43,7 +43,8 @@ public class Callcenter extends Rol {
 			System.out.println("Dia: ");
 			dia = read.next();
 			System.out.println("Legajo cliente: ");
-			legajoC = read.next();
+			legajoC = read.nextInt();
+			read.nextLine();
 			System.out.println("Tipo de visita (Instalacion/Reparacion): ");
 			tipoVisita = read.next();
 			/*

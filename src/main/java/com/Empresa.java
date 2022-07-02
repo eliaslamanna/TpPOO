@@ -1,11 +1,12 @@
 package com;
 
+import com.exception.UsuarioYaExisteException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import com.exception.HorarioReservadoException;
-import com.exception.StockInsuficienteException;
 
 public class Empresa {
 
@@ -17,13 +18,13 @@ public class Empresa {
 
 	// Mapa de los empleados de la empresa (clave legajo de empleado, valor
 	// instancia de Empleado)
-	private HashMap<Integer, Usuario> usuarios;
+	private List<Usuario> usuarios = new ArrayList<>();
 
-	// Mapa de clientes
-	private HashMap<Integer, Cliente> clientes;
+    //Mapa de clientes
+    private List<Cliente> clientes = new ArrayList<>();
 
-	// Mapa tecnicos
-	private List<Tecnico> tecnicos;
+    //Mapa tecnicos
+    private List<Tecnico> tecnicos = new ArrayList<>();
 
 	private Empresa() {
 
@@ -33,9 +34,7 @@ public class Empresa {
 		List<Visita> visitasSr = new ArrayList<>();
 		
 		List<Articulo> articulos = new ArrayList<>();
-		this.tecnicos = new ArrayList<>();
-		this.clientes = new HashMap<>();
-		this.usuarios = new HashMap<>();
+		
 		this.stock = new HashMap<>();
 		Administrativo admin = new Administrativo();
 		AdministradorSist adminSist = new AdministradorSist();
@@ -51,9 +50,9 @@ public class Empresa {
 		Cliente c2 = new Cliente("Pablo", "Lez", new Agenda());
 		Cliente c3 = new Cliente("Mario", "Bross", new Agenda());
 		// -----------------------------------------------------------------
-		this.usuarios.put(Integer.valueOf(aUsuario.getLegajo()), aUsuario);
-		this.usuarios.put(Integer.valueOf(sUsuario.getLegajo()), sUsuario);
-		this.usuarios.put(Integer.valueOf(cUsuario.getLegajo()), cUsuario);
+		this.usuarios.add(aUsuario);
+		this.usuarios.add(sUsuario);
+		this.usuarios.add(cUsuario);
 
 
 		Articulo artCable = new Articulo("Cable Coaxil", 10F, 100F, 50F);
@@ -86,10 +85,10 @@ public class Empresa {
 
 		Tecnico t = new Tecnico(Seniority.JR, "Tarde", new Agenda(), visitasJr);
 		Usuario tUsuario = new Usuario(t, "Leonel", "tecnico");
-		this.usuarios.put(Integer.valueOf(tUsuario.getLegajo()), tUsuario);
-		this.clientes.put(c1.getIdCliente(), c1);
-		this.clientes.put(c2.getIdCliente(), c2);
-		this.clientes.put(c3.getIdCliente(), c3);
+		this.usuarios.add(tUsuario);
+		this.clientes.add(c1);
+		this.clientes.add(c2);
+		this.clientes.add(c3);
 
 		/*
 		 * this.tecnicos.add(new Tecnico(Seniority.JR, "tarde", new Agenda(),
@@ -111,24 +110,40 @@ public class Empresa {
 		return stock;
 	}
 
-	public HashMap<Integer, Usuario> getUsuarios() {
-		return usuarios;
-	}
+	public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
 
-	public HashMap<Integer, Cliente> getClientes() {
-		return this.clientes;
-	}
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
 
-	public List<Tecnico> getTecnicos() {
-		return tecnicos;
-	}
+    public List<Tecnico> getTecnicos() {
+        return tecnicos;
+    }
 
 	public void agregarCliente(int id, String nombre, String direccion, Agenda agenda) {
 		Cliente cliente = this.clientes.get(id);
 		if (cliente == null) {
-			this.clientes.put(id, new Cliente(nombre, direccion, agenda));
+			this.clientes.add(id, new Cliente(nombre, direccion, agenda));
 		}
 	}
+
+	public boolean signIn(String usuario, String password) {
+        return usuarios.stream().filter(u -> u.getUsuario().equals(usuario) && u.getPassword().equals(password)).collect(Collectors.toList()).size() > 0;
+    }
+
+    public Usuario singUp(String usuario, String password, Rol rol, int legajo) throws UsuarioYaExisteException {
+        Usuario usuarioNuevo = new Usuario(rol,legajo,usuario,password);
+
+        if(usuarios.contains(usuarioNuevo)) {
+            throw new UsuarioYaExisteException(legajo,usuario);
+        }
+
+        usuarios.add(usuarioNuevo);
+
+        return usuarioNuevo;
+    }
 
 	private Integer proxLegajoEmpleado = 1;
 	private Integer proxCliente = 1;
