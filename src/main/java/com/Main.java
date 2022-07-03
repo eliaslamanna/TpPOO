@@ -10,10 +10,7 @@ public class Main {
 
 		Empresa empresa = Empresa.getInstancia();
 
-		/*
-		 * empresa.getClientes().entrySet().forEach(e -> {
-		 * System.out.println(e.getValue().toString()); });
-		 */
+		
 		int opc = 0;
 		while (opc != 5) {
 
