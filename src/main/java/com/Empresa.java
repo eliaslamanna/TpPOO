@@ -96,6 +96,11 @@ public class Empresa {
 		 * Agenda(), visitasSr));
 		 */
 
+		//tecnicos
+		this.tecnicos.add(new Tecnico(Seniority.JR,"tarde"));
+		this.tecnicos.add(new Tecnico(Seniority.SR,"maniana"));
+		this.tecnicos.add(new Tecnico(Seniority.SSR,"tarde"));
+
 	}
 
 	public static Empresa getInstancia() {
@@ -133,16 +138,15 @@ public class Empresa {
         return usuarios.stream().filter(u -> u.getUsuario().equals(usuario) && u.getPassword().equals(password)).collect(Collectors.toList()).size() > 0;
     }
 
-    public Usuario singUp(String usuario, String password, Rol rol, int legajo) throws UsuarioYaExisteException {
-        Usuario usuarioNuevo = new Usuario(rol,legajo,usuario,password);
+    public Usuario singUp(Usuario nuevoUsuario) throws UsuarioYaExisteException {
 
-        if(usuarios.contains(usuarioNuevo)) {
-            throw new UsuarioYaExisteException(legajo,usuario);
+        if(usuarios.contains(nuevoUsuario)) {
+            throw new UsuarioYaExisteException(nuevoUsuario.getUsuario());
         }
 
-        usuarios.add(usuarioNuevo);
+        usuarios.add(nuevoUsuario);
 
-        return usuarioNuevo;
+        return nuevoUsuario;
     }
 
 	private Integer proxLegajoEmpleado = 1;

@@ -12,6 +12,7 @@ public class Tecnico extends Rol {
     private String turno;
     private Agenda agenda = new Agenda();
     private List<Visita> visitas = new ArrayList<>();
+    private String rol = "Tecnico";
 
     
     public Tecnico(Seniority seniority, String turno, Agenda agenda, List<Visita> visitas) {
@@ -20,10 +21,19 @@ public class Tecnico extends Rol {
 		this.turno = turno;
 		this.agenda = agenda;
 		this.visitas = visitas;
+        this.rol = "Tecnico";
 	}
+
+    public Tecnico(Seniority seniority, String turno) {
+        super();
+        this.seniority = seniority;
+        this.turno = turno;
+        this.rol = "Tecnico";
+    }
 
 	public Tecnico() {
 		/* agenda.setTurno(this.turno); */
+        this.rol = "Tecnico";
     }
 
     public List<Visita> listarServicios() {

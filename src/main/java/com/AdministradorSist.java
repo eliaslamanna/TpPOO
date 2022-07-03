@@ -10,6 +10,9 @@ import java.util.stream.Collectors;
 
 public class AdministradorSist extends Rol {
 
+    public AdministradorSist() {
+        this.rol = "AdministradorSist";
+    }
     public void agregarArticulo(Articulo articulo) {
 
         //chequeo si el articulo existe

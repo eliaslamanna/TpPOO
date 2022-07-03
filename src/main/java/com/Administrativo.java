@@ -2,6 +2,10 @@ package com;
 
 public class Administrativo extends Rol {
 
+    public Administrativo() {
+        this.rol = "Administrativo";
+    }
+
     public void revisarServicios() {
         Empresa.getInstancia().getTecnicos().forEach(tecnico -> {
             tecnico.getVisitas().stream()

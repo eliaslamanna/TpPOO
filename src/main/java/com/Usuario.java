@@ -9,13 +9,14 @@ public class Usuario {
     private String password;
     private String perfil;
     
-	public Usuario(Rol rol, String usuario, String perfil) {
+
+	public Usuario(Rol rol, String usuario, String password) {
 		super();
 		Usuario.generador++;
 		this.rol = rol;
 		this.legajo = generador;
 		this.usuario = usuario;
-		this.perfil = perfil;
+		this.password = password;
 	}
 
 	public Usuario(Rol rol, int legajo, String usuario, String perfil) {
@@ -46,8 +47,8 @@ public class Usuario {
 		return legajo;
 	}
 
-	public Rol getRol() {
-		return rol;
+	public String getRol() {
+		return rol.getRol();
 	}
 
 	public void setRol(Rol rol) {
@@ -65,12 +66,12 @@ public class Usuario {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Usuario usuario1 = (Usuario) o;
-        return legajo == usuario1.legajo && Objects.equals(usuario, usuario1.usuario);
+        return Objects.equals(usuario, usuario1.usuario);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(legajo, usuario, password);
+        return Objects.hash(usuario);
     }
    
 }
