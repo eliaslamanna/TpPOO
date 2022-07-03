@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Agenda {
 
-    private HashMap<String,HashMap<Integer,Boolean>> horarios;
+    private HashMap<String,HashMap<Integer,Boolean>> horarios = new HashMap<>();
 
     public Agenda() {
         HashMap<Integer,Boolean> horasLunes = new HashMap<>();
