@@ -36,12 +36,8 @@ public class Tecnico extends Rol {
         this.rol = "Tecnico";
     }
 
-    public List<Visita> listarServicios() {
-    	return this.visitas;
-    }
-
     public boolean disponible(String dia, Integer horario) {
-        return agenda.getHorarios().get(dia).get(horario) == null;
+        return agenda.getHorarios().get(dia).get(horario);
     }
 
     public void agendarVisita(String dia, Integer horario) throws HorarioReservadoException {

@@ -40,10 +40,6 @@ public class Administrativo extends Rol {
         }
 
         System.out.println(factura.toString());
-
-        /*Visita visitaSolicitada = Empresa.getInstancia().getTecnicos().stream().peek(tecnico -> tecnico.getVisitas()
-                .stream()
-                .filter(visita -> idVisita == (visita.getIdVisita()))).findFirst();*/
     }
 
     @Override

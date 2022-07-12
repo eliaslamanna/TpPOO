@@ -21,7 +21,7 @@ public class Empresa {
 	private List<Usuario> usuarios = new ArrayList<>();
 
     //Mapa de clientes
-    private List<Cliente> clientes = new ArrayList<>();
+    private HashMap<Integer, Cliente> clientes = new HashMap<>();
 
     //Mapa tecnicos
     private List<Tecnico> tecnicos = new ArrayList<>();
@@ -46,9 +46,9 @@ public class Empresa {
 		Usuario cUsuario = new Usuario(cc, "Dario", "call center");
 
 		// -----------------------------------------------------------------
-		Cliente c1 = new Cliente("Pablo", "Lez", new Agenda());
-		Cliente c2 = new Cliente("Pablo", "Lez", new Agenda());
-		Cliente c3 = new Cliente("Mario", "Bross", new Agenda());
+		Cliente c1 = new Cliente(40956834, "Pablo", "Lez", new Agenda());
+		Cliente c2 = new Cliente(32544601,"Arturo", "Lo", new Agenda());
+		Cliente c3 = new Cliente(20156398,"Mario", "Bross", new Agenda());
 		// -----------------------------------------------------------------
 		this.usuarios.add(aUsuario);
 		this.usuarios.add(sUsuario);
@@ -65,19 +65,29 @@ public class Empresa {
 
 		Visita pVisita = new Visita(c1, this.tecnicos, articulos, new ArrayList<>());
 		pVisita.setEstado(EstadoVisita.FINALIZADO);
+		List visitas = new ArrayList(){{
+			add(pVisita);
+		}};
+
 		visitasJr.add(pVisita);
 
 		Tecnico t = new Tecnico(Seniority.JR, "Tarde", new Agenda(), visitasJr);
 		Usuario tUsuario = new Usuario(t, "Leonel", "tecnico");
 		this.usuarios.add(tUsuario);
-		this.clientes.add(c1);
-		this.clientes.add(c2);
-		this.clientes.add(c3);
+		this.clientes.put(c1.getDniCliente(), c1);
+		this.clientes.put(c2.getDniCliente(), c2);
+		this.clientes.put(c3.getDniCliente(), c3);
 
+		Agenda agendaTarde1 = new Agenda();
+		agendaTarde1.setTurno("Tarde");
+		Agenda agendaTarde2 = new Agenda();
+		agendaTarde2.setTurno("Tarde");
+		Agenda agendaMañana1 = new Agenda();
+		agendaMañana1.setTurno("Mañana");
 		//tecnicos
-		this.tecnicos.add(new Tecnico(Seniority.JR,"tarde", new Agenda(), List.of(pVisita)));
-		this.tecnicos.add(new Tecnico(Seniority.SR,"maniana", new Agenda(), List.of(pVisita)));
-		this.tecnicos.add(new Tecnico(Seniority.SSR,"tarde", new Agenda(), List.of(pVisita)));
+		this.tecnicos.add(new Tecnico(Seniority.JR,"tarde", agendaTarde1, visitas));
+		this.tecnicos.add(new Tecnico(Seniority.SR,"mañana", agendaMañana1, visitas));
+		this.tecnicos.add(new Tecnico(Seniority.SSR,"tarde", agendaTarde2, visitas));
 
 	}
 
@@ -97,7 +107,7 @@ public class Empresa {
         return usuarios;
     }
 
-    public List<Cliente> getClientes() {
+    public HashMap<Integer, Cliente> getClientes() {
         return clientes;
     }
 
@@ -105,11 +115,9 @@ public class Empresa {
         return tecnicos;
     }
 
-	public void agregarCliente(int id, String nombre, String direccion, Agenda agenda) {
-		Cliente cliente = this.clientes.get(id);
-		if (cliente == null) {
-			this.clientes.add(id, new Cliente(nombre, direccion, agenda));
-		}
+	public Cliente agregarCliente(int dni, String nombre, String direccion, Agenda agenda) {
+		this.clientes.put(dni, new Cliente(dni, nombre, direccion, agenda));
+		return this.clientes.get(dni);
 	}
 
 	public boolean signIn(String usuario, String password) {

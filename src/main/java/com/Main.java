@@ -1,10 +1,14 @@
 package com;
 
+import com.exception.HorarioReservadoException;
 import com.exception.RolNoExisteException;
+import com.exception.StockInsuficienteException;
 import com.exception.UsuarioYaExisteException;
 
 import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -73,7 +77,7 @@ public class Main {
 			}
 			case "Call Center": {
 				Callcenter callC = new Callcenter();
-				opcionElegida = callC.mostrarMenu();
+				funcionesCallCenter(callC.mostrarMenu(), callC);
 				break;
 			}
 			case "Tecnico": {
@@ -117,6 +121,73 @@ public class Main {
 					break;
 			}
 			opcionElegida = admin.mostrarMenu();
+		}
+		System.out.println("Saliendo del sistema . . . ");
+	}
+
+	public static void funcionesCallCenter(int opcionElegida, Callcenter callcenter) {
+
+		while (opcionElegida != 2) {
+			switch (opcionElegida) {
+				case 1:
+					System.out.println("Ingresar DNI del cliente: ");
+					int dni = read.nextInt();
+					read.nextLine();
+
+					Cliente cliente = Empresa.getInstancia().getClientes().get(dni);
+					if(cliente == null) {
+						System.out.println("No se encontro el DNI en el sistema. Por favor, ingrese los datos solicitados para darlo de alta: ");
+						System.out.println("Nombre: ");
+						String nombre = read.next();
+						read.nextLine();
+						System.out.println("Direccion: ");
+						String direccion = read.next();
+						read.nextLine();
+						cliente = Empresa.getInstancia().agregarCliente(dni, nombre, direccion, new Agenda());
+					}
+
+					System.out.println("Ingrese los datos de la visita");
+					System.out.println("Ingresar el horario: ");
+					int horario = read.nextInt();
+					read.nextLine();
+					System.out.println("Ingresar el dia: ");
+					String dia = read.next();
+					read.nextLine();
+					System.out.println("Ingresar el tipo de visita (Instalacion/Reparacion): ");
+					String tipoVisita = read.next();
+					System.out.println("Ingresar la cantidad de tecnicos: ");
+					int cantTec = read.nextInt();
+					read.nextLine();
+
+					List<Articulo> articulos = new ArrayList<>();
+					articulos.add(new Articulo("Cable Coaxil", 2F, 100F, 50F));
+					articulos.add(new Articulo("Decodificador de TV", 3F, 15F, 100.3F));
+
+					Visita visita = new Visita();
+					visita.setMateriales(articulos);
+
+					boolean agendaFinalizada = false;
+
+					while (!agendaFinalizada) {
+						try {
+							visita = callcenter.agendarVisita(horario, dia, cliente, tipoVisita, articulos, articulos, cantTec);
+							agendaFinalizada = true;
+							System.out.println("La visita fue programada con exito");
+						} catch (HorarioReservadoException hre) {
+							System.out.println("El horario ingresado no esta disponible, por favor ingrese otro: ");
+							System.out.println("Ingresar el horario: ");
+							horario = read.nextInt();
+							read.nextLine();
+							System.out.println("Ingresar el dia: ");
+							dia = read.next();
+							read.nextLine();
+						} catch (StockInsuficienteException e) {
+							System.out.println("los insumos para realizar esta visita son insufisientes.");
+							agendaFinalizada = true;
+						}
+					}
+			}
+			opcionElegida = callcenter.mostrarMenu();
 		}
 		System.out.println("Saliendo del sistema . . . ");
 	}
