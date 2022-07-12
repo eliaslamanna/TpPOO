@@ -1,6 +1,7 @@
 package com;
 
 import java.util.List;
+import java.util.Random;
 
 public class Visita {
 	private int idVisita;
@@ -26,7 +27,7 @@ public class Visita {
 
 	public Visita(Cliente cliente, List<Tecnico> tecnicos, List<Articulo> otrosCostos,
 			List<Articulo> gastosAdicionales) {
-		this.idVisita = (int) Math.random();
+		this.idVisita = new Random().nextInt(1000);
 		this.cliente = cliente;
 		this.tecnicos = tecnicos;
 		this.estado = EstadoVisita.PROGRAMADO;
@@ -62,12 +63,20 @@ public class Visita {
 		this.idVisita = idVisita;
 	}
 
+	public int getIdVisita() {
+		return idVisita;
+	}
+
 	public int getTiempoTrabajado() {
 		return this.tiempoTrabajado;
 	}
 
 	public EstadoVisita getEstado() {
 		return this.estado;
+	}
+
+	public Factura getFactura() {
+		return this.factura;
 	}
 
 	public List<Articulo> getOtrosCostos() {

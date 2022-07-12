@@ -65,7 +65,7 @@ public class Tecnico extends Rol {
     public String getTurno() { return turno; }
 
     @Override
-    public void mostrarMenu() {
+    public Integer mostrarMenu() {
     	int opc = 0;
     	Scanner read = new Scanner(System.in);
 		System.out.println("\n\n\n\n");
@@ -75,5 +75,6 @@ public class Tecnico extends Rol {
 		
 		
 		System.out.println();
+        return null;
     }
 }

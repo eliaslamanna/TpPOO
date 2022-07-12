@@ -19,7 +19,7 @@ public class Callcenter extends Rol {
 	}
 
 	@Override
-	public void mostrarMenu() {
+	public Integer mostrarMenu() {
 		int opc = 0;
 		Integer h = 0;
 		String dia;
@@ -71,6 +71,7 @@ public class Callcenter extends Rol {
 		}
 
 		System.out.println("Visita programada!!");
+		return null;
 	}
 
 	public List<Visita> getVisitas() {

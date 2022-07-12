@@ -79,6 +79,7 @@ public class AdministradorSist extends Rol {
 
 
     @Override
-    public void mostrarMenu() {
+    public Integer mostrarMenu() {
+        return null;
     }
 }

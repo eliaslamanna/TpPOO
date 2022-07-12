@@ -28,7 +28,7 @@ public class Empresa {
 
 	private Empresa() {
 
-		Visita pVisita = new Visita();
+
 		Visita sVisita = new Visita();
 		List<Visita> visitasJr = new ArrayList<>();
 		List<Visita> visitasSr = new ArrayList<>();
@@ -59,29 +59,13 @@ public class Empresa {
 		Articulo deco = new Articulo("Decodificador de TV", 20F, 15F, 100.3F);
 		articulos.add(artCable);
 		articulos.add(deco);
+
 		this.stock.put("Cable Coaxil", artCable);
 		this.stock.put("Decodificador de TV", deco);
-		/*
-		 * this.stock.put("Modem de Internet", new Articulo("Modem de Internet", 20F,
-		 * 20F, 120.5F)); this.stock.put("Divisor Coaxial", new
-		 * Articulo("Divisor Coaxial", 30F, 12F, 120F));
-		 * this.stock.put("Conectores RG6", new Articulo("Conectores RG6", 10F, 25F,
-		 * 100F)); this.stock.put("Repuestos", new Articulo("Repuestos", 20F, 100F,
-		 * 15F));
-		 */
 
-		/*
-		 * try { pVisita = this.callCenter.agendarVisita(10, "Lunes", clientes.get(1),
-		 * "Instalacion", new ArrayList<>(), new ArrayList<>(), 1); sVisita =
-		 * this.callCenter.agendarVisita(14, "Martes", clientes.get(2), "Reparacion",
-		 * new ArrayList<>(), new ArrayList<>(), 1); } catch (HorarioReservadoException
-		 * | StockInsuficienteException e) { // TODO Auto-generated catch block
-		 * e.printStackTrace(); }
-		 */
-
-		pVisita.setMateriales(articulos);
+		Visita pVisita = new Visita(c1, this.tecnicos, articulos, new ArrayList<>());
+		pVisita.setEstado(EstadoVisita.FINALIZADO);
 		visitasJr.add(pVisita);
-		/* visitasSr.add(sVisita); */
 
 		Tecnico t = new Tecnico(Seniority.JR, "Tarde", new Agenda(), visitasJr);
 		Usuario tUsuario = new Usuario(t, "Leonel", "tecnico");
@@ -90,16 +74,10 @@ public class Empresa {
 		this.clientes.add(c2);
 		this.clientes.add(c3);
 
-		/*
-		 * this.tecnicos.add(new Tecnico(Seniority.JR, "tarde", new Agenda(),
-		 * visitasJr)); this.tecnicos.add(new Tecnico(Seniority.SR, "maniana", new
-		 * Agenda(), visitasSr));
-		 */
-
 		//tecnicos
-		this.tecnicos.add(new Tecnico(Seniority.JR,"tarde"));
-		this.tecnicos.add(new Tecnico(Seniority.SR,"maniana"));
-		this.tecnicos.add(new Tecnico(Seniority.SSR,"tarde"));
+		this.tecnicos.add(new Tecnico(Seniority.JR,"tarde", new Agenda(), List.of(pVisita)));
+		this.tecnicos.add(new Tecnico(Seniority.SR,"maniana", new Agenda(), List.of(pVisita)));
+		this.tecnicos.add(new Tecnico(Seniority.SSR,"tarde", new Agenda(), List.of(pVisita)));
 
 	}
 

@@ -34,4 +34,12 @@ public class Factura {
     public void setPrecioFinal(float precioFinal) {
         this.precioFinal = precioFinal;
     }
+
+    @Override
+    public String toString() {
+        return "Factura: \n" +
+                "    - numero Factura = " + numeroFactura + '\n' +
+                "    - costo = " + costo + '\n' +
+                "    - precio Final = " + precioFinal + '\n';
+    }
 }
