@@ -16,14 +16,14 @@ public class Empresa {
 	// instancia de Articulo, con contidad y sus atributos)
 	private HashMap<String, Articulo> stock;
 
-	// Mapa de los empleados de la empresa (clave legajo de empleado, valor
+	// Lista de los empleados de la empresa (clave legajo de empleado, valor
 	// instancia de Empleado)
 	private List<Usuario> usuarios = new ArrayList<>();
 
     //Mapa de clientes
     private HashMap<Integer, Cliente> clientes = new HashMap<>();
 
-    //Mapa tecnicos
+    //Lista tecnicos
     private List<Tecnico> tecnicos = new ArrayList<>();
 
 	private Empresa() {
@@ -40,7 +40,6 @@ public class Empresa {
 		AdministradorSist adminSist = new AdministradorSist();
 		Callcenter cc = new Callcenter();
 
-		/* AdministradorSist adminSist = new AdministradorSist(); */
 		Usuario aUsuario = new Usuario(admin, "Juan", "administrativo");
 		Usuario sUsuario = new Usuario(adminSist, "Rodrigo", "admin sistema");
 		Usuario cUsuario = new Usuario(cc, "Dario", "call center");
@@ -134,9 +133,4 @@ public class Empresa {
 
         return nuevoUsuario;
     }
-
-	private Integer proxLegajoEmpleado = 1;
-	private Integer proxCliente = 1;
-	private Integer proxIdVisita = 1;
-	private Integer proxNroFactura = 1;
 }

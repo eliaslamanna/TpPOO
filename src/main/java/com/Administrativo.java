@@ -39,21 +39,19 @@ public class Administrativo extends Rol {
             }
         }
 
-        System.out.println(factura.toString());
+        System.out.println(factura != null ? factura.toString() : "El id ingresado no corresponde con ninguna visita");
     }
 
     @Override
     public Integer mostrarMenu() {
-        int opcion = 0;
         Scanner read = new Scanner(System.in);
 
-        System.out.println("\n\n\n\n");
-        System.out.println("---------------------------------------------");
+        System.out.println("\n---------------------------------------------");
         System.out.println("*****\t\tAdministrativo\t\t*****\n\n");
         System.out.println("1) Revisar Servicios");
         System.out.println("2) Imprimir Factura");
         System.out.println("3) Salir");
-        opcion = read.nextInt();
+        int opcion = read.nextInt();
         read.nextLine();
 
         return opcion;

@@ -20,15 +20,14 @@ public class Callcenter extends Rol {
 
 	@Override
 	public Integer mostrarMenu() {
-		int opcion = 0;
 		Scanner read = new Scanner(System.in);
 
-		System.out.println("\n\n\n\n");
-		System.out.println("---------------------------------------------");
+		System.out.println("\n---------------------------------------------");
 		System.out.println("*****\t\tCall Center\t\t*****\n\n");
 		System.out.println("1) Programar visita");
 		System.out.println("2) Salir");
-		opcion = read.nextInt();
+
+		int opcion = read.nextInt();
 		read.nextLine();
 
 		return opcion;

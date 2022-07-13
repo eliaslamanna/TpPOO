@@ -47,8 +47,12 @@ public class Usuario {
 		return legajo;
 	}
 
-	public String getRol() {
+	public String getRolString() {
 		return rol.getRol();
+	}
+
+	public Rol getRol() {
+		return rol;
 	}
 
 	public void setRol(Rol rol) {

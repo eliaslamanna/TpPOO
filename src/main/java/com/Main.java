@@ -67,27 +67,22 @@ public class Main {
 
 		String finalUsuario = usuario;
 		Usuario usuarioLoggeado = Empresa.getInstancia().getUsuarios().stream().filter(u -> u.getUsuario().equals(finalUsuario)).findFirst().get();
-		int opcionElegida;
 
-		switch (usuarioLoggeado.getRol()) {
+		switch (usuarioLoggeado.getRolString()) {
 			case "Administrativo": {
-				Administrativo admin = new Administrativo();
-				funcionesAdministrativo(admin.mostrarMenu(), admin);
+				funcionesAdministrativo(usuarioLoggeado.getRol().mostrarMenu(), (Administrativo)usuarioLoggeado.getRol());
 				break;
 			}
 			case "Call Center": {
-				Callcenter callC = new Callcenter();
-				funcionesCallCenter(callC.mostrarMenu(), callC);
+				funcionesCallCenter(usuarioLoggeado.getRol().mostrarMenu(), (Callcenter)usuarioLoggeado.getRol());
 				break;
 			}
 			case "Tecnico": {
-				Tecnico t = new Tecnico();
-				opcionElegida = t.mostrarMenu();
+				funcionesTecnico(usuarioLoggeado.getRol().mostrarMenu(), (Tecnico)usuarioLoggeado.getRol());
 				break;
 			}
 			case "AdministradorSist": {
-				AdministradorSist adminSist = new AdministradorSist();
-				opcionElegida = adminSist.mostrarMenu();
+				funcionesAdministradorSistema(usuarioLoggeado.getRol().mostrarMenu(), (AdministradorSist)usuarioLoggeado.getRol());
 				break;
 			}
 		}
@@ -106,7 +101,6 @@ public class Main {
 	}
 
 	public static void funcionesAdministrativo(int opcionElegida, Administrativo admin) {
-
 		while (opcionElegida != 3) {
 			switch (opcionElegida) {
 				case 1:
@@ -126,7 +120,6 @@ public class Main {
 	}
 
 	public static void funcionesCallCenter(int opcionElegida, Callcenter callcenter) {
-
 		while (opcionElegida != 2) {
 			switch (opcionElegida) {
 				case 1:
@@ -170,7 +163,7 @@ public class Main {
 
 					while (!agendaFinalizada) {
 						try {
-							visita = callcenter.agendarVisita(horario, dia, cliente, tipoVisita, articulos, articulos, cantTec);
+							callcenter.agendarVisita(horario, dia, cliente, tipoVisita, articulos, articulos, cantTec);
 							agendaFinalizada = true;
 							System.out.println("La visita fue programada con exito");
 						} catch (HorarioReservadoException hre) {
@@ -188,6 +181,53 @@ public class Main {
 					}
 			}
 			opcionElegida = callcenter.mostrarMenu();
+		}
+		System.out.println("Saliendo del sistema . . . ");
+	}
+
+	public static void funcionesTecnico(int opcionElegida, Tecnico tecnico) {
+		while (opcionElegida != 3) {
+			switch (opcionElegida) {
+				case 1:
+					tecnico.ejecutarServicios();
+					System.out.println("Todos los servicios asignados fueron ejecutados exitosamente");
+					break;
+				case 2:
+					System.out.println("Los servicios asignados son los listados a continuacion: ");
+					tecnico.listarServicios();
+					break;
+			}
+			opcionElegida = tecnico.mostrarMenu();
+		}
+		System.out.println("Saliendo del sistema . . . ");
+	}
+
+	public static void funcionesAdministradorSistema(int opcionElegida, AdministradorSist adminSist) {
+		while (opcionElegida != 4) {
+			switch (opcionElegida) {
+				case 1:
+					adminSist.agregarArticulo();
+					System.out.println("El articulo se ha agregado al stock exitosamente");
+					break;
+				case 2:
+					System.out.println("Ingrese el nombre del articulo del cual se va a sumar el stock: ");
+					String nombreArticulo = read.nextLine();
+					System.out.println("Ingrese la cantidad a agregar: ");
+					float cantidad = read.nextFloat();
+					read.nextLine();
+
+					adminSist.agregarStock(nombreArticulo, cantidad);
+					System.out.println("El stock se sumó exitosamente");
+					break;
+				case 3:
+					System.out.println("Ingrese el id de la visita de la cual se va a restar el stock: ");
+					int idVisita = read.nextInt();
+					read.nextLine();
+					adminSist.restarStock(idVisita);
+					System.out.println("El stock se restó exitosamente");
+					break;
+			}
+			opcionElegida = adminSist.mostrarMenu();
 		}
 		System.out.println("Saliendo del sistema . . . ");
 	}

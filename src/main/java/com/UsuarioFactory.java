@@ -23,7 +23,7 @@ public class UsuarioFactory {
         switch (rol) {
             case "Administrativo" :
                 return new Usuario(new Administrativo(),usuario,password);
-            case "AdministradorSistema" :
+            case "AdministradorSist" :
                 return new Usuario(new AdministradorSist(),usuario,password);
             case "Call Center" :
                 return new Usuario(new Callcenter(),usuario,password);

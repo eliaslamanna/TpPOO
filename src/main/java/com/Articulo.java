@@ -11,6 +11,12 @@ public class Articulo {
         this.cantidad = cantidad;
     }
 
+    public Articulo(String nombre, Float cantidad, Float precioUnidad) {
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+        this.precioUnidad = precioUnidad;
+    }
+
     public Articulo(String nombre,Float stock, Float cantidad, Float precioUnidad) {
         this.nombre = nombre;
         this.cantidad = cantidad;

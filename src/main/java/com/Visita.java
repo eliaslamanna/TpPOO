@@ -86,4 +86,19 @@ public class Visita {
 	public List<Articulo> getGastosAdicionales() {
 		return gastosAdicionales;
 	}
+
+	public void  obtenerDatosVisita() {
+		System.out.println("Visita: \n" + "\t - Id: " + idVisita + "\n" + "\t - " + cliente.toString() + "\n" + "\t - Estado: " + estado + "\n" + "\t - Tiempo Trabajado: " + tiempoTrabajado + "\n");
+
+		System.out.println("\t - Materiales: ");
+		materiales.forEach(material -> System.out.println(("\t \t " + material.getNombre() + "(" + material.getCantidad() + ")\n")));
+		System.out.println("\t - Otros costos: ");
+		otrosCostos.forEach(otroCosto -> System.out.println("\t \t " + otroCosto.getNombre() + "(" + otroCosto.getCantidad() + ")\n"));
+		System.out.println("\t - Gastos Adicionales: ");
+		gastosAdicionales.forEach(gastoAdicional -> System.out.println(("\t \t " + gastoAdicional.getNombre() + "(" + gastoAdicional.getCantidad() + ")\n")));
+
+		if(this.factura != null) {
+			System.out.println(this.factura.toString());
+		}
+	}
 }

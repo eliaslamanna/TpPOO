@@ -40,18 +40,12 @@ public class Cliente {
     public Agenda getAgenda() {
         return agenda;
     }
-    
-	/*
-	 * public Cliente obtenerCliente(int id) {
-	 * 
-	 * return Empresa.getInstancia().getClientes().get(id); }
-	 */
 
-	@Override
-	public String toString() {
-		return "Cliente [dniCleinte=" + dniCliente + ", nombre=" + nombre + ", Direccion=" + Direccion + ", agenda="
-				+ agenda + "]";
-	}
-    
-    
+    @Override
+    public String toString() {
+        return "Cliente: \n" +
+                "    Dni: " + dniCliente + "\n" +
+                "    Nombre: " + nombre + "\n" +
+                "    Direccion: " + Direccion;
+    }
 }
