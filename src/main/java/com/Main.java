@@ -4,10 +4,13 @@ import com.exception.HorarioReservadoException;
 import com.exception.RolNoExisteException;
 import com.exception.StockInsuficienteException;
 import com.exception.UsuarioYaExisteException;
+import com.gui.AdministradorGui;
+import com.gui.AdministradorSistGui;
+import com.gui.CallCenterGui;
+import com.gui.LoginGui;
+import com.gui.TecnicoGui;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,13 +23,20 @@ public class Main {
 
 		Empresa empresa = Empresa.getInstancia();
 
-
 		boolean accedio = false;
-
+		
+		/*
+		new LoginGui();
+		new AdministradorGui();
+		new AdministradorSistGui(); /// Test GUI ///
+		new CallCenterGui();
+		new TecnicoGui();
+		*/
+		
 		String usuario = pedirUsuario();
-		String contraseña = pedirContraseña();
+		String contrasenia = pedirContrasenia();
 
-		if (Empresa.getInstancia().signIn(usuario, contraseña)) {
+		if (Empresa.getInstancia().signIn(usuario, contrasenia)) {
 			System.out.println("Loggeado exitosamente");
 			accedio = true;
 		} else {
@@ -45,18 +55,18 @@ public class Main {
 
 			switch (opc) {
 				case 1:
-					accedio = Empresa.getInstancia().signIn(usuario, contraseña);
+					accedio = Empresa.getInstancia().signIn(usuario, contrasenia);
 					if (!accedio) {
 						System.out.println("El sistema no encontro el usuario, verifique los datos ingresados o dese de alta");
 						usuario = pedirUsuario();
-						contraseña = pedirContraseña();
+						contrasenia = pedirContrasenia();
 					}
 					break;
 				case 2:
 					System.out.println("Ingrese su Rol");
 					String rol = read.nextLine();
 
-					Usuario nuevoUsuario = UsuarioFactory.getInstancia().crearUsuario(rol, usuario, contraseña);
+					Usuario nuevoUsuario = UsuarioFactory.getInstancia().crearUsuario(rol, usuario, contrasenia);
 					Empresa.getInstancia().singUp(nuevoUsuario);
 
 					accedio = true;
@@ -95,8 +105,8 @@ public class Main {
 		return read.nextLine();
 	}
 
-	public static String pedirContraseña() {
-		System.out.println("Ingrese su contraseña:");
+	public static String pedirContrasenia() {
+		System.out.println("Ingrese su contrasenia:");
 		return read.nextLine();
 	}
 

@@ -81,11 +81,11 @@ public class Empresa {
 		agendaTarde1.setTurno("Tarde");
 		Agenda agendaTarde2 = new Agenda();
 		agendaTarde2.setTurno("Tarde");
-		Agenda agendaMañana1 = new Agenda();
-		agendaMañana1.setTurno("Mañana");
+		Agenda agendaManiana = new Agenda();
+		agendaManiana.setTurno("Mañana");
 		//tecnicos
 		this.tecnicos.add(new Tecnico(Seniority.JR,"tarde", agendaTarde1, visitas));
-		this.tecnicos.add(new Tecnico(Seniority.SR,"mañana", agendaMañana1, visitas));
+		this.tecnicos.add(new Tecnico(Seniority.SR,"mañana", agendaManiana, visitas));
 		this.tecnicos.add(new Tecnico(Seniority.SSR,"tarde", agendaTarde2, visitas));
 
 	}
