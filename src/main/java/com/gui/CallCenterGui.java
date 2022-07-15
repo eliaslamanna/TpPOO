@@ -52,10 +52,10 @@ public class CallCenterGui extends JFrame {
 		tabbedPane.addTab("Home", null, lblNewLabel_1, null);
 		
 		JPanel panel = new JPanel();
-		tabbedPane.addTab("Asignar servicios", null, panel, null);
+		tabbedPane.addTab("Programar visita", null, panel, null);
 		
 		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("Listar servicios", null, panel_1, null);
+		tabbedPane.addTab("Agenda", null, panel_1, null);
 		this.setVisible(true);
 		
 	}

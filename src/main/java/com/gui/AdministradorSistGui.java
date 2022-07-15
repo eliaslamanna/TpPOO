@@ -53,8 +53,11 @@ public class AdministradorSistGui extends JFrame {
 		JPanel panel = new JPanel();
 		tabbedPane.addTab("Usuarios", null, panel, null);
 		
+		JPanel panel_2 = new JPanel();
+		tabbedPane.addTab("Tecnicos", null, panel_2, null);
+		
 		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("Listar servicios", null, panel_1, null);
+		tabbedPane.addTab("Stock", null, panel_1, null);
 		this.setVisible(true);
 	}
 

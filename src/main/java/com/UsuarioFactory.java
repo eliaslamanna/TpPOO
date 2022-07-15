@@ -30,7 +30,7 @@ public class UsuarioFactory {
             case "Tecnico" :
                 Scanner scanner = new Scanner(System.in);
 
-                System.out.println("Ingrese su senioriry");
+                System.out.println("Ingrese su seniority");
                 String seniority = scanner.nextLine();
                 Seniority seniorityTecnico = Seniority.JR;
 

@@ -3,6 +3,7 @@ package com;
 import java.util.Random;
 import java.util.Scanner;
 
+
 public class Administrativo extends Rol {
 
     public Administrativo() {

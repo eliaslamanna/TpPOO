@@ -25,13 +25,13 @@ public class Main {
 
 		boolean accedio = false;
 		
-		/*
-		new LoginGui();
+		
+		//new LoginGui();
 		new AdministradorGui();
-		new AdministradorSistGui(); /// Test GUI ///
-		new CallCenterGui();
-		new TecnicoGui();
-		*/
+		//new AdministradorSistGui(); /// Test GUI ///
+		//new CallCenterGui();
+		//new TecnicoGui();
+		
 		
 		String usuario = pedirUsuario();
 		String contrasenia = pedirContrasenia();

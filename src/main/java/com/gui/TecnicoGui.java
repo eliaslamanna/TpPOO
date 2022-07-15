@@ -55,9 +55,11 @@ public class TecnicoGui extends JFrame {
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Listar servicios", null, panel_1, null);
+		
+		JPanel panel_2 = new JPanel();
+		tabbedPane.addTab("Agenda", null, panel_2, null);
 		this.setVisible(true);
 		
 		
 	}
-
 }

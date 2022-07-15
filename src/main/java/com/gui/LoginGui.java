@@ -38,7 +38,7 @@ public class LoginGui extends JFrame {
 		lblNewLabel.setIcon(logo);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("User");
+		JLabel lblNewLabel_1 = new JLabel("Usuario");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setBounds(166, 122, 86, 14);
 		contentPane.add(lblNewLabel_1);
@@ -49,7 +49,7 @@ public class LoginGui extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Password");
+		JLabel lblNewLabel_2 = new JLabel("Contrase\u00F1a");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setBounds(166, 176, 86, 14);
 		contentPane.add(lblNewLabel_2);
