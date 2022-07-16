@@ -4,18 +4,22 @@ import com.exception.HorarioReservadoException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
+
+import static java.util.stream.Collectors.toList;
 
 public class Tecnico extends Rol {
 
+    private Integer id;
     private Seniority seniority;
     private String turno;
     private Agenda agenda = new Agenda();
-    private List<Visita> visitas = new ArrayList<>();
 
     
-    public Tecnico(Seniority seniority, String turno, Agenda agenda, List<Visita> visitas) {
+    public Tecnico(Seniority seniority, String turno, Agenda agenda) {
 		super();
+        this.id = new Random().nextInt(1000);
 		this.seniority = seniority;
 		this.turno = turno;
 		this.agenda = agenda;
@@ -24,12 +28,12 @@ public class Tecnico extends Rol {
         } else {
             this.agenda.setTurno("Mañana");
         }
-		this.visitas = visitas;
         this.rol = "Tecnico";
 	}
 
     public Tecnico(Seniority seniority, String turno) {
         super();
+        this.id = new Random().nextInt(1000);
         this.seniority = seniority;
         this.turno = turno;
         this.rol = "Tecnico";
@@ -37,22 +41,45 @@ public class Tecnico extends Rol {
 
 	public Tecnico() {
 		/* agenda.setTurno(this.turno); */
+        this.id = new Random().nextInt(1000);
         this.rol = "Tecnico";
     }
 
-    public boolean disponible(String dia, Integer horario) {
-        return agenda.getHorarios().get(dia).get(horario);
+    public boolean disponible(String dia, Integer horarioInicio, Integer horarioFin) {
+        if((horarioInicio < 1400 && "Tarde".equals(turno)) ||
+                (horarioFin > 1400 && "Mañana".equals(turno)) ||
+                ("Sabado".equals(dia) && "Tarde".equals(turno))){
+            System.out.println("El horario es incorrecto.");
+        } else {
+            Integer horario = horarioInicio;
+
+            while(horario <= horarioFin + 30 && horario != 2000) {
+                if(!agenda.getHorarios().get(dia).get(horario)) {
+                    return false;
+                }
+                horario += 30;
+            }
+            return true;
+        }
+
+        return false;
     }
 
-    public void agendarVisita(String dia, Integer horario) throws HorarioReservadoException {
-        agenda.agendarVisita(horario, dia);
+    public void agendarVisita(String dia, Integer horarioInicio, Integer horarioFin) throws HorarioReservadoException {
+        agenda.agendarVisita(dia, horarioInicio, horarioFin);
     }
 
     public void ejecutarServicios() {
-        if (this.visitas.size() == 0) {
-            System.out.println("No hay visitas registradas");
+        List<Visita> visitasRevisadas = new ArrayList<>();
+
+        for(Visita visita : new ArrayList<>(Empresa.getInstancia().getVisitas().values())) {
+            for(Usuario tecnico : visita.getTecnicos()) {
+                if(((Tecnico) tecnico.getRol()).getId() == id) {
+                    revisarVisita(visita);
+                    Empresa.getInstancia().getVisitas().put(visita.getIdVisita(), visita);
+                }
+            }
         }
-        this.visitas.forEach(visita -> revisarVisita(visita));
     }
 
     public void revisarVisita(Visita visita){
@@ -103,15 +130,27 @@ public class Tecnico extends Rol {
         return articulos;
     }
 
-    public void listarServicios() {
-        this.visitas.forEach(visita -> visita.obtenerDatosVisita());
-    }
+    public List<Visita> listarServicios() {
+        List<Visita> visitasTecnico = new ArrayList<>();
 
-    public List<Visita> getVisitas() { return this.visitas; }
+        for(Visita visita : new ArrayList<>(Empresa.getInstancia().getVisitas().values())) {
+            for(Usuario tecnico : visita.getTecnicos()) {
+                if(((Tecnico) tecnico.getRol()).getId() == id) {
+                    visitasTecnico.add(visita);
+                }
+            }
+        }
+
+        return visitasTecnico;
+    }
 
     public Seniority getSeniority() { return seniority; }
 
     public String getTurno() { return turno; }
+
+    public Integer getId() {
+        return this.id;
+    }
 
     @Override
     public Integer mostrarMenu() {

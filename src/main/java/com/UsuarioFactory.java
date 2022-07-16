@@ -24,9 +24,9 @@ public class UsuarioFactory {
             case "Administrativo" :
                 return new Usuario(new Administrativo(),usuario,password);
             case "AdministradorSist" :
-                return new Usuario(new AdministradorSist(),usuario,password);
+                return new Usuario(new AdministradorSistema(),usuario,password);
             case "Call Center" :
-                return new Usuario(new Callcenter(),usuario,password);
+                return new Usuario(new CallCenter(),usuario,password);
             case "Tecnico" :
                 Scanner scanner = new Scanner(System.in);
 

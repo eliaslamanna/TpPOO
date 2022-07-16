@@ -4,11 +4,6 @@ import com.exception.HorarioReservadoException;
 import com.exception.RolNoExisteException;
 import com.exception.StockInsuficienteException;
 import com.exception.UsuarioYaExisteException;
-import com.gui.AdministradorGui;
-import com.gui.AdministradorSistGui;
-import com.gui.CallCenterGui;
-import com.gui.LoginGui;
-import com.gui.TecnicoGui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,7 +82,7 @@ public class Main {
 				break;
 			}
 			case "Call Center": {
-				funcionesCallCenter(usuarioLoggeado.getRol().mostrarMenu(), (Callcenter)usuarioLoggeado.getRol());
+				funcionesCallCenter(usuarioLoggeado.getRol().mostrarMenu(), (CallCenter)usuarioLoggeado.getRol());
 				break;
 			}
 			case "Tecnico": {
@@ -95,7 +90,7 @@ public class Main {
 				break;
 			}
 			case "AdministradorSist": {
-				funcionesAdministradorSistema(usuarioLoggeado.getRol().mostrarMenu(), (AdministradorSist)usuarioLoggeado.getRol());
+				funcionesAdministradorSistema(usuarioLoggeado.getRol().mostrarMenu(), (AdministradorSistema)usuarioLoggeado.getRol());
 				break;
 			}
 		}
@@ -132,7 +127,7 @@ public class Main {
 		iniciarPrograma();
 	}
 
-	public static void funcionesCallCenter(int opcionElegida, Callcenter callcenter) throws UsuarioYaExisteException, RolNoExisteException {
+	public static void funcionesCallCenter(int opcionElegida, CallCenter callcenter) throws UsuarioYaExisteException, RolNoExisteException {
 		while (opcionElegida != 2) {
 			switch (opcionElegida) {
 				case 1:
@@ -156,8 +151,11 @@ public class Main {
 					}
 
 					System.out.println("Ingrese los datos de la visita");
-					System.out.println("Ingresar el horario: ");
-					int horario = read.nextInt();
+					System.out.println("Ingresar el horario de inicio: ");
+					int horarioInicio = read.nextInt();
+					read.nextLine();
+					System.out.println("Ingresar el horario de fin: ");
+					int horarioFin = read.nextInt();
 					read.nextLine();
 					System.out.println("Ingresar el dia: ");
 					String dia = read.next();
@@ -179,7 +177,7 @@ public class Main {
 
 					while (!agendaFinalizada) {
 						try {
-							callcenter.agendarVisita(horario, dia, cliente, tipoVisita, articulos, articulos, cantTec);
+							callcenter.agendarVisita();
 							agendaFinalizada = true;
 							System.out.println("La visita fue programada con exito");
 						} catch (HorarioReservadoException hre) {
@@ -220,7 +218,7 @@ public class Main {
 		iniciarPrograma();
 	}
 
-	public static void funcionesAdministradorSistema(int opcionElegida, AdministradorSist adminSist) throws UsuarioYaExisteException, RolNoExisteException {
+	public static void funcionesAdministradorSistema(int opcionElegida, AdministradorSistema adminSist) throws UsuarioYaExisteException, RolNoExisteException {
 		while (opcionElegida != 4) {
 			switch (opcionElegida) {
 				case 1:

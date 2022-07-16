@@ -4,17 +4,14 @@ import java.util.Objects;
 public class Usuario {
 	private static int generador = 999;
     private Rol rol;
-    private int legajo;
     private String usuario;
     private String password;
-    private String perfil;
-    
+
 
 	public Usuario(Rol rol, String usuario, String password) {
 		super();
 		Usuario.generador++;
 		this.rol = rol;
-		this.legajo = generador;
 		this.usuario = usuario;
 		this.password = password;
 	}
@@ -22,9 +19,7 @@ public class Usuario {
 	public Usuario(Rol rol, int legajo, String usuario, String perfil) {
 		super();
 		this.rol = rol;
-		this.legajo = legajo;
 		this.usuario = usuario;
-		this.perfil = perfil;
 	}
 
 	public String getUsuario() {

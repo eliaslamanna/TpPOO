@@ -21,10 +21,13 @@ public class Empresa {
 	private HashMap<String, Usuario> usuarios = new HashMap<>();
 
     //Mapa de clientes
-    private HashMap<Integer, Cliente> clientes = new HashMap<>();
+    private HashMap<String, Cliente> clientes = new HashMap<>();
 
     //Lista tecnicos
-    private HashMap<String, Usuario> tecnicos = new HashMap<>();
+    private HashMap<Integer, Usuario> tecnicos = new HashMap<>();
+
+	//Lista visitas
+	private HashMap<Integer, Visita> visitas = new HashMap<>();
 
 	private Empresa() {
 		List<Articulo> articulos = new ArrayList<>();
@@ -101,21 +104,29 @@ public class Empresa {
         return usuarios;
     }
 
-    public HashMap<Integer, Cliente> getClientes() {
+    public HashMap<String, Cliente> getClientes() {
         return clientes;
     }
 
-    public HashMap<String, Usuario> getTecnicos() {
+    public HashMap<Integer, Usuario> getTecnicos() {
         return tecnicos;
     }
 
-	public Cliente agregarCliente(int dni, String nombre, String apellido, String direccion) {
+	public HashMap<Integer, Visita> getVisitas() {
+		return this.visitas;
+	}
+
+	public Cliente agregarCliente(String dni, String nombre, String apellido, String direccion) {
 		this.clientes.put(dni, new Cliente(dni, nombre, apellido, direccion));
 		return this.clientes.get(dni);
 	}
 
-	public void agregarTecnico(String usuario, Usuario tecnico) {
-		this.tecnicos.put(usuario, tecnico);
+	public void agregarTecnico(Usuario usuario, Integer idTecnico) {
+		this.tecnicos.put(idTecnico, usuario);
+	}
+
+	public void agregarVisita(Visita visita) {
+		this.visitas.add(visita);
 	}
 
 	public boolean signIn(String usuario, String password) {

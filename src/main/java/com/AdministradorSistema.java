@@ -1,27 +1,23 @@
 package com;
 
-import com.exception.ArticuloNoExisteException;
 import com.exception.RolNoExisteException;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
-public class AdministradorSist extends Rol {
+public class AdministradorSistema extends Rol {
 
     private Scanner read = new Scanner(System.in);
 
-    public AdministradorSist() {
+    public AdministradorSistema() {
         this.rol = "AdministradorSist";
     }
 
     public void guardarCliente() {
         System.out.println("Ingrese el DNI del cliente: ");
-        Integer dniCliente = read.nextInt();
-        read.nextLine();
+        String dniCliente = read.nextLine();
 
         if(Empresa.getInstancia().getClientes().containsKey(dniCliente)) {
             System.out.println("\nEl cliente ya existe: ");
@@ -54,7 +50,7 @@ public class AdministradorSist extends Rol {
             Empresa.getInstancia().singUp(nuevoUsuario);
 
             if("Tecnico".equals(rol)) {
-                Empresa.getInstancia().agregarTecnico(usuario, nuevoUsuario);
+                Empresa.getInstancia().agregarTecnico(nuevoUsuario, ((Tecnico) nuevoUsuario.getRol()).getId());
             }
 
             System.out.println("\nEl usuario " + usuario + " se dio de alta exitosamente.");
@@ -110,7 +106,6 @@ public class AdministradorSist extends Rol {
     }
 
     public void eliminarArticulo() {
-
         System.out.println("Ingrese el nombre del articulo a eliminar: ");
         String nombreArticulo = read.next();
         read.nextLine();

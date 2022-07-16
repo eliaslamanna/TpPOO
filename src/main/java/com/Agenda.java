@@ -175,12 +175,12 @@ public class Agenda {
         return horarios;
     }
 
-    public void agendarVisita(Integer horario, String dia) throws HorarioReservadoException {
-        if(horarios.get(dia).get(horario)) {
+    public void agendarVisita(String dia, Integer horarioInicio, Integer horarioFin) {
+        Integer horario = horarioInicio;
+
+        while(horario <= horarioFin + 30 && horario != 2000) {
             this.horarios.get(dia).put(horario, false);
-        }
-        else {
-            throw new HorarioReservadoException(dia, horario);
+            horario += 30;
         }
     }
 

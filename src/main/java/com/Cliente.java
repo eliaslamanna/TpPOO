@@ -1,8 +1,10 @@
 package com;
 
+import com.exception.HorarioReservadoException;
+
 public class Cliente {
 	
-    private int dniCliente;
+    private String dniCliente;
     private String nombre;
     private String apellido;
     private String Direccion;
@@ -10,7 +12,7 @@ public class Cliente {
     
     
 
-    public Cliente(int dniCliente, String nombre, String apellido, String direccion) {
+    public Cliente(String dniCliente, String nombre, String apellido, String direccion) {
 		super();
 		this.dniCliente = dniCliente;
 		this.nombre = nombre;
@@ -20,6 +22,22 @@ public class Cliente {
 
     public Agenda getAgenda() {
         return agenda;
+    }
+
+    public boolean disponible(String dia, Integer horarioInicio, Integer horarioFin) {
+        Integer horario = horarioInicio;
+
+        while(horario <= horarioFin + 30 && horario != 2000) {
+            if(!agenda.getHorarios().get(dia).get(horario)) {
+                return false;
+            }
+            horario += 30;
+        }
+        return true;
+    }
+
+    public void agendarVisita(String dia, Integer horarioInicio, Integer horarioFin) {
+        this.agenda.agendarVisita(dia,horarioInicio,horarioFin);
     }
 
     @Override

@@ -16,13 +16,6 @@ public class Articulo {
         this.precioUnidad = precioUnidad;
     }
 
-    public Articulo(String nombre,Float stock, Float cantidad, Float precioUnidad) {
-        this.nombre = nombre;
-        this.cantidad = cantidad;
-        this.precioUnidad = precioUnidad;
-        this.stock = stock;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -39,15 +32,7 @@ public class Articulo {
         return precioUnidad;
     }
 
-    public float getStock() {
-        return stock;
-    }
-
     public void setPrecioUnidad(float precioUnidad) {
         this.precioUnidad = precioUnidad;
-    }
-
-    public void setStock(float stock) {
-        this.stock = stock;
     }
 }
