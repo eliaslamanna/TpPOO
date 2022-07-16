@@ -16,43 +16,50 @@ import java.util.Scanner;
 
 public class Main {
 
-	static Scanner read = new Scanner(System.in);
+	//static Scanner read = new Scanner(System.in);
 
 	public static void main(String[] args) throws RolNoExisteException, UsuarioYaExisteException {
 		// TODO Auto-generated method stub
-
-		Empresa empresa = Empresa.getInstancia();
-
-		boolean accedio = false;
+		
+		LoginGui login = new LoginGui();
+		
+		/*
+		AdministradorGui admin = new AdministradorGui();
+		AdministradorSistGui adminSist = new AdministradorSistGui(); /// Test GUI ///
+		CallCenterGui callCenter = new CallCenterGui();
+		TecnicoGui tecnico = new TecnicoGui();
+		*/
 		
 		
-		//new LoginGui();
-		new AdministradorGui();
-		//new AdministradorSistGui(); /// Test GUI ///
-		//new CallCenterGui();
-		//new TecnicoGui();
-		
-		
-		String usuario = pedirUsuario();
-		String contrasenia = pedirContrasenia();
-
-		if (Empresa.getInstancia().signIn(usuario, contrasenia)) {
-			System.out.println("Loggeado exitosamente");
-			accedio = true;
-		} else {
-			System.out.println("El sistema no encontro el usuario, verifique los datos ingresados o dese de alta");
-		}
-
-		while(!accedio) {
-			System.out.println("*****\t\tSeleccione accion\t\t*****");
-			System.out.println("1) Loggearse");
-			System.out.println("2) Darse de alta");
-
-			int opc = read.nextInt();
-			read.nextLine();
-
-
-
+		/*
+		while(login.accedio == true) {
+			
+			System.out.println("entro");
+			switch (login.rolMenu) {
+				case "Administrativo": {
+					//funcionesAdministrativo(usuarioLoggeado.getRol().mostrarMenu(), (Administrativo)usuarioLoggeado.getRol());
+					System.out.println("admin");
+					new AdministradorGui();
+					break;
+				}
+				case "Call Center": {
+					//funcionesCallCenter(usuarioLoggeado.getRol().mostrarMenu(), (Callcenter)usuarioLoggeado.getRol());
+					new CallCenterGui();
+					break;
+				}
+				case "Tecnico": {
+					//funcionesTecnico(usuarioLoggeado.getRol().mostrarMenu(), (Tecnico)usuarioLoggeado.getRol());
+					new TecnicoGui();
+					break;
+				}
+				case "AdministradorSist": {
+					//funcionesAdministradorSistema(usuarioLoggeado.getRol().mostrarMenu(), (AdministradorSist)usuarioLoggeado.getRol());
+					new AdministradorSist();
+					break;
+				}
+			}
+			
+	
 			switch (opc) {
 				case 1:
 					accedio = Empresa.getInstancia().signIn(usuario, contrasenia);
@@ -73,33 +80,21 @@ public class Main {
 					System.out.println("Loggeo exitoso");
 					break;
 			}
+			
+			
+			
 		}
+		
+		*/
 
-		String finalUsuario = usuario;
-		Usuario usuarioLoggeado = Empresa.getInstancia().getUsuarios().stream().filter(u -> u.getUsuario().equals(finalUsuario)).findFirst().get();
-
-		switch (usuarioLoggeado.getRolString()) {
-			case "Administrativo": {
-				funcionesAdministrativo(usuarioLoggeado.getRol().mostrarMenu(), (Administrativo)usuarioLoggeado.getRol());
-				break;
-			}
-			case "Call Center": {
-				funcionesCallCenter(usuarioLoggeado.getRol().mostrarMenu(), (Callcenter)usuarioLoggeado.getRol());
-				break;
-			}
-			case "Tecnico": {
-				funcionesTecnico(usuarioLoggeado.getRol().mostrarMenu(), (Tecnico)usuarioLoggeado.getRol());
-				break;
-			}
-			case "AdministradorSist": {
-				funcionesAdministradorSistema(usuarioLoggeado.getRol().mostrarMenu(), (AdministradorSist)usuarioLoggeado.getRol());
-				break;
-			}
-		}
-		System.out.println("\n\n\n-----------------------------------");
-
+		
+		//System.out.println("\n\n\n-----------------------------------");
+	
+		
+	
 	}
 
+	/*
 	public static String pedirUsuario() {
 		System.out.println("Ingrese su usuario:");
 		return read.nextLine();
@@ -109,7 +104,10 @@ public class Main {
 		System.out.println("Ingrese su contrasenia:");
 		return read.nextLine();
 	}
+	
+	*/
 
+	/*
 	public static void funcionesAdministrativo(int opcionElegida, Administrativo admin) {
 		while (opcionElegida != 3) {
 			switch (opcionElegida) {
@@ -240,5 +238,8 @@ public class Main {
 			opcionElegida = adminSist.mostrarMenu();
 		}
 		System.out.println("Saliendo del sistema . . . ");
+		
+		*/
+	
 	}
-}
+
