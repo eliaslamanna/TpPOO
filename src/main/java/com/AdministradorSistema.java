@@ -2,6 +2,7 @@ package com;
 
 import com.exception.RolNoExisteException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ import static java.util.stream.Collectors.toList;
 
 public class AdministradorSistema extends Rol {
 
-    private Scanner read = new Scanner(System.in);
+    private final Scanner read = new Scanner(System.in);
 
     public AdministradorSistema() {
         this.rol = "AdministradorSist";
@@ -58,19 +59,19 @@ public class AdministradorSistema extends Rol {
     }
 
     public List<Cliente> listarClientes() {
-        return Empresa.getInstancia().getClientes().values().stream().collect(toList());
+        return new ArrayList<>(Empresa.getInstancia().getClientes().values());
     }
 
     public List<Usuario> listarUsuarios() {
-        return Empresa.getInstancia().getUsuarios().values().stream().collect(toList());
+        return new ArrayList<>(Empresa.getInstancia().getUsuarios().values());
     }
 
     public List<Usuario> listarTecnicos() {
-        return Empresa.getInstancia().getTecnicos().values().stream().collect(toList());
+        return new ArrayList<>(Empresa.getInstancia().getTecnicos().values());
     }
 
     public List<Articulo> listarStock() {
-        return Empresa.getInstancia().getStock().values().stream().collect(toList());
+        return new ArrayList<>(Empresa.getInstancia().getStock().values());
     }
 
     public void agregarArticulo() {

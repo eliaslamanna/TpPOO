@@ -10,9 +10,11 @@ public class Visita {
 	// el almuerzo se suma como articulo (se le da el costo que queramos)
 	private List<Articulo> materiales;
 	private EstadoVisita estado;
+	//Estas cosas las setea el tecnico
 	private int tiempoTrabajado;
 	private List<Articulo> otrosCostos;
 	private List<Articulo> gastosAdicionales;
+	//Esto los setea el administrativo
 	private Factura factura;
 
 	public Visita() {}

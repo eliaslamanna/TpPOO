@@ -1,7 +1,13 @@
 package com;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+
+import static com.EstadoVisita.EN_CURSO;
+import static com.EstadoVisita.FINALIZADO;
+import static java.util.stream.Collectors.toList;
 
 public class Administrativo extends Rol {
 
@@ -9,35 +15,34 @@ public class Administrativo extends Rol {
         this.rol = "Administrativo";
     }
 
-    public void revisarServicios() {
-        Empresa.getInstancia().getTecnicos().forEach(tecnico -> {
-            tecnico.getVisitas().stream()
-                    .filter(visita -> visita.getEstado().equals(EstadoVisita.FINALIZADO))
-                    .forEach(visita -> {
-                        visita.setFactura(generarFactura(visita, tecnico));
-                        System.out.println("Visita revisada: " + visita.getIdVisita());
-                    });
+    public void revisarServicios(Integer idtecnico) {
+        List<Visita> visitasTecnico = new ArrayList<>(Empresa.getInstancia().getVisitas().values()).stream()
+                .filter(visita -> visita.getTecnicos().contains(Empresa.getInstancia().getTecnicos().get(idtecnico)) && EN_CURSO.equals(visita.getEstado()))
+                .collect(toList());
+
+        visitasTecnico.forEach(visita -> {
+           visita.setEstado(FINALIZADO);
+            visita.setFactura(generarFactura(visita, visita.getTecnicos()));
+            System.out.println("Visita revisada: " + visita.getIdVisita());
         });
     }
 
-    public Factura generarFactura(Visita visita, Tecnico tecnico) {
-        float costoHorasTrabajo = visita.getTiempoTrabajado()*tecnico.getSeniority().costoHoraTrabajo;
+    public Factura generarFactura(Visita visita, List<Usuario> tecnicos) {
+        float costoHorasTrabajo[] = {0};
+
+        tecnicos.forEach(tecnico -> {
+            costoHorasTrabajo[0] += visita.getTiempoTrabajado()*((Tecnico) tecnico.getRol()).getSeniority().costoHoraTrabajo;
+        });
+
         float costoOtrosGastos = (float) visita.getOtrosCostos().stream().mapToDouble(articulo -> articulo.getCantidad()*articulo.getPrecioUnidad()).sum();
         float costoGastos = (float) visita.getGastosAdicionales().stream().mapToDouble(articulo -> articulo.getCantidad()*articulo.getPrecioUnidad()).sum();
-        float costoFactura = costoHorasTrabajo + costoOtrosGastos + costoGastos;
+        float costoFactura = costoHorasTrabajo[0] + costoOtrosGastos + costoGastos;
 
         return new Factura(new Random().nextInt(1000), costoFactura, costoFactura+(costoFactura*(0.21F + 0.30F)));
     }
 
-    public void imprimirFactura(int idVisita) {
-        Factura factura = null;
-        for (Tecnico tecnico : Empresa.getInstancia().getTecnicos()) {
-            for (Visita visita : tecnico.getVisitas()) {
-                if (idVisita == visita.getIdVisita()) {
-                    factura = visita.getFactura();
-                }
-            }
-        }
+    public void imprimirFactura(Integer idVisita) {
+        Factura factura = Empresa.getInstancia().getVisitas().get(idVisita).getFactura();
 
         System.out.println(factura != null ? factura.toString() : "El id ingresado no corresponde con ninguna visita");
     }
