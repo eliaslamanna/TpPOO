@@ -28,7 +28,7 @@ public class CallCenterGui extends JFrame {
 
 	public CallCenterGui() {
 		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(100, 100, 1900, 1000);
 		this.setTitle("Cable e Internet - Call Center");
 		this.setLocationRelativeTo(null);

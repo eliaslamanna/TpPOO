@@ -39,6 +39,10 @@ public class Empresa {
 
 		this.stock.put("Cable Coaxil", artCable);
 		this.stock.put("Decodificador de TV", deco);
+		
+		Usuario aUsuario = new Usuario(new AdministradorSistema(), "adminsist", "adminsist");
+		this.usuarios.put(aUsuario.getUsuario(), aUsuario);
+		
 		/*Visita sVisita = new Visita();
 		List<Visita> visitasJr = new ArrayList<>();
 		List<Visita> visitasSr = new ArrayList<>();

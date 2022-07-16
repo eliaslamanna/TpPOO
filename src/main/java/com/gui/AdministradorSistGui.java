@@ -22,7 +22,7 @@ public class AdministradorSistGui extends JFrame {
 
 	public AdministradorSistGui() {
 		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(100, 100, 1900, 1000);
 		this.setTitle("Cable e Internet - Administrador Sistema");
 		this.setLocationRelativeTo(null);

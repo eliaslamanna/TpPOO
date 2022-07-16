@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import com.AdministradorSist;
+import com.AdministradorSistema;
 import com.Empresa;
 import com.Usuario;
 
@@ -91,8 +91,8 @@ public class LoginGui extends JFrame implements ActionListener{
 		
 		 if (flag == true) {
 				accedio = true;
-				Usuario usuarioLoggeado = Empresa.getInstancia().getUsuarios().stream().filter(u -> u.getUsuario().equals(usuario)).findFirst().get();
-				rolMenu = usuarioLoggeado.getRolString();
+				Usuario usuarioLoggeado = Empresa.getInstancia().getUsuarios().get(usuario);
+				rolMenu = usuarioLoggeado.getRol().getRol();
 				//System.out.println(rolMenu);
 					
 					//System.out.println("entro");
