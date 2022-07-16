@@ -14,28 +14,32 @@ public class Empresa {
 
 	// Mapa de stock de articulos de la empresa (clave nombre de articulo, valor
 	// instancia de Articulo, con contidad y sus atributos)
-	private HashMap<String, Articulo> stock;
+	private HashMap<String, Articulo> stock = new HashMap<>();
 
-	// Lista de los empleados de la empresa (clave legajo de empleado, valor
+	// Lista de los empleados de la empresa (clave usuario de empleado, valor
 	// instancia de Empleado)
-	private List<Usuario> usuarios = new ArrayList<>();
+	private HashMap<String, Usuario> usuarios = new HashMap<>();
 
     //Mapa de clientes
     private HashMap<Integer, Cliente> clientes = new HashMap<>();
 
     //Lista tecnicos
-    private List<Tecnico> tecnicos = new ArrayList<>();
+    private HashMap<String, Usuario> tecnicos = new HashMap<>();
 
 	private Empresa() {
+		List<Articulo> articulos = new ArrayList<>();
 
+		Articulo artCable = new Articulo("Cable Coaxil", 10F, 100F, 50F);
+		Articulo deco = new Articulo("Decodificador de TV", 20F, 15F, 100.3F);
+		articulos.add(artCable);
+		articulos.add(deco);
 
-		Visita sVisita = new Visita();
+		this.stock.put("Cable Coaxil", artCable);
+		this.stock.put("Decodificador de TV", deco);
+		/*Visita sVisita = new Visita();
 		List<Visita> visitasJr = new ArrayList<>();
 		List<Visita> visitasSr = new ArrayList<>();
-		
-		List<Articulo> articulos = new ArrayList<>();
-		
-		this.stock = new HashMap<>();
+
 		Administrativo admin = new Administrativo();
 		AdministradorSist adminSist = new AdministradorSist();
 		Callcenter cc = new Callcenter();
@@ -52,15 +56,6 @@ public class Empresa {
 		this.usuarios.add(aUsuario);
 		this.usuarios.add(sUsuario);
 		this.usuarios.add(cUsuario);
-
-
-		Articulo artCable = new Articulo("Cable Coaxil", 10F, 100F, 50F);
-		Articulo deco = new Articulo("Decodificador de TV", 20F, 15F, 100.3F);
-		articulos.add(artCable);
-		articulos.add(deco);
-
-		this.stock.put("Cable Coaxil", artCable);
-		this.stock.put("Decodificador de TV", deco);
 
 		Visita pVisita = new Visita(c1, this.tecnicos, articulos, new ArrayList<>());
 		pVisita.setEstado(EstadoVisita.FINALIZADO);
@@ -86,7 +81,7 @@ public class Empresa {
 		//tecnicos
 		this.tecnicos.add(new Tecnico(Seniority.JR,"tarde", agendaTarde1, visitas));
 		this.tecnicos.add(new Tecnico(Seniority.SR,"mañana", agendaManiana, visitas));
-		this.tecnicos.add(new Tecnico(Seniority.SSR,"tarde", agendaTarde2, visitas));
+		this.tecnicos.add(new Tecnico(Seniority.SSR,"tarde", agendaTarde2, visitas));*/
 
 	}
 
@@ -102,7 +97,7 @@ public class Empresa {
 		return stock;
 	}
 
-	public List<Usuario> getUsuarios() {
+	public HashMap<String, Usuario> getUsuarios() {
         return usuarios;
     }
 
@@ -110,27 +105,25 @@ public class Empresa {
         return clientes;
     }
 
-    public List<Tecnico> getTecnicos() {
+    public HashMap<String, Usuario> getTecnicos() {
         return tecnicos;
     }
 
-	public Cliente agregarCliente(int dni, String nombre, String direccion, Agenda agenda) {
-		this.clientes.put(dni, new Cliente(dni, nombre, direccion, agenda));
+	public Cliente agregarCliente(int dni, String nombre, String apellido, String direccion) {
+		this.clientes.put(dni, new Cliente(dni, nombre, apellido, direccion));
 		return this.clientes.get(dni);
+	}
+
+	public void agregarTecnico(String usuario, Usuario tecnico) {
+		this.tecnicos.put(usuario, tecnico);
 	}
 
 	public boolean signIn(String usuario, String password) {
         return usuarios.stream().filter(u -> u.getUsuario().equals(usuario) && u.getPassword().equals(password)).collect(Collectors.toList()).size() > 0;
     }
 
-    public Usuario singUp(Usuario nuevoUsuario) throws UsuarioYaExisteException {
-
-        if(usuarios.contains(nuevoUsuario)) {
-            throw new UsuarioYaExisteException(nuevoUsuario.getUsuario());
-        }
-
-        usuarios.add(nuevoUsuario);
-
+    public Usuario singUp(Usuario nuevoUsuario) {
+        usuarios.put(nuevoUsuario.getUsuario(),nuevoUsuario);
         return nuevoUsuario;
     }
 }

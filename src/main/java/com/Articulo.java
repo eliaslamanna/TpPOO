@@ -2,7 +2,6 @@ package com;
 
 public class Articulo {
     private String nombre;
-    private Float stock;
     private Float cantidad;
     private Float precioUnidad;
 

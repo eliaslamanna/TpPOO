@@ -1,11 +1,14 @@
 package com;
 
 import com.exception.ArticuloNoExisteException;
+import com.exception.RolNoExisteException;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 public class AdministradorSist extends Rol {
 
@@ -13,6 +16,65 @@ public class AdministradorSist extends Rol {
 
     public AdministradorSist() {
         this.rol = "AdministradorSist";
+    }
+
+    public void guardarCliente() {
+        System.out.println("Ingrese el DNI del cliente: ");
+        Integer dniCliente = read.nextInt();
+        read.nextLine();
+
+        if(Empresa.getInstancia().getClientes().containsKey(dniCliente)) {
+            System.out.println("\nEl cliente ya existe: ");
+        } else {
+            System.out.println("\nIngrese el nombre del cliente: ");
+            String nombreCliente = read.nextLine();
+            System.out.println("\nIngrese el apellido del cliente: ");
+            String apellidoCliente = read.nextLine();
+            System.out.println("\nIngrese la direccion del cliente: \n");
+            String direccionCliente = read.nextLine();
+
+            Empresa.getInstancia().agregarCliente(dniCliente,nombreCliente,apellidoCliente,direccionCliente);
+            System.out.println("Se guardo al cliente con dni: " + dniCliente + " existosamente.\n");
+        }
+    }
+
+    public void guardarUsuario() throws RolNoExisteException {
+        System.out.println("Ingrese el usuario nuevo: ");
+        String usuario = read.nextLine();
+
+        if(Empresa.getInstancia().getUsuarios().containsKey(usuario)) {
+            System.out.println("El usuario ya existe en la base de datos.");
+        } else {
+            System.out.println("\nIngrese la contraseña:");
+            String password = read.nextLine();
+            System.out.println("\nIngrese el Rol del usuario: ");
+            String rol = read.nextLine();
+
+            Usuario nuevoUsuario = UsuarioFactory.getInstancia().crearUsuario(rol,usuario,password);
+            Empresa.getInstancia().singUp(nuevoUsuario);
+
+            if("Tecnico".equals(rol)) {
+                Empresa.getInstancia().agregarTecnico(usuario, nuevoUsuario);
+            }
+
+            System.out.println("\nEl usuario " + usuario + " se dio de alta exitosamente.");
+        }
+    }
+
+    public List<Cliente> listarClientes() {
+        return Empresa.getInstancia().getClientes().values().stream().collect(toList());
+    }
+
+    public List<Usuario> listarUsuarios() {
+        return Empresa.getInstancia().getUsuarios().values().stream().collect(toList());
+    }
+
+    public List<Usuario> listarTecnicos() {
+        return Empresa.getInstancia().getTecnicos().values().stream().collect(toList());
+    }
+
+    public List<Articulo> listarStock() {
+        return Empresa.getInstancia().getStock().values().stream().collect(toList());
     }
 
     public void agregarArticulo() {
@@ -74,33 +136,27 @@ public class AdministradorSist extends Rol {
         }
     }
 
-    public void restarStock(int idVisita) {
-        HashMap<String, Articulo> stock = Empresa.getInstancia().getStock();
-        Visita visita = null;
+    public void restarStock() {
+        System.out.println("\nIngrese el articulo que desea modificar: ");
+        String articulo = read.nextLine();
 
-        for(Tecnico tecnico : Empresa.getInstancia().getTecnicos()) {
-            for (Visita visitaT : tecnico.getVisitas()) {
-                if (visitaT.getIdVisita() == idVisita){
-                    visita = visitaT;
-                }
-            }
+        if(!Empresa.getInstancia().getStock().containsKey(articulo)) {
+            System.out.println("El articulo " + articulo + " no existe en el stock.");
         }
 
-        if(visita == null) {
-            System.out.println("El id no corresponde con ninguna visita");
-        } else {
-            if (Instalacion.class.isInstance(visita)) {
-                actualizarStock(stock.get("Cable Coaxil"), 4.5F);
-                actualizarStock(stock.get("Decodificador de TV"), 1);
-                actualizarStock(stock.get("Modem de Internet"), 1);
-                actualizarStock(stock.get("Divisor Coaxial"), 1);
-                actualizarStock(stock.get("Conectores RG6"), 6);
-            }
+        System.out.println("\nExiste un stock de: " + Empresa.getInstancia().getStock().get(articulo).getCantidad());
 
-            List<Articulo> materialesAdicionales = visita.getOtrosCostos().stream().filter(otroCosto -> otroCosto.getNombre().equals("Materiales Adicionales")).collect(Collectors.toList());
-            for (Articulo materialAdicional : materialesAdicionales) {
-                actualizarStock(stock.get(materialAdicional.getNombre()), materialAdicional.getCantidad());
-            }
+        System.out.println("\nIngrese la cantidad que desea restar: ");
+        float cantidad = read.nextFloat();
+        read.nextLine();
+
+        if(Empresa.getInstancia().getStock().get(articulo).getCantidad() - cantidad < 0) {
+            System.out.println("\nNo se puede restar la cantidad deseada de stock");
+        } else {
+            Empresa.getInstancia().getStock().get(articulo).setCantidad(Empresa.getInstancia().getStock().get(articulo).getCantidad() - cantidad);
+
+            System.out.println("\nSe actualizo correctamente el stock de: " + articulo);
+            System.out.println("Hay un stock de: " + Empresa.getInstancia().getStock().get(articulo).getCantidad());
         }
     }
 

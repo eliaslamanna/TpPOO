@@ -21,18 +21,21 @@ public class Main {
 	public static void main(String[] args) throws RolNoExisteException, UsuarioYaExisteException {
 		// TODO Auto-generated method stub
 
-		Empresa empresa = Empresa.getInstancia();
+		iniciarPrograma();
 
+	}
+
+	public static void iniciarPrograma() throws UsuarioYaExisteException, RolNoExisteException {
 		boolean accedio = false;
-		
-		/*
-		new LoginGui();
+
+
+		/*new LoginGui();
 		new AdministradorGui();
 		new AdministradorSistGui(); /// Test GUI ///
 		new CallCenterGui();
-		new TecnicoGui();
-		*/
-		
+		new TecnicoGui();*/
+
+
 		String usuario = pedirUsuario();
 		String contrasenia = pedirContrasenia();
 
@@ -97,7 +100,6 @@ public class Main {
 			}
 		}
 		System.out.println("\n\n\n-----------------------------------");
-
 	}
 
 	public static String pedirUsuario() {
@@ -110,7 +112,7 @@ public class Main {
 		return read.nextLine();
 	}
 
-	public static void funcionesAdministrativo(int opcionElegida, Administrativo admin) {
+	public static void funcionesAdministrativo(int opcionElegida, Administrativo admin) throws UsuarioYaExisteException, RolNoExisteException {
 		while (opcionElegida != 3) {
 			switch (opcionElegida) {
 				case 1:
@@ -127,9 +129,10 @@ public class Main {
 			opcionElegida = admin.mostrarMenu();
 		}
 		System.out.println("Saliendo del sistema . . . ");
+		iniciarPrograma();
 	}
 
-	public static void funcionesCallCenter(int opcionElegida, Callcenter callcenter) {
+	public static void funcionesCallCenter(int opcionElegida, Callcenter callcenter) throws UsuarioYaExisteException, RolNoExisteException {
 		while (opcionElegida != 2) {
 			switch (opcionElegida) {
 				case 1:
@@ -143,10 +146,13 @@ public class Main {
 						System.out.println("Nombre: ");
 						String nombre = read.next();
 						read.nextLine();
+						System.out.println("Nombre: ");
+						String apellido = read.next();
+						read.nextLine();
 						System.out.println("Direccion: ");
 						String direccion = read.next();
 						read.nextLine();
-						cliente = Empresa.getInstancia().agregarCliente(dni, nombre, direccion, new Agenda());
+						cliente = Empresa.getInstancia().agregarCliente(dni, nombre, apellido, direccion);
 					}
 
 					System.out.println("Ingrese los datos de la visita");
@@ -193,9 +199,10 @@ public class Main {
 			opcionElegida = callcenter.mostrarMenu();
 		}
 		System.out.println("Saliendo del sistema . . . ");
+		iniciarPrograma();
 	}
 
-	public static void funcionesTecnico(int opcionElegida, Tecnico tecnico) {
+	public static void funcionesTecnico(int opcionElegida, Tecnico tecnico) throws UsuarioYaExisteException, RolNoExisteException {
 		while (opcionElegida != 3) {
 			switch (opcionElegida) {
 				case 1:
@@ -210,9 +217,10 @@ public class Main {
 			opcionElegida = tecnico.mostrarMenu();
 		}
 		System.out.println("Saliendo del sistema . . . ");
+		iniciarPrograma();
 	}
 
-	public static void funcionesAdministradorSistema(int opcionElegida, AdministradorSist adminSist) {
+	public static void funcionesAdministradorSistema(int opcionElegida, AdministradorSist adminSist) throws UsuarioYaExisteException, RolNoExisteException {
 		while (opcionElegida != 4) {
 			switch (opcionElegida) {
 				case 1:
@@ -230,15 +238,13 @@ public class Main {
 					System.out.println("El stock se sumó exitosamente");
 					break;
 				case 3:
-					System.out.println("Ingrese el id de la visita de la cual se va a restar el stock: ");
-					int idVisita = read.nextInt();
-					read.nextLine();
-					adminSist.restarStock(idVisita);
+					adminSist.restarStock();
 					System.out.println("El stock se restó exitosamente");
 					break;
 			}
 			opcionElegida = adminSist.mostrarMenu();
 		}
-		System.out.println("Saliendo del sistema . . . ");
+		System.out.println("Saliendo del sistema . . . \n");
+		iniciarPrograma();
 	}
 }

@@ -19,6 +19,11 @@ public class Tecnico extends Rol {
 		this.seniority = seniority;
 		this.turno = turno;
 		this.agenda = agenda;
+        if("Tarde".equals(turno)) {
+            this.agenda.setTurno("Tarde");
+        } else {
+            this.agenda.setTurno("Mañana");
+        }
 		this.visitas = visitas;
         this.rol = "Tecnico";
 	}

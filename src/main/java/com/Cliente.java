@@ -4,38 +4,19 @@ public class Cliente {
 	
     private int dniCliente;
     private String nombre;
+    private String apellido;
     private String Direccion;
     private Agenda agenda = new Agenda();
     
     
 
-    public Cliente(int dniCliente, String nombre, String direccion, Agenda agenda) {
+    public Cliente(int dniCliente, String nombre, String apellido, String direccion) {
 		super();
 		this.dniCliente = dniCliente;
 		this.nombre = nombre;
 		Direccion = direccion;
-		this.agenda = agenda;
+        this.apellido = apellido;
 	}
-
-	public int getDniCliente() {
-        return dniCliente;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDireccion() {
-        return Direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        Direccion = direccion;
-    }
 
     public Agenda getAgenda() {
         return agenda;
@@ -46,6 +27,7 @@ public class Cliente {
         return "Cliente: \n" +
                 "    Dni: " + dniCliente + "\n" +
                 "    Nombre: " + nombre + "\n" +
+                "    Apellido: " + apellido + "\n" +
                 "    Direccion: " + Direccion;
     }
 }

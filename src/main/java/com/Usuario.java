@@ -31,22 +31,6 @@ public class Usuario {
 		return usuario;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-
-	public String getPerfil() {
-		return perfil;
-	}
-
-	public void setPerfil(String perfil) {
-		this.perfil = perfil;
-	}
-
-	public int getLegajo() {
-		return legajo;
-	}
-
 	public String getRolString() {
 		return rol.getRol();
 	}
@@ -54,12 +38,6 @@ public class Usuario {
 	public Rol getRol() {
 		return rol;
 	}
-
-	public void setRol(Rol rol) {
-		this.rol = rol;
-	}
-	
-	
     
 	public String getPassword() {
 		return password;
