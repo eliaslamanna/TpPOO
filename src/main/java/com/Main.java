@@ -21,14 +21,14 @@ public class Main {
 	}
 
 	public static void iniciarPrograma() throws UsuarioYaExisteException, RolNoExisteException {
-		boolean accedio = false;
+		/*boolean accedio = false;
 
 
-		/*new LoginGui();
+		*//*new LoginGui();
 		new AdministradorGui();
 		new AdministradorSistGui(); /// Test GUI ///
 		new CallCenterGui();
-		new TecnicoGui();*/
+		new TecnicoGui();*//*
 
 
 		String usuario = pedirUsuario();
@@ -243,6 +243,6 @@ public class Main {
 			opcionElegida = adminSist.mostrarMenu();
 		}
 		System.out.println("Saliendo del sistema . . . \n");
-		iniciarPrograma();
+		iniciarPrograma();*/
 	}
 }
