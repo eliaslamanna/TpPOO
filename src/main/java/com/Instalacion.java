@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Instalacion extends Visita {
 
-    public Instalacion(Cliente cliente, List<Tecnico> tecnicos) {
+    public Instalacion(Cliente cliente, List<Usuario> tecnicos) {
         super(cliente, tecnicos);
         setTiempoTrabajado(60);
         agregarArticulo(new Articulo("Cable coaxial", 4.5F));
