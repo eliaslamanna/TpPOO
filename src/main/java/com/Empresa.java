@@ -46,10 +46,12 @@ public class Empresa {
 		Administrativo admin = new Administrativo();
 		AdministradorSist adminSist = new AdministradorSist();
 		Callcenter cc = new Callcenter();
+		Tecnico tecnico = new Tecnico();
 
-		Usuario aUsuario = new Usuario(admin, "Juan", "administrativo");
-		Usuario sUsuario = new Usuario(adminSist, "Rodrigo", "admin sistema");
-		Usuario cUsuario = new Usuario(cc, "Dario", "call center");
+		Usuario aUsuario = new Usuario(adminSist, "adminsist", "adminsist");
+		Usuario bUsuario = new Usuario(admin, "admin", "admin");
+		Usuario sUsuario = new Usuario(tecnico, "tecnico", "tecnico");
+		Usuario cUsuario = new Usuario(cc, "callcenter", "callcenter");
 
 		// -----------------------------------------------------------------
 		Cliente c1 = new Cliente(40956834, "Pablo", "Lez", new Agenda());
@@ -57,6 +59,7 @@ public class Empresa {
 		Cliente c3 = new Cliente(20156398,"Mario", "Bross", new Agenda());
 		// -----------------------------------------------------------------
 		this.usuarios.add(aUsuario);
+		this.usuarios.add(bUsuario);
 		this.usuarios.add(sUsuario);
 		this.usuarios.add(cUsuario);
 
