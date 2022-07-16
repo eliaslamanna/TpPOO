@@ -32,8 +32,8 @@ public class Empresa {
 	private Empresa() {
 		List<Articulo> articulos = new ArrayList<>();
 
-		Articulo artCable = new Articulo("Cable Coaxil", 10F, 100F, 50F);
-		Articulo deco = new Articulo("Decodificador de TV", 20F, 15F, 100.3F);
+		Articulo artCable = new Articulo("Cable Coaxil",  100F, 50F);
+		Articulo deco = new Articulo("Decodificador de TV",  15F, 100.3F);
 		articulos.add(artCable);
 		articulos.add(deco);
 
@@ -126,11 +126,11 @@ public class Empresa {
 	}
 
 	public void agregarVisita(Visita visita) {
-		this.visitas.add(visita);
+		this.visitas.put(visita.getIdVisita(), visita);
 	}
 
 	public boolean signIn(String usuario, String password) {
-        return usuarios.stream().filter(u -> u.getUsuario().equals(usuario) && u.getPassword().equals(password)).collect(Collectors.toList()).size() > 0;
+		return usuarios.containsKey(usuario) && password.equals(usuarios.get(usuario).getPassword());
     }
 
     public Usuario singUp(Usuario nuevoUsuario) {

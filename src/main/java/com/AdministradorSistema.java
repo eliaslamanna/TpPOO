@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static java.util.stream.Collectors.toList;
-
 public class AdministradorSistema extends Rol {
 
     private final Scanner read = new Scanner(System.in);
@@ -74,25 +72,9 @@ public class AdministradorSistema extends Rol {
         return new ArrayList<>(Empresa.getInstancia().getStock().values());
     }
 
-    public void agregarArticulo() {
-        Articulo articulo = cargarArticulo();
-
-        if(Empresa.getInstancia().getStock().containsKey(articulo.getNombre())) {
-            Articulo articuloExistente = Empresa.getInstancia().getStock().get(articulo.getNombre());
-            articuloExistente.setCantidad(articuloExistente.getCantidad() + articulo.getCantidad());
-            Empresa.getInstancia().getStock().put(articulo.getNombre(),articuloExistente);
-        }
-
-        Empresa.getInstancia().getStock().put(articulo.getNombre(), articulo);
-    }
-
-    public Articulo cargarArticulo(){
+    public void crearArticulo(){
         System.out.println("Ingrese el nombre del nuevo articulo: ");
         String nombre = read.next();
-        read.nextLine();
-
-        System.out.println("Ingrese el stock inicial: ");
-        float stock = read.nextFloat();
         read.nextLine();
 
         System.out.println("Ingrese la cantidad: ");
@@ -103,32 +85,28 @@ public class AdministradorSistema extends Rol {
         float precio = read.nextFloat();
         read.nextLine();
 
-        return new Articulo(nombre, stock, cantidad, precio);
+        System.out.println("\nSe cargo exitosamente un stock de " + cantidad + " para el articulo " + nombre + " con un valor de: " + precio + " por unidad.");
+        Empresa.getInstancia().getStock().put(nombre, new Articulo(nombre, cantidad, precio));
     }
 
     public void eliminarArticulo() {
         System.out.println("Ingrese el nombre del articulo a eliminar: ");
-        String nombreArticulo = read.next();
-        read.nextLine();
+        String nombreArticulo = read.nextLine();
 
-        Empresa.getInstancia().getStock().remove(nombreArticulo);
-    }
-
-    public void actualizarStock(Articulo articulo, float cantidad) {
-        articulo.setStock(articulo.getStock() - cantidad);
+        if(!Empresa.getInstancia().getStock().containsKey(nombreArticulo)) {
+            System.out.println("\nEl articulo " + nombreArticulo + " no existe en el stock.");
+        } else {
+            Empresa.getInstancia().getStock().remove(nombreArticulo);
+            System.out.println("Se removio correctamente el articulo: " + nombreArticulo);
+        }
     }
 
     public void agregarStock(String nombreArticulo, float cantidad) {
-        Articulo articulo = Empresa.getInstancia().getStock().get(nombreArticulo);
-
-        if(articulo == null) {
-            System.out.println("Ingrese el precio del nuevo articulo: ");
-            float precio = read.nextFloat();
-            read.nextLine();
-
-            Empresa.getInstancia().getStock().put(nombreArticulo, new Articulo(nombreArticulo, cantidad, precio));
+        if(!Empresa.getInstancia().getStock().containsKey(nombreArticulo)) {
+            System.out.println("\nEl articulo " + nombreArticulo + " no existe en el stock.");
         } else {
-            articulo.setStock(articulo.getStock() + cantidad);
+            Empresa.getInstancia().getStock().get(nombreArticulo).setCantidad(Empresa.getInstancia().getStock().get(nombreArticulo).getCantidad() + cantidad);
+            System.out.println("Se actualizo correctamente el stock de " + nombreArticulo + " , ahora hay un stock de " + Empresa.getInstancia().getStock().get(nombreArticulo).getCantidad());
         }
     }
 
@@ -156,7 +134,7 @@ public class AdministradorSistema extends Rol {
         }
     }
 
-    public void configurarCostoHoras() {
+    /*public void configurarCostoHoras() {
         System.out.println("Ingrese el nuevo costo para las horas de tecnicos JR: ");
         float costoJr = read.nextFloat();
         read.nextLine();
@@ -171,7 +149,7 @@ public class AdministradorSistema extends Rol {
         float costoSr = read.nextFloat();
         read.nextLine();
         Seniority.SR(costoSr);
-    }
+    }*/
 
 
     @Override

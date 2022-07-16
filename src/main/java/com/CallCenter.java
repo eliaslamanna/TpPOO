@@ -88,7 +88,7 @@ public class CallCenter extends Rol {
 						System.out.println("No alcanza la cantidad de tecnicos requerida para el servicio");
 					}
 
-					Empresa.getInstancia().agregarVisita(new Visita());
+					Empresa.getInstancia().agregarVisita(new Visita(Empresa.getInstancia().getClientes().get(dniCliente), tecnicos));
 				}
 			}
 		}
