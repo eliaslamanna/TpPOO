@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-import static java.util.stream.Collectors.toList;
-
 public class Tecnico extends Rol {
 
     private Integer id;
@@ -98,7 +96,7 @@ public class Tecnico extends Rol {
         List<Articulo> otrosCostos = cargarArticulos();
 
         System.out.println("---------------------------------------");
-        System.out.println("Lista de gastos: ");
+        System.out.println("Lista de gastos adicionales: ");
         List<Articulo> gastos = cargarArticulos();
 
         visita.setEstado(EstadoVisita.EN_CURSO);
@@ -117,7 +115,7 @@ public class Tecnico extends Rol {
             System.out.print("Descripcion: ");
             String material = read.next();
             read.nextLine();
-            System.out.print("Cantidad/Precio: ");
+            System.out.print("Precio: ");
             float cantidad = read.nextFloat();
             read.nextLine();
             articulos.add(new Articulo(material, cantidad));

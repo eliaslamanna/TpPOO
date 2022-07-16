@@ -20,10 +20,10 @@ public class Empresa {
 	// instancia de Empleado)
 	private HashMap<String, Usuario> usuarios = new HashMap<>();
 
-    //Mapa de clientes
+    //Mapa de clientes (se busca por dni)
     private HashMap<String, Cliente> clientes = new HashMap<>();
 
-    //Lista tecnicos
+    //Lista tecnicos (id de tecnico)
     private HashMap<Integer, Usuario> tecnicos = new HashMap<>();
 
 	//Lista visitas
