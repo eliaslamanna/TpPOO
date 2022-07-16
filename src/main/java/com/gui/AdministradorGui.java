@@ -47,6 +47,7 @@ private JTextField textField;
 		
 		JButton btnNewButton = new JButton("Logout");
 		btnNewButton.setBounds(190, 843, 141, 48);
+		btnNewButton.setFocusable(false);
 		contentPane.add(btnNewButton);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -68,6 +69,7 @@ private JTextField textField;
 			}
 		});
 		btnNewButton_4.setBounds(982, 776, 215, 39);
+		btnNewButton_4.setFocusable(false);
 		panel.add(btnNewButton_4);
 		
 		JTextPane textPane = new JTextPane();
@@ -97,6 +99,7 @@ private JTextField textField;
 		
 		JButton btnNewButton_1 = new JButton("Generar factura");
 		btnNewButton_1.setBounds(734, 609, 150, 38);
+		btnNewButton_1.setFocusable(false);
 		panel_1.add(btnNewButton_1);
 		
 		JList list = new JList();
@@ -109,10 +112,12 @@ private JTextField textField;
 			}
 		});
 		btnNewButton_2.setBounds(823, 81, 117, 38);
+		btnNewButton_2.setFocusable(false);
 		panel_1.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Modificar");
 		btnNewButton_3.setBounds(471, 609, 150, 38);
+		btnNewButton_3.setFocusable(false);
 		panel_1.add(btnNewButton_3);
 		this.setVisible(true);
 		

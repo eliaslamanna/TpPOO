@@ -12,10 +12,12 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTable;
 
 public class TecnicoGui extends JFrame {
 
 	private JPanel contentPane;
+	private JTable table;
 
 	public TecnicoGui() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,6 +60,15 @@ public class TecnicoGui extends JFrame {
 		
 		JPanel panel_2 = new JPanel();
 		tabbedPane.addTab("Agenda", null, panel_2, null);
+		panel_2.setLayout(null);
+		
+		table = new JTable();
+		table.setBounds(205, 149, 972, 581);
+		panel_2.add(table);
+		
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setBounds(205, 46, 63, 58);
+		panel_2.add(btnNewButton_1);
 		this.setVisible(true);
 		
 		
