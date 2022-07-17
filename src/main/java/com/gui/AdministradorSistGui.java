@@ -22,6 +22,8 @@ import com.AdministradorSistema;
 import com.Empresa;
 import com.Usuario;
 
+import static java.util.stream.Collectors.toList;
+
 public class AdministradorSistGui extends JFrame {
 
 	private JPanel contentPane;
@@ -71,7 +73,8 @@ public class AdministradorSistGui extends JFrame {
 		
 		JList list = new JList();
 		list.setBounds(350, 109, 665, 400);
-		//list.setListData(usuarios.toArray());
+		List<Usuario> usuarios = new ArrayList<>(Empresa.getInstancia().getUsuarios().values());
+		list.setListData(usuarios.toArray());
 		panel.add(list);
 		
 		JButton btnNewButton_1 = new JButton("Crear");

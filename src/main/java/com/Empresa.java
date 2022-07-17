@@ -28,7 +28,7 @@ public class Empresa {
     //Lista tecnicos (id de tecnico)
     private HashMap<Integer, Usuario> tecnicos = new HashMap<>();
 
-	//Lista visitas
+	//Lista visitas (id visita)
 	private HashMap<Integer, Visita> visitas = new HashMap<>();
 
 	private HashMap<Seniority, Float> costoHoras = new HashMap<>();

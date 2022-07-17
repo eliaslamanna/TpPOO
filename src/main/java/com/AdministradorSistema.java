@@ -44,12 +44,6 @@ public class AdministradorSistema extends Rol {
     public List<Usuario> listarUsuarios() {
         return new ArrayList<>(Empresa.getInstancia().getUsuarios().values());
     }
-    
-    /*
-    public List<Usuario> usuarios = listarUsuarios();
-    
-    public Array listadoUsuarios = usuarios.toArray(usuarios);
-    */
 
     public List<Usuario> listarTecnicos() {
         return new ArrayList<>(Empresa.getInstancia().getTecnicos().values());
