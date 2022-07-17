@@ -48,11 +48,6 @@ public class Administrativo extends Rol {
         Empresa.getInstancia().getVisitas().get(idVisita).getFactura().setYaSeImprimio(true);
     }
 
-    public void cambiarCostoHora(Seniority seniority, Float costo) {
-        Empresa.getInstancia().setCostoHora(seniority, costo);
-        System.out.println("Se actualizo el valor de la hora de trabajo del Seniority " + seniority + " a: " + costo + "\n");
-    }
-
     @Override
     public Integer mostrarMenu() {
         Scanner read = new Scanner(System.in);

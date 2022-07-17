@@ -115,22 +115,10 @@ public class AdministradorSistema extends Rol {
         }
     }
 
-    /*public void configurarCostoHoras() {
-        System.out.println("Ingrese el nuevo costo para las horas de tecnicos JR: ");
-        float costoJr = read.nextFloat();
-        read.nextLine();
-        Seniority.JR(costoJr);
-
-        System.out.println("Ingrese el nuevo costo para las horas de tecnicos SSR: ");
-        float costoSsr = read.nextFloat();
-        read.nextLine();
-        Seniority.SSR(costoSsr);
-
-        System.out.println("Ingrese el nuevo costo para las horas de tecnicos SR: ");
-        float costoSr = read.nextFloat();
-        read.nextLine();
-        Seniority.SR(costoSr);
-    }*/
+    public void configurarCostoHora(Seniority seniority, Float costo) {
+        Empresa.getInstancia().setCostoHora(seniority, costo);
+        System.out.println("Se actualizo el valor de la hora de trabajo del Seniority " + seniority + " a: " + costo + "\n");
+    }
 
 
     @Override
