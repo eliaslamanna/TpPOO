@@ -13,6 +13,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
+import javax.swing.JList;
 
 public class TecnicoGui extends JFrame {
 
@@ -31,6 +32,7 @@ public class TecnicoGui extends JFrame {
 		
 		ImageIcon centro = new ImageIcon("images/cei.png");
 		ImageIcon logo = new ImageIcon("images/cable.png");
+		ImageIcon refresh = new ImageIcon("images/refresh.png");
 		
 		this.setIconImage(logo.getImage());
 		JLabel lblNewLabel = new JLabel("");
@@ -53,10 +55,22 @@ public class TecnicoGui extends JFrame {
 		tabbedPane.addTab("Home", null, lblNewLabel_1, null);
 		
 		JPanel panel = new JPanel();
-		tabbedPane.addTab("Asignar servicios", null, panel, null);
+		tabbedPane.addTab("Servicios", null, panel, null);
+		panel.setLayout(null);
 		
-		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("Listar servicios", null, panel_1, null);
+		JList list = new JList();
+		list.setBounds(289, 95, 675, 397);
+		panel.add(list);
+		
+		JButton btnNewButton_2 = new JButton("Asignar servicios");
+		btnNewButton_2.setBounds(556, 535, 158, 41);
+		panel.add(btnNewButton_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("Servicios");
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblNewLabel_3.setBounds(497, 45, 251, 39);
+		panel.add(lblNewLabel_3);
 		
 		JPanel panel_2 = new JPanel();
 		tabbedPane.addTab("Agenda", null, panel_2, null);
@@ -68,6 +82,7 @@ public class TecnicoGui extends JFrame {
 		
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.setBounds(205, 46, 63, 58);
+		btnNewButton_1.setIcon(refresh);
 		panel_2.add(btnNewButton_1);
 		this.setVisible(true);
 		

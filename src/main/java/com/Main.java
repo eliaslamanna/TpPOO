@@ -5,6 +5,7 @@ import com.exception.RolNoExisteException;
 import com.exception.StockInsuficienteException;
 import com.exception.UsuarioYaExisteException;
 import com.gui.LoginGui;
+import com.gui.TecnicoGui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,11 @@ public class Main {
 	public static void iniciarPrograma() throws UsuarioYaExisteException, RolNoExisteException {
 		
 		new LoginGui();
+		
+		//new TecnicoGui();
+		
+		
+		
 		
 		/*boolean accedio = false;
 

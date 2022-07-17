@@ -1,8 +1,12 @@
 package com.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,13 +18,18 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JList;
 import javax.swing.JTable;
+import com.AdministradorSistema;
+import com.Empresa;
+import com.Usuario;
 
 public class AdministradorSistGui extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-
+	//public List<Usuario> usuarios;
+	
 	public AdministradorSistGui() {
+		
 		
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(100, 100, 1900, 1000);
@@ -62,6 +71,7 @@ public class AdministradorSistGui extends JFrame {
 		
 		JList list = new JList();
 		list.setBounds(350, 109, 665, 400);
+		//list.setListData(usuarios.toArray());
 		panel.add(list);
 		
 		JButton btnNewButton_1 = new JButton("Crear");

@@ -49,7 +49,14 @@ public class Empresa {
 		this.stock.put("Decodificador de TV", deco);
 		
 		Usuario aUsuario = new Usuario(new AdministradorSistema(), "adminsist", "adminsist");
+		Usuario bUsuario = new Usuario(new Tecnico(), "tecnico", "tecnico");
+		Usuario cUsuario = new Usuario(new Administrativo(), "admin", "admin");
+		Usuario dUsuario = new Usuario(new CallCenter(), "callcenter", "callcenter");
+		
 		this.usuarios.put(aUsuario.getUsuario(), aUsuario);
+		this.usuarios.put(bUsuario.getUsuario(), bUsuario);
+		this.usuarios.put(cUsuario.getUsuario(), cUsuario);
+		this.usuarios.put(dUsuario.getUsuario(), dUsuario);
 		
 		/*Visita sVisita = new Visita();
 		List<Visita> visitasJr = new ArrayList<>();

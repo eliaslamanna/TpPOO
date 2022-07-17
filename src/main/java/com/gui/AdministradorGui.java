@@ -63,17 +63,17 @@ private JTextField textField;
 		tabbedPane.addTab("Servicios", null, panel, null);
 		panel.setLayout(null);
 		
-		JButton btnNewButton_4 = new JButton("Actualizar");
+		JButton btnNewButton_4 = new JButton("Finalizar servicio");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_4.setBounds(982, 776, 215, 39);
+		btnNewButton_4.setBounds(917, 654, 144, 39);
 		btnNewButton_4.setFocusable(false);
 		panel.add(btnNewButton_4);
 		
 		JTextPane textPane = new JTextPane();
-		textPane.setBounds(228, 125, 969, 621);
+		textPane.setBounds(430, 124, 686, 476);
 		panel.add(textPane);
 		
 		JLabel lblNewLabel_3 = new JLabel("Servicios");
@@ -81,6 +81,11 @@ private JTextField textField;
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3.setBounds(615, 75, 251, 39);
 		panel.add(lblNewLabel_3);
+		
+		JButton btnNewButton_4_1 = new JButton("Modificar servicio");
+		btnNewButton_4_1.setFocusable(false);
+		btnNewButton_4_1.setBounds(521, 654, 144, 39);
+		panel.add(btnNewButton_4_1);
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Facturacion", null, panel_1, null);
@@ -91,14 +96,14 @@ private JTextField textField;
 		panel_1.add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Ingresar ID de visita");
+		JLabel lblNewLabel_2 = new JLabel("Ingresar ID de tecnico");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setBounds(553, 52, 230, 30);
 		panel_1.add(lblNewLabel_2);
 		
 		JButton btnNewButton_1 = new JButton("Generar factura");
-		btnNewButton_1.setBounds(734, 609, 150, 38);
+		btnNewButton_1.setBounds(599, 604, 150, 38);
 		btnNewButton_1.setFocusable(false);
 		panel_1.add(btnNewButton_1);
 		
@@ -114,11 +119,6 @@ private JTextField textField;
 		btnNewButton_2.setBounds(823, 81, 117, 38);
 		btnNewButton_2.setFocusable(false);
 		panel_1.add(btnNewButton_2);
-		
-		JButton btnNewButton_3 = new JButton("Modificar");
-		btnNewButton_3.setBounds(471, 609, 150, 38);
-		btnNewButton_3.setFocusable(false);
-		panel_1.add(btnNewButton_3);
 		this.setVisible(true);
 		
 	}
