@@ -4,6 +4,7 @@ public class Factura {
     private int numeroFactura;
     private float costo;
     private float precioFinal;
+    private boolean yaSeImprimio = false;
 
     public Factura(int numeroFactura, float costo, float precioFinal) {
         this.numeroFactura = numeroFactura;
@@ -33,6 +34,14 @@ public class Factura {
 
     public void setPrecioFinal(float precioFinal) {
         this.precioFinal = precioFinal;
+    }
+
+    public boolean yaSeImprimio() {
+        return yaSeImprimio;
+    }
+
+    public void setYaSeImprimio(boolean yaSeImprimio) {
+        this.yaSeImprimio = yaSeImprimio;
     }
 
     @Override

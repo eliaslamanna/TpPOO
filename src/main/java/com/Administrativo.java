@@ -44,7 +44,8 @@ public class Administrativo extends Rol {
     public void imprimirFactura(Integer idVisita) {
         Factura factura = Empresa.getInstancia().getVisitas().get(idVisita).getFactura();
 
-        System.out.println(factura != null ? factura.toString() : "El id ingresado no corresponde con ninguna visita");
+        System.out.println(factura != null && !factura.yaSeImprimio() ? factura.toString() : "El id ingresado no corresponde con ninguna visita que no se haya impreso ya.");
+        Empresa.getInstancia().getVisitas().get(idVisita).getFactura().setYaSeImprimio(true);
     }
 
     @Override
