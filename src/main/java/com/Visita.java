@@ -7,6 +7,9 @@ public class Visita {
 	private int idVisita;
 	private Cliente cliente;
 	private List<Usuario> tecnicos;
+	private String dia;
+	private Integer horarioInicio;
+	private Integer horarioFin;
 	// el almuerzo se suma como articulo (se le da el costo que queramos)
 	private List<Articulo> materiales;
 	private EstadoVisita estado;
@@ -27,11 +30,14 @@ public class Visita {
 		this.materiales.add(articulo);
 	}
 
-	public Visita(Cliente cliente, List<Usuario> tecnicos) {
+	public Visita(Cliente cliente, List<Usuario> tecnicos, String dia, Integer horarioInicio, Integer horarioFin) {
 		this.idVisita = new Random().nextInt(10000);
 		this.cliente = cliente;
 		this.tecnicos = tecnicos;
 		this.estado = EstadoVisita.PROGRAMADO;
+		this.dia = dia;
+		this.horarioInicio = horarioInicio;
+		this.horarioFin = horarioFin;
 	}
 
 	public void setEstado(EstadoVisita estado) {
@@ -87,6 +93,30 @@ public class Visita {
 	}
 
 	public List<Usuario> getTecnicos() { return this.tecnicos;}
+
+	public String getDia() {
+		return dia;
+	}
+
+	public void setDia(String dia) {
+		this.dia = dia;
+	}
+
+	public Integer getHorarioInicio() {
+		return horarioInicio;
+	}
+
+	public void setHorarioInicio(Integer horarioInicio) {
+		this.horarioInicio = horarioInicio;
+	}
+
+	public Integer getHorarioFin() {
+		return horarioFin;
+	}
+
+	public void setHorarioFin(Integer horarioFin) {
+		this.horarioFin = horarioFin;
+	}
 
 	public void  obtenerDatosVisita() {
 		System.out.println("Visita: \n" + "\t - Id: " + idVisita + "\n" + "\t - " + cliente.toString() + "\n" + "\t - Estado: " + estado + "\n" + "\t - Tiempo Trabajado: " + tiempoTrabajado + "\n");
