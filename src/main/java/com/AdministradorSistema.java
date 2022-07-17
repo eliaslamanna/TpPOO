@@ -27,7 +27,7 @@ public class AdministradorSistema extends Rol {
             String rol = read.nextLine();
 
             Usuario nuevoUsuario = UsuarioFactory.getInstancia().crearUsuario(rol,usuario,password);
-            Empresa.getInstancia().singUp(nuevoUsuario);
+            Empresa.getInstancia().guardarUsuario(nuevoUsuario);
 
             if("Tecnico".equals(rol)) {
                 Empresa.getInstancia().agregarTecnico(nuevoUsuario, ((Tecnico) nuevoUsuario.getRol()).getId());

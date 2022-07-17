@@ -140,8 +140,23 @@ public class Empresa {
 		return usuarios.containsKey(usuario) && password.equals(usuarios.get(usuario).getPassword());
     }
 
-    public Usuario singUp(Usuario nuevoUsuario) {
-        usuarios.put(nuevoUsuario.getUsuario(),nuevoUsuario);
-        return nuevoUsuario;
+	//Solo da de alta usuarios administrador de sistemas, el resto se da de alta desde ese tipo de usuario
+    public void singUp(String usuario, String password) {
+		System.out.println("Dar de alta nuevo usuario Administrador de Sistemas:\n");
+
+		if(Empresa.getInstancia().getUsuarios().containsKey(usuario)) {
+			System.out.println("El usuario ya existe en la base de datos.");
+		} else {
+			Usuario nuevoUsuario = new Usuario(new AdministradorSistema(),usuario,password);
+			Empresa.getInstancia().guardarUsuario(nuevoUsuario);
+
+			System.out.println("\nEl usuario Administrador de Sistema " + usuario + " se dio de alta exitosamente.");
+		}
     }
+
+	public Usuario guardarUsuario(Usuario nuevoUsuario) {
+		usuarios.put(nuevoUsuario.getUsuario(),nuevoUsuario);
+		return nuevoUsuario;
+	}
+
 }
