@@ -14,25 +14,6 @@ public class AdministradorSistema extends Rol {
         this.rol = "AdministradorSist";
     }
 
-    public void guardarCliente() {
-        System.out.println("Ingrese el DNI del cliente: ");
-        String dniCliente = read.nextLine();
-
-        if(Empresa.getInstancia().getClientes().containsKey(dniCliente)) {
-            System.out.println("\nEl cliente ya existe: ");
-        } else {
-            System.out.println("\nIngrese el nombre del cliente: ");
-            String nombreCliente = read.nextLine();
-            System.out.println("\nIngrese el apellido del cliente: ");
-            String apellidoCliente = read.nextLine();
-            System.out.println("\nIngrese la direccion del cliente: \n");
-            String direccionCliente = read.nextLine();
-
-            Empresa.getInstancia().agregarCliente(dniCliente,nombreCliente,apellidoCliente,direccionCliente);
-            System.out.println("Se guardo al cliente con dni: " + dniCliente + " existosamente.\n");
-        }
-    }
-
     public void guardarUsuario() throws RolNoExisteException {
         System.out.println("Ingrese el usuario nuevo: ");
         String usuario = read.nextLine();

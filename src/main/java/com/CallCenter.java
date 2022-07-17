@@ -41,7 +41,7 @@ public class CallCenter extends Rol {
 
 		if(!Empresa.getInstancia().getClientes().containsKey(dniCliente)) {
 			System.out.println("\nEl cliente no existe, por favor darlo de alta antes de continuar.");
-			//TODO dar de alta cliente
+			guardarCliente();
 		} else {
 			System.out.println("\nIngrese el horario de la visita: ");
 			Integer horarioInicio = read.nextInt();
@@ -102,6 +102,21 @@ public class CallCenter extends Rol {
 				stock.get("Modem de internet").getCantidad() < 1 ||
 				stock.get("Divisor coaxial").getCantidad() < 1 ||
 				stock.get("Conector RG6").getCantidad() < 1;
+	}
+
+	public void guardarCliente() {
+		System.out.println("Ingrese el DNI del cliente: ");
+		String dniCliente = read.nextLine();
+
+		System.out.println("\nIngrese el nombre del cliente: ");
+		String nombreCliente = read.nextLine();
+		System.out.println("\nIngrese el apellido del cliente: ");
+		String apellidoCliente = read.nextLine();
+		System.out.println("\nIngrese la direccion del cliente: \n");
+		String direccionCliente = read.nextLine();
+
+		Empresa.getInstancia().agregarCliente(dniCliente,nombreCliente,apellidoCliente,direccionCliente);
+		System.out.println("Se guardo al cliente con dni: " + dniCliente + " existosamente.\n");
 	}
 
 }
