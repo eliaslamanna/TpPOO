@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.Seniority.*;
+
 
 public class Empresa {
 
@@ -29,7 +31,13 @@ public class Empresa {
 	//Lista visitas
 	private HashMap<Integer, Visita> visitas = new HashMap<>();
 
+	private HashMap<Seniority, Float> costoHoras = new HashMap<>();
+
 	private Empresa() {
+		costoHoras.put(JR, 100F);
+		costoHoras.put(SSR, 200F);
+		costoHoras.put(SR, 300F);
+
 		List<Articulo> articulos = new ArrayList<>();
 
 		Articulo artCable = new Articulo("Cable Coaxil",  100F, 50F);
@@ -157,6 +165,14 @@ public class Empresa {
 	public Usuario guardarUsuario(Usuario nuevoUsuario) {
 		usuarios.put(nuevoUsuario.getUsuario(),nuevoUsuario);
 		return nuevoUsuario;
+	}
+
+	public Float getCostoHora(Seniority seniority) {
+		return costoHoras.get(seniority);
+	}
+
+	public void setCostoHora(Seniority seniority, Float costo) {
+		costoHoras.put(seniority, costo);
 	}
 
 }

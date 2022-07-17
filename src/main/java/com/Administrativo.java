@@ -31,7 +31,7 @@ public class Administrativo extends Rol {
         float costoHorasTrabajo[] = {0};
 
         tecnicos.forEach(tecnico -> {
-            costoHorasTrabajo[0] += visita.getTiempoTrabajado()*((Tecnico) tecnico.getRol()).getSeniority().costoHoraTrabajo;
+            costoHorasTrabajo[0] += visita.getTiempoTrabajado()* Empresa.getInstancia().getCostoHora(((Tecnico) tecnico.getRol()).getSeniority());
         });
 
         float costoOtrosGastos = (float) visita.getOtrosCostos().stream().mapToDouble(articulo -> articulo.getCantidad()*articulo.getPrecioUnidad()).sum();
@@ -46,6 +46,11 @@ public class Administrativo extends Rol {
 
         System.out.println(factura != null && !factura.yaSeImprimio() ? factura.toString() : "El id ingresado no corresponde con ninguna visita que no se haya impreso ya.");
         Empresa.getInstancia().getVisitas().get(idVisita).getFactura().setYaSeImprimio(true);
+    }
+
+    public void cambiarCostoHora(Seniority seniority, Float costo) {
+        Empresa.getInstancia().setCostoHora(seniority, costo);
+        System.out.println("Se actualizo el valor de la hora de trabajo del Seniority " + seniority + " a: " + costo + "\n");
     }
 
     @Override
