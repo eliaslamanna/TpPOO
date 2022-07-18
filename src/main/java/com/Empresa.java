@@ -55,6 +55,9 @@ public class Empresa {
 		this.usuarios.put(cUsuario.getUsuario(), cUsuario);
 		this.usuarios.put(dUsuario.getUsuario(), dUsuario);
 		
+		Cliente aCliente = new Cliente("202020", "Ramon", "Lorca","falsa 123");
+		this.clientes.put(aCliente.getDniCliente(), aCliente);
+		
 		/*Visita sVisita = new Visita();
 		List<Visita> visitasJr = new ArrayList<>();
 		List<Visita> visitasSr = new ArrayList<>();
