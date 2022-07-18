@@ -25,11 +25,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
-import com.Articulo;
-import com.Empresa;
-import com.Seniority;
-import com.Tecnico;
-import com.Usuario;
+import com.*;
 import com.gui.LoginGui;
 import com.gui.listeners.*;
 import com.gui.listeners.CreateStockListener;
@@ -202,24 +198,25 @@ public class AdministradorSistGui extends JFrame {
 			costoHorasList.setListData(costoHorasRefresh.entrySet().toArray());
 		});
 
-		JPanel panel = new JPanel();
-		tabbedPane.addTab("Clientes", null, panel, null);
-		panel.setLayout(null);
+		JPanel clientePanel = new JPanel();
+		tabbedPane.addTab("Clientes", null, clientePanel, null);
+		clientePanel.setLayout(null);
 		
 		JList clientesList = new JList();
 		clientesList.setBounds(352, 109, 665, 400);
-		panel.add(clientesList);
+		clientePanel.add(clientesList);
+		List<Cliente> clientes = new ArrayList<>(Empresa.getInstancia().getClientes().values());
+		clientesList.setListData(clientes.toArray());
+		clientePanel.add(clientesList);
 		
 		JButton refreshClientesButton = new JButton("");
 		refreshClientesButton.setFocusable(false);
 		refreshClientesButton.setBounds(225, 109, 63, 58);
 		refreshClientesButton.setIcon(refresh);
-		panel.add(refreshClientesButton);
-		refreshClientesButton.addActionListener(e1 -> {
-			/*HashMap<Seniority, Float> costoHorasRefresh = Empresa.getInstancia().getCostoHoras();
-			costoHorasList.setListData(costoHoras.entrySet().toArray());
-			costoHorasList.setListData(costoHorasRefresh.entrySet().toArray());
-			*/
+		clientePanel.add(refreshClientesButton);
+		refreshClientesButton.addActionListener(e -> {
+			List<Cliente> refreshClientes = new ArrayList<>(Empresa.getInstancia().getClientes().values());
+			clientesList.setListData(refreshClientes.toArray());
 		});
 
 		this.setVisible(true);
