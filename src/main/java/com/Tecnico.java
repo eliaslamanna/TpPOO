@@ -144,10 +144,21 @@ public class Tecnico extends Rol {
 
     public Seniority getSeniority() { return seniority; }
 
+    public void setSeniority(Seniority seniority) {
+        this.seniority = seniority;
+    }
+
     public String getTurno() { return turno; }
 
     public Integer getId() {
         return this.id;
+    }
+
+    @Override
+    public String toString() {
+        return " id: " + id +
+                " seniority: " + seniority +
+                " turno: " + turno;
     }
 
     @Override

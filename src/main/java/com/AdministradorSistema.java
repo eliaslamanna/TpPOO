@@ -1,13 +1,11 @@
 package com;
 
-import com.exception.RolNoExisteException;
-import com.exception.SeniorityNoExisteException;
-import com.exception.TurnoNoExisteException;
-import com.exception.UsuarioYaExisteException;
+import com.exception.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AdministradorSistema extends Rol {
 
@@ -113,6 +111,14 @@ public class AdministradorSistema extends Rol {
     public void configurarCostoHora(Seniority seniority, Float costo) {
         Empresa.getInstancia().setCostoHora(seniority, costo);
         System.out.println("Se actualizo el valor de la hora de trabajo del Seniority " + seniority + " a: " + costo + "\n");
+    }
+
+    public void cambiarSeniority(Integer idTecnico, Seniority seniority) throws TecnicoNoExisteException {
+        List<Usuario> tecnicos = new ArrayList<>(Empresa.getInstancia().getTecnicos().values());
+
+        Tecnico tec = (Tecnico) tecnicos.stream().filter(tecnico -> ((Tecnico) tecnico.getRol()).getId().intValue() == idTecnico.intValue()).findFirst().orElseThrow(() -> new TecnicoNoExisteException(idTecnico)).getRol();
+
+        tec.setSeniority(seniority);
     }
 
 

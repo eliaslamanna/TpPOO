@@ -40,42 +40,42 @@ public class CrearUsuarioGui extends JFrame {
         JButton crearButton = new JButton("Crear");
         JButton cancelarButton = new JButton("Cancelar");
 
-        JPanel jpForm = new JPanel();
-        jpForm.setLayout(new GridLayout(6,2,10,6));
-        jpForm.add(usuarioLabel);
-        jpForm.add(usuario);
-        jpForm.add(contraseniaLabel);
-        jpForm.add(contrasenia);
-        jpForm.add(rolLabel);
-        jpForm.add(rol);
-        jpForm.add(seniorityLabel);
-        jpForm.add(seniority);
-        jpForm.add(turnoLabel);
-        jpForm.add(turno);
+        JPanel crearUsuarioForm = new JPanel();
+        crearUsuarioForm.setLayout(new GridLayout(6,2,10,6));
+        crearUsuarioForm.add(usuarioLabel);
+        crearUsuarioForm.add(usuario);
+        crearUsuarioForm.add(contraseniaLabel);
+        crearUsuarioForm.add(contrasenia);
+        crearUsuarioForm.add(rolLabel);
+        crearUsuarioForm.add(rol);
+        crearUsuarioForm.add(seniorityLabel);
+        crearUsuarioForm.add(seniority);
+        crearUsuarioForm.add(turnoLabel);
+        crearUsuarioForm.add(turno);
 
-        jpForm.add(crearButton);
-        jpForm.add(cancelarButton);
+        crearUsuarioForm.add(crearButton);
+        crearUsuarioForm.add(cancelarButton);
 
-        JPanel jpMainPanel = new JPanel();
-        jpMainPanel.setLayout(new BorderLayout(10,10));
-        jpMainPanel.add(jpForm,BorderLayout.NORTH);
-        jpMainPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        JPanel crearUsuarioPanel = new JPanel();
+        crearUsuarioPanel.setLayout(new BorderLayout(10,10));
+        crearUsuarioPanel.add(crearUsuarioForm,BorderLayout.NORTH);
+        crearUsuarioPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
         crearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     administradorSistema.guardarUsuario(usuario.getText(),contrasenia.getText(),rol.getText(), seniority.getText(),turno.getText());
-                    JOptionPane.showMessageDialog(jpMainPanel,"El usuario se guardo con exito.");
+                    JOptionPane.showMessageDialog(crearUsuarioPanel,"El usuario se guardo con exito.");
                     cerrarVentana(e);
                 } catch (RolNoExisteException ex) {
-                    JOptionPane.showMessageDialog(jpMainPanel,"El rol que quiere agregar no existe.");
+                    JOptionPane.showMessageDialog(crearUsuarioPanel,"El rol que quiere agregar no existe.");
                 } catch (UsuarioYaExisteException ex) {
-                    JOptionPane.showMessageDialog(jpMainPanel,"El usuario ya existe en la base de datos.");
+                    JOptionPane.showMessageDialog(crearUsuarioPanel,"El usuario ya existe en la base de datos.");
                 } catch (SeniorityNoExisteException ex) {
-                    JOptionPane.showMessageDialog(jpMainPanel,"El seniority ingresado no existe.");
+                    JOptionPane.showMessageDialog(crearUsuarioPanel,"El seniority ingresado no existe.");
                 } catch (TurnoNoExisteException ex) {
-                    JOptionPane.showMessageDialog(jpMainPanel,"El turno ingresado no existe.");
+                    JOptionPane.showMessageDialog(crearUsuarioPanel,"El turno ingresado no existe.");
                 }
             }
         });
@@ -113,7 +113,7 @@ public class CrearUsuarioGui extends JFrame {
             }
         });
 
-        add(jpMainPanel);
+        add(crearUsuarioPanel);
 
         setSize(900,600);
         setMinimumSize(new Dimension(450, 300));
