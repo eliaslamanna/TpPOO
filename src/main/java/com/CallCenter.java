@@ -5,7 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
+import com.exception.ClienteExistenteException;
 import com.exception.HorarioReservadoException;
+import com.exception.StockInsuficienteException;
+import com.exception.TecnicosInsuficientesException;
 
 public class CallCenter extends Rol {
 
@@ -29,14 +32,15 @@ public class CallCenter extends Rol {
 		return opcion;
 	}
 
-	public void agendarVisita() throws HorarioReservadoException {
-		System.out.println("Ingrese el dni del cliente: ");
+	public void agendarVisita(String dniCliente, Integer horarioInicio, Integer horarioFin, String dia, String tipoVisita, Integer cantidadTecnicos) throws HorarioReservadoException, StockInsuficienteException, TecnicosInsuficientesException{
+		/*System.out.println("Ingrese el dni del cliente: ");
 		String dniCliente = read.nextLine();
 
 		if(!Empresa.getInstancia().getClientes().containsKey(dniCliente)) {
 			System.out.println("\nEl cliente no existe, por favor darlo de alta antes de continuar.");
-			guardarCliente();
+			throw new ClienteExistenteException(dniCliente);
 		} else {
+		
 			System.out.println("\nIngrese el horario de la visita: ");
 			Integer horarioInicio = read.nextInt();
 
@@ -52,10 +56,12 @@ public class CallCenter extends Rol {
 			System.out.println("\nIngrese la cantidad de tecnicos");
 			Integer cantidadTecnicos = read.nextInt();
 			read.nextLine();
-
+			*/
+		
 			if ("Instalacion".equals(tipoVisita)) {
 				if (stockInsuficienteInstalacion()) {
-					System.out.println("Materiales insifucientes para continuar con el servicio.");
+					System.out.println("Materiales insuficientes para continuar con el servicio.");
+					throw new StockInsuficienteException();
 				}
 				if(horarioFin-horarioInicio < 100) {
 					System.out.println("La duracion de la instalacion debe ser de al menos una hora");
@@ -80,6 +86,7 @@ public class CallCenter extends Rol {
 
 					if(tecnicos.size() != cantidadTecnicos) {
 						System.out.println("No alcanza la cantidad de tecnicos requerida para el servicio");
+						throw new TecnicosInsuficientesException();
 					}
 
 					if("Instalacion".equals(tipoVisita)) {
@@ -91,7 +98,6 @@ public class CallCenter extends Rol {
 			}
 		}
 
-	}
 
 	public boolean stockInsuficienteInstalacion() {
 		HashMap<String, Articulo> stock = Empresa.getInstancia().getStock();
@@ -102,7 +108,9 @@ public class CallCenter extends Rol {
 				stock.get("Conector RG6").getCantidad() < 1;
 	}
 
-	public void guardarCliente() {
+	public void guardarCliente(String dniCliente, String nombreCliente, String apellidoCliente, String direccionCliente) throws ClienteExistenteException {
+		
+		/*
 		System.out.println("Ingrese el DNI del cliente: ");
 		String dniCliente = read.nextLine();
 
@@ -112,9 +120,13 @@ public class CallCenter extends Rol {
 		String apellidoCliente = read.nextLine();
 		System.out.println("\nIngrese la direccion del cliente: \n");
 		String direccionCliente = read.nextLine();
-
-		Empresa.getInstancia().agregarCliente(dniCliente,nombreCliente,apellidoCliente,direccionCliente);
-		System.out.println("Se guardo al cliente con dni: " + dniCliente + " existosamente.\n");
+		*/
+		
+		if(Empresa.getInstancia().getClientes().containsKey(dniCliente)) {
+			throw new ClienteExistenteException(dniCliente);
+			}else {
+				Empresa.getInstancia().agregarCliente(dniCliente,nombreCliente,apellidoCliente,direccionCliente);
+			}
 	}
 
 }
