@@ -236,9 +236,7 @@ public class CallCenterGui extends JFrame implements ActionListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				if(e.getSource() == crearVisita)
-					try {
-						{
+				if(e.getSource() == crearVisita) {
 							
 							String dia = textoDia.getText();
 							Integer horarioInicio = Integer.parseInt(textoInicio.getText());
@@ -251,16 +249,14 @@ public class CallCenterGui extends JFrame implements ActionListener{
 							try {
 								cc.agendarVisita(dniCliente, horarioInicio, horarioFin, dia, tipoVisita, cantTecnicos);
 							} catch (HorarioReservadoException e1) {
-								// TODO Auto-generated catch block
-								JOptionPane.showMessageDialog(null, "ERROR","El horario seleccionado se encuentra reservado" ,JOptionPane.ERROR_MESSAGE );
+								JOptionPane.showMessageDialog(null, "El horario seleccionado se encuentra reservado","ERROR" ,JOptionPane.ERROR_MESSAGE );
 							}catch (StockInsuficienteException e2) {
-								JOptionPane.showMessageDialog(null, "ERROR","El stock es insuficiente" ,JOptionPane.ERROR_MESSAGE );
+								JOptionPane.showMessageDialog(null, "El stock es insuficiente","ERROR" ,JOptionPane.ERROR_MESSAGE );
+							}catch (TecnicosInsuficientesException e1) {
+								JOptionPane.showMessageDialog(null, "Actualmente no se posee disponibilidad de la cantidad de tecnicos requerida para el servicio","ERROR" ,JOptionPane.ERROR_MESSAGE );
 							}
 						}
-					} catch (NumberFormatException | TecnicosInsuficientesException e1) {
-						// TODO Auto-generated catch block
-						JOptionPane.showMessageDialog(null, "ERROR","Actualmente no se posee disponibilidad de la cantidad de tecnicos requerida para el servicio" ,JOptionPane.ERROR_MESSAGE );
-					}
+					
 			}
 		});
 		

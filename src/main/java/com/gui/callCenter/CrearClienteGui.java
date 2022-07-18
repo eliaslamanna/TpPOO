@@ -98,10 +98,10 @@ public class CrearClienteGui extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     callCenter.guardarCliente(dni.getText(),nombre.getText(),apellido.getText(),address.getText());
-                    JOptionPane.showMessageDialog(jpMainPanel,"El cliente se guardo con exito.");
+                    JOptionPane.showMessageDialog(jpMainPanel,"El cliente se guardo con exito.", "Crear cliente", JOptionPane.INFORMATION_MESSAGE);
                     cerrarVentana(e);
                 } catch (ClienteExistenteException ex) {
-                    JOptionPane.showMessageDialog(jpMainPanel,"El cliente que desea agregar ya existe");
+                    JOptionPane.showMessageDialog(jpMainPanel,"El cliente que desea agregar ya existe", "Crear cliente", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

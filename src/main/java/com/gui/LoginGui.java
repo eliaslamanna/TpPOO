@@ -106,7 +106,7 @@ public class LoginGui extends JFrame implements ActionListener {
 				}
 			}
 		} else {
-			JOptionPane.showMessageDialog(null, "Usuario ingresado no registrado, favor comunicarse con su Administrador","ERROR",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Usuario ingresado o contraseña incorrecta","ERROR",JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

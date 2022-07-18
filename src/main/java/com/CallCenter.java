@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 import com.exception.ClienteExistenteException;
 import com.exception.HorarioReservadoException;
 import com.exception.StockInsuficienteException;
@@ -91,8 +93,10 @@ public class CallCenter extends Rol {
 
 					if("Instalacion".equals(tipoVisita)) {
 						Empresa.getInstancia().agregarVisita(new Instalacion(Empresa.getInstancia().getClientes().get(dniCliente), tecnicos, dia, horarioInicio, horarioFin));
+						JOptionPane.showMessageDialog(null, "Crear visita", "Visita generada con éxito", JOptionPane.PLAIN_MESSAGE);
 					} else {
 						Empresa.getInstancia().agregarVisita(new Reparacion(Empresa.getInstancia().getClientes().get(dniCliente), tecnicos, dia, horarioInicio, horarioFin));
+						JOptionPane.showMessageDialog(null, "Crear visita", "Visita generada con éxito", JOptionPane.PLAIN_MESSAGE);
 					}
 				}
 			}
