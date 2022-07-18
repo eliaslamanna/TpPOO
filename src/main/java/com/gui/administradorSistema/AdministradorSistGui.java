@@ -31,6 +31,7 @@ import com.Seniority;
 import com.Tecnico;
 import com.Usuario;
 import com.gui.LoginGui;
+import com.gui.listeners.*;
 import com.gui.listeners.CreateStockListener;
 import com.gui.listeners.CreateUserListener;
 import com.gui.listeners.ModificarCostoHorasListener;
@@ -166,13 +167,12 @@ public class AdministradorSistGui extends JFrame {
 		modificarStockButton.setBounds(610, 562, 131, 37);
 		modificarStockButton.setFocusable(false);
 		stockPanel.add(modificarStockButton);
+		modificarStockButton.addActionListener(new ModicarStockListener(administradorSistema));
 		
 		JButton eliminarStockButton = new JButton("Eliminar");
 		eliminarStockButton.setBounds(834, 562, 131, 37);
 		eliminarStockButton.setFocusable(false);
 		stockPanel.add(eliminarStockButton);
-
-
 
 		JPanel costoHorasPanel = new JPanel();
 		tabbedPane.addTab("Costo Horas", null, costoHorasPanel, null);
@@ -195,7 +195,12 @@ public class AdministradorSistGui extends JFrame {
 		refreshCostoHorasButton.setFocusable(false);
 		refreshCostoHorasButton.setIcon(refresh);
 		costoHorasPanel.add(refreshCostoHorasButton);
-		
+		refreshCostoHorasButton.addActionListener(e -> {
+			HashMap<Seniority, Float> costoHorasRefresh = Empresa.getInstancia().getCostoHoras();
+			costoHorasList.setListData(costoHoras.entrySet().toArray());
+			costoHorasList.setListData(costoHorasRefresh.entrySet().toArray());
+		});
+
 		JPanel panel = new JPanel();
 		tabbedPane.addTab("Clientes", null, panel, null);
 		panel.setLayout(null);
@@ -209,14 +214,11 @@ public class AdministradorSistGui extends JFrame {
 		refreshClientesList.setBounds(225, 109, 63, 58);
 		refreshClientesList.setIcon(refresh);
 		panel.add(refreshClientesList);
-		refreshCostoHorasButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				/*HashMap<Seniority, Float> costoHorasRefresh = Empresa.getInstancia().getCostoHoras();
-				costoHorasList.setListData(costoHoras.entrySet().toArray());
-				costoHorasList.setListData(costoHorasRefresh.entrySet().toArray());
-				*/
-			}
+		refreshCostoHorasButton.addActionListener(e1 -> {
+			/*HashMap<Seniority, Float> costoHorasRefresh = Empresa.getInstancia().getCostoHoras();
+			costoHorasList.setListData(costoHoras.entrySet().toArray());
+			costoHorasList.setListData(costoHorasRefresh.entrySet().toArray());
+			*/
 		});
 
 		this.setVisible(true);

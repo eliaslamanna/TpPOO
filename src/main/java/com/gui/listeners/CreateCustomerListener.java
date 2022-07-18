@@ -7,7 +7,7 @@ import com.CallCenter;
 import com.Usuario;
 import com.gui.callCenter.CrearClienteGui;
 
-public class CreateCustomerListener implements ActionListener{
+public class CreateCustomerListener implements ActionListener {
 	
 	private CallCenter callCenter;
 

@@ -80,6 +80,20 @@ public class AdministradorSistema extends Rol {
         }
     }
 
+    public void modificarArticulo(Articulo articulo) throws ArticuloNoExisteException, CantidadNegativaException, PrecioNegativoException {
+        if(!Empresa.getInstancia().getStock().containsKey(articulo.getNombre()) || articulo.getNombre() == null || articulo.getNombre().isBlank()) {
+            throw new ArticuloNoExisteException();
+        }
+        else if(articulo.getCantidad() != null && articulo.getCantidad() < 0) {
+            throw new CantidadNegativaException();
+        }
+        else if(articulo.getPrecioUnidad() != null && articulo.getPrecioUnidad() < 0) {
+            throw new PrecioNegativoException();
+        }
+
+        Empresa.getInstancia().getStock().put(articulo.getNombre(), articulo);
+    }
+
     public void restarStock() {
         System.out.println("\nIngrese el articulo que desea modificar: ");
         String articulo = read.nextLine();
