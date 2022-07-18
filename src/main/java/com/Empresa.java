@@ -46,7 +46,7 @@ public class Empresa {
 		this.stock.put("Decodificador de TV", deco);
 		
 		Usuario aUsuario = new Usuario(new AdministradorSistema(), "adminsist", "adminsist");
-		Usuario bUsuario = new Usuario(new Tecnico(), "tecnico", "tecnico");
+		Usuario bUsuario = new Usuario(new Tecnico(Seniority.SR, "Tarde", new Agenda()), "tecnico", "tecnico");
 		Usuario cUsuario = new Usuario(new Administrativo(), "admin", "admin");
 		Usuario dUsuario = new Usuario(new CallCenter(), "callcenter", "callcenter");
 		
