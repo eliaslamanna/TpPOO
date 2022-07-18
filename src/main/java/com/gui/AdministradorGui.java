@@ -1,10 +1,7 @@
 package com.gui;
 
-import com.AdministradorSistema;
 import com.Usuario;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.ImageIcon;
@@ -19,7 +16,6 @@ import javax.swing.JTextField;
 import javax.swing.JList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextPane;
 import javax.swing.JScrollBar;
 
 public class AdministradorGui extends JFrame {

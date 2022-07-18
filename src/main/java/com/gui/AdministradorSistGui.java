@@ -21,12 +21,8 @@ public class AdministradorSistGui extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-	private CreateUserListener createUserListener;
 	
 	public AdministradorSistGui(Usuario administradorSistema) {
-		createUserListener = new CreateUserListener(administradorSistema);
-		
-		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(100, 100, 1900, 1000);
 		this.setTitle("Cable e Internet - Administrador Sistema");
 		this.setLocationRelativeTo(null);
@@ -46,11 +42,11 @@ public class AdministradorSistGui extends JFrame {
 		lblNewLabel.setIcon(centro);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("Logout");
-		btnNewButton.setBounds(190, 843, 141, 48);
-		btnNewButton.setFocusable(false);
-		contentPane.add(btnNewButton);
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton logoutButton = new JButton("Logout");
+		logoutButton.setBounds(190, 843, 141, 48);
+		logoutButton.setFocusable(false);
+		contentPane.add(logoutButton);
+		logoutButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new LoginGui();
@@ -62,10 +58,10 @@ public class AdministradorSistGui extends JFrame {
 		tabbedPane.setBounds(532, 29, 1324, 904);
 		contentPane.add(tabbedPane);
 		
-		JLabel lblNewLabel_1 = new JLabel("Bienvenid@");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 33));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		tabbedPane.addTab("Home", null, lblNewLabel_1, null);
+		JLabel homeLabel = new JLabel("Bienvenid@");
+		homeLabel.setFont(new Font("Tahoma", Font.PLAIN, 33));
+		homeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		tabbedPane.addTab("Home", null, homeLabel, null);
 		
 		JPanel panel = new JPanel();
 		tabbedPane.addTab("Usuarios", null, panel, null);
@@ -81,7 +77,7 @@ public class AdministradorSistGui extends JFrame {
 		btnNewButton_1.setBounds(434, 600, 131, 37);
 		btnNewButton_1.setFocusable(false);
 		panel.add(btnNewButton_1);
-		btnNewButton_1.addActionListener(createUserListener);
+		btnNewButton_1.addActionListener(new CreateUserListener(administradorSistema));
 		
 		JButton btnNewButton_2 = new JButton("Eliminar");
 		btnNewButton_2.setBounds(834, 600, 131, 37);
@@ -93,11 +89,18 @@ public class AdministradorSistGui extends JFrame {
 		btnNewButton_3.setFocusable(false);
 		panel.add(btnNewButton_3);
 		
-		JButton btnNewButton_4 = new JButton("");
-		btnNewButton_4.setBounds(225, 109, 63, 58);
-		btnNewButton_4.setFocusable(false);
-		btnNewButton_4.setIcon(refresh);
-		panel.add(btnNewButton_4);
+		JButton refreshButton = new JButton("");
+		refreshButton.setBounds(225, 109, 63, 58);
+		refreshButton.setFocusable(false);
+		refreshButton.setIcon(refresh);
+		panel.add(refreshButton);
+		refreshButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				List<Usuario> refreshUsuarios = new ArrayList<>(Empresa.getInstancia().getUsuarios().values());
+				list.setListData(refreshUsuarios.toArray());
+			}
+		});
 		
 		JPanel panel_2 = new JPanel();
 		tabbedPane.addTab("Tecnicos", null, panel_2, null);
@@ -106,17 +109,7 @@ public class AdministradorSistGui extends JFrame {
 		JList list_1 = new JList();
 		list_1.setBounds(352, 109, 665, 400);
 		panel_2.add(list_1);
-		
-		JButton btnNewButton_4_1 = new JButton("");
-		btnNewButton_4_1.setBounds(223, 109, 63, 58);
-		btnNewButton_4_1.setFocusable(false);
-		btnNewButton_4_1.setIcon(refresh);
-		panel_2.add(btnNewButton_4_1);
-		
-		JButton btnNewButton_1_1 = new JButton("Modificar");
-		btnNewButton_1_1.setBounds(647, 555, 131, 37);
-		btnNewButton_1_1.setFocusable(false);
-		panel_2.add(btnNewButton_1_1);
+
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Stock", null, panel_1, null);
