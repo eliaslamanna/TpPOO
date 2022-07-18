@@ -1,13 +1,9 @@
 package com.gui.administradorSistema;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import static java.util.stream.Collectors.toList;
@@ -218,6 +214,12 @@ public class AdministradorSistGui extends JFrame {
 			List<Cliente> refreshClientes = new ArrayList<>(Empresa.getInstancia().getClientes().values());
 			clientesList.setListData(refreshClientes.toArray());
 		});
+
+		JButton modificarClienteButton = new JButton("Modificar");
+		modificarClienteButton.setBounds(610, 562, 131, 37);
+		modificarClienteButton.setFocusable(false);
+		clientePanel.add(modificarClienteButton);
+		modificarClienteButton.addActionListener(new ModificarClienteListener(administradorSistema));
 
 		this.setVisible(true);
 	}

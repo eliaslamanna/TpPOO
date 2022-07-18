@@ -6,7 +6,6 @@ import com.exception.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class EliminarStockGUI extends JFrame {
 
@@ -21,7 +20,7 @@ public class EliminarStockGUI extends JFrame {
         JButton cancelarButton = new JButton("Cancelar");
 
         JPanel eliminarStockForm = new JPanel();
-        eliminarStockForm.setLayout(new GridLayout(6,2,10,6));
+        eliminarStockForm.setLayout(new GridLayout(3,2,10,3));
         eliminarStockForm.add(articuloLabel);
         eliminarStockForm.add(articulo);
 
