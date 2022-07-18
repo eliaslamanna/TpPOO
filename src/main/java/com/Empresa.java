@@ -2,6 +2,7 @@ package com;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import static com.Seniority.*;
@@ -28,7 +29,7 @@ public class Empresa {
 	//Lista visitas (id visita)
 	private HashMap<Integer, Visita> visitas = new HashMap<>();
 
-	private HashMap<Seniority, Float> costoHoras = new HashMap<>();
+	private LinkedHashMap<Seniority, Float> costoHoras = new LinkedHashMap<>();
 
 	private Empresa() {
 		costoHoras.put(JR, 100F);
@@ -45,8 +46,8 @@ public class Empresa {
 		this.stock.put("Cable Coaxil", artCable);
 		this.stock.put("Decodificador de TV", deco);
 		
-		Usuario aUsuario = new Usuario(new AdministradorSistema(), "adminsist", "adminsist");
-		Usuario bUsuario = new Usuario(new Tecnico(Seniority.SR, "Tarde", new Agenda()), "tecnico", "tecnico");
+		Usuario aUsuario = new Usuario(new AdministradorSistema(), "ad", "ad");
+		Usuario bUsuario = new Usuario(new Tecnico(SR, "Tarde"), "tecnico", "tecnico");
 		Usuario cUsuario = new Usuario(new Administrativo(), "admin", "admin");
 		Usuario dUsuario = new Usuario(new CallCenter(), "callcenter", "callcenter");
 		
@@ -54,7 +55,9 @@ public class Empresa {
 		this.usuarios.put(bUsuario.getUsuario(), bUsuario);
 		this.usuarios.put(cUsuario.getUsuario(), cUsuario);
 		this.usuarios.put(dUsuario.getUsuario(), dUsuario);
-		
+
+		this.tecnicos.put(((Tecnico)bUsuario.getRol()).getId(), bUsuario);
+
 		Cliente aCliente = new Cliente("202020", "Ramon", "Lorca","falsa 123");
 		this.clientes.put(aCliente.getDniCliente(), aCliente);
 		
@@ -176,6 +179,10 @@ public class Empresa {
 
 	public Float getCostoHora(Seniority seniority) {
 		return costoHoras.get(seniority);
+	}
+
+	public LinkedHashMap<Seniority, Float> getCostoHoras() {
+		return costoHoras;
 	}
 
 	public void setCostoHora(Seniority seniority, Float costo) {

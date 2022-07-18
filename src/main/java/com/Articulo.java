@@ -35,4 +35,11 @@ public class Articulo {
     public void setPrecioUnidad(float precioUnidad) {
         this.precioUnidad = precioUnidad;
     }
+
+    @Override
+    public String toString() {
+        return " Nombre: " + nombre +
+                " Cantidad: " + cantidad +
+                " PrecioUnidad: " + precioUnidad;
+    }
 }

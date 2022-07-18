@@ -144,6 +144,10 @@ public class Tecnico extends Rol {
 
     public Seniority getSeniority() { return seniority; }
 
+    public void setSeniority(Seniority seniority) {
+        this.seniority = seniority;
+    }
+
     public String getTurno() { return turno; }
 
     public Integer getId() {
@@ -151,6 +155,12 @@ public class Tecnico extends Rol {
     }
 
     @Override
+    public String toString() {
+        return " id: " + id +
+                " seniority: " + seniority +
+                " turno: " + turno;
+    }
+
     public Integer mostrarMenu() {
     	Scanner read = new Scanner(System.in);
 

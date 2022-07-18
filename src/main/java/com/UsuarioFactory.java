@@ -1,7 +1,10 @@
 package com;
 
 import com.exception.RolNoExisteException;
+import com.exception.SeniorityNoExisteException;
+import com.exception.TurnoNoExisteException;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class UsuarioFactory {
@@ -19,7 +22,7 @@ public class UsuarioFactory {
         return instancia;
     }
 
-    public Usuario crearUsuario(String rol, String usuario, String password) throws RolNoExisteException {
+    public Usuario crearUsuario(String rol, String usuario, String password, String seniority, String turno) throws RolNoExisteException, SeniorityNoExisteException, TurnoNoExisteException {
         switch (rol) {
             case "Administrativo" :
                 return new Usuario(new Administrativo(),usuario,password);
@@ -28,23 +31,15 @@ public class UsuarioFactory {
             case "Call Center" :
                 return new Usuario(new CallCenter(),usuario,password);
             case "Tecnico" :
-                Scanner scanner = new Scanner(System.in);
-
-                System.out.println("Ingrese su seniority");
-                String seniority = scanner.nextLine();
-                Seniority seniorityTecnico = Seniority.JR;
-
-                if(seniority.equals("SSR")) {
-                    seniorityTecnico = Seniority.SSR;
+                if("tarde".equalsIgnoreCase(turno) && "mañana".equalsIgnoreCase(turno)) {
+                    throw new TurnoNoExisteException();
                 }
-                else if(seniority.equals("SR")) {
-                    seniorityTecnico = Seniority.SR;
+                try{
+                    Seniority seniorityTecnico = Seniority.valueOf(seniority);
+                    return new Usuario(new Tecnico(seniorityTecnico,turno),usuario,password);
+                } catch (Exception e) {
+                    throw new SeniorityNoExisteException();
                 }
-
-                System.out.println("Ingrese su turno");
-                String turno = scanner.nextLine();
-
-                return new Usuario(new Tecnico(seniorityTecnico,turno),usuario,password);
             default:
                 throw new RolNoExisteException(rol);
         }

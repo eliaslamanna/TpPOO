@@ -1,11 +1,11 @@
 package com;
 
-import com.exception.RolNoExisteException;
-import com.exception.UsuarioYaExisteException;
+import com.exception.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AdministradorSistema extends Rol {
 
@@ -15,11 +15,11 @@ public class AdministradorSistema extends Rol {
         this.rol = "AdministradorSist";
     }
 
-    public void guardarUsuario(String usuario, String password, String rol) throws RolNoExisteException, UsuarioYaExisteException {
+    public void guardarUsuario(String usuario, String password, String rol, String seniority, String turno) throws RolNoExisteException, UsuarioYaExisteException, SeniorityNoExisteException, TurnoNoExisteException {
         if(Empresa.getInstancia().getUsuarios().containsKey(usuario)) {
             throw new UsuarioYaExisteException(usuario);
         } else {
-            Usuario nuevoUsuario = UsuarioFactory.getInstancia().crearUsuario(rol,usuario,password);
+            Usuario nuevoUsuario = UsuarioFactory.getInstancia().crearUsuario(rol,usuario,password, seniority, turno);
             Empresa.getInstancia().guardarUsuario(nuevoUsuario);
 
             if("Tecnico".equals(rol)) {
@@ -113,20 +113,12 @@ public class AdministradorSistema extends Rol {
         System.out.println("Se actualizo el valor de la hora de trabajo del Seniority " + seniority + " a: " + costo + "\n");
     }
 
+    public void cambiarSeniority(Integer idTecnico, Seniority seniority) throws TecnicoNoExisteException {
+        List<Usuario> tecnicos = new ArrayList<>(Empresa.getInstancia().getTecnicos().values());
 
-    @Override
-    public Integer mostrarMenu() {
+        Tecnico tec = (Tecnico) tecnicos.stream().filter(tecnico -> ((Tecnico) tecnico.getRol()).getId().intValue() == idTecnico.intValue()).findFirst().orElseThrow(() -> new TecnicoNoExisteException(idTecnico)).getRol();
 
-        System.out.println("\n---------------------------------------------");
-        System.out.println("*****\t\tAdministrador de Sistema\t\t*****\n\n");
-        System.out.println("1) Agregar articulo a stock");
-        System.out.println("2) Agregar stock de articulo");
-        System.out.println("3) Eliminar stock de articulo");
-        System.out.println("4) Salir");
-
-        int opcion = read.nextInt();
-        read.nextLine();
-
-        return opcion;
+        tec.setSeniority(seniority);
     }
+
 }
