@@ -173,6 +173,7 @@ public class AdministradorSistGui extends JFrame {
 		eliminarStockButton.setBounds(834, 562, 131, 37);
 		eliminarStockButton.setFocusable(false);
 		stockPanel.add(eliminarStockButton);
+		eliminarStockButton.addActionListener(new EliminarStockListener(administradorSistema));
 
 		JPanel costoHorasPanel = new JPanel();
 		tabbedPane.addTab("Costo Horas", null, costoHorasPanel, null);
@@ -209,12 +210,12 @@ public class AdministradorSistGui extends JFrame {
 		clientesList.setBounds(352, 109, 665, 400);
 		panel.add(clientesList);
 		
-		JButton refreshClientesList = new JButton("");
-		refreshClientesList.setFocusable(false);
-		refreshClientesList.setBounds(225, 109, 63, 58);
-		refreshClientesList.setIcon(refresh);
-		panel.add(refreshClientesList);
-		refreshCostoHorasButton.addActionListener(e1 -> {
+		JButton refreshClientesButton = new JButton("");
+		refreshClientesButton.setFocusable(false);
+		refreshClientesButton.setBounds(225, 109, 63, 58);
+		refreshClientesButton.setIcon(refresh);
+		panel.add(refreshClientesButton);
+		refreshClientesButton.addActionListener(e1 -> {
 			/*HashMap<Seniority, Float> costoHorasRefresh = Empresa.getInstancia().getCostoHoras();
 			costoHorasList.setListData(costoHoras.entrySet().toArray());
 			costoHorasList.setListData(costoHorasRefresh.entrySet().toArray());

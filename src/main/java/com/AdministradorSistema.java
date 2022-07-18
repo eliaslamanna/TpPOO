@@ -59,15 +59,11 @@ public class AdministradorSistema extends Rol {
         Empresa.getInstancia().getStock().put(nombre, new Articulo(nombre, cantidad, precio));
     }
 
-    public void eliminarArticulo() {
-        System.out.println("Ingrese el nombre del articulo a eliminar: ");
-        String nombreArticulo = read.nextLine();
-
+    public void eliminarArticulo(String nombreArticulo) throws ArticuloNoExisteException {
         if(!Empresa.getInstancia().getStock().containsKey(nombreArticulo)) {
-            System.out.println("\nEl articulo " + nombreArticulo + " no existe en el stock.");
+            throw new ArticuloNoExisteException();
         } else {
             Empresa.getInstancia().getStock().remove(nombreArticulo);
-            System.out.println("Se removio correctamente el articulo: " + nombreArticulo);
         }
     }
 
