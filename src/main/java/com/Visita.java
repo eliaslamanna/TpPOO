@@ -3,7 +3,7 @@ package com;
 import java.util.List;
 import java.util.Random;
 
-public class Visita {
+public abstract class Visita {
 	private int idVisita;
 	private Cliente cliente;
 	private List<Usuario> tecnicos;
