@@ -2,6 +2,7 @@ package com;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import static com.Seniority.*;
@@ -28,7 +29,7 @@ public class Empresa {
 	//Lista visitas (id visita)
 	private HashMap<Integer, Visita> visitas = new HashMap<>();
 
-	private HashMap<Seniority, Float> costoHoras = new HashMap<>();
+	private LinkedHashMap<Seniority, Float> costoHoras = new LinkedHashMap<>();
 
 	private Empresa() {
 		costoHoras.put(JR, 100F);
@@ -180,7 +181,7 @@ public class Empresa {
 		return costoHoras.get(seniority);
 	}
 
-	public HashMap<Seniority, Float> getCostoHoras() {
+	public LinkedHashMap<Seniority, Float> getCostoHoras() {
 		return costoHoras;
 	}
 
