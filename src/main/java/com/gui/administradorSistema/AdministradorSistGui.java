@@ -1,19 +1,41 @@
 package com.gui.administradorSistema;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import static java.util.stream.Collectors.toList;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
-import com.*;
+import com.Articulo;
+import com.Empresa;
+import com.Seniority;
+import com.Tecnico;
+import com.Usuario;
 import com.gui.LoginGui;
 import com.gui.listeners.*;
-
-import static java.util.stream.Collectors.toList;
+import com.gui.listeners.CreateStockListener;
+import com.gui.listeners.CreateUserListener;
+import com.gui.listeners.ModificarCostoHorasListener;
+import com.gui.listeners.ModificarTecnicoListener;
 
 public class AdministradorSistGui extends JFrame {
 
@@ -152,8 +174,6 @@ public class AdministradorSistGui extends JFrame {
 		eliminarStockButton.setFocusable(false);
 		stockPanel.add(eliminarStockButton);
 
-
-
 		JPanel costoHorasPanel = new JPanel();
 		tabbedPane.addTab("Costo Horas", null, costoHorasPanel, null);
 		costoHorasPanel.setLayout(null);
@@ -181,6 +201,26 @@ public class AdministradorSistGui extends JFrame {
 			costoHorasList.setListData(costoHorasRefresh.entrySet().toArray());
 		});
 
+		JPanel panel = new JPanel();
+		tabbedPane.addTab("Clientes", null, panel, null);
+		panel.setLayout(null);
+		
+		JList clientesList = new JList();
+		clientesList.setBounds(352, 109, 665, 400);
+		panel.add(clientesList);
+		
+		JButton refreshClientesList = new JButton("");
+		refreshClientesList.setFocusable(false);
+		refreshClientesList.setBounds(225, 109, 63, 58);
+		refreshClientesList.setIcon(refresh);
+		panel.add(refreshClientesList);
+		refreshCostoHorasButton.addActionListener(e1 -> {
+			/*HashMap<Seniority, Float> costoHorasRefresh = Empresa.getInstancia().getCostoHoras();
+			costoHorasList.setListData(costoHoras.entrySet().toArray());
+			costoHorasList.setListData(costoHorasRefresh.entrySet().toArray());
+			*/
+		});
+
 		this.setVisible(true);
 	}
 
@@ -189,5 +229,4 @@ public class AdministradorSistGui extends JFrame {
 		Window win = SwingUtilities.getWindowAncestor(comp);
 		win.dispose();
 	}
-
 }
