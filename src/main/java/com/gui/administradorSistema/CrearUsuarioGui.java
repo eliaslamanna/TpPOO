@@ -1,10 +1,11 @@
 package com.gui.administradorSistema;
 
 import com.AdministradorSistema;
-import com.Usuario;
+import com.Seniority;
 import com.exception.RolNoExisteException;
+import com.exception.SeniorityNoExisteException;
+import com.exception.TurnoNoExisteException;
 import com.exception.UsuarioYaExisteException;
-import com.gui.listeners.CreateUserListener;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -16,6 +17,9 @@ import java.awt.event.ActionListener;
 public class CrearUsuarioGui extends JFrame {
 
     public CrearUsuarioGui(AdministradorSistema administradorSistema) {
+        setIconImage(new ImageIcon("images/cable.png").getImage());
+        setTitle("Crear Usuario");
+
         JLabel usuarioLabel = new JLabel(" Usuario");
         JTextField usuario = new JTextField();
 
@@ -57,21 +61,21 @@ public class CrearUsuarioGui extends JFrame {
         jpMainPanel.add(jpForm,BorderLayout.NORTH);
         jpMainPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
-        this.setIconImage(new ImageIcon("images/cable.png").getImage());
-        this.setTitle("Crear Usuario");
-
         crearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    administradorSistema.guardarUsuario(usuario.getText(),contrasenia.getText(),rol.getText());
+                    administradorSistema.guardarUsuario(usuario.getText(),contrasenia.getText(),rol.getText(), seniority.getText(),turno.getText());
                     JOptionPane.showMessageDialog(jpMainPanel,"El usuario se guardo con exito.");
                     cerrarVentana(e);
                 } catch (RolNoExisteException ex) {
                     JOptionPane.showMessageDialog(jpMainPanel,"El rol que quiere agregar no existe.");
-                }
-                catch (UsuarioYaExisteException ex) {
+                } catch (UsuarioYaExisteException ex) {
                     JOptionPane.showMessageDialog(jpMainPanel,"El usuario ya existe en la base de datos.");
+                } catch (SeniorityNoExisteException ex) {
+                    JOptionPane.showMessageDialog(jpMainPanel,"El seniority ingresado no existe.");
+                } catch (TurnoNoExisteException ex) {
+                    JOptionPane.showMessageDialog(jpMainPanel,"El turno ingresado no existe.");
                 }
             }
         });

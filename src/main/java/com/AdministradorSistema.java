@@ -1,6 +1,8 @@
 package com;
 
 import com.exception.RolNoExisteException;
+import com.exception.SeniorityNoExisteException;
+import com.exception.TurnoNoExisteException;
 import com.exception.UsuarioYaExisteException;
 
 import java.util.ArrayList;
@@ -15,11 +17,11 @@ public class AdministradorSistema extends Rol {
         this.rol = "AdministradorSist";
     }
 
-    public void guardarUsuario(String usuario, String password, String rol) throws RolNoExisteException, UsuarioYaExisteException {
+    public void guardarUsuario(String usuario, String password, String rol, String seniority, String turno) throws RolNoExisteException, UsuarioYaExisteException, SeniorityNoExisteException, TurnoNoExisteException {
         if(Empresa.getInstancia().getUsuarios().containsKey(usuario)) {
             throw new UsuarioYaExisteException(usuario);
         } else {
-            Usuario nuevoUsuario = UsuarioFactory.getInstancia().crearUsuario(rol,usuario,password);
+            Usuario nuevoUsuario = UsuarioFactory.getInstancia().crearUsuario(rol,usuario,password, seniority, turno);
             Empresa.getInstancia().guardarUsuario(nuevoUsuario);
 
             if("Tecnico".equals(rol)) {
