@@ -1,23 +1,15 @@
 package com.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.EventQueue;
-import java.awt.Font;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JList;
-import javax.swing.JTable;
+
 import com.AdministradorSistema;
 import com.Empresa;
 import com.Usuario;
@@ -58,6 +50,13 @@ public class AdministradorSistGui extends JFrame {
 		btnNewButton.setBounds(190, 843, 141, 48);
 		btnNewButton.setFocusable(false);
 		contentPane.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new LoginGui();
+				cerrarVentana(e);
+			}
+		});
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(532, 29, 1324, 904);
@@ -149,4 +148,11 @@ public class AdministradorSistGui extends JFrame {
 		panel_1.add(btnNewButton_6);
 		this.setVisible(true);
 	}
+
+	public void cerrarVentana(ActionEvent e) {
+		JComponent comp = (JComponent) e.getSource();
+		Window win = SwingUtilities.getWindowAncestor(comp);
+		win.dispose();
+	}
+
 }

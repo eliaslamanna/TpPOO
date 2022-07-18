@@ -1,17 +1,10 @@
 package com.gui;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import com.Empresa;
@@ -91,24 +84,34 @@ public class LoginGui extends JFrame implements ActionListener {
 			switch (rolMenu) {
 				case "Administrativo": {
 					new AdministradorGui(usuarioLoggeado);
+					cerrarVentana(e);
 					break;
 				}
 				case "Call Center": {
 					new CallCenterGui(usuarioLoggeado);
+					cerrarVentana(e);
 					break;
 				}
 				case "Tecnico": {
 					new TecnicoGui(usuarioLoggeado);
+					cerrarVentana(e);
 					break;
 				}
 				case "AdministradorSist": {
 					new AdministradorSistGui(usuarioLoggeado);
+					cerrarVentana(e);
 					break;
 				}
 			}
 		} else {
 			JOptionPane.showMessageDialog(null, "Usuario ingresado no registrado, favor comunicarse con su Administrador","ERROR",JOptionPane.ERROR_MESSAGE);
 		}
+	}
+
+	public void cerrarVentana(ActionEvent e) {
+		JComponent comp = (JComponent) e.getSource();
+		Window win = SwingUtilities.getWindowAncestor(comp);
+		win.dispose();
 	}
 
 }
