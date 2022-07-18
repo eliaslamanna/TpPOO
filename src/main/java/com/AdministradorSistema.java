@@ -46,20 +46,16 @@ public class AdministradorSistema extends Rol {
         return new ArrayList<>(Empresa.getInstancia().getStock().values());
     }
 
-    public void crearArticulo(){
-        System.out.println("Ingrese el nombre del nuevo articulo: ");
-        String nombre = read.next();
-        read.nextLine();
-
-        System.out.println("Ingrese la cantidad: ");
-        float cantidad = read.nextFloat();
-        read.nextLine();
-
-        System.out.println("Ingrese el precio por unidad: ");
-        float precio = read.nextFloat();
-        read.nextLine();
-
-        System.out.println("\nSe cargo exitosamente un stock de " + cantidad + " para el articulo " + nombre + " con un valor de: " + precio + " por unidad.");
+    public void crearArticulo(String nombre, float cantidad, float precio) throws PrecioNegativoException, CantidadNegativaException, ArticuloYaExisteException {
+        if(cantidad < 0) {
+            throw new CantidadNegativaException();
+        }
+        else if(precio < 0) {
+            throw new PrecioNegativoException();
+        }
+        else if(Empresa.getInstancia().getStock().containsKey(nombre)) {
+            throw new ArticuloYaExisteException(nombre);
+        }
         Empresa.getInstancia().getStock().put(nombre, new Articulo(nombre, cantidad, precio));
     }
 
