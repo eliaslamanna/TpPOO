@@ -63,37 +63,37 @@ public class AdministradorSistGui extends JFrame {
 		homeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		tabbedPane.addTab("Home", null, homeLabel, null);
 		
-		JPanel panel = new JPanel();
-		tabbedPane.addTab("Usuarios", null, panel, null);
-		panel.setLayout(null);
+		JPanel usuariosPanel = new JPanel();
+		tabbedPane.addTab("Usuarios", null, usuariosPanel, null);
+		usuariosPanel.setLayout(null);
 		
 		JList list = new JList();
 		list.setBounds(350, 109, 665, 400);
 		List<Usuario> usuarios = new ArrayList<>(Empresa.getInstancia().getUsuarios().values());
 		list.setListData(usuarios.toArray());
-		panel.add(list);
+		usuariosPanel.add(list);
 		
-		JButton btnNewButton_1 = new JButton("Crear");
-		btnNewButton_1.setBounds(434, 600, 131, 37);
-		btnNewButton_1.setFocusable(false);
-		panel.add(btnNewButton_1);
-		btnNewButton_1.addActionListener(new CreateUserListener(administradorSistema));
+		JButton crearUsuarioButton = new JButton("Crear");
+		crearUsuarioButton.setBounds(434, 600, 131, 37);
+		crearUsuarioButton.setFocusable(false);
+		usuariosPanel.add(crearUsuarioButton);
+		crearUsuarioButton.addActionListener(new CreateUserListener(administradorSistema));
 		
-		JButton btnNewButton_2 = new JButton("Eliminar");
-		btnNewButton_2.setBounds(834, 600, 131, 37);
-		btnNewButton_2.setFocusable(false);
-		panel.add(btnNewButton_2);
+		JButton eliminarUsuarioButton = new JButton("Eliminar");
+		eliminarUsuarioButton.setBounds(834, 600, 131, 37);
+		eliminarUsuarioButton.setFocusable(false);
+		usuariosPanel.add(eliminarUsuarioButton);
 		
-		JButton btnNewButton_3 = new JButton("Modificar");
-		btnNewButton_3.setBounds(638, 600, 131, 37);
-		btnNewButton_3.setFocusable(false);
-		panel.add(btnNewButton_3);
+		JButton ModificarUsuarioButton = new JButton("Modificar");
+		ModificarUsuarioButton.setBounds(638, 600, 131, 37);
+		ModificarUsuarioButton.setFocusable(false);
+		usuariosPanel.add(ModificarUsuarioButton);
 		
 		JButton refreshButton = new JButton("");
 		refreshButton.setBounds(225, 109, 63, 58);
 		refreshButton.setFocusable(false);
 		refreshButton.setIcon(refresh);
-		panel.add(refreshButton);
+		usuariosPanel.add(refreshButton);
 		refreshButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -102,43 +102,43 @@ public class AdministradorSistGui extends JFrame {
 			}
 		});
 		
-		JPanel panel_2 = new JPanel();
-		tabbedPane.addTab("Tecnicos", null, panel_2, null);
-		panel_2.setLayout(null);
+		JPanel tecnicosPanel = new JPanel();
+		tabbedPane.addTab("Tecnicos", null, tecnicosPanel, null);
+		tecnicosPanel.setLayout(null);
 		
 		JList list_1 = new JList();
 		list_1.setBounds(352, 109, 665, 400);
-		panel_2.add(list_1);
+		tecnicosPanel.add(list_1);
 
 		
-		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("Stock", null, panel_1, null);
-		panel_1.setLayout(null);
+		JPanel stockPanel = new JPanel();
+		tabbedPane.addTab("Stock", null, stockPanel, null);
+		stockPanel.setLayout(null);
 		
 		table = new JTable();
 		table.setBounds(350, 110, 636, 407);
-		panel_1.add(table);
+		stockPanel.add(table);
 		
-		JButton btnNewButton_4_1_1 = new JButton("");
-		btnNewButton_4_1_1.setBounds(218, 110, 63, 58);
-		btnNewButton_4_1_1.setFocusable(false);
-		btnNewButton_4_1_1.setIcon(refresh);
-		panel_1.add(btnNewButton_4_1_1);
+		JButton refreshStockButton = new JButton("");
+		refreshStockButton.setBounds(218, 110, 63, 58);
+		refreshStockButton.setFocusable(false);
+		refreshStockButton.setIcon(refresh);
+		stockPanel.add(refreshStockButton);
 		
-		JButton btnNewButton_1_1_1 = new JButton("Crear");
-		btnNewButton_1_1_1.setBounds(392, 562, 131, 37);
-		btnNewButton_1_1_1.setFocusable(false);
-		panel_1.add(btnNewButton_1_1_1);
+		JButton crearStockButton = new JButton("Crear");
+		crearStockButton.setBounds(392, 562, 131, 37);
+		crearStockButton.setFocusable(false);
+		stockPanel.add(crearStockButton);
 		
-		JButton btnNewButton_5 = new JButton("A\u00F1adir");
-		btnNewButton_5.setBounds(610, 562, 131, 37);
-		btnNewButton_5.setFocusable(false);
-		panel_1.add(btnNewButton_5);
+		JButton aniadirStockButton = new JButton("A\u00F1adir");
+		aniadirStockButton.setBounds(610, 562, 131, 37);
+		aniadirStockButton.setFocusable(false);
+		stockPanel.add(aniadirStockButton);
 		
-		JButton btnNewButton_6 = new JButton("Eliminar");
-		btnNewButton_6.setBounds(834, 562, 131, 37);
-		btnNewButton_6.setFocusable(false);
-		panel_1.add(btnNewButton_6);
+		JButton eliminarStockButton = new JButton("Eliminar");
+		eliminarStockButton.setBounds(834, 562, 131, 37);
+		eliminarStockButton.setFocusable(false);
+		stockPanel.add(eliminarStockButton);
 		this.setVisible(true);
 	}
 

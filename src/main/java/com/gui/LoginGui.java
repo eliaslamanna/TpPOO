@@ -30,7 +30,8 @@ public class LoginGui extends JFrame implements ActionListener {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setContentPane(contentPane);
-		contentPane.setLayout(null);	
+		contentPane.setLayout(null);
+		setLocationRelativeTo(null);
 		
 		ImageIcon logo = new ImageIcon("images/cei.png");
 		ImageIcon ventana = new ImageIcon("images/cable.png");
