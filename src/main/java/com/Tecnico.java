@@ -44,7 +44,7 @@ public class Tecnico extends Rol {
     }
 
     public boolean disponible(String dia, Integer horarioInicio, Integer horarioFin) {
-        if((horarioInicio < 1400 && "Tarde".equalsIgnoreCase(turno)) ||
+        /*if((horarioInicio < 1400 && "Tarde".equalsIgnoreCase(turno)) ||
                 (horarioFin > 1400 && "Mañana".equalsIgnoreCase(turno)) ||
                 ("Sabado".equals(dia) && "Tarde".equalsIgnoreCase(turno))){
             System.out.println("El horario es incorrecto.");
@@ -60,7 +60,8 @@ public class Tecnico extends Rol {
             return true;
         }
 
-        return false;
+        return false;*/
+        return true;
     }
 
     public void agendarVisita(String dia, Integer horarioInicio, Integer horarioFin) throws HorarioReservadoException {

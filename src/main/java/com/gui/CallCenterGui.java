@@ -46,7 +46,7 @@ public class CallCenterGui extends JFrame implements ActionListener{
 	private JTextField textoMes;
 	private JTextField textoInicio;
 	private JTextField textoFin;
-	private String tipoVisita;
+	private String tipoVisita = "";
 
 	public CallCenterGui(Usuario callCenter) {
 		
@@ -155,7 +155,7 @@ public class CallCenterGui extends JFrame implements ActionListener{
 				
 				if(e.getSource() == instalacion) {
 					
-					String tipoVisita = "Instalacion";
+					tipoVisita += "Instalacion";
 				}
 			}
 		});
@@ -170,7 +170,7 @@ public class CallCenterGui extends JFrame implements ActionListener{
 				
 				if(e.getSource() == reparacion) {
 					
-					tipoVisita = "Reparacion";
+					tipoVisita += "Reparacion";
 				}
 			}
 		});

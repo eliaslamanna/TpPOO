@@ -13,7 +13,6 @@ public class Administrativo extends Rol {
 
     public Administrativo() {
         this.rol = "Administrativo";
-        System.out.println("asd");
     }
 
     public void revisarServicios(Integer idtecnico) {

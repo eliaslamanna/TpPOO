@@ -27,14 +27,14 @@ public class Cliente {
 	}
 
 	public boolean disponible(String dia, Integer horarioInicio, Integer horarioFin) {
-        Integer horario = horarioInicio;
+        /*Integer horario = horarioInicio;
 
         while(horario <= horarioFin + 30 && horario != 2000) {
             if(!agenda.getHorarios().get(dia).get(horario)) {
                 return false;
             }
             horario += 30;
-        }
+        }*/
         return true;
     }
 

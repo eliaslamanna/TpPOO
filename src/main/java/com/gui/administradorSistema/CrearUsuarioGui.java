@@ -117,7 +117,6 @@ public class CrearUsuarioGui extends JFrame {
 
         setSize(900,600);
         setMinimumSize(new Dimension(450, 300));
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
