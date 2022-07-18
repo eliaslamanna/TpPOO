@@ -7,7 +7,6 @@ import com.exception.UsuarioYaExisteException;
 import com.gui.listeners.CreateUserListener;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
@@ -15,10 +14,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CrearUsuarioGui extends JFrame {
-
-    private JPanel contentPane;
-    private JTable table;
-    private CreateUserListener createUserListener;
 
     public CrearUsuarioGui(AdministradorSistema administradorSistema) {
         JLabel usuarioLabel = new JLabel(" Usuario");
@@ -62,6 +57,9 @@ public class CrearUsuarioGui extends JFrame {
         jpMainPanel.add(jpForm,BorderLayout.NORTH);
         jpMainPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
+        this.setIconImage(new ImageIcon("images/cable.png").getImage());
+        this.setTitle("Crear Usuario");
+
         crearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -102,7 +100,6 @@ public class CrearUsuarioGui extends JFrame {
                     turno.setEnabled(false);
                 }
             }
-
         });
 
         cancelarButton.addActionListener(new ActionListener() {

@@ -32,20 +32,20 @@ public class LoginGui extends JFrame implements ActionListener {
 		this.setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
-		
+
 		ImageIcon logo = new ImageIcon("images/cei.png");
 		ImageIcon ventana = new ImageIcon("images/cable.png");
 		this.setIconImage(ventana.getImage());
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(10, 11, 414, 88);
-		lblNewLabel.setIcon(logo);
-		contentPane.add(lblNewLabel);
+		JLabel logoLabel = new JLabel("");
+		logoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		logoLabel.setBounds(10, 11, 414, 88);
+		logoLabel.setIcon(logo);
+		contentPane.add(logoLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Usuario");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(166, 122, 86, 14);
-		contentPane.add(lblNewLabel_1);
+		JLabel usuarioLabel = new JLabel("Usuario");
+		usuarioLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		usuarioLabel.setBounds(166, 122, 86, 14);
+		contentPane.add(usuarioLabel);
 		
 		textField = new JTextField();
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
@@ -53,10 +53,10 @@ public class LoginGui extends JFrame implements ActionListener {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Contrase\u00F1a");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(166, 176, 86, 14);
-		contentPane.add(lblNewLabel_2);
+		JLabel contraseniaLabel = new JLabel("Contrase\u00F1a");
+		contraseniaLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		contraseniaLabel.setBounds(166, 176, 86, 14);
+		contentPane.add(contraseniaLabel);
 		
 		passwordField = new JPasswordField();
 		passwordField.setHorizontalAlignment(SwingConstants.CENTER);
