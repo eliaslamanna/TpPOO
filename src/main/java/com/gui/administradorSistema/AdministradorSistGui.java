@@ -2,7 +2,6 @@ package com.gui.administradorSistema;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,10 +11,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.*;
 import com.gui.LoginGui;
-import com.gui.listeners.CreateStockListener;
-import com.gui.listeners.ModificarCostoHorasListener;
-import com.gui.listeners.CreateUserListener;
-import com.gui.listeners.ModificarTecnicoListener;
+import com.gui.listeners.*;
 
 import static java.util.stream.Collectors.toList;
 
@@ -149,6 +145,7 @@ public class AdministradorSistGui extends JFrame {
 		modificarStockButton.setBounds(610, 562, 131, 37);
 		modificarStockButton.setFocusable(false);
 		stockPanel.add(modificarStockButton);
+		modificarStockButton.addActionListener(new ModicarStockListener(administradorSistema));
 		
 		JButton eliminarStockButton = new JButton("Eliminar");
 		eliminarStockButton.setBounds(834, 562, 131, 37);
@@ -178,13 +175,10 @@ public class AdministradorSistGui extends JFrame {
 		refreshCostoHorasButton.setFocusable(false);
 		refreshCostoHorasButton.setIcon(refresh);
 		costoHorasPanel.add(refreshCostoHorasButton);
-		refreshCostoHorasButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				HashMap<Seniority, Float> costoHorasRefresh = Empresa.getInstancia().getCostoHoras();
-				costoHorasList.setListData(costoHoras.entrySet().toArray());
-				costoHorasList.setListData(costoHorasRefresh.entrySet().toArray());
-			}
+		refreshCostoHorasButton.addActionListener(e -> {
+			HashMap<Seniority, Float> costoHorasRefresh = Empresa.getInstancia().getCostoHoras();
+			costoHorasList.setListData(costoHoras.entrySet().toArray());
+			costoHorasList.setListData(costoHorasRefresh.entrySet().toArray());
 		});
 
 		this.setVisible(true);
