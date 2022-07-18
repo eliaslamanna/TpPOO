@@ -1,16 +1,11 @@
 package com;
 
-import com.exception.HorarioReservadoException;
-import com.exception.StockInsuficienteException;
-
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.toList;
+import com.exception.HorarioReservadoException;
 
 public class CallCenter extends Rol {
 
@@ -124,3 +119,4 @@ public class CallCenter extends Rol {
 	}
 
 }
+

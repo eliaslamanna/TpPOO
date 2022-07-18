@@ -1,10 +1,13 @@
 package com.gui;
 
+import com.Empresa;
 import com.Usuario;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -21,16 +24,22 @@ import java.awt.Color;
 import javax.swing.JTable;
 import javax.swing.JRadioButton;
 
-public class CallCenterGui extends JFrame {
+public class CallCenterGui extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTable table;
 	private JTextField textField_1;
+	private boolean find = false;
+	private JButton btnNewButton_1;
+	private boolean press = false;
+	private JLabel lblNewLabel_2_1;
+	private JPanel panel_2;
 
 	public CallCenterGui(Usuario callCenter) {
 		
-		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Empresa empresa = Empresa.getInstancia();
+		
 		this.setBounds(100, 100, 1900, 1000);
 		this.setTitle("Cable e Internet - Call Center");
 		this.setLocationRelativeTo(null);
@@ -79,8 +88,9 @@ public class CallCenterGui extends JFrame {
 		lblNewLabel_2.setBounds(384, 86, 169, 33);
 		panel.add(lblNewLabel_2);
 		
-		JButton btnNewButton_1 = new JButton("Buscar");
+		btnNewButton_1 = new JButton("Buscar");
 		btnNewButton_1.setBounds(761, 88, 89, 33);
+		btnNewButton_1.addActionListener(this); 
 		btnNewButton_1.setFocusable(false);
 		panel.add(btnNewButton_1);
 		
@@ -89,17 +99,20 @@ public class CallCenterGui extends JFrame {
 		btnNewButton_1_1.setFocusable(false);
 		panel.add(btnNewButton_1_1);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("El cliente ingresado no existe");
+		lblNewLabel_2_1 = new JLabel("El cliente ingresado no existe");
 		lblNewLabel_2_1.setForeground(Color.RED);
 		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_2_1.setBounds(545, 55, 201, 33);
+		lblNewLabel_2_1.setVisible(false);
 		panel.add(lblNewLabel_2_1);
 		
-		JPanel panel_2 = new JPanel();
+		
+		panel_2 = new JPanel();
 		panel_2.setBounds(293, 156, 833, 550);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
+		panel_2.setVisible(false);
 		
 		JLabel lblNewLabel_2_2 = new JLabel("Seleccionar fecha");
 		lblNewLabel_2_2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -151,6 +164,7 @@ public class CallCenterGui extends JFrame {
 		btnNewButton_1_2.setFocusable(false);
 		panel_2.add(btnNewButton_1_2);
 		
+		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Agenda", null, panel_1, null);
 		panel_1.setLayout(null);
@@ -165,6 +179,26 @@ public class CallCenterGui extends JFrame {
 		btnNewButton_2.setFocusable(false);
 		panel_1.add(btnNewButton_2);
 		this.setVisible(true);
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		if(e.getSource() == btnNewButton_1) {
+			String dniCliente = textField.getText();
+		
+			find = Empresa.getInstancia().getClientes().containsKey(dniCliente);
+			press = true;
+		
+			if(press != false && find != true) {
+				lblNewLabel_2_1.setVisible(true);
+				panel_2.setVisible(false);
+			}else {
+				lblNewLabel_2_1.setVisible(false);
+				panel_2.setVisible(true);
+			}
+		}
 		
 	}
 }

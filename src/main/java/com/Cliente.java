@@ -9,8 +9,6 @@ public class Cliente {
     private String apellido;
     private String Direccion;
     private Agenda agenda = new Agenda();
-    
-    
 
     public Cliente(String dniCliente, String nombre, String apellido, String direccion) {
 		super();
@@ -23,8 +21,12 @@ public class Cliente {
     public Agenda getAgenda() {
         return agenda;
     }
+    
+    public String getDniCliente() {
+		return dniCliente;
+	}
 
-    public boolean disponible(String dia, Integer horarioInicio, Integer horarioFin) {
+	public boolean disponible(String dia, Integer horarioInicio, Integer horarioFin) {
         Integer horario = horarioInicio;
 
         while(horario <= horarioFin + 30 && horario != 2000) {

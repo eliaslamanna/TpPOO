@@ -32,8 +32,6 @@ public class LoginGui extends JFrame implements ActionListener{
 	
 	public LoginGui() {
 		
-		Empresa empresa = Empresa.getInstancia();
-		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(100, 100, 450, 315);
 		this.setTitle("Cable e Internet");

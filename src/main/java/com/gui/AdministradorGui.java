@@ -20,6 +20,7 @@ import javax.swing.JList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
+import javax.swing.JScrollBar;
 
 public class AdministradorGui extends JFrame {
 
@@ -73,20 +74,24 @@ private JTextField textField;
 		btnNewButton_4.setFocusable(false);
 		panel.add(btnNewButton_4);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setBounds(430, 124, 686, 476);
-		panel.add(textPane);
-		
 		JLabel lblNewLabel_3 = new JLabel("Servicios");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(615, 75, 251, 39);
+		lblNewLabel_3.setBounds(674, 88, 251, 39);
 		panel.add(lblNewLabel_3);
 		
 		JButton btnNewButton_4_1 = new JButton("Modificar servicio");
 		btnNewButton_4_1.setFocusable(false);
 		btnNewButton_4_1.setBounds(521, 654, 144, 39);
 		panel.add(btnNewButton_4_1);
+		
+		JList list_1 = new JList();
+		list_1.setBounds(461, 138, 665, 431);
+		panel.add(list_1);
+		
+		JScrollBar scrollBar = new JScrollBar();
+		scrollBar.setBounds(1128, 138, 17, 431);
+		panel.add(scrollBar);
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Facturacion", null, panel_1, null);
