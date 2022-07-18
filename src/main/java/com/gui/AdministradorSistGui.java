@@ -30,7 +30,7 @@ public class AdministradorSistGui extends JFrame {
 	private JTable table;
 	//public List<Usuario> usuarios;
 	
-	public AdministradorSistGui() {
+	public AdministradorSistGui(Usuario administradorSistema) {
 		
 		
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

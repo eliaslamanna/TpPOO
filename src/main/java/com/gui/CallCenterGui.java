@@ -1,5 +1,7 @@
 package com.gui;
 
+import com.Usuario;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -26,7 +28,7 @@ public class CallCenterGui extends JFrame {
 	private JTable table;
 	private JTextField textField_1;
 
-	public CallCenterGui() {
+	public CallCenterGui(Usuario callCenter) {
 		
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(100, 100, 1900, 1000);

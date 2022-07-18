@@ -1,11 +1,8 @@
 package com;
 
-import com.exception.UsuarioYaExisteException;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.Seniority.*;
 

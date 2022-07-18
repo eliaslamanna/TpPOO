@@ -1,5 +1,7 @@
 package com.gui;
 
+import com.Usuario;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -20,7 +22,7 @@ public class TecnicoGui extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 
-	public TecnicoGui() {
+	public TecnicoGui(Usuario tecnico) {
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(100, 100, 1900, 1000);
 		this.setTitle("Cable e Internet - Tecnico");

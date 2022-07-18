@@ -100,23 +100,23 @@ public class LoginGui extends JFrame implements ActionListener{
 						case "Administrativo": {
 							//funcionesAdministrativo(usuarioLoggeado.getRol().mostrarMenu(), (Administrativo)usuarioLoggeado.getRol());
 							//System.out.println("admin");
-							new AdministradorGui();
+							new AdministradorGui(usuarioLoggeado);
 							break;
 						}
 						case "Call Center": {
 							//funcionesCallCenter(usuarioLoggeado.getRol().mostrarMenu(), (Callcenter)usuarioLoggeado.getRol());
-							new CallCenterGui();
+							new CallCenterGui(usuarioLoggeado);
 							break;
 						}
 						case "Tecnico": {
 							//funcionesTecnico(usuarioLoggeado.getRol().mostrarMenu(), (Tecnico)usuarioLoggeado.getRol());
-							new TecnicoGui();
+							new TecnicoGui(usuarioLoggeado);
 							break;
 						}
 						case "AdministradorSist": {
 							//funcionesAdministradorSistema(usuarioLoggeado.getRol().mostrarMenu(), (AdministradorSist)usuarioLoggeado.getRol());
 							//System.out.println(rolMenu);
-							new AdministradorSistGui();
+							new AdministradorSistGui(usuarioLoggeado);
 							break;
 						}
 					}

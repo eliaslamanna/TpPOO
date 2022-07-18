@@ -1,5 +1,8 @@
 package com.gui;
 
+import com.AdministradorSistema;
+import com.Usuario;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -22,10 +25,8 @@ public class AdministradorGui extends JFrame {
 
 private JPanel contentPane;
 private JTextField textField;
-
 	
-	public AdministradorGui() {
-		
+	public AdministradorGui(Usuario administradorSistema) {
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(100, 100, 1900, 1000);
 		this.setTitle("Cable e Internet - Administrador");
