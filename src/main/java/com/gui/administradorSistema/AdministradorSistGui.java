@@ -1,4 +1,4 @@
-package com.gui;
+package com.gui.administradorSistema;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,6 +11,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import com.*;
+import com.gui.LoginGui;
 import com.gui.listeners.ModificarCostoHorasListener;
 import com.gui.listeners.CreateUserListener;
 import com.gui.listeners.ModificarTecnicoListener;
@@ -109,7 +110,7 @@ public class AdministradorSistGui extends JFrame {
 		
 		JList tecnicosList = new JList();
 		tecnicosList.setBounds(352, 109, 665, 400);
-		List<Usuario> tecnicos = new ArrayList<>(Empresa.getInstancia().getTecnicos().values());
+		List<Tecnico> tecnicos = new ArrayList<>(Empresa.getInstancia().getTecnicos().values()).stream().map(tecnico -> ((Tecnico) tecnico.getRol())).collect(toList());
 		tecnicosList.setListData(tecnicos.toArray());
 		tecnicosPanel.add(tecnicosList);
 
@@ -125,30 +126,40 @@ public class AdministradorSistGui extends JFrame {
 				tecnicosList.setListData(refreshTecnicos.toArray());
 			}
 		});
-		
+
+
 		JPanel stockPanel = new JPanel();
 		tabbedPane.addTab("Stock", null, stockPanel, null);
 		stockPanel.setLayout(null);
-		
-		table = new JTable();
-		table.setBounds(350, 110, 636, 407);
-		stockPanel.add(table);
-		
+
+		JList stockList = new JList();
+		stockList.setBounds(352, 109, 665, 400);
+		List<Articulo> articulos = new ArrayList<>(Empresa.getInstancia().getStock().values());
+		stockList.setListData(articulos.toArray());
+		stockPanel.add(stockList);
+
 		JButton refreshStockButton = new JButton("");
 		refreshStockButton.setBounds(218, 110, 63, 58);
 		refreshStockButton.setFocusable(false);
 		refreshStockButton.setIcon(refresh);
 		stockPanel.add(refreshStockButton);
+		refreshStockButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				List<Articulo> refreshArticulos = new ArrayList<>(Empresa.getInstancia().getStock().values());
+				stockList.setListData(refreshArticulos.toArray());
+			}
+		});
 		
 		JButton crearStockButton = new JButton("Crear");
 		crearStockButton.setBounds(392, 562, 131, 37);
 		crearStockButton.setFocusable(false);
 		stockPanel.add(crearStockButton);
 		
-		JButton aniadirStockButton = new JButton("A\u00F1adir");
-		aniadirStockButton.setBounds(610, 562, 131, 37);
-		aniadirStockButton.setFocusable(false);
-		stockPanel.add(aniadirStockButton);
+		JButton modificarStockButton = new JButton("Modificar");
+		modificarStockButton.setBounds(610, 562, 131, 37);
+		modificarStockButton.setFocusable(false);
+		stockPanel.add(modificarStockButton);
 		
 		JButton eliminarStockButton = new JButton("Eliminar");
 		eliminarStockButton.setBounds(834, 562, 131, 37);
@@ -186,35 +197,6 @@ public class AdministradorSistGui extends JFrame {
 				costoHorasList.setListData(costoHorasRefresh.entrySet().toArray());
 			}
 		});
-
-
-
-
-
-
-
-		/*JPanel usuariosPanel = new JPanel();
-		tabbedPane.addTab("Usuarios", null, usuariosPanel, null);
-		usuariosPanel.setLayout(null);
-
-		JList list = new JList();
-		list.setBounds(350, 109, 665, 400);
-		List<Usuario> usuarios = new ArrayList<>(Empresa.getInstancia().getUsuarios().values());
-		list.setListData(usuarios.toArray());
-		usuariosPanel.add(list);
-
-		JButton refreshTecnicosButton = new JButton("");
-		refreshTecnicosButton.setBounds(225, 109, 63, 58);
-		refreshTecnicosButton.setFocusable(false);
-		refreshTecnicosButton.setIcon(refresh);
-		usuariosPanel.add(refreshTecnicosButton);
-		refreshTecnicosButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				List<Usuario> refreshTecnicos = new ArrayList<>(Empresa.getInstancia().getTecnicos().values());
-				list.setListData(refreshTecnicos.toArray());
-			}
-		});*/
 
 		this.setVisible(true);
 	}

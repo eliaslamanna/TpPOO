@@ -15,7 +15,6 @@ public class CallCenter extends Rol {
 		this.rol = "Call Center";
 	}
 
-	@Override
 	public Integer mostrarMenu() {
 		Scanner read = new Scanner(System.in);
 

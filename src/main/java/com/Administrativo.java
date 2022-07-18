@@ -48,7 +48,6 @@ public class Administrativo extends Rol {
         Empresa.getInstancia().getVisitas().get(idVisita).getFactura().setYaSeImprimio(true);
     }
 
-    @Override
     public Integer mostrarMenu() {
         Scanner read = new Scanner(System.in);
 

@@ -161,7 +161,6 @@ public class Tecnico extends Rol {
                 " turno: " + turno;
     }
 
-    @Override
     public Integer mostrarMenu() {
     	Scanner read = new Scanner(System.in);
 

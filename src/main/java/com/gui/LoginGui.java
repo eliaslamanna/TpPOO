@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.Empresa;
 import com.Usuario;
+import com.gui.administradorSistema.AdministradorSistGui;
 
 public class LoginGui extends JFrame implements ActionListener {
 

@@ -121,20 +121,4 @@ public class AdministradorSistema extends Rol {
         tec.setSeniority(seniority);
     }
 
-
-    @Override
-    public Integer mostrarMenu() {
-
-        System.out.println("\n---------------------------------------------");
-        System.out.println("*****\t\tAdministrador de Sistema\t\t*****\n\n");
-        System.out.println("1) Agregar articulo a stock");
-        System.out.println("2) Agregar stock de articulo");
-        System.out.println("3) Eliminar stock de articulo");
-        System.out.println("4) Salir");
-
-        int opcion = read.nextInt();
-        read.nextLine();
-
-        return opcion;
-    }
 }
