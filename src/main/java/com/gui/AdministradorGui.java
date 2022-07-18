@@ -22,9 +22,10 @@ public class AdministradorGui extends JFrame {
 
 private JPanel contentPane;
 private JTextField textField;
+private JTextField textField_1;
 	
 	public AdministradorGui(Usuario administradorSistema) {
-		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		this.setBounds(100, 100, 1900, 1000);
 		this.setTitle("Cable e Internet - Administrador");
 		this.setLocationRelativeTo(null);
@@ -66,42 +67,48 @@ private JTextField textField;
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_4.setBounds(917, 654, 144, 39);
+		btnNewButton_4.setBounds(779, 592, 144, 39);
 		btnNewButton_4.setFocusable(false);
 		panel.add(btnNewButton_4);
 		
-		JLabel lblNewLabel_3 = new JLabel("Servicios");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(674, 88, 251, 39);
-		panel.add(lblNewLabel_3);
-		
 		JButton btnNewButton_4_1 = new JButton("Modificar servicio");
 		btnNewButton_4_1.setFocusable(false);
-		btnNewButton_4_1.setBounds(521, 654, 144, 39);
+		btnNewButton_4_1.setBounds(420, 592, 144, 39);
 		panel.add(btnNewButton_4_1);
 		
 		JList list_1 = new JList();
-		list_1.setBounds(461, 138, 665, 431);
+		list_1.setBounds(420, 173, 503, 371);
 		panel.add(list_1);
 		
-		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(1128, 138, 17, 431);
-		panel.add(scrollBar);
+		JLabel lblNewLabel_2_1 = new JLabel("Ingresar ID de tecnico");
+		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel_2_1.setBounds(463, 50, 230, 30);
+		panel.add(lblNewLabel_2_1);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(463, 81, 230, 38);
+		panel.add(textField_1);
+		
+		JButton btnNewButton_2_1 = new JButton("Buscar");
+		btnNewButton_2_1.setFocusable(false);
+		btnNewButton_2_1.setBounds(768, 81, 117, 38);
+		panel.add(btnNewButton_2_1);
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Facturacion", null, panel_1, null);
 		panel_1.setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(553, 81, 230, 38);
+		textField.setBounds(463, 81, 230, 38);
 		panel_1.add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Ingresar ID de tecnico");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(553, 52, 230, 30);
+		lblNewLabel_2.setBounds(463, 47, 230, 30);
 		panel_1.add(lblNewLabel_2);
 		
 		JButton btnNewButton_1 = new JButton("Generar factura");
@@ -118,7 +125,7 @@ private JTextField textField;
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_2.setBounds(823, 81, 117, 38);
+		btnNewButton_2.setBounds(747, 81, 117, 38);
 		btnNewButton_2.setFocusable(false);
 		panel_1.add(btnNewButton_2);
 		this.setVisible(true);
