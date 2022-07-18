@@ -21,7 +21,7 @@ public class Tecnico extends Rol {
 		this.seniority = seniority;
 		this.turno = turno;
 		this.agenda = agenda;
-        if("Tarde".equals(turno)) {
+        if("Tarde".equalsIgnoreCase(turno)) {
             this.agenda.setTurno("Tarde");
         } else {
             this.agenda.setTurno("Mañana");
@@ -44,9 +44,9 @@ public class Tecnico extends Rol {
     }
 
     public boolean disponible(String dia, Integer horarioInicio, Integer horarioFin) {
-        if((horarioInicio < 1400 && "Tarde".equals(turno)) ||
-                (horarioFin > 1400 && "Mañana".equals(turno)) ||
-                ("Sabado".equals(dia) && "Tarde".equals(turno))){
+        if((horarioInicio < 1400 && "Tarde".equalsIgnoreCase(turno)) ||
+                (horarioFin > 1400 && "Mañana".equalsIgnoreCase(turno)) ||
+                ("Sabado".equals(dia) && "Tarde".equalsIgnoreCase(turno))){
             System.out.println("El horario es incorrecto.");
         } else {
             Integer horario = horarioInicio;

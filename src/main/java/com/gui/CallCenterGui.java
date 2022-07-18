@@ -1,9 +1,8 @@
 package com.gui;
 
 import com.Usuario;
+import com.gui.listeners.CreateUserListener;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.ButtonGroup;

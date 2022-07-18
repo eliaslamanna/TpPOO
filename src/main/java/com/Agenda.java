@@ -187,7 +187,7 @@ public class Agenda {
     public void setTurno(String turno) {
         for (Map.Entry<String, HashMap<Integer,Boolean>> dia : horarios.entrySet()) {
             for (Map.Entry<Integer, Boolean> horario : dia.getValue().entrySet()) {
-                if (turno.equals("Tarde")) {
+                if (turno.equalsIgnoreCase("Tarde")) {
                     if ( horario.getKey() >= 800 && horario.getKey() <= 1400) {
                         horario.setValue(false);
                     }

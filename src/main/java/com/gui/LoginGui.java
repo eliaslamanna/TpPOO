@@ -14,11 +14,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import com.AdministradorSistema;
 import com.Empresa;
 import com.Usuario;
 
-public class LoginGui extends JFrame implements ActionListener{
+public class LoginGui extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -31,9 +30,6 @@ public class LoginGui extends JFrame implements ActionListener{
 
 	
 	public LoginGui() {
-		
-		Empresa empresa = Empresa.getInstancia();
-		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(100, 100, 450, 315);
 		this.setTitle("Cable e Internet");
@@ -83,46 +79,36 @@ public class LoginGui extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
 		usuario = textField.getText();
 		contrasenia = passwordField.getText();
 		
 		flag = Empresa.getInstancia().signIn(usuario, contrasenia);
 		
 		 if (flag == true) {
-				accedio = true;
-				Usuario usuarioLoggeado = Empresa.getInstancia().getUsuarios().get(usuario);
-				rolMenu = usuarioLoggeado.getRol().getRol();
-				//System.out.println(rolMenu);
-					
-					//System.out.println("entro");
-					switch (rolMenu) {
-						case "Administrativo": {
-							//funcionesAdministrativo(usuarioLoggeado.getRol().mostrarMenu(), (Administrativo)usuarioLoggeado.getRol());
-							//System.out.println("admin");
-							new AdministradorGui(usuarioLoggeado);
-							break;
-						}
-						case "Call Center": {
-							//funcionesCallCenter(usuarioLoggeado.getRol().mostrarMenu(), (Callcenter)usuarioLoggeado.getRol());
-							new CallCenterGui(usuarioLoggeado);
-							break;
-						}
-						case "Tecnico": {
-							//funcionesTecnico(usuarioLoggeado.getRol().mostrarMenu(), (Tecnico)usuarioLoggeado.getRol());
-							new TecnicoGui(usuarioLoggeado);
-							break;
-						}
-						case "AdministradorSist": {
-							//funcionesAdministradorSistema(usuarioLoggeado.getRol().mostrarMenu(), (AdministradorSist)usuarioLoggeado.getRol());
-							//System.out.println(rolMenu);
-							new AdministradorSistGui(usuarioLoggeado);
-							break;
-						}
-					}
-			} else {
-				JOptionPane.showMessageDialog(null, "Usuario ingresado no registrado, favor comunicarse con su Administrador","ERROR",JOptionPane.ERROR_MESSAGE);
+			accedio = true;
+			Usuario usuarioLoggeado = Empresa.getInstancia().getUsuarios().get(usuario);
+			rolMenu = usuarioLoggeado.getRol().getRol();
+			switch (rolMenu) {
+				case "Administrativo": {
+					new AdministradorGui(usuarioLoggeado);
+					break;
+				}
+				case "Call Center": {
+					new CallCenterGui(usuarioLoggeado);
+					break;
+				}
+				case "Tecnico": {
+					new TecnicoGui(usuarioLoggeado);
+					break;
+				}
+				case "AdministradorSist": {
+					new AdministradorSistGui(usuarioLoggeado);
+					break;
+				}
 			}
+		} else {
+			JOptionPane.showMessageDialog(null, "Usuario ingresado no registrado, favor comunicarse con su Administrador","ERROR",JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 }

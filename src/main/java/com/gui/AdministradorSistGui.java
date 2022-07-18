@@ -21,6 +21,7 @@ import javax.swing.JTable;
 import com.AdministradorSistema;
 import com.Empresa;
 import com.Usuario;
+import com.gui.listeners.CreateUserListener;
 
 import static java.util.stream.Collectors.toList;
 
@@ -28,10 +29,10 @@ public class AdministradorSistGui extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-	//public List<Usuario> usuarios;
+	private CreateUserListener createUserListener;
 	
 	public AdministradorSistGui(Usuario administradorSistema) {
-		
+		createUserListener = new CreateUserListener(administradorSistema);
 		
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(100, 100, 1900, 1000);
@@ -81,6 +82,7 @@ public class AdministradorSistGui extends JFrame {
 		btnNewButton_1.setBounds(434, 600, 131, 37);
 		btnNewButton_1.setFocusable(false);
 		panel.add(btnNewButton_1);
+		btnNewButton_1.addActionListener(createUserListener);
 		
 		JButton btnNewButton_2 = new JButton("Eliminar");
 		btnNewButton_2.setBounds(834, 600, 131, 37);

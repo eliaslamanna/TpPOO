@@ -1,6 +1,7 @@
 package com;
 
 import com.exception.RolNoExisteException;
+import com.exception.UsuarioYaExisteException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,18 +15,10 @@ public class AdministradorSistema extends Rol {
         this.rol = "AdministradorSist";
     }
 
-    public void guardarUsuario() throws RolNoExisteException {
-        System.out.println("Ingrese el usuario nuevo: ");
-        String usuario = read.nextLine();
-
+    public void guardarUsuario(String usuario, String password, String rol) throws RolNoExisteException, UsuarioYaExisteException {
         if(Empresa.getInstancia().getUsuarios().containsKey(usuario)) {
-            System.out.println("El usuario ya existe en la base de datos.");
+            throw new UsuarioYaExisteException(usuario);
         } else {
-            System.out.println("\nIngrese la contraseña:");
-            String password = read.nextLine();
-            System.out.println("\nIngrese el Rol del usuario: ");
-            String rol = read.nextLine();
-
             Usuario nuevoUsuario = UsuarioFactory.getInstancia().crearUsuario(rol,usuario,password);
             Empresa.getInstancia().guardarUsuario(nuevoUsuario);
 
