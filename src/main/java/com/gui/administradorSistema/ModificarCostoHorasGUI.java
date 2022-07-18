@@ -2,34 +2,36 @@ package com.gui.administradorSistema;
 
 import com.AdministradorSistema;
 import com.Seniority;
-import com.exception.*;
+import com.exception.CostoNegativoException;
+import com.exception.SeniorityNoExisteException;
+import com.exception.TecnicoNoExisteException;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ModificarTecnicoGUI extends JFrame {
+public class ModificarCostoHorasGUI extends JFrame {
 
-    public ModificarTecnicoGUI(AdministradorSistema administradorSistema) {
+    public ModificarCostoHorasGUI(AdministradorSistema administradorSistema) {
         setIconImage(new ImageIcon("images/cable.png").getImage());
-        setTitle("Modificar Tecnico");
-
-        JLabel idLabel = new JLabel(" idTecnico");
-        JTextField id = new JTextField();
+        setTitle("Configurar Costo Horas");
 
         JLabel seniorityLabel = new JLabel(" Seniority");
         JTextField seniority = new JTextField();
+
+        JLabel costoLabel = new JLabel(" Costo Hora");
+        JTextField costo = new JTextField();
 
         JButton aceptarButton = new JButton("Aceptar");
         JButton cancelarButton = new JButton("Cancelar");
 
         JPanel seniorityForm = new JPanel();
         seniorityForm.setLayout(new GridLayout(1,2,10,1));
-        seniorityForm.add(idLabel);
-        seniorityForm.add(id);
         seniorityForm.add(seniorityLabel);
         seniorityForm.add(seniority);
+        seniorityForm.add(costoLabel);
+        seniorityForm.add(costo);
 
         seniorityForm.add(aceptarButton);
         seniorityForm.add(cancelarButton);
@@ -46,15 +48,18 @@ public class ModificarTecnicoGUI extends JFrame {
                     if(!"SR".equalsIgnoreCase(seniority.getText()) && !"SSR".equalsIgnoreCase(seniority.getText()) && !"JR".equalsIgnoreCase(seniority.getText())) {
                         throw new SeniorityNoExisteException();
                     }
-                    administradorSistema.cambiarSeniority(Integer.valueOf(id.getText()),Seniority.valueOf(seniority.getText()));
-                    JOptionPane.showMessageDialog(seniorityPanel,"El tecnico con id " + id.getText() + " se modifico con exito.");
+                    else if(Float.valueOf(costo.getText()) < 0) {
+                        throw new CostoNegativoException();
+                    }
+                    administradorSistema.configurarCostoHora(Seniority.valueOf(seniority.getText()), Float.valueOf(costo.getText()));
+                    JOptionPane.showMessageDialog(seniorityPanel,"El valor del Seniority " + seniority.getText() + " se modifico con exito.");
                     cerrarVentana(e);
                 } catch (SeniorityNoExisteException ex) {
                     JOptionPane.showMessageDialog(seniorityPanel,"El seniority ingresado no existe.");
                 } catch (NumberFormatException nf) {
                     JOptionPane.showMessageDialog(seniorityPanel,"El costo ingresado es incorrecto.");
-                } catch (TecnicoNoExisteException ex) {
-                    JOptionPane.showMessageDialog(seniorityPanel,"El tecnico con id " + id.getText() + " no existe.");
+                } catch (CostoNegativoException ex) {
+                    JOptionPane.showMessageDialog(seniorityPanel,"El costo ingresado no puede ser negativo.");
                 }
             }
         });

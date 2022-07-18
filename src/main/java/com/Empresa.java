@@ -180,6 +180,10 @@ public class Empresa {
 		return costoHoras.get(seniority);
 	}
 
+	public HashMap<Seniority, Float> getCostoHoras() {
+		return costoHoras;
+	}
+
 	public void setCostoHora(Seniority seniority, Float costo) {
 		costoHoras.put(seniority, costo);
 	}

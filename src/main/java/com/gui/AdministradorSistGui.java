@@ -3,18 +3,15 @@ package com.gui;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import com.AdministradorSistema;
-import com.Empresa;
-import com.Tecnico;
-import com.Usuario;
-import com.gui.administradorSistema.ModificarTecnicoGUI;
+import com.*;
+import com.gui.listeners.ModificarCostoHorasListener;
 import com.gui.listeners.CreateUserListener;
 import com.gui.listeners.ModificarTecnicoListener;
 
@@ -157,6 +154,42 @@ public class AdministradorSistGui extends JFrame {
 		eliminarStockButton.setBounds(834, 562, 131, 37);
 		eliminarStockButton.setFocusable(false);
 		stockPanel.add(eliminarStockButton);
+
+
+
+		JPanel costoHorasPanel = new JPanel();
+		tabbedPane.addTab("Costo Horas", null, costoHorasPanel, null);
+		costoHorasPanel.setLayout(null);
+
+		JButton modificarCostoHorasButton = new JButton("Modificar");
+		modificarCostoHorasButton.setBounds(638, 600, 131, 37);
+		modificarCostoHorasButton.setFocusable(false);
+		costoHorasPanel.add(modificarCostoHorasButton);
+		modificarCostoHorasButton.addActionListener(new ModificarCostoHorasListener(administradorSistema));
+
+		JList costoHorasList = new JList();
+		costoHorasList.setBounds(352, 109, 665, 400);
+		HashMap<Seniority, Float> costoHoras = Empresa.getInstancia().getCostoHoras();
+		costoHorasList.setListData(costoHoras.entrySet().toArray());
+		costoHorasPanel.add(costoHorasList);
+
+		JButton refreshCostoHorasButton = new JButton("");
+		refreshCostoHorasButton.setBounds(225, 109, 63, 58);
+		refreshCostoHorasButton.setFocusable(false);
+		refreshCostoHorasButton.setIcon(refresh);
+		costoHorasPanel.add(refreshCostoHorasButton);
+		refreshCostoHorasButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				HashMap<Seniority, Float> costoHorasRefresh = Empresa.getInstancia().getCostoHoras();
+				costoHorasList.setListData(costoHoras.entrySet().toArray());
+				costoHorasList.setListData(costoHorasRefresh.entrySet().toArray());
+			}
+		});
+
+
+
+
 
 
 
