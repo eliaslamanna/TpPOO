@@ -16,6 +16,7 @@ import static java.util.stream.Collectors.toList;
 import java.awt.Font;
 import java.awt.Window;
 
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -31,6 +32,9 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
@@ -41,7 +45,6 @@ public class AdministradorGui extends JFrame {
 private JPanel contentPane;
 private JTextField textoId;
 private JTextField textoTecnico;
-private Administrativo administrativoR;
 	
 	public AdministradorGui(Usuario administrativo) {
 
@@ -88,17 +91,11 @@ private Administrativo administrativoR;
 		tabbedPane.addTab("Servicios", null, panel, null);
 		panel.setLayout(null);
 		
-		JButton endBtn = new JButton("Finalizar servicio");
-		endBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		endBtn.setBounds(590, 582, 144, 39);
-		endBtn.setFocusable(false);
-		panel.add(endBtn);
-		
 		JList serviciosList = new JList();
-		serviciosList.setBounds(420, 173, 503, 371);
+		serviciosList.setBounds(279, 173, 783, 487);
+		serviciosList.addMouseListener(mouseListener);
+		DefaultListCellRenderer cellRenderer = (DefaultListCellRenderer)serviciosList.getCellRenderer();
+		cellRenderer.setHorizontalAlignment(SwingConstants .CENTER);
 		panel.add(serviciosList);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("Ingresar ID de tecnico");
@@ -154,9 +151,18 @@ private Administrativo administrativoR;
 		panel_1.add(facturasList);
 		
 		JButton searchButton = new JButton("Buscar");
-		searchButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		searchButton.addActionListener(e -> {
+			/*Integer idVisita = Integer.valueOf(textoId.getText());
+			List<Visita> visitasTecnico = new ArrayList<>();
+			for(Visita visita : new ArrayList<>(Empresa.getInstancia().getVisitas().values())) {
+				for(Usuario tecnico : visita.getIdVisita()) {
+					if(((Tecnico) tecnico.getRol()).getId().intValue() == idTecnico.intValue()) {
+						visitasTecnico.add(visita);
+					}
+				}
 			}
+			serviciosList.setListData(visitasTecnico.toArray());
+			*/
 		});
 		searchButton.setBounds(747, 81, 117, 38);
 		searchButton.setFocusable(false);
@@ -170,4 +176,33 @@ private Administrativo administrativoR;
 		Window win = SwingUtilities.getWindowAncestor(comp);
 		win.dispose();
 	}
+	
+	MouseListener mouseListener = new MouseAdapter() {
+	      public void mouseClicked(MouseEvent mouseEvent) {
+	        JList serviciosList = (JList) mouseEvent.getSource();
+	        if (mouseEvent.getClickCount() == 2) {
+	          int index = serviciosList.locationToIndex(mouseEvent.getPoint());
+	          if (index >= 0) {
+	        	int answer = JOptionPane.showConfirmDialog(null, "¿Desea dar por finalizado estos servicios?", "Finalizar servicio", JOptionPane.YES_NO_OPTION); 
+	        	if(answer == 0) {
+	        		Integer idTecnico = Integer.valueOf(JOptionPane.showInputDialog(null,"Ingrese nuevamente el Id del tecnico","Finalizar servicio",JOptionPane.INFORMATION_MESSAGE));
+	        		Administrativo admin = new Administrativo();
+	        		admin.revisarServicios(idTecnico);
+	      
+	    			List<Visita> visitasTecnico = new ArrayList<>();
+	    			for(Visita visita : new ArrayList<>(Empresa.getInstancia().getVisitas().values())) {
+	    				for(Usuario tecnico : visita.getTecnicos()) {
+	    					if(((Tecnico) tecnico.getRol()).getId().intValue() == idTecnico.intValue()) {
+	    						visitasTecnico.add(visita);
+	    					}
+	    				}
+	    			}
+	    			serviciosList.setListData(visitasTecnico.toArray());
+	        	}
+	           
+	          }
+	        }
+	      }
+	    };
+	
 }

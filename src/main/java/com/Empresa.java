@@ -69,9 +69,13 @@ public class Empresa {
 		List<Usuario> tecnicos = new ArrayList<>(getTecnicos().values());
 		
 		Reparacion aVisita = new Reparacion(aCliente, tecnicos, "Martes", 1600, 1800);
+		aVisita.setGastosAdicionales(null);
+		aVisita.setOtrosCostos(null);
 		this.visitas.put(aVisita.getIdVisita(), aVisita);
 
 		Instalacion bVisita = new Instalacion(bCliente, tecnicos, "Miercoles", 1600, 1800);
+		bVisita.setGastosAdicionales(null);
+		bVisita.setOtrosCostos(null);
 		this.visitas.put(bVisita.getIdVisita(), bVisita);
 
 	}

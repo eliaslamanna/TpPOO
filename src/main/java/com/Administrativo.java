@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 import static com.EstadoVisita.EN_CURSO;
 import static com.EstadoVisita.FINALIZADO;
 import static java.util.stream.Collectors.toList;
@@ -23,7 +25,8 @@ public class Administrativo extends Rol {
         visitasTecnico.forEach(visita -> {
            visita.setEstado(FINALIZADO);
             visita.setFactura(generarFactura(visita, visita.getTecnicos()));
-            System.out.println("Visita revisada: " + visita.getIdVisita());
+            //System.out.println("Visita revisada: " + visita.getIdVisita());
+            JOptionPane.showMessageDialog(null, "Los servicios del tecnico nro " + idtecnico + " fueron finalizados con éxito", "Finalizar servicio", JOptionPane.INFORMATION_MESSAGE);
         });
     }
 
