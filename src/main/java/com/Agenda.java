@@ -1,7 +1,5 @@
 package com;
 
-import com.exception.HorarioReservadoException;
-
 import java.util.HashMap;
 import java.util.Map;
 

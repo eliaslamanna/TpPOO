@@ -70,59 +70,9 @@ public class Empresa {
 		
 		Reparacion aVisita = new Reparacion(aCliente, tecnicos, "Martes", 1600, 1800);
 		this.visitas.put(aVisita.getIdVisita(), aVisita);
-		
+
 		Instalacion bVisita = new Instalacion(bCliente, tecnicos, "Miercoles", 1600, 1800);
 		this.visitas.put(bVisita.getIdVisita(), bVisita);
-		
-		/*Visita sVisita = new Visita();
-		List<Visita> visitasJr = new ArrayList<>();
-		List<Visita> visitasSr = new ArrayList<>();
-
-		Administrativo admin = new Administrativo();
-		AdministradorSist adminSist = new AdministradorSist();
-		Callcenter cc = new Callcenter();
-		Tecnico tecnico = new Tecnico();
-
-		Usuario aUsuario = new Usuario(adminSist, "adminsist", "adminsist");
-		Usuario bUsuario = new Usuario(admin, "admin", "admin");
-		Usuario sUsuario = new Usuario(tecnico, "tecnico", "tecnico");
-		Usuario cUsuario = new Usuario(cc, "callcenter", "callcenter");
-
-		// -----------------------------------------------------------------
-		Cliente c1 = new Cliente(40956834, "Pablo", "Lez", new Agenda());
-		Cliente c2 = new Cliente(32544601,"Arturo", "Lo", new Agenda());
-		Cliente c3 = new Cliente(20156398,"Mario", "Bross", new Agenda());
-		// -----------------------------------------------------------------
-		this.usuarios.add(aUsuario);
-		this.usuarios.add(bUsuario);
-		this.usuarios.add(sUsuario);
-		this.usuarios.add(cUsuario);
-
-		Visita pVisita = new Visita(c1, this.tecnicos, articulos, new ArrayList<>());
-		pVisita.setEstado(EstadoVisita.FINALIZADO);
-		List visitas = new ArrayList(){{
-			add(pVisita);
-		}};
-
-		visitasJr.add(pVisita);
-
-		Tecnico t = new Tecnico(Seniority.JR, "Tarde", new Agenda(), visitasJr);
-		Usuario tUsuario = new Usuario(t, "Leonel", "tecnico");
-		this.usuarios.add(tUsuario);
-		this.clientes.put(c1.getDniCliente(), c1);
-		this.clientes.put(c2.getDniCliente(), c2);
-		this.clientes.put(c3.getDniCliente(), c3);
-
-		Agenda agendaTarde1 = new Agenda();
-		agendaTarde1.setTurno("Tarde");
-		Agenda agendaTarde2 = new Agenda();
-		agendaTarde2.setTurno("Tarde");
-		Agenda agendaManiana = new Agenda();
-		agendaManiana.setTurno("Mañana");
-		//tecnicos
-		this.tecnicos.add(new Tecnico(Seniority.JR,"tarde", agendaTarde1, visitas));
-		this.tecnicos.add(new Tecnico(Seniority.SR,"mañana", agendaManiana, visitas));
-		this.tecnicos.add(new Tecnico(Seniority.SSR,"tarde", agendaTarde2, visitas));*/
 
 	}
 
