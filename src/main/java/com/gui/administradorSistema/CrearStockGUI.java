@@ -45,29 +45,21 @@ public class CrearStockGUI extends JFrame {
         crearArticuloPanel.add(crearArticuloForm,BorderLayout.NORTH);
         crearArticuloPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
-        crearButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    administradorSistema.crearArticulo(articulo.getText(), Float.valueOf(cantidad.getText()), Float.valueOf(precioUnidad.getText()));
-                    JOptionPane.showMessageDialog(crearArticuloPanel,"El articulo " + articulo.getText() +" se guardo con exito.");
-                    cerrarVentana(e);
-                } catch (CantidadNegativaException ex) {
-                    JOptionPane.showMessageDialog(crearArticuloPanel,"La cantidad del articulo no puede ser negativa.");
-                } catch (PrecioNegativoException ex) {
-                    JOptionPane.showMessageDialog(crearArticuloPanel,"El precio del articulo no puede ser negativo.");
-                } catch (ArticuloYaExisteException ex) {
-                    JOptionPane.showMessageDialog(crearArticuloPanel,"El articulo " + articulo.getText() + " ya existe en el stock.");
-                }
+        crearButton.addActionListener(e -> {
+            try {
+                administradorSistema.crearArticulo(articulo.getText(), Float.valueOf(cantidad.getText()), Float.valueOf(precioUnidad.getText()));
+                JOptionPane.showMessageDialog(crearArticuloPanel,"El articulo " + articulo.getText() +" se guardo con exito.");
+                cerrarVentana(e);
+            } catch (CantidadNegativaException ex) {
+                JOptionPane.showMessageDialog(crearArticuloPanel,"La cantidad del articulo no puede ser negativa.");
+            } catch (PrecioNegativoException ex) {
+                JOptionPane.showMessageDialog(crearArticuloPanel,"El precio del articulo no puede ser negativo.");
+            } catch (ArticuloYaExisteException ex) {
+                JOptionPane.showMessageDialog(crearArticuloPanel,"El articulo " + articulo.getText() + " ya existe en el stock.");
             }
         });
 
-        cancelarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cerrarVentana(e);
-            }
-        });
+        cancelarButton.addActionListener(e -> cerrarVentana(e));
 
         add(crearArticuloPanel);
 

@@ -81,7 +81,6 @@ public class Empresa {
 		bVisita.setOtrosCostos(null);
 		bVisita.setEstado(EN_CURSO);
 		this.visitas.put(bVisita.getIdVisita(), bVisita);
-
 	}
 
 	public static Empresa getInstancia() {
