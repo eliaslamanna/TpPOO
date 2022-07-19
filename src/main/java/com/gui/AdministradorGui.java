@@ -104,7 +104,7 @@ private JTextField textoTecnico;
 
 		JList serviciosList = new JList();
 		serviciosList.setBounds(279, 173, 783, 487);
-		serviciosList.addMouseListener(mouseListener);
+		//serviciosList.addMouseListener(mouseListener);
 		DefaultListCellRenderer cellRenderer = (DefaultListCellRenderer)serviciosList.getCellRenderer();
 		cellRenderer.setHorizontalAlignment(SwingConstants .CENTER);
 		panel.add(serviciosList);
@@ -112,7 +112,6 @@ private JTextField textoTecnico;
 		JButton buscarServiciosButton = new JButton("Buscar");
 		buscarServiciosButton.setFocusable(false);
 		buscarServiciosButton.setBounds(768, 81, 117, 38);
-		panel.add(buscarServiciosButton);
 		buscarServiciosButton.addActionListener(e -> {
 			Integer idTecnico = Integer.valueOf(textoTecnico.getText());
 			List<Visita> visitasTecnico = new ArrayList<>();
@@ -125,6 +124,31 @@ private JTextField textoTecnico;
 			}
 			serviciosList.setListData(visitasTecnico.toArray());
 		});
+		panel.add(buscarServiciosButton);
+		
+		JButton finalizarButton = new JButton("Finalizar servicio");
+		finalizarButton.setFocusable(false);
+		finalizarButton.setBounds(610, 699, 150, 38);
+		finalizarButton.addActionListener(e -> {
+			int answer = JOptionPane.showConfirmDialog(null, "Desea dar por finalizado un servicio?", "Finalizar servicio", JOptionPane.YES_NO_OPTION); 
+        	if(answer == 0) {
+        		Administrativo admin = new Administrativo();
+        		Integer idVisita = Integer.valueOf(JOptionPane.showInputDialog(null, "Ingrese el id de la visita a finalizar", "Finalizar servicio", JOptionPane.INFORMATION_MESSAGE));
+        		admin.revisarServicios(idVisita);
+      
+    			List<Visita> visitasTecnico = new ArrayList<>();
+    			for(Visita visita : new ArrayList<>(Empresa.getInstancia().getVisitas().values())) {
+    				for(Usuario tecnico : visita.getTecnicos()) {
+    					if(((Tecnico) tecnico.getRol()).getId().intValue() == Integer.valueOf(textoTecnico.getText()).intValue()) {
+    						visitasTecnico.add(visita);
+    					}
+    				}
+    			}
+    			serviciosList.setListData(visitasTecnico.toArray());
+    			
+        	}});
+		panel.add(finalizarButton);
+		
 		
 		JPanel facturacionPanel = new JPanel();
 		tabbedPane.addTab("Facturacion", null, facturacionPanel, null);
@@ -177,7 +201,7 @@ private JTextField textoTecnico;
 		win.dispose();
 	}
 	
-	MouseListener mouseListener = new MouseAdapter() {
+	/*MouseListener mouseListener = new MouseAdapter() {
 	      public void mouseClicked(MouseEvent mouseEvent) {
 	        JList serviciosList = (JList) mouseEvent.getSource();
 	        if (mouseEvent.getClickCount() >= 1) {
@@ -203,5 +227,5 @@ private JTextField textoTecnico;
 	        }
 	      }
 	    };
-	
+	    */
 }
