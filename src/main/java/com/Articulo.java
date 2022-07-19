@@ -39,7 +39,7 @@ public class Articulo {
     @Override
     public String toString() {
         return " Nombre: " + nombre +
-                " Cantidad: " + cantidad +
-                " PrecioUnidad: $" + precioUnidad;
+                " -- Cantidad: " + cantidad +
+                " -- PrecioUnidad: $" + precioUnidad;
     }
 }
