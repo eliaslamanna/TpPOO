@@ -50,6 +50,6 @@ public class Usuario {
 	@Override
 	public String toString() {
 		return 	usuario +
-				" --> Rol: " + rol.getRol();
+				" -- Rol: " + rol.getRol();
 	}
 }

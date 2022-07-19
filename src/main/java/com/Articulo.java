@@ -40,6 +40,6 @@ public class Articulo {
     public String toString() {
         return " Nombre: " + nombre +
                 " Cantidad: " + cantidad +
-                " PrecioUnidad: " + precioUnidad;
+                " PrecioUnidad: $" + precioUnidad;
     }
 }

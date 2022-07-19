@@ -49,7 +49,7 @@ public class ModificarTecnicoGUI extends JFrame {
             } catch (SeniorityNoExisteException ex) {
                 JOptionPane.showMessageDialog(null,"El seniority ingresado no existe.", "Modificar tecnico", JOptionPane.ERROR_MESSAGE);
             } catch (NumberFormatException nf) {
-                JOptionPane.showMessageDialog(null,"El costo ingresado es incorrecto.", "Modificar tecnico", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null,"El id de tecnico ingresado es incorrecto.", "Modificar tecnico", JOptionPane.ERROR_MESSAGE);
             } catch (TecnicoNoExisteException ex) {
                 JOptionPane.showMessageDialog(null,"El tecnico con id " + id.getText() + " no existe.", "Modificar tecnico", JOptionPane.ERROR_MESSAGE);
             }

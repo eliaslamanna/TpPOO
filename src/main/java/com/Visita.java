@@ -132,11 +132,11 @@ public abstract class Visita {
 	@Override
 	public String toString() {
 		return  " idVisita: " + idVisita +
-				" cliente: " + cliente.getDniCliente() +
-				" dia: " + dia +
-				" horarioInicio: " + horarioInicio +
-				" horarioFin: " + horarioFin +
-				" estado: " + estado;
+				" -- cliente: " + cliente.getDniCliente() +
+				" -- dia: " + dia +
+				" -- horarioInicio: " + horarioInicio +
+				" -- horarioFin: " + horarioFin +
+				" -- estado: " + estado;
 	}
 
 	public void  obtenerDatosVisita() {
