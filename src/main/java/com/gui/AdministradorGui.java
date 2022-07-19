@@ -71,12 +71,9 @@ private Administrativo admin;
 		JButton logout = new JButton("Logout");
 		logout.setBounds(190, 843, 141, 48);
 		logout.setFocusable(false);
-		logout.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new LoginGui();
-				cerrarVentana(e);
-			}
+		logout.addActionListener(e -> {
+			new LoginGui();
+			cerrarVentana(e);
 		});
 		contentPane.add(logout);
 		
@@ -84,10 +81,10 @@ private Administrativo admin;
 		tabbedPane.setBounds(532, 29, 1324, 904);
 		contentPane.add(tabbedPane);
 		
-		JLabel lblNewLabel_1 = new JLabel("Bienvenid@");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 33));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		tabbedPane.addTab("Home", null, lblNewLabel_1, null);
+		JLabel bienvenidoLabel = new JLabel("Bienvenid@");
+		bienvenidoLabel.setFont(new Font("Tahoma", Font.PLAIN, 33));
+		bienvenidoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		tabbedPane.addTab("Home", null, bienvenidoLabel, null);
 		
 		JPanel panel = new JPanel();
 		tabbedPane.addTab("Servicios", null, panel, null);
