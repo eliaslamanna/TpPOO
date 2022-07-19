@@ -44,14 +44,14 @@ public class ModificarTecnicoGUI extends JFrame {
                     throw new SeniorityNoExisteException();
                 }
                 administradorSistema.cambiarSeniority(Integer.valueOf(id.getText()),Seniority.valueOf(seniority.getText()));
-                JOptionPane.showMessageDialog(seniorityPanel,"El tecnico con id " + id.getText() + " se modifico con exito.");
+                JOptionPane.showMessageDialog(null,"El tecnico con id " + id.getText() + " se modifico con exito.", "Modificar tecnico", JOptionPane.INFORMATION_MESSAGE);
                 cerrarVentana(e);
             } catch (SeniorityNoExisteException ex) {
-                JOptionPane.showMessageDialog(seniorityPanel,"El seniority ingresado no existe.");
+                JOptionPane.showMessageDialog(null,"El seniority ingresado no existe.", "Modificar tecnico", JOptionPane.ERROR_MESSAGE);
             } catch (NumberFormatException nf) {
-                JOptionPane.showMessageDialog(seniorityPanel,"El costo ingresado es incorrecto.");
+                JOptionPane.showMessageDialog(null,"El costo ingresado es incorrecto.", "Modificar tecnico", JOptionPane.ERROR_MESSAGE);
             } catch (TecnicoNoExisteException ex) {
-                JOptionPane.showMessageDialog(seniorityPanel,"El tecnico con id " + id.getText() + " no existe.");
+                JOptionPane.showMessageDialog(null,"El tecnico con id " + id.getText() + " no existe.", "Modificar tecnico", JOptionPane.ERROR_MESSAGE);
             }
         });
 

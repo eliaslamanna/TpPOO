@@ -51,12 +51,12 @@ public class ModificarClienteGUI extends JFrame {
         aceptarButton.addActionListener(e -> {
             try {
                 administradorSistema.modificarCliente(new Cliente(dni.getText(), nombre.getText(), apellido.getText(), direccion.getText()));
-                JOptionPane.showMessageDialog(modificarClientePanel,"El cliente con dni " + dni.getText() + " se modifico con exito.");
+                JOptionPane.showMessageDialog(null,"El cliente con dni " + dni.getText() + " se modifico con exito.", "Modificar cliente", JOptionPane.INFORMATION_MESSAGE);
                 cerrarVentana(e);
             } catch (NumberFormatException nf) {
-                JOptionPane.showMessageDialog(modificarClientePanel,"Los datos ingresados no son correctos.");
+                JOptionPane.showMessageDialog(null,"Los datos ingresados no son correctos.", "Modificar cliente", JOptionPane.ERROR_MESSAGE);
             } catch (ClienteNoExisteException ex) {
-                JOptionPane.showMessageDialog(modificarClientePanel,"El cliente con dni " + dni.getText() + " no existe.");
+                JOptionPane.showMessageDialog(null,"El cliente con dni " + dni.getText() + " no existe.", "Modificar cliente", JOptionPane.ERROR_MESSAGE);
             }
         });
 

@@ -48,14 +48,14 @@ public class CrearStockGUI extends JFrame {
         crearButton.addActionListener(e -> {
             try {
                 administradorSistema.crearArticulo(articulo.getText(), Float.valueOf(cantidad.getText()), Float.valueOf(precioUnidad.getText()));
-                JOptionPane.showMessageDialog(crearArticuloPanel,"El articulo " + articulo.getText() +" se guardo con exito.");
+                JOptionPane.showMessageDialog(null,"El articulo " + articulo.getText() +" se guardo con exito.", "Crear articulo", JOptionPane.INFORMATION_MESSAGE);
                 cerrarVentana(e);
             } catch (CantidadNegativaException ex) {
-                JOptionPane.showMessageDialog(crearArticuloPanel,"La cantidad del articulo no puede ser negativa.");
+                JOptionPane.showMessageDialog(null,"La cantidad del articulo no puede ser negativa.","Crear articulo", JOptionPane.ERROR_MESSAGE);
             } catch (PrecioNegativoException ex) {
-                JOptionPane.showMessageDialog(crearArticuloPanel,"El precio del articulo no puede ser negativo.");
+                JOptionPane.showMessageDialog(null,"El precio del articulo no puede ser negativo.", "Crear articulo", JOptionPane.ERROR_MESSAGE);
             } catch (ArticuloYaExisteException ex) {
-                JOptionPane.showMessageDialog(crearArticuloPanel,"El articulo " + articulo.getText() + " ya existe en el stock.");
+                JOptionPane.showMessageDialog(null,"El articulo " + articulo.getText() + " ya existe en el stock.", "Crear articulo", JOptionPane.ERROR_MESSAGE);
             }
         });
 

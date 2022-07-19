@@ -52,14 +52,14 @@ public class ModificarCostoHorasGUI extends JFrame {
                         throw new CostoNegativoException();
                     }
                     administradorSistema.configurarCostoHora(Seniority.valueOf(seniority.getText()), Float.valueOf(costo.getText()));
-                    JOptionPane.showMessageDialog(seniorityPanel,"El valor del Seniority " + seniority.getText() + " se modifico con exito.");
+                    JOptionPane.showMessageDialog(null,"El valor del Seniority " + seniority.getText() + " se modifico con exito.", "Configurar costo horas", JOptionPane.INFORMATION_MESSAGE);
                     cerrarVentana(e);
                 } catch (SeniorityNoExisteException ex) {
-                    JOptionPane.showMessageDialog(seniorityPanel,"El seniority ingresado no existe.");
+                    JOptionPane.showMessageDialog(null,"El seniority ingresado no existe.", "Configurar costo horas", JOptionPane.ERROR_MESSAGE);
                 } catch (NumberFormatException nf) {
-                    JOptionPane.showMessageDialog(seniorityPanel,"El costo ingresado es incorrecto.");
+                    JOptionPane.showMessageDialog(null,"El costo ingresado es incorrecto.", "Configurar costo horas", JOptionPane.ERROR_MESSAGE);
                 } catch (CostoNegativoException ex) {
-                    JOptionPane.showMessageDialog(seniorityPanel,"El costo ingresado no puede ser negativo.");
+                    JOptionPane.showMessageDialog(null,"El costo ingresado no puede ser negativo.", "Configurar costo horas", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

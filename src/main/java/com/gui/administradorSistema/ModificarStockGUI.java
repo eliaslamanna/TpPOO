@@ -47,16 +47,16 @@ public class ModificarStockGUI extends JFrame {
         aceptarButton.addActionListener(e -> {
             try {
                 administradorSistema.modificarArticulo(new Articulo(articulo.getText(), Float.valueOf(cantidad.getText()), Float.valueOf(precioUnidad.getText())));
-                JOptionPane.showMessageDialog(modificarStockPanel,"El articulo " + articulo.getText() + " se modifico con exito.");
+                JOptionPane.showMessageDialog(null,"El articulo " + articulo.getText() + " se modifico con exito.", "Modificar stock", JOptionPane.INFORMATION_MESSAGE);
                 cerrarVentana(e);
             } catch (ArticuloNoExisteException ex) {
-                JOptionPane.showMessageDialog(modificarStockPanel,"El articulo " + articulo.getText() + " no existe.");
+                JOptionPane.showMessageDialog(null,"El articulo " + articulo.getText() + " no existe.", "Modificar stock", JOptionPane.ERROR_MESSAGE);
             } catch (CantidadNegativaException ex) {
-                JOptionPane.showMessageDialog(modificarStockPanel,"La cantidad no puede ser negativa.");
+                JOptionPane.showMessageDialog(null,"La cantidad no puede ser negativa.", "Modificar stock", JOptionPane.ERROR_MESSAGE);
             } catch (PrecioNegativoException ex) {
-                JOptionPane.showMessageDialog(modificarStockPanel,"El precio por unidad no puede ser negativo.");
+                JOptionPane.showMessageDialog(null,"El precio por unidad no puede ser negativo.", "Modificar stock", JOptionPane.ERROR_MESSAGE);
             } catch (NumberFormatException nf) {
-                JOptionPane.showMessageDialog(modificarStockPanel,"El costo o precio por unidad ingresado tiene que ser un numero.");
+                JOptionPane.showMessageDialog(null,"El costo o precio por unidad ingresado tiene que ser un numero.", "Modificar stock", JOptionPane.ERROR_MESSAGE);
             }
         });
 

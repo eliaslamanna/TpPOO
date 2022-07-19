@@ -11,7 +11,7 @@ public class EliminarStockGUI extends JFrame {
 
     public EliminarStockGUI(AdministradorSistema administradorSistema) {
         setIconImage(new ImageIcon("images/cable.png").getImage());
-        setTitle("Crear Usuario");
+        setTitle("Eliminar articulo");
 
         JLabel articuloLabel = new JLabel(" Articulo");
         JTextField articulo = new JTextField();
@@ -35,10 +35,10 @@ public class EliminarStockGUI extends JFrame {
         aceptarButton.addActionListener(e -> {
             try {
                 administradorSistema.eliminarArticulo(articulo.getText());
-                JOptionPane.showMessageDialog(eliminarStockPanel,"El articulo " + articulo.getText() + " se elimino con exito.");
+                JOptionPane.showMessageDialog(null,"El articulo " + articulo.getText() + " se elimino con exito.", "Eliminar articulo", JOptionPane.INFORMATION_MESSAGE);
                 cerrarVentana(e);
             } catch (ArticuloNoExisteException ex) {
-                JOptionPane.showMessageDialog(eliminarStockPanel,"El articulo " + articulo.getText() + " no existe.");
+                JOptionPane.showMessageDialog(null,"El articulo " + articulo.getText() + " no existe.", "Eliminar articulo", JOptionPane.ERROR_MESSAGE);
             }
         });
 
