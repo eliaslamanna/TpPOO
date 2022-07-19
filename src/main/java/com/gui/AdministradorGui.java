@@ -13,6 +13,7 @@ import com.exception.TecnicosInsuficientesException;
 import static com.EstadoVisita.EN_CURSO;
 import static java.util.stream.Collectors.toList;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Window;
 
@@ -45,6 +46,7 @@ public class AdministradorGui extends JFrame {
 private JPanel contentPane;
 private JTextField textoId;
 private JTextField textoTecnico;
+private Administrativo admin;
 	
 	public AdministradorGui(Usuario administrativo) {
 
@@ -104,7 +106,8 @@ private JTextField textoTecnico;
 
 		JList serviciosList = new JList();
 		serviciosList.setBounds(279, 173, 783, 487);
-		//serviciosList.addMouseListener(mouseListener);
+		serviciosList.setFocusable(false);
+		serviciosList.setSelectionBackground(Color.white);
 		DefaultListCellRenderer cellRenderer = (DefaultListCellRenderer)serviciosList.getCellRenderer();
 		cellRenderer.setHorizontalAlignment(SwingConstants .CENTER);
 		panel.add(serviciosList);
@@ -132,7 +135,7 @@ private JTextField textoTecnico;
 		finalizarButton.addActionListener(e -> {
 			int answer = JOptionPane.showConfirmDialog(null, "Desea dar por finalizado un servicio?", "Finalizar servicio", JOptionPane.YES_NO_OPTION); 
         	if(answer == 0) {
-        		Administrativo admin = new Administrativo();
+        		admin = new Administrativo();
         		String idVisita = JOptionPane.showInputDialog(null, "Ingrese el id de la visita a finalizar", "Finalizar servicio", JOptionPane.INFORMATION_MESSAGE);
         		try {
         			admin.revisarServicios(idVisita);
@@ -172,16 +175,49 @@ private JTextField textoTecnico;
 		JButton imprimirButton = new JButton("Generar factura");
 		imprimirButton.setBounds(605, 604, 150, 38);
 		imprimirButton.setFocusable(false);
+		imprimirButton.addActionListener(e-> {
+			int answer = JOptionPane.showConfirmDialog(null, "Desea imprimir la factura?", "Imprimir factura", JOptionPane.YES_NO_OPTION); 
+        	if(answer == 0) {
+        		admin = new Administrativo();
+        		String idVisita = JOptionPane.showInputDialog(null, "Ingrese el id de la visita cuya factura desea imprimir", "Imprimir factura", JOptionPane.INFORMATION_MESSAGE);
+        		try {
+        			admin.imprimirFactura(idVisita);
+        		}catch (NumberFormatException nf){
+        			JOptionPane.showMessageDialog(null, "El id ingresado es incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
+        		}
+        		
+    			List<Visita> visitasTecnico = new ArrayList<>();
+    			for(Visita visita : new ArrayList<>(Empresa.getInstancia().getVisitas().values())) {
+    				for(Usuario tecnico : visita.getTecnicos()) {
+    					if(((Tecnico) tecnico.getRol()).getId().intValue() == Integer.valueOf(textoTecnico.getText()).intValue()) {
+    						visitasTecnico.add(visita);
+    					}
+    				}
+    			}
+    			serviciosList.setListData(visitasTecnico.toArray());
+    			
+        	}
+		});
 		facturacionPanel.add(imprimirButton);
 		
 		JList facturasList = new JList();
-		facturasList.setBounds(420, 173, 503, 371);
+		facturasList.setBounds(283, 173, 794, 371);
+		facturasList.setFocusable(false);
+		facturasList.setSelectionBackground(Color.white);
+		DefaultListCellRenderer cellRenderera = (DefaultListCellRenderer)facturasList.getCellRenderer();
+		cellRenderera.setHorizontalAlignment(SwingConstants .CENTER);
 		facturacionPanel.add(facturasList);
 		
 		JButton searchButton = new JButton("Buscar");
 		searchButton.addActionListener(e -> {
-			Integer idVisita = Integer.valueOf(textoId.getText());
-			List<Visita> visitasTecnico = new ArrayList<>(Empresa.getInstancia().getVisitas().values()).stream().filter(visita -> visita.getIdVisita() == idVisita.intValue()).collect(toList());
+			List<Visita> visitasTecnico = new ArrayList<>();
+			try{
+				Integer idVisita = Integer.valueOf(textoId.getText());
+				visitasTecnico = new ArrayList<>(Empresa.getInstancia().getVisitas().values()).stream().filter(visita -> visita.getIdVisita() == idVisita.intValue()).collect(toList());
+			}catch (NumberFormatException nf) {
+				JOptionPane.showMessageDialog(null, "El formato del id de visita ingresado es invalido", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			
 			facturasList.setListData(visitasTecnico.toArray());
 		});
 		
@@ -197,32 +233,5 @@ private JTextField textoTecnico;
 		Window win = SwingUtilities.getWindowAncestor(comp);
 		win.dispose();
 	}
-	
-	/*MouseListener mouseListener = new MouseAdapter() {
-	      public void mouseClicked(MouseEvent mouseEvent) {
-	        JList serviciosList = (JList) mouseEvent.getSource();
-	        if (mouseEvent.getClickCount() >= 1) {
-	          int index = serviciosList.locationToIndex(mouseEvent.getPoint());
-	          if (index >= 0) {
-	        	int answer = JOptionPane.showConfirmDialog(null, "�Desea dar por finalizado estos servicios?", "Finalizar servicio", JOptionPane.YES_NO_OPTION); 
-	        	if(answer == 0) {
-	        		Administrativo admin = new Administrativo();
-	        		admin.revisarServicios(Integer.valueOf(textoTecnico.getText()));
-	      
-	    			List<Visita> visitasTecnico = new ArrayList<>();
-	    			for(Visita visita : new ArrayList<>(Empresa.getInstancia().getVisitas().values())) {
-	    				for(Usuario tecnico : visita.getTecnicos()) {
-	    					if(((Tecnico) tecnico.getRol()).getId().intValue() == Integer.valueOf(textoTecnico.getText()).intValue()) {
-	    						visitasTecnico.add(visita);
-	    					}
-	    				}
-	    			}
-	    			serviciosList.setListData(visitasTecnico.toArray());
-	        	}
-	           
-	          }
-	        }
-	      }
-	    };
-	    */
+
 }
