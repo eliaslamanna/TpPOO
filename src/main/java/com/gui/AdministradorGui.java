@@ -14,14 +14,17 @@ import static com.EstadoVisita.EN_CURSO;
 import static java.util.stream.Collectors.toList;
 
 import java.awt.Font;
+import java.awt.Window;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JList;
@@ -60,10 +63,17 @@ private Administrativo administrativoR;
 		lblNewLabel.setIcon(centro);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("Logout");
-		btnNewButton.setBounds(190, 843, 141, 48);
-		btnNewButton.setFocusable(false);
-		contentPane.add(btnNewButton);
+		JButton logout = new JButton("Logout");
+		logout.setBounds(190, 843, 141, 48);
+		logout.setFocusable(false);
+		logout.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new LoginGui();
+				cerrarVentana(e);
+			}
+		});
+		contentPane.add(logout);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(532, 29, 1324, 904);
@@ -83,14 +93,9 @@ private Administrativo administrativoR;
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		endBtn.setBounds(779, 592, 144, 39);
+		endBtn.setBounds(590, 582, 144, 39);
 		endBtn.setFocusable(false);
 		panel.add(endBtn);
-		
-		JButton modifyBtn = new JButton("Modificar servicio");
-		modifyBtn.setFocusable(false);
-		modifyBtn.setBounds(420, 592, 144, 39);
-		panel.add(modifyBtn);
 		
 		JList serviciosList = new JList();
 		serviciosList.setBounds(420, 173, 503, 371);
@@ -131,7 +136,7 @@ private Administrativo administrativoR;
 		panel_1.add(textoId);
 		textoId.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Ingresar ID de tecnico");
+		JLabel lblNewLabel_2 = new JLabel("Ingresar ID de visita");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setBounds(463, 47, 230, 30);
@@ -156,5 +161,11 @@ private Administrativo administrativoR;
 		panel_1.add(searchButton);
 		this.setVisible(true);
 		
+	}
+	
+	public void cerrarVentana(ActionEvent e) {
+		JComponent comp = (JComponent) e.getSource();
+		Window win = SwingUtilities.getWindowAncestor(comp);
+		win.dispose();
 	}
 }
