@@ -31,73 +31,48 @@ public class CallCenter extends Rol {
 		return opcion;
 	}
 
-	public void agendarVisita(String dniCliente, Integer horarioInicio, Integer horarioFin, Integer dia, Integer mes, String tipoVisita, Integer cantidadTecnicos) throws HorarioReservadoException, StockInsuficienteException, TecnicosInsuficientesException, HorarioParaTurnoIncorrectoException {
-		/*System.out.println("Ingrese el dni del cliente: ");
-		String dniCliente = read.nextLine();
-
-		if(!Empresa.getInstancia().getClientes().containsKey(dniCliente)) {
-			System.out.println("\nEl cliente no existe, por favor darlo de alta antes de continuar.");
-			throw new ClienteExistenteException(dniCliente);
+	public void agendarVisita(String dniCliente, Integer horarioInicio, Integer horarioFin, Integer dia, Integer mes, String tipoVisita, Integer cantidadTecnicos) throws HorarioReservadoException, StockInsuficienteException, TecnicosInsuficientesException, HorarioParaTurnoIncorrectoException, TiempoMinimoInstalacionIncorrectoException, TiempoMinimoReparacionIncorrectoException {
+		if ("Instalacion".equals(tipoVisita)) {
+			if (stockInsuficienteInstalacion()) {
+				System.out.println("Materiales insuficientes para continuar con el servicio.");
+				throw new StockInsuficienteException();
+			}
+			if(horarioFin-horarioInicio < 100) {
+				System.out.println("La duracion de la instalacion debe ser de al menos una hora");
+				throw new TiempoMinimoInstalacionIncorrectoException();
+			}
 		} else {
-		
-			System.out.println("\nIngrese el horario de la visita: ");
-			Integer horarioInicio = read.nextInt();
-
-			System.out.println("\nIngrese el horario de fin la visita: ");
-			Integer horarioFin = read.nextInt();
-
-			System.out.println("\nIngrese el dia de la visita: ");
-			String dia = read.nextLine();
-
-			System.out.println("\nQue tipo de servicio desea?");
-			String tipoVisita = read.nextLine();
-
-			System.out.println("\nIngrese la cantidad de tecnicos");
-			Integer cantidadTecnicos = read.nextInt();
-			read.nextLine();
-			*/
-		
-			if ("Instalacion".equals(tipoVisita)) {
-				if (stockInsuficienteInstalacion()) {
-					System.out.println("Materiales insuficientes para continuar con el servicio.");
-					throw new StockInsuficienteException();
-				}
-				if(horarioFin-horarioInicio < 100) {
-					System.out.println("La duracion de la instalacion debe ser de al menos una hora");
-				}
+			if(horarioFin-horarioInicio < 30) {
+				System.out.println("La duracion de la instalacion debe ser de al menos 30 minutos");
+				throw new TiempoMinimoReparacionIncorrectoException();
 			} else {
-				if(horarioFin-horarioInicio < 30) {
-					System.out.println("La duracion de la instalacion debe ser de al menos 30 minutos");
-				} else {
-					List<Usuario> tecnicos = new ArrayList<>();
-					Cliente cliente = Empresa.getInstancia().getClientes().get(dniCliente);
+				List<Usuario> tecnicos = new ArrayList<>();
+				Cliente cliente = Empresa.getInstancia().getClientes().get(dniCliente);
 
-					for (Usuario tecnico : new ArrayList<>(Empresa.getInstancia().getTecnicos().values())) {
-						Tecnico tec = (Tecnico) tecnico.getRol();
-						if (tec.disponible(dia, mes, horarioInicio, horarioFin) && cliente.disponible(dia, mes, horarioInicio, horarioFin)) {
-							if (tecnicos.size() < cantidadTecnicos) {
-								tec.agendarVisita(dia, mes, horarioInicio, horarioFin);
-								cliente.agendarVisita(dia, mes, horarioInicio, horarioFin);
-								tecnicos.add(tecnico);
-							}
+				for (Usuario tecnico : new ArrayList<>(Empresa.getInstancia().getTecnicos().values())) {
+					Tecnico tec = (Tecnico) tecnico.getRol();
+					if (tec.disponible(dia, mes, horarioInicio, horarioFin) && cliente.disponible(dia, mes, horarioInicio, horarioFin)) {
+						if (tecnicos.size() < cantidadTecnicos) {
+							tec.agendarVisita(dia, mes, horarioInicio, horarioFin);
+							cliente.agendarVisita(dia, mes, horarioInicio, horarioFin);
+							tecnicos.add(tecnico);
 						}
 					}
+				}
 
-					if(tecnicos.size() != cantidadTecnicos) {
-						System.out.println("No alcanza la cantidad de tecnicos requerida para el servicio");
-						throw new TecnicosInsuficientesException();
-					}
+				if(tecnicos.size() != cantidadTecnicos) {
+					System.out.println("No alcanza la cantidad de tecnicos requerida para el servicio");
+					throw new TecnicosInsuficientesException();
+				}
 
-					if("Instalacion".equals(tipoVisita)) {
-						Empresa.getInstancia().agregarVisita(new Instalacion(Empresa.getInstancia().getClientes().get(dniCliente), tecnicos, dia, mes, horarioInicio, horarioFin));
-						JOptionPane.showMessageDialog(null, "Crear visita", "Visita generada con �xito", JOptionPane.PLAIN_MESSAGE);
-					} else {
-						Empresa.getInstancia().agregarVisita(new Reparacion(Empresa.getInstancia().getClientes().get(dniCliente), tecnicos, dia, mes, horarioInicio, horarioFin));
-						JOptionPane.showMessageDialog(null, "Crear visita", "Visita generada con �xito", JOptionPane.PLAIN_MESSAGE);
-					}
+				if("Instalacion".equals(tipoVisita)) {
+					Empresa.getInstancia().agregarVisita(new Instalacion(Empresa.getInstancia().getClientes().get(dniCliente), tecnicos, dia, mes, horarioInicio, horarioFin));
+				} else {
+					Empresa.getInstancia().agregarVisita(new Reparacion(Empresa.getInstancia().getClientes().get(dniCliente), tecnicos, dia, mes, horarioInicio, horarioFin));
 				}
 			}
 		}
+	}
 
 
 	public boolean stockInsuficienteInstalacion() {

@@ -3,10 +3,7 @@ package com.gui;
 import com.CallCenter;
 import com.Empresa;
 import com.Usuario;
-import com.exception.HorarioParaTurnoIncorrectoException;
-import com.exception.HorarioReservadoException;
-import com.exception.StockInsuficienteException;
-import com.exception.TecnicosInsuficientesException;
+import com.exception.*;
 import com.gui.listeners.AgendarVisitaListener;
 import com.gui.listeners.CreateCustomerListener;
 
@@ -15,20 +12,9 @@ import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
 import java.awt.Color;
-import javax.swing.JRadioButton;
 
 public class CallCenterGui extends JFrame implements ActionListener{
 
@@ -76,17 +62,17 @@ public class CallCenterGui extends JFrame implements ActionListener{
 		
 		contentPane.add(logoutButton);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(532, 29, 1324, 904);
-		contentPane.add(tabbedPane);
+		JTabbedPane tabbedPanel = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPanel.setBounds(532, 29, 1324, 904);
+		contentPane.add(tabbedPanel);
 		
 		JLabel bienvenidoLabel = new JLabel("Bienvenid@");
 		bienvenidoLabel.setFont(new Font("Tahoma", Font.PLAIN, 33));
 		bienvenidoLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		tabbedPane.addTab("Home", null, bienvenidoLabel, null);
+		tabbedPanel.addTab("Home", null, bienvenidoLabel, null);
 		
 		JPanel programarVisitaPanel = new JPanel();
-		tabbedPane.addTab("Programar visita", null, programarVisitaPanel, null);
+		tabbedPanel.addTab("Programar visita", null, programarVisitaPanel, null);
 		programarVisitaPanel.setLayout(null);
 		
 		textField = new JTextField();
@@ -119,8 +105,7 @@ public class CallCenterGui extends JFrame implements ActionListener{
 		clienteNoExisteLabel.setBounds(545, 55, 201, 33);
 		clienteNoExisteLabel.setVisible(false);
 		programarVisitaPanel.add(clienteNoExisteLabel);
-		
-		
+
 		registrarVisitaPanel = new JPanel();
 		registrarVisitaPanel.setBounds(293, 156, 833, 550);
 		programarVisitaPanel.add(registrarVisitaPanel);
@@ -214,14 +199,33 @@ public class CallCenterGui extends JFrame implements ActionListener{
 		crearVisitaButton.setFocusable(false);
 		registrarVisitaPanel.add(crearVisitaButton);
 
-		Integer dia = Integer.valueOf(textoDia.getText());
-		Integer mes = Integer.valueOf(textoMes.getText());
-		Integer horarioInicio = Integer.valueOf(textoInicio.getText());
-		Integer horarioFin = Integer.valueOf(textoFin.getText());
-		String dniCliente = textField.getText();
-		Integer cantTecnicos = Integer.valueOf(textoTecnicos.getText());
 
-		crearVisitaButton.addActionListener(new AgendarVisitaListener(callCenter, dia, mes, horarioInicio, horarioFin, tipoVisita, dniCliente, cantTecnicos));
+
+		crearVisitaButton.addActionListener(e -> {
+			Integer dia = Integer.valueOf(textoDia.getText());
+			Integer mes = Integer.valueOf(textoMes.getText());
+			Integer horarioInicio = Integer.valueOf(textoInicio.getText());
+			Integer horarioFin = Integer.valueOf(textoFin.getText());
+			String dniCliente = textField.getText();
+			Integer cantTecnicos = Integer.valueOf(textoTecnicos.getText());
+
+			try {
+				((CallCenter) callCenter.getRol()).agendarVisita(dniCliente, horarioInicio, horarioFin, dia, mes, tipoVisita, cantTecnicos);
+				JOptionPane.showMessageDialog(null,"Se agendo la visita con exito.", "Agendar visita", JOptionPane.INFORMATION_MESSAGE);
+			} catch (StockInsuficienteException ex) {
+				JOptionPane.showMessageDialog(null,"Stock insuficiente, comuiniquese con un administrador de sistemas para cargar mas stock.", "Agendar visita", JOptionPane.ERROR_MESSAGE);
+			} catch (HorarioParaTurnoIncorrectoException ex) {
+				JOptionPane.showMessageDialog(null,"El horario no corresponde con el turno de los tecnicos disponibles.", "Agendar visita", JOptionPane.ERROR_MESSAGE);
+			} catch (TecnicosInsuficientesException ex) {
+				JOptionPane.showMessageDialog(null,"La cantidad de tecnicos disponibles no alcanza para agendar una visita.", "Agendar visita", JOptionPane.ERROR_MESSAGE);
+			} catch (HorarioReservadoException ex) {
+				JOptionPane.showMessageDialog(null,"El horario elegido esta reservado, por favor elija otro.", "Agendar visita", JOptionPane.ERROR_MESSAGE);
+			} catch (TiempoMinimoInstalacionIncorrectoException ex) {
+				JOptionPane.showMessageDialog(null,"El tiempo minimo para una instalacion es de 100.", "Agendar visita", JOptionPane.ERROR_MESSAGE);
+			} catch (TiempoMinimoReparacionIncorrectoException ex) {
+				JOptionPane.showMessageDialog(null,"El tiempo minimo para una reparacion es de 30.", "Agendar visita", JOptionPane.ERROR_MESSAGE);
+			}
+		});
 
 	}
 	
