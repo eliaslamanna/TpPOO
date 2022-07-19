@@ -70,15 +70,29 @@ public class Empresa {
 		
 		List<Usuario> tecnicos = new ArrayList<>(getTecnicos().values());
 		
-		Reparacion aVisita = new Reparacion(aCliente, tecnicos, 3, 12,1600, 1800);
-		aVisita.setGastosAdicionales(null);
-		aVisita.setOtrosCostos(null);
+		Articulo almuerzo = new Articulo("Almuerzo",(float) 2, (float) 200.00);
+		
+		Articulo combustible = new Articulo("Combustible", (float) 10, (float) 120.3);
+		Articulo pintura = new Articulo("Pintura", (float) 2, (float) 130);
+		Articulo clavo = new Articulo("Clavos", (float)200, (float) 2);
+		
+		List<Articulo> gastosAdicionales = new ArrayList<>();
+		gastosAdicionales.add(combustible);
+		gastosAdicionales.add(almuerzo);
+		
+		List<Articulo> costosAdicionales = new ArrayList<>();
+		costosAdicionales.add(clavo);
+		costosAdicionales.add(pintura);
+		
+		Reparacion aVisita = new Reparacion(aCliente, tecnicos, 1, 12, 1600, 1800);
+		aVisita.setGastosAdicionales(gastosAdicionales);
+		aVisita.setOtrosCostos(costosAdicionales);
 		aVisita.setEstado(EN_CURSO);
 		this.visitas.put(aVisita.getIdVisita(), aVisita);
 
-		Instalacion bVisita = new Instalacion(bCliente, tecnicos, 7, 11,1600, 1800);
-		bVisita.setGastosAdicionales(null);
-		bVisita.setOtrosCostos(null);
+		Instalacion bVisita = new Instalacion(bCliente, tecnicos, 9, 12, 1600, 1800);
+		bVisita.setGastosAdicionales(gastosAdicionales);
+		bVisita.setOtrosCostos(costosAdicionales);
 		bVisita.setEstado(EN_CURSO);
 		this.visitas.put(bVisita.getIdVisita(), bVisita);
 	}

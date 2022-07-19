@@ -17,12 +17,17 @@ public class Administrativo extends Rol {
         this.rol = "Administrativo";
     }
 
-    public void revisarServicios(Integer idVisita) {
-        Visita visita = Empresa.getInstancia().getVisitas().get(idVisita);
+    public void revisarServicios(String idVisita) {
+        Integer idParse = Integer.valueOf(idVisita);
+    	Visita visita = Empresa.getInstancia().getVisitas().get(idParse);
+        if(visita == null) {
+        	JOptionPane.showMessageDialog(null, "La visita ingresada no existe", "Error", JOptionPane.ERROR_MESSAGE);
+        }else if(visita.getEstado() == visita.getEstado().EN_CURSO) {
         visita.setEstado(FINALIZADO);
         visita.setFactura(generarFactura(visita, visita.getTecnicos()));
-        //JOptionPane.showMessageDialog(null, "Los servicios del tecnico nro " + idTecnico + " fueron finalizados con �xito", "Finalizar servicio", JOptionPane.INFORMATION_MESSAGE);
-
+        }else {
+        JOptionPane.showMessageDialog(null, "La visita ingresada no se puede finalizar", "Error", JOptionPane.ERROR_MESSAGE);	
+        }
     }
 
     public Factura generarFactura(Visita visita, List<Usuario> tecnicos) {
