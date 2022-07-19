@@ -32,7 +32,7 @@ public class CrearClienteGui extends JFrame {
 	private JPanel contentPane;
 
 	public CrearClienteGui(CallCenter callCenter) {
-		setTitle("Crear Cliente");
+		setTitle("Generar cliente");
 
 		this.setBounds(100, 100, 450, 120);
 		this.contentPane = new JPanel();
