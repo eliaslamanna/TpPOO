@@ -1,22 +1,23 @@
 package com;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public abstract class Visita {
 	private int idVisita;
 	private Cliente cliente;
-	private List<Usuario> tecnicos;
+	private List<Usuario> tecnicos = new ArrayList<>();
 	private String dia;
 	private Integer horarioInicio;
 	private Integer horarioFin;
 	// el almuerzo se suma como articulo (se le da el costo que queramos)
-	private List<Articulo> materiales;
+	private List<Articulo> materiales = new ArrayList<>();
 	private EstadoVisita estado;
 	//Estas cosas las setea el tecnico
 	private int tiempoTrabajado;
-	private List<Articulo> otrosCostos;
-	private List<Articulo> gastosAdicionales;
+	private List<Articulo> otrosCostos = new ArrayList<>();
+	private List<Articulo> gastosAdicionales = new ArrayList<>();
 	//Esto los setea el administrativo
 	private Factura factura;
 

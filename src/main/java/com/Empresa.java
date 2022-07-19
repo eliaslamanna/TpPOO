@@ -66,7 +66,7 @@ public class Empresa {
 		Cliente bCliente = new Cliente("101010", "Hector", "Lorcar","falsa 1234");
 		this.clientes.put(bCliente.getDniCliente(), bCliente);
 		
-		List<Usuario> tecnicos = new ArrayList<>(Empresa.getInstancia().getTecnicos().values());
+		List<Usuario> tecnicos = new ArrayList<>(getTecnicos().values());
 		
 		Reparacion aVisita = new Reparacion(aCliente, tecnicos, "Martes", 1600, 1800);
 		this.visitas.put(aVisita.getIdVisita(), aVisita);
