@@ -56,6 +56,8 @@ public class CrearStockGUI extends JFrame {
                 JOptionPane.showMessageDialog(null,"El precio del articulo no puede ser negativo.", "Crear articulo", JOptionPane.ERROR_MESSAGE);
             } catch (ArticuloYaExisteException ex) {
                 JOptionPane.showMessageDialog(null,"El articulo " + articulo.getText() + " ya existe en el stock.", "Crear articulo", JOptionPane.ERROR_MESSAGE);
+            } catch (NumberFormatException nf) {
+            	JOptionPane.showMessageDialog(null,"El dato ingresado no es valido", "Crear articulo", JOptionPane.ERROR_MESSAGE);
             }
         });
 
