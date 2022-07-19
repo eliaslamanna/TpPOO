@@ -3,9 +3,11 @@ package com.gui;
 import com.Usuario;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -62,6 +64,10 @@ public class TecnicoGui extends JFrame {
 		
 		JList list = new JList();
 		list.setBounds(289, 95, 675, 397);
+		list.setFocusable(false);
+		list.setSelectionBackground(Color.white);
+		DefaultListCellRenderer cellRenderer = (DefaultListCellRenderer)list.getCellRenderer();
+		cellRenderer.setHorizontalAlignment(SwingConstants .CENTER);
 		panel.add(list);
 		
 		JButton btnNewButton_2 = new JButton("Asignar servicios");

@@ -116,14 +116,17 @@ private Administrativo admin;
 		buscarServiciosButton.setFocusable(false);
 		buscarServiciosButton.setBounds(768, 81, 117, 38);
 		buscarServiciosButton.addActionListener(e -> {
-			Integer idTecnico = Integer.valueOf(textoTecnico.getText());
 			List<Visita> visitasTecnico = new ArrayList<>();
+			try {
+			Integer idTecnico = Integer.valueOf(textoTecnico.getText());
 			for(Visita visita : new ArrayList<>(Empresa.getInstancia().getVisitas().values())) {
 				for(Usuario tecnico : visita.getTecnicos()) {
 					if(((Tecnico) tecnico.getRol()).getId().intValue() == idTecnico.intValue()) {
 						visitasTecnico.add(visita);
 					}
 				}
+			}}catch (NumberFormatException nf){
+				JOptionPane.showMessageDialog(null, "El id de tecnico ingresado no es valido", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			serviciosList.setListData(visitasTecnico.toArray());
 		});

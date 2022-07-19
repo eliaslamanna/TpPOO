@@ -1,5 +1,6 @@
 package com.gui.administradorSistema;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
@@ -8,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import static java.util.stream.Collectors.toList;
 
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -78,6 +80,10 @@ public class AdministradorSistGui extends JFrame {
 		
 		JList usuariosList = new JList();
 		usuariosList.setBounds(350, 109, 665, 400);
+		usuariosList.setFocusable(false);
+		usuariosList.setSelectionBackground(Color.white);
+		DefaultListCellRenderer cellRenderer = (DefaultListCellRenderer)usuariosList.getCellRenderer();
+		cellRenderer.setHorizontalAlignment(SwingConstants .CENTER);
 		List<Usuario> usuarios = new ArrayList<>(Empresa.getInstancia().getUsuarios().values());
 		usuariosList.setListData(usuarios.toArray());
 		usuariosPanel.add(usuariosList);
@@ -116,6 +122,10 @@ public class AdministradorSistGui extends JFrame {
 		
 		JList tecnicosList = new JList();
 		tecnicosList.setBounds(352, 109, 665, 400);
+		tecnicosList.setFocusable(false);
+		tecnicosList.setSelectionBackground(Color.white);
+		DefaultListCellRenderer cellRendererr = (DefaultListCellRenderer)tecnicosList.getCellRenderer();
+		cellRendererr.setHorizontalAlignment(SwingConstants .CENTER);
 		List<Tecnico> tecnicos = new ArrayList<>(Empresa.getInstancia().getTecnicos().values()).stream().map(tecnico -> ((Tecnico) tecnico.getRol())).collect(toList());
 		tecnicosList.setListData(tecnicos.toArray());
 		tecnicosPanel.add(tecnicosList);
@@ -136,6 +146,10 @@ public class AdministradorSistGui extends JFrame {
 
 		JList stockList = new JList();
 		stockList.setBounds(352, 109, 665, 400);
+		stockList.setFocusable(false);
+		stockList.setSelectionBackground(Color.white);
+		DefaultListCellRenderer cellRenderer_3 = (DefaultListCellRenderer)stockList.getCellRenderer();
+		cellRenderer_3.setHorizontalAlignment(SwingConstants .CENTER);
 		List<Articulo> articulos = new ArrayList<>(Empresa.getInstancia().getStock().values());
 		stockList.setListData(articulos.toArray());
 		stockPanel.add(stockList);
@@ -180,6 +194,10 @@ public class AdministradorSistGui extends JFrame {
 
 		JList costoHorasList = new JList();
 		costoHorasList.setBounds(352, 109, 665, 400);
+		costoHorasList.setFocusable(false);
+		costoHorasList.setSelectionBackground(Color.white);
+		DefaultListCellRenderer cellRenderer_1 = (DefaultListCellRenderer)costoHorasList.getCellRenderer();
+		cellRenderer_1.setHorizontalAlignment(SwingConstants .CENTER);
 		HashMap<Seniority, Float> costoHoras = Empresa.getInstancia().getCostoHoras();
 		costoHorasList.setListData(costoHoras.entrySet().toArray());
 		costoHorasPanel.add(costoHorasList);
@@ -201,6 +219,10 @@ public class AdministradorSistGui extends JFrame {
 		
 		JList clientesList = new JList();
 		clientesList.setBounds(352, 109, 665, 400);
+		clientesList.setFocusable(false);
+		clientesList.setSelectionBackground(Color.white);
+		DefaultListCellRenderer cellRenderer_2 = (DefaultListCellRenderer)clientesList.getCellRenderer();
+		cellRenderer_2.setHorizontalAlignment(SwingConstants .CENTER);
 		clientePanel.add(clientesList);
 		List<Cliente> clientes = new ArrayList<>(Empresa.getInstancia().getClientes().values());
 		clientesList.setListData(clientes.toArray());
