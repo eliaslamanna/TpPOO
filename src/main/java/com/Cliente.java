@@ -1,6 +1,10 @@
 package com;
 
+import com.exception.HorarioParaTurnoIncorrectoException;
 import com.exception.HorarioReservadoException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cliente {
 	
@@ -8,7 +12,7 @@ public class Cliente {
     private String nombre;
     private String apellido;
     private String Direccion;
-    private Agenda agenda = new Agenda();
+    private List<Reserva> agenda = new ArrayList<>();
 
     public Cliente(String dniCliente) {
         this.dniCliente = dniCliente;
@@ -50,28 +54,28 @@ public class Cliente {
         Direccion = direccion;
     }
 
-    public Agenda getAgenda() {
+    public List<Reserva> getAgenda() {
         return agenda;
     }
 
-    public void setAgenda(Agenda agenda) {
+    public void setAgenda(List<Reserva> agenda) {
         this.agenda = agenda;
     }
 
-    public boolean disponible(String dia, Integer horarioInicio, Integer horarioFin) {
-        /*Integer horario = horarioInicio;
-
-        while(horario <= horarioFin + 30 && horario != 2000) {
-            if(!agenda.getHorarios().get(dia).get(horario)) {
-                return false;
+    public boolean disponible(Integer dia, Integer mes, Integer horarioInicio, Integer horarioFin) throws HorarioReservadoException {
+        for(Reserva reserva : agenda) {
+            if(dia.equals(reserva.getDia()) && mes.equals(reserva.getMes())) {
+                if(horarioInicio.intValue() >= reserva.getHoraInicio() && horarioFin <= reserva.getHoraFin() + 30) {
+                    throw new HorarioReservadoException();
+                }
             }
-            horario += 30;
-        }*/
+        }
+
         return true;
     }
 
-    public void agendarVisita(String dia, Integer horarioInicio, Integer horarioFin) {
-        this.agenda.agendarVisita(dia,horarioInicio,horarioFin);
+    public void agendarVisita(Integer dia, Integer mes, Integer horarioInicio, Integer horarioFin) {
+        agenda.add(new Reserva(dia,mes,horarioInicio,horarioFin));
     }
 
     @Override

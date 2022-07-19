@@ -1,5 +1,6 @@
 package com;
 
+import com.exception.HorarioParaTurnoIncorrectoException;
 import com.exception.HorarioReservadoException;
 
 import java.util.ArrayList;
@@ -38,28 +39,25 @@ public class Tecnico extends Rol {
         this.rol = "Tecnico";
     }
 
-    public boolean disponible(String dia, Integer horarioInicio, Integer horarioFin) {
+    public boolean disponible(Integer dia, Integer mes, Integer horarioInicio, Integer horarioFin) throws HorarioParaTurnoIncorrectoException, HorarioReservadoException {
         if((horarioInicio < 1400 && "Tarde".equalsIgnoreCase(turno)) ||
-                (horarioFin > 1400 && "Mañana".equalsIgnoreCase(turno)) ||
-                ("Sabado".equals(dia) && "Tarde".equalsIgnoreCase(turno))){
-            System.out.println("El horario es incorrecto.");
+                (horarioFin > 1400 && "Mañana".equalsIgnoreCase(turno))){
+            throw new HorarioParaTurnoIncorrectoException();
         } else {
-            Integer horario = horarioInicio;
-
-            /*while(horario <= horarioFin + 30 && horario != 2000) {
-                if(!agenda.getHorarios().get(dia).get(horario)) {
-                    return false;
+            for(Reserva reserva : agenda) {
+                if(dia.equals(reserva.getDia()) && mes.equals(reserva.getMes())) {
+                    if(horarioInicio.intValue() >= reserva.getHoraInicio() && horarioFin <= reserva.getHoraFin() + 30) {
+                        throw new HorarioReservadoException();
+                    }
                 }
-                horario += 30;
             }
-            return true;*/
         }
 
-        return false;
+        return true;
     }
 
-    public void agendarVisita(String dia, Integer horarioInicio, Integer horarioFin) throws HorarioReservadoException {
-        //agenda.agendarVisita(dia, horarioInicio, horarioFin);
+    public void agendarVisita(Integer dia, Integer mes, Integer horarioInicio, Integer horarioFin) throws HorarioReservadoException {
+        agenda.add(new Reserva(dia,mes,horarioInicio,horarioFin));
     }
 
     public void ejecutarServicios() {

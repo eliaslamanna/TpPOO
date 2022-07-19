@@ -3,6 +3,7 @@ package com.gui;
 import com.CallCenter;
 import com.Empresa;
 import com.Usuario;
+import com.exception.HorarioParaTurnoIncorrectoException;
 import com.exception.HorarioReservadoException;
 import com.exception.StockInsuficienteException;
 import com.exception.TecnicosInsuficientesException;
@@ -238,7 +239,8 @@ public class CallCenterGui extends JFrame implements ActionListener{
 				
 				if(e.getSource() == crearVisita) {
 							
-							String dia = textoDia.getText();
+							Integer dia = Integer.valueOf(textoDia.getText());
+							Integer mes = Integer.valueOf(textoMes.getText());
 							Integer horarioInicio = Integer.parseInt(textoInicio.getText());
 							Integer horarioFin = Integer.parseInt(textoFin.getText());
 							String dniCliente = textField.getText();
@@ -247,15 +249,17 @@ public class CallCenterGui extends JFrame implements ActionListener{
 							CallCenter cc = new CallCenter();
 							
 							try {
-								cc.agendarVisita(dniCliente, horarioInicio, horarioFin, dia, tipoVisita, cantTecnicos);
+								cc.agendarVisita(dniCliente, horarioInicio, horarioFin, dia, mes, tipoVisita, cantTecnicos);
 							} catch (HorarioReservadoException e1) {
 								JOptionPane.showMessageDialog(null, "El horario seleccionado se encuentra reservado","ERROR" ,JOptionPane.ERROR_MESSAGE );
 							}catch (StockInsuficienteException e2) {
 								JOptionPane.showMessageDialog(null, "El stock es insuficiente","ERROR" ,JOptionPane.ERROR_MESSAGE );
 							}catch (TecnicosInsuficientesException e1) {
 								JOptionPane.showMessageDialog(null, "Actualmente no se posee disponibilidad de la cantidad de tecnicos requerida para el servicio","ERROR" ,JOptionPane.ERROR_MESSAGE );
+							} catch (HorarioParaTurnoIncorrectoException ex) {
+								JOptionPane.showMessageDialog(null, "El horario no corresponde con el turno del tecnico.","ERROR" ,JOptionPane.ERROR_MESSAGE );
 							}
-						}
+				}
 					
 			}
 		});
