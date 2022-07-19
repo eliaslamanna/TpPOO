@@ -103,12 +103,7 @@ public class CrearUsuarioGui extends JFrame {
             }
         });
 
-        cancelarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cerrarVentana(e);
-            }
-        });
+        cancelarButton.addActionListener(e -> cerrarVentana(e));
 
         add(crearUsuarioPanel);
 

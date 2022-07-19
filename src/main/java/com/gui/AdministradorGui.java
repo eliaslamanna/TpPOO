@@ -135,10 +135,9 @@ private Administrativo admin;
 		finalizarButton.addActionListener(e -> {
 			int answer = JOptionPane.showConfirmDialog(null, "Desea dar por finalizado un servicio?", "Finalizar servicio", JOptionPane.YES_NO_OPTION); 
         	if(answer == 0) {
-        		admin = new Administrativo();
         		String idVisita = JOptionPane.showInputDialog(null, "Ingrese el id de la visita a finalizar", "Finalizar servicio", JOptionPane.INFORMATION_MESSAGE);
         		try {
-        			admin.revisarServicios(idVisita);
+					((Administrativo) administrativo.getRol()).revisarServicios(idVisita);
         		}catch (NumberFormatException nf){
         			JOptionPane.showMessageDialog(null, "El id ingresado es incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
         		}

@@ -134,6 +134,7 @@ public abstract class Visita {
 		return  " idVisita: " + idVisita +
 				" -- cliente: " + cliente.getDniCliente() +
 				" -- dia: " + dia +
+				" -- mes: " + mes +
 				" -- horarioInicio: " + horarioInicio +
 				" -- horarioFin: " + horarioFin +
 				" -- estado: " + estado;

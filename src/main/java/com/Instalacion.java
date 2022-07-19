@@ -6,7 +6,7 @@ public class Instalacion extends Visita {
 
     public Instalacion(Cliente cliente, List<Usuario> tecnicos, Integer dia, Integer mes, Integer horarioInicio, Integer horarioFin) {
         super(cliente, tecnicos, dia, mes, horarioInicio, horarioFin);
-        setTiempoTrabajado(60);
+        setTiempoTrabajado(100);
         agregarArticulo(new Articulo("Cable coaxial", 4.5F));
         agregarArticulo(new Articulo("Decodificador de TV", 1F));
         agregarArticulo(new Articulo("Modem de internet", 1F));

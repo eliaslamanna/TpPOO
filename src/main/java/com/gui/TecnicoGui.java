@@ -1,9 +1,7 @@
 package com.gui;
 
-import com.Empresa;
-import com.Tecnico;
-import com.Usuario;
-import com.Visita;
+import com.*;
+import com.gui.tecnico.RevisarVisitaGUI;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,6 +10,8 @@ import java.util.List;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import static com.EstadoVisita.PROGRAMADO;
 
 public class TecnicoGui extends JFrame {
 
@@ -74,7 +74,7 @@ public class TecnicoGui extends JFrame {
 		JLabel serviciosLabel = new JLabel("Servicios");
 		serviciosLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		serviciosLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
-		serviciosLabel.setBounds(497, 45, 251, 39);
+		serviciosLabel.setBounds(554, 123, 251, 39);
 		serviciosPanel.add(serviciosLabel);
 
 		List<Visita> visitasTecnico = new ArrayList<>();
@@ -87,6 +87,39 @@ public class TecnicoGui extends JFrame {
 			}
 		}
 		serviciosList.setListData(visitasTecnico.toArray());
+		
+		JButton revisarBtn = new JButton("Revisar servicios");
+		revisarBtn.setBounds(607, 686, 157, 41);
+		revisarBtn.setFocusable(false);
+		revisarBtn.addActionListener(e -> {
+			int answer = JOptionPane.showConfirmDialog(null, "Desea dar por revisar un servicio?", "Revisar servicio", JOptionPane.YES_NO_OPTION);
+			if(answer == 0) {
+				String idVisita = JOptionPane.showInputDialog(null, "Ingrese el id de la visita a revisar", "Revisar servicio", JOptionPane.INFORMATION_MESSAGE);
+				if(Empresa.getInstancia().getVisitas().get(Integer.valueOf(idVisita)).getEstado() == PROGRAMADO) {
+					new RevisarVisitaGUI(tecnico, idVisita);
+				} else {
+					JOptionPane.showMessageDialog(null, "La visita con id " + idVisita + " ya fue revisada.", "Revisar servicio", JOptionPane.ERROR_MESSAGE);
+				}
+
+				/*try {
+					((Tecnico) tecnico.getRol()).revisarVisita(idVisita);
+				} catch (NumberFormatException nf) {
+					JOptionPane.showMessageDialog(null, "El id ingresado es incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+
+				List<Visita> visitas = new ArrayList<>();
+				for(Visita visita : new ArrayList<>(Empresa.getInstancia().getVisitas().values())) {
+					for(Usuario tec : visita.getTecnicos()) {
+						if(((Tecnico) tec.getRol()).getId().intValue() == Integer.valueOf(((Tecnico) tecnico.getRol()).getId()).intValue()) {
+							visitas.add(visita);
+						}
+					}
+				}
+				serviciosList.setListData(visitas.toArray());*/
+
+			}
+		});
+		serviciosPanel.add(revisarBtn);
 
 		JPanel agendaPanel = new JPanel();
 		tabbedPane.addTab("Agenda", null, agendaPanel, null);
@@ -108,5 +141,4 @@ public class TecnicoGui extends JFrame {
 		Window win = SwingUtilities.getWindowAncestor(comp);
 		win.dispose();
 	}
-
 }

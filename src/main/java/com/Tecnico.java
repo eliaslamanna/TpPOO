@@ -60,7 +60,7 @@ public class Tecnico extends Rol {
         agenda.add(new Reserva(dia,mes,horarioInicio,horarioFin));
     }
 
-    public void ejecutarServicios() {
+    /*public void ejecutarServicios() {
         List<Visita> visitasRevisadas = new ArrayList<>();
 
         for(Visita visita : new ArrayList<>(Empresa.getInstancia().getVisitas().values())) {
@@ -71,9 +71,10 @@ public class Tecnico extends Rol {
                 }
             }
         }
-    }
+    }*/
 
-    public void revisarVisita(Visita visita){
+    public void revisarVisita(String idVisita){
+        Visita visita = Empresa.getInstancia().getVisitas().get(Integer.valueOf(idVisita));
         Scanner read = new Scanner(System.in);
 
         System.out.println("Complete los datos solicitados para la visita " + visita.getIdVisita());

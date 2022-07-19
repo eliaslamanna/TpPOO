@@ -91,9 +91,7 @@ public class Empresa {
 		this.visitas.put(aVisita.getIdVisita(), aVisita);
 
 		Instalacion bVisita = new Instalacion(bCliente, tecnicos, 9, 12, 1600, 1800);
-		bVisita.setGastosAdicionales(gastosAdicionales);
-		bVisita.setOtrosCostos(costosAdicionales);
-		bVisita.setEstado(EN_CURSO);
+		bVisita.setEstado(PROGRAMADO);
 		this.visitas.put(bVisita.getIdVisita(), bVisita);
 	}
 
