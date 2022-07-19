@@ -17,17 +17,26 @@ public class Administrativo extends Rol {
         this.rol = "Administrativo";
     }
 
-    public void revisarServicios(Integer idtecnico) {
-        List<Visita> visitasTecnico = new ArrayList<>(Empresa.getInstancia().getVisitas().values()).stream()
-                .filter(visita -> visita.getTecnicos().contains(Empresa.getInstancia().getTecnicos().get(idtecnico)) && EN_CURSO.equals(visita.getEstado()))
-                .collect(toList());
+    public void revisarServicios(Integer idVisita) {
+        Visita visita = Empresa.getInstancia().getVisitas().get(idVisita);
+        visita.setEstado(FINALIZADO);
+        visita.setFactura(generarFactura(visita, visita.getTecnicos()));
+        //JOptionPane.showMessageDialog(null, "Los servicios del tecnico nro " + idTecnico + " fueron finalizados con ï¿½xito", "Finalizar servicio", JOptionPane.INFORMATION_MESSAGE);
+
+        /*List<Visita> visitasTecnico = new ArrayList<>();
+        for(Visita visita : new ArrayList<>(Empresa.getInstancia().getVisitas().values())) {
+            for(Usuario tecnico : visita.getTecnicos()) {
+                if(((Tecnico) tecnico.getRol()).getId().intValue() == idTecnico.intValue() && EN_CURSO.equals(visita.getEstado())) {
+                    visitasTecnico.add(visita);
+                }
+            }
+        }
 
         visitasTecnico.forEach(visita -> {
            visita.setEstado(FINALIZADO);
             visita.setFactura(generarFactura(visita, visita.getTecnicos()));
-            //System.out.println("Visita revisada: " + visita.getIdVisita());
-            JOptionPane.showMessageDialog(null, "Los servicios del tecnico nro " + idtecnico + " fueron finalizados con éxito", "Finalizar servicio", JOptionPane.INFORMATION_MESSAGE);
-        });
+            JOptionPane.showMessageDialog(null, "Los servicios del tecnico nro " + idTecnico + " fueron finalizados con ï¿½xito", "Finalizar servicio", JOptionPane.INFORMATION_MESSAGE);
+        });*/
     }
 
     public Factura generarFactura(Visita visita, List<Usuario> tecnicos) {

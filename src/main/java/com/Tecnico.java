@@ -46,20 +46,20 @@ public class Tecnico extends Rol {
         } else {
             Integer horario = horarioInicio;
 
-            while(horario <= horarioFin + 30 && horario != 2000) {
+            /*while(horario <= horarioFin + 30 && horario != 2000) {
                 if(!agenda.getHorarios().get(dia).get(horario)) {
                     return false;
                 }
                 horario += 30;
             }
-            return true;
+            return true;*/
         }
 
         return false;
     }
 
     public void agendarVisita(String dia, Integer horarioInicio, Integer horarioFin) throws HorarioReservadoException {
-        agenda.agendarVisita(dia, horarioInicio, horarioFin);
+        //agenda.agendarVisita(dia, horarioInicio, horarioFin);
     }
 
     public void ejecutarServicios() {

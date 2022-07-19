@@ -1,5 +1,7 @@
 package com;
 
+import static com.EstadoVisita.EN_CURSO;
+import static com.EstadoVisita.PROGRAMADO;
 import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
@@ -71,11 +73,13 @@ public class Empresa {
 		Reparacion aVisita = new Reparacion(aCliente, tecnicos, "Martes", 1600, 1800);
 		aVisita.setGastosAdicionales(null);
 		aVisita.setOtrosCostos(null);
+		aVisita.setEstado(EN_CURSO);
 		this.visitas.put(aVisita.getIdVisita(), aVisita);
 
 		Instalacion bVisita = new Instalacion(bCliente, tecnicos, "Miercoles", 1600, 1800);
 		bVisita.setGastosAdicionales(null);
 		bVisita.setOtrosCostos(null);
+		bVisita.setEstado(EN_CURSO);
 		this.visitas.put(bVisita.getIdVisita(), bVisita);
 
 	}
