@@ -88,10 +88,11 @@ public class AdministradorSistGui extends JFrame {
 		usuariosPanel.add(crearUsuarioButton);
 		crearUsuarioButton.addActionListener(new CreateUserListener(administradorSistema));
 		
-		JButton eliminarUsuarioButton = new JButton("Cambiar Contrase\\u00f1a");
-		eliminarUsuarioButton.setBounds(834, 600, 131, 37);
-		eliminarUsuarioButton.setFocusable(false);
-		usuariosPanel.add(eliminarUsuarioButton);
+		JButton modificarPasswordButton = new JButton("Cambiar Contrase\\u00f1a");
+		modificarPasswordButton.setBounds(834, 600, 131, 37);
+		modificarPasswordButton.setFocusable(false);
+		usuariosPanel.add(modificarPasswordButton);
+		modificarPasswordButton.addActionListener(new ModificarPasswordListener(administradorSistema));
 
 		JButton refreshButton = new JButton("");
 		refreshButton.setBounds(225, 109, 63, 58);

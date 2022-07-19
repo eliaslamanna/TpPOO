@@ -120,6 +120,18 @@ public class AdministradorSistema extends Rol {
         Empresa.getInstancia().getClientes().put(cliente.getDniCliente(), clienteActualizado);
     }
 
+    public void modificarPassword(String usuario, String password) throws UsuarioNoExisteException, PasswordIncorrectaException {
+        if(!Empresa.getInstancia().getUsuarios().containsKey(usuario) || usuario == null || usuario.isBlank()) {
+            throw new UsuarioNoExisteException(usuario);
+        }
+
+        if(password == null || password.isBlank()) {
+            throw new PasswordIncorrectaException();
+        }
+
+        Empresa.getInstancia().getUsuarios().get(usuario).setPassword(password);
+    }
+
     public void restarStock() {
         System.out.println("\nIngrese el articulo que desea modificar: ");
         String articulo = read.nextLine();
