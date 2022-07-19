@@ -1,5 +1,7 @@
 package com;
 
+import static java.util.stream.Collectors.toList;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -60,6 +62,17 @@ public class Empresa {
 
 		Cliente aCliente = new Cliente("202020", "Ramon", "Lorca","falsa 123");
 		this.clientes.put(aCliente.getDniCliente(), aCliente);
+		
+		Cliente bCliente = new Cliente("101010", "Hector", "Lorcar","falsa 1234");
+		this.clientes.put(bCliente.getDniCliente(), bCliente);
+		
+		List<Usuario> tecnicos = new ArrayList<>(Empresa.getInstancia().getTecnicos().values());
+		
+		Reparacion aVisita = new Reparacion(aCliente, tecnicos, "Martes", 1600, 1800);
+		this.visitas.put(aVisita.getIdVisita(), aVisita);
+		
+		Instalacion bVisita = new Instalacion(bCliente, tecnicos, "Miercoles", 1600, 1800);
+		this.visitas.put(bVisita.getIdVisita(), bVisita);
 		
 		/*Visita sVisita = new Visita();
 		List<Visita> visitasJr = new ArrayList<>();

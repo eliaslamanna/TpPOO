@@ -1,6 +1,17 @@
 package com.gui;
 
+import com.Administrativo;
+import com.CallCenter;
+import com.Empresa;
+import com.Tecnico;
 import com.Usuario;
+import com.Visita;
+import com.exception.HorarioReservadoException;
+import com.exception.StockInsuficienteException;
+import com.exception.TecnicosInsuficientesException;
+
+import static com.EstadoVisita.EN_CURSO;
+import static java.util.stream.Collectors.toList;
 
 import java.awt.Font;
 
@@ -14,17 +25,22 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollBar;
 
 public class AdministradorGui extends JFrame {
 
 private JPanel contentPane;
-private JTextField textField;
-private JTextField textField_1;
+private JTextField textoId;
+private JTextField textoTecnico;
+private Administrativo administrativoR;
 	
-	public AdministradorGui(Usuario administradorSistema) {
+	public AdministradorGui(Usuario administrativo) {
 
 		this.setBounds(100, 100, 1900, 1000);
 		this.setTitle("Cable e Internet - Administrador");
@@ -62,23 +78,23 @@ private JTextField textField_1;
 		tabbedPane.addTab("Servicios", null, panel, null);
 		panel.setLayout(null);
 		
-		JButton btnNewButton_4 = new JButton("Finalizar servicio");
-		btnNewButton_4.addActionListener(new ActionListener() {
+		JButton endBtn = new JButton("Finalizar servicio");
+		endBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_4.setBounds(779, 592, 144, 39);
-		btnNewButton_4.setFocusable(false);
-		panel.add(btnNewButton_4);
+		endBtn.setBounds(779, 592, 144, 39);
+		endBtn.setFocusable(false);
+		panel.add(endBtn);
 		
-		JButton btnNewButton_4_1 = new JButton("Modificar servicio");
-		btnNewButton_4_1.setFocusable(false);
-		btnNewButton_4_1.setBounds(420, 592, 144, 39);
-		panel.add(btnNewButton_4_1);
+		JButton modifyBtn = new JButton("Modificar servicio");
+		modifyBtn.setFocusable(false);
+		modifyBtn.setBounds(420, 592, 144, 39);
+		panel.add(modifyBtn);
 		
-		JList list_1 = new JList();
-		list_1.setBounds(420, 173, 503, 371);
-		panel.add(list_1);
+		JList serviciosList = new JList();
+		serviciosList.setBounds(420, 173, 503, 371);
+		panel.add(serviciosList);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("Ingresar ID de tecnico");
 		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -86,24 +102,34 @@ private JTextField textField_1;
 		lblNewLabel_2_1.setBounds(463, 50, 230, 30);
 		panel.add(lblNewLabel_2_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(463, 81, 230, 38);
-		panel.add(textField_1);
+		textoTecnico = new JTextField();
+		textoTecnico.setColumns(10);
+		textoTecnico.setBounds(463, 81, 230, 38);
+		panel.add(textoTecnico);
 		
-		JButton btnNewButton_2_1 = new JButton("Buscar");
-		btnNewButton_2_1.setFocusable(false);
-		btnNewButton_2_1.setBounds(768, 81, 117, 38);
-		panel.add(btnNewButton_2_1);
+		JButton searchBtn = new JButton("Buscar");
+		searchBtn.setFocusable(false);
+		searchBtn.setBounds(768, 81, 117, 38);
+		searchBtn.addActionListener(e -> {
+
+							Integer idTecnico = Integer.valueOf(textoTecnico.getText());
+							List<Visita> visitasTecnico = new ArrayList<>(Empresa.getInstancia().getVisitas().values()).stream()
+					                .filter(visita -> visita.getTecnicos().contains(Empresa.getInstancia().getTecnicos().get(idTecnico)) && EN_CURSO.equals(visita.getEstado()))
+					                .collect(toList());
+							serviciosList.setListData(visitasTecnico.toArray());
+			}
+		);
+		
+		panel.add(searchBtn);
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Facturacion", null, panel_1, null);
 		panel_1.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(463, 81, 230, 38);
-		panel_1.add(textField);
-		textField.setColumns(10);
+		textoId = new JTextField();
+		textoId.setBounds(463, 81, 230, 38);
+		panel_1.add(textoId);
+		textoId.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Ingresar ID de tecnico");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -111,23 +137,23 @@ private JTextField textField_1;
 		lblNewLabel_2.setBounds(463, 47, 230, 30);
 		panel_1.add(lblNewLabel_2);
 		
-		JButton btnNewButton_1 = new JButton("Generar factura");
-		btnNewButton_1.setBounds(599, 604, 150, 38);
-		btnNewButton_1.setFocusable(false);
-		panel_1.add(btnNewButton_1);
+		JButton imprimir = new JButton("Generar factura");
+		imprimir.setBounds(605, 604, 150, 38);
+		imprimir.setFocusable(false);
+		panel_1.add(imprimir);
 		
-		JList list = new JList();
-		list.setBounds(420, 173, 503, 371);
-		panel_1.add(list);
+		JList facturasList = new JList();
+		facturasList.setBounds(420, 173, 503, 371);
+		panel_1.add(facturasList);
 		
-		JButton btnNewButton_2 = new JButton("Buscar");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton searchButton = new JButton("Buscar");
+		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_2.setBounds(747, 81, 117, 38);
-		btnNewButton_2.setFocusable(false);
-		panel_1.add(btnNewButton_2);
+		searchButton.setBounds(747, 81, 117, 38);
+		searchButton.setFocusable(false);
+		panel_1.add(searchButton);
 		this.setVisible(true);
 		
 	}
