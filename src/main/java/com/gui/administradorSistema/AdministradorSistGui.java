@@ -88,7 +88,7 @@ public class AdministradorSistGui extends JFrame {
 		usuariosPanel.add(crearUsuarioButton);
 		crearUsuarioButton.addActionListener(new CreateUserListener(administradorSistema));
 		
-		JButton eliminarUsuarioButton = new JButton("Eliminar");
+		JButton eliminarUsuarioButton = new JButton("Cambiar Contrase\\u00f1a");
 		eliminarUsuarioButton.setBounds(834, 600, 131, 37);
 		eliminarUsuarioButton.setFocusable(false);
 		usuariosPanel.add(eliminarUsuarioButton);
