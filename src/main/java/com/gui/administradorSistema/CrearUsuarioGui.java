@@ -112,8 +112,9 @@ public class CrearUsuarioGui extends JFrame {
 
         add(crearUsuarioPanel);
 
-        setSize(900,600);
+        setSize(450,300);
         setMinimumSize(new Dimension(450, 300));
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 

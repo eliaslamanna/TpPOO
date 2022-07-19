@@ -64,8 +64,9 @@ public class ModificarClienteGUI extends JFrame {
 
         add(modificarClientePanel);
 
-        setSize(900,600);
-        setMinimumSize(new Dimension(450, 300));
+        setSize(450,250);
+        setMinimumSize(new Dimension(450, 250));
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 

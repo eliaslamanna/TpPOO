@@ -64,8 +64,9 @@ public class ModificarStockGUI extends JFrame {
 
         add(modificarStockPanel);
 
-        setSize(900,600);
-        setMinimumSize(new Dimension(450, 300));
+        setSize(450,200);
+        setMinimumSize(new Dimension(450, 200));
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
