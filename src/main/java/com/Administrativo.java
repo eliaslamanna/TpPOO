@@ -50,13 +50,13 @@ public class Administrativo extends Rol {
     }
 
     public void imprimirFactura(String idVisita) {
-    	
-    	Integer idParse = Integer.valueOf(idVisita);
-        Factura factura = Empresa.getInstancia().getVisitas().get(idVisita).getFactura();
+
+        Integer id = Integer.valueOf(idVisita);
+        Factura factura = Empresa.getInstancia().getVisitas().get(Integer.valueOf(id)).getFactura();
 
         System.out.println(factura != null && !factura.yaSeImprimio() ? factura.toString() : "El id ingresado no corresponde con ninguna visita que no se haya impreso ya.");
-        Empresa.getInstancia().getVisitas().get(idVisita).getFactura().setYaSeImprimio(true);
-        
+        factura.setYaSeImprimio(true);
+
         /*final String dest = "bills/Factura_" + factura.getNumeroFactura() + ".pdf";
         File file = new File(dest);
         file.getParentFile().mkdirs();

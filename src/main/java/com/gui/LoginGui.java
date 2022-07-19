@@ -79,47 +79,44 @@ public class LoginGui extends JFrame implements ActionListener, KeyListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		{
-			usuario = textField.getText();
-			contrasenia = passwordField.getText();
+		usuario = textField.getText();
+		contrasenia = passwordField.getText();
 
-			flag = Empresa.getInstancia().signIn(usuario, contrasenia);
+		flag = Empresa.getInstancia().signIn(usuario, contrasenia);
 
-			if (flag == true) {
-				accedio = true;
-				Usuario usuarioLoggeado = Empresa.getInstancia().getUsuarios().get(usuario);
-				rolMenu = usuarioLoggeado.getRol().getRol();
-				switch (rolMenu) {
-					case "Administrativo": {
-						new AdministradorGui(usuarioLoggeado);
-						cerrarVentana(e);
-						break;
-					}
-					case "Call Center": {
-						new CallCenterGui(usuarioLoggeado);
-						cerrarVentana(e);
-						break;
-					}
-					case "Tecnico": {
-						new TecnicoGui(usuarioLoggeado);
-						cerrarVentana(e);
-						break;
-					}
-					case "AdministradorSist": {
-						new AdministradorSistGui(usuarioLoggeado);
-						cerrarVentana(e);
-						break;
-					}
+		if (flag == true) {
+			accedio = true;
+			Usuario usuarioLoggeado = Empresa.getInstancia().getUsuarios().get(usuario);
+			rolMenu = usuarioLoggeado.getRol().getRol();
+			switch (rolMenu) {
+				case "Administrativo": {
+					new AdministradorGui(usuarioLoggeado);
+					cerrarVentana(e);
+					break;
 				}
-			} else {
-				JOptionPane.showMessageDialog(null, "Usuario ingresado o contraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+				case "Call Center": {
+					new CallCenterGui(usuarioLoggeado);
+					cerrarVentana(e);
+					break;
+				}
+				case "Tecnico": {
+					new TecnicoGui(usuarioLoggeado);
+					cerrarVentana(e);
+					break;
+				}
+				case "AdministradorSist": {
+					new AdministradorSistGui(usuarioLoggeado);
+					cerrarVentana(e);
+					break;
+				}
 			}
+		} else {
+			JOptionPane.showMessageDialog(null, "Usuario ingresado o contraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-
 	}
 
 	@Override
