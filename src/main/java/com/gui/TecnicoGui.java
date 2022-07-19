@@ -74,7 +74,7 @@ public class TecnicoGui extends JFrame {
 		JLabel serviciosLabel = new JLabel("Servicios");
 		serviciosLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		serviciosLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
-		serviciosLabel.setBounds(497, 45, 251, 39);
+		serviciosLabel.setBounds(554, 123, 251, 39);
 		panel.add(serviciosLabel);
 
 		List<Visita> visitasTecnico = new ArrayList<>();
@@ -87,6 +87,10 @@ public class TecnicoGui extends JFrame {
 			}
 		}
 		serviciosList.setListData(visitasTecnico.toArray());
+		
+		JButton revisarBtn = new JButton("Revisar servicios");
+		revisarBtn.setBounds(607, 686, 157, 41);
+		panel.add(revisarBtn);
 
 		JPanel agendaPanel = new JPanel();
 		tabbedPane.addTab("Agenda", null, agendaPanel, null);
@@ -108,5 +112,4 @@ public class TecnicoGui extends JFrame {
 		Window win = SwingUtilities.getWindowAncestor(comp);
 		win.dispose();
 	}
-
 }
