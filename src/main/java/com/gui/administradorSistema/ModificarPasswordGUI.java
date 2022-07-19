@@ -1,10 +1,7 @@
 package com.gui.administradorSistema;
 
 import com.AdministradorSistema;
-import com.Seniority;
 import com.exception.PasswordIncorrectaException;
-import com.exception.SeniorityNoExisteException;
-import com.exception.TecnicoNoExisteException;
 import com.exception.UsuarioNoExisteException;
 
 import javax.swing.*;

@@ -115,17 +115,19 @@ private Administrativo administrativoR;
 		JButton searchBtn = new JButton("Buscar");
 		searchBtn.setFocusable(false);
 		searchBtn.setBounds(768, 81, 117, 38);
-		searchBtn.addActionListener(e -> {
-
-							Integer idTecnico = Integer.valueOf(textoTecnico.getText());
-							List<Visita> visitasTecnico = new ArrayList<>(Empresa.getInstancia().getVisitas().values()).stream()
-					                .filter(visita -> visita.getTecnicos().contains(Empresa.getInstancia().getTecnicos().get(idTecnico)) && EN_CURSO.equals(visita.getEstado()))
-					                .collect(toList());
-							serviciosList.setListData(visitasTecnico.toArray());
-			}
-		);
-		
 		panel.add(searchBtn);
+		searchBtn.addActionListener(e -> {
+			Integer idTecnico = Integer.valueOf(textoTecnico.getText());
+			List<Visita> visitasTecnico = new ArrayList<>();
+			for(Visita visita : new ArrayList<>(Empresa.getInstancia().getVisitas().values())) {
+				for(Usuario tecnico : visita.getTecnicos()) {
+					if(((Tecnico) tecnico.getRol()).getId().intValue() == idTecnico.intValue()) {
+						visitasTecnico.add(visita);
+					}
+				}
+			}
+			serviciosList.setListData(visitasTecnico.toArray());
+		});
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Facturacion", null, panel_1, null);

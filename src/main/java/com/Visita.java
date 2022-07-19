@@ -119,6 +119,16 @@ public abstract class Visita {
 		this.horarioFin = horarioFin;
 	}
 
+	@Override
+	public String toString() {
+		return  " idVisita: " + idVisita +
+				" cliente: " + cliente.getDniCliente() +
+				" dia: " + dia +
+				" horarioInicio: " + horarioInicio +
+				" horarioFin: " + horarioFin +
+				" estado: " + estado;
+	}
+
 	public void  obtenerDatosVisita() {
 		System.out.println("Visita: \n" + "\t - Id: " + idVisita + "\n" + "\t - " + cliente.toString() + "\n" + "\t - Estado: " + estado + "\n" + "\t - Tiempo Trabajado: " + tiempoTrabajado + "\n");
 
