@@ -3,6 +3,8 @@ package com.gui;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -11,7 +13,7 @@ import com.Empresa;
 import com.Usuario;
 import com.gui.administradorSistema.AdministradorSistGui;
 
-public class LoginGui extends JFrame implements ActionListener {
+public class LoginGui extends JFrame implements ActionListener, KeyListener {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -63,51 +65,106 @@ public class LoginGui extends JFrame implements ActionListener {
 		passwordField.setHorizontalAlignment(SwingConstants.CENTER);
 		passwordField.setBounds(166, 197, 86, 20);
 		contentPane.add(passwordField);
+		passwordField.addKeyListener(this);
 		
-		JButton btnNewButton = new JButton("Ingresar");
-		btnNewButton.setBounds(166, 242, 89, 23);
-		btnNewButton.setFocusable(false);
-		btnNewButton.addActionListener(this);
-		contentPane.add(btnNewButton);
+		JButton ingresarButton = new JButton("Ingresar");
+		ingresarButton.setBounds(166, 242, 89, 23);
+		ingresarButton.setFocusable(false);
+		ingresarButton.addActionListener(this);
+		contentPane.add(ingresarButton);
+
+
 		this.setVisible(true);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		usuario = textField.getText();
-		contrasenia = passwordField.getText();
-		
-		flag = Empresa.getInstancia().signIn(usuario, contrasenia);
-		
-		 if (flag == true) {
-			accedio = true;
-			Usuario usuarioLoggeado = Empresa.getInstancia().getUsuarios().get(usuario);
-			rolMenu = usuarioLoggeado.getRol().getRol();
-			switch (rolMenu) {
-				case "Administrativo": {
-					new AdministradorGui(usuarioLoggeado);
-					cerrarVentana(e);
-					break;
+		{
+			usuario = textField.getText();
+			contrasenia = passwordField.getText();
+
+			flag = Empresa.getInstancia().signIn(usuario, contrasenia);
+
+			if (flag == true) {
+				accedio = true;
+				Usuario usuarioLoggeado = Empresa.getInstancia().getUsuarios().get(usuario);
+				rolMenu = usuarioLoggeado.getRol().getRol();
+				switch (rolMenu) {
+					case "Administrativo": {
+						new AdministradorGui(usuarioLoggeado);
+						cerrarVentana(e);
+						break;
+					}
+					case "Call Center": {
+						new CallCenterGui(usuarioLoggeado);
+						cerrarVentana(e);
+						break;
+					}
+					case "Tecnico": {
+						new TecnicoGui(usuarioLoggeado);
+						cerrarVentana(e);
+						break;
+					}
+					case "AdministradorSist": {
+						new AdministradorSistGui(usuarioLoggeado);
+						cerrarVentana(e);
+						break;
+					}
 				}
-				case "Call Center": {
-					new CallCenterGui(usuarioLoggeado);
-					cerrarVentana(e);
-					break;
-				}
-				case "Tecnico": {
-					new TecnicoGui(usuarioLoggeado);
-					cerrarVentana(e);
-					break;
-				}
-				case "AdministradorSist": {
-					new AdministradorSistGui(usuarioLoggeado);
-					cerrarVentana(e);
-					break;
-				}
+			} else {
+				JOptionPane.showMessageDialog(null, "Usuario ingresado o contraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
 			}
-		} else {
-			JOptionPane.showMessageDialog(null, "Usuario ingresado o contraseña incorrecta","ERROR",JOptionPane.ERROR_MESSAGE);
 		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+			usuario = textField.getText();
+			contrasenia = passwordField.getText();
+
+			flag = Empresa.getInstancia().signIn(usuario, contrasenia);
+
+			if (flag == true) {
+				accedio = true;
+				Usuario usuarioLoggeado = Empresa.getInstancia().getUsuarios().get(usuario);
+				rolMenu = usuarioLoggeado.getRol().getRol();
+				switch (rolMenu) {
+					case "Administrativo": {
+						new AdministradorGui(usuarioLoggeado);
+						cerrarVentana(e);
+						break;
+					}
+					case "Call Center": {
+						new CallCenterGui(usuarioLoggeado);
+						cerrarVentana(e);
+						break;
+					}
+					case "Tecnico": {
+						new TecnicoGui(usuarioLoggeado);
+						cerrarVentana(e);
+						break;
+					}
+					case "AdministradorSist": {
+						new AdministradorSistGui(usuarioLoggeado);
+						cerrarVentana(e);
+						break;
+					}
+				}
+			} else {
+				JOptionPane.showMessageDialog(null, "Usuario ingresado o contraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+
 	}
 
 	public void cerrarVentana(ActionEvent e) {
@@ -116,4 +173,9 @@ public class LoginGui extends JFrame implements ActionListener {
 		win.dispose();
 	}
 
+	public void cerrarVentana(KeyEvent e) {
+		JComponent comp = (JComponent) e.getSource();
+		Window win = SwingUtilities.getWindowAncestor(comp);
+		win.dispose();
+	}
 }
