@@ -64,16 +64,16 @@ public class CrearUsuarioGui extends JFrame {
         crearButton.addActionListener(e -> {
             try {
                 administradorSistema.guardarUsuario(usuario.getText(),contrasenia.getText(),rol.getText(), seniority.getText(),turno.getText());
-                JOptionPane.showMessageDialog(crearUsuarioPanel,"El usuario se guardo con exito.");
+                JOptionPane.showMessageDialog(null,"El usuario se guardo con exito.", "Crear usuario", JOptionPane.INFORMATION_MESSAGE);
                 cerrarVentana(e);
             } catch (RolNoExisteException ex) {
-                JOptionPane.showMessageDialog(crearUsuarioPanel,"El rol que quiere agregar no existe.");
+                JOptionPane.showMessageDialog(null,"El rol que quiere agregar no existe.", "Crear usuario", JOptionPane.ERROR_MESSAGE);
             } catch (UsuarioYaExisteException ex) {
-                JOptionPane.showMessageDialog(crearUsuarioPanel,"El usuario ya existe en la base de datos.");
+                JOptionPane.showMessageDialog(null,"El usuario que desea crear ya existe", "Crear usuario", JOptionPane.ERROR_MESSAGE);
             } catch (SeniorityNoExisteException ex) {
-                JOptionPane.showMessageDialog(crearUsuarioPanel,"El seniority ingresado no existe.");
+                JOptionPane.showMessageDialog(null,"El seniority ingresado no existe", "Crear usuario", JOptionPane.ERROR_MESSAGE);
             } catch (TurnoNoExisteException ex) {
-                JOptionPane.showMessageDialog(crearUsuarioPanel,"El turno ingresado no existe.");
+                JOptionPane.showMessageDialog(null,"El turno ingresado no existe", "Crear usuario", JOptionPane.ERROR_MESSAGE);
             }
         });
 

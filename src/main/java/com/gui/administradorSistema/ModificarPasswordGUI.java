@@ -12,12 +12,12 @@ public class ModificarPasswordGUI extends JFrame {
 
     public ModificarPasswordGUI(AdministradorSistema administradorSistema) {
         setIconImage(new ImageIcon("images/cable.png").getImage());
-        setTitle("Modificar Tecnico");
+        setTitle("Modificar usuario");
 
         JLabel usuarioLabel = new JLabel(" Usuario");
         JTextField usuario = new JTextField();
 
-        JLabel passwordLabel = new JLabel(" Nueva Contrase\\u00f1a");
+        JLabel passwordLabel = new JLabel(" Nueva Contrase\u00f1a");
         JTextField password = new JTextField();
 
         JButton aceptarButton = new JButton("Aceptar");
@@ -41,12 +41,12 @@ public class ModificarPasswordGUI extends JFrame {
         aceptarButton.addActionListener(e -> {
             try {
                 administradorSistema.modificarPassword(usuario.getText(), password.getText());
-                JOptionPane.showMessageDialog(modificarPasswordPanel,"La contrase\\u00f1a del usuario " + usuario.getText() + " se modifico con exito.");
+                JOptionPane.showMessageDialog(null,"La contrase\u00f1a del usuario " + usuario.getText() + " se modifico con exito.", "Modificar usuario", JOptionPane.INFORMATION_MESSAGE);
                 cerrarVentana(e);
             } catch (UsuarioNoExisteException ex) {
-                JOptionPane.showMessageDialog(modificarPasswordPanel,"El usuario " + usuario.getText() + " no existe.");
+                JOptionPane.showMessageDialog(null,"El usuario " + usuario.getText() + " no existe.", "Modificar usuario", JOptionPane.ERROR_MESSAGE);
             } catch (PasswordIncorrectaException ex) {
-                JOptionPane.showMessageDialog(modificarPasswordPanel,"La contrase\\u00f1a " + password.getText() + " es incorrecta.");
+                JOptionPane.showMessageDialog(null,"La contrase\u00f1a " + password.getText() + " es incorrecta.", "Modificar usuario", JOptionPane.ERROR_MESSAGE);
             }
         });
 

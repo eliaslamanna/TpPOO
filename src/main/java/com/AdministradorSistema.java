@@ -25,7 +25,7 @@ public class AdministradorSistema extends Rol {
                 Empresa.getInstancia().agregarTecnico(nuevoUsuario, ((Tecnico) nuevoUsuario.getRol()).getId());
             }
 
-            System.out.println("\nEl usuario " + usuario + " se dio de alta exitosamente.");
+            //System.out.println("\nEl usuario " + usuario + " se dio de alta exitosamente.");
         }
     }
 
