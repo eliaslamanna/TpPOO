@@ -25,7 +25,7 @@ public class ModificarTecnicoGUI extends JFrame {
         JButton cancelarButton = new JButton("Cancelar");
 
         JPanel seniorityForm = new JPanel();
-        seniorityForm.setLayout(new GridLayout(1,2,10,1));
+        seniorityForm.setLayout(new GridLayout(4,2,10,4));
         seniorityForm.add(idLabel);
         seniorityForm.add(id);
         seniorityForm.add(seniorityLabel);
@@ -39,32 +39,24 @@ public class ModificarTecnicoGUI extends JFrame {
         seniorityPanel.add(seniorityForm,BorderLayout.NORTH);
         seniorityPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
-        aceptarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    if(!"SR".equalsIgnoreCase(seniority.getText()) && !"SSR".equalsIgnoreCase(seniority.getText()) && !"JR".equalsIgnoreCase(seniority.getText())) {
-                        throw new SeniorityNoExisteException();
-                    }
-                    administradorSistema.cambiarSeniority(Integer.valueOf(id.getText()),Seniority.valueOf(seniority.getText()));
-                    JOptionPane.showMessageDialog(seniorityPanel,"El tecnico con id " + id.getText() + " se modifico con exito.");
-                    cerrarVentana(e);
-                } catch (SeniorityNoExisteException ex) {
-                    JOptionPane.showMessageDialog(seniorityPanel,"El seniority ingresado no existe.");
-                } catch (NumberFormatException nf) {
-                    JOptionPane.showMessageDialog(seniorityPanel,"El costo ingresado es incorrecto.");
-                } catch (TecnicoNoExisteException ex) {
-                    JOptionPane.showMessageDialog(seniorityPanel,"El tecnico con id " + id.getText() + " no existe.");
+        aceptarButton.addActionListener(e -> {
+            try {
+                if(!"SR".equalsIgnoreCase(seniority.getText()) && !"SSR".equalsIgnoreCase(seniority.getText()) && !"JR".equalsIgnoreCase(seniority.getText())) {
+                    throw new SeniorityNoExisteException();
                 }
+                administradorSistema.cambiarSeniority(Integer.valueOf(id.getText()),Seniority.valueOf(seniority.getText()));
+                JOptionPane.showMessageDialog(seniorityPanel,"El tecnico con id " + id.getText() + " se modifico con exito.");
+                cerrarVentana(e);
+            } catch (SeniorityNoExisteException ex) {
+                JOptionPane.showMessageDialog(seniorityPanel,"El seniority ingresado no existe.");
+            } catch (NumberFormatException nf) {
+                JOptionPane.showMessageDialog(seniorityPanel,"El costo ingresado es incorrecto.");
+            } catch (TecnicoNoExisteException ex) {
+                JOptionPane.showMessageDialog(seniorityPanel,"El tecnico con id " + id.getText() + " no existe.");
             }
         });
 
-        cancelarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cerrarVentana(e);
-            }
-        });
+        cancelarButton.addActionListener(e -> cerrarVentana(e));
 
         add(seniorityPanel);
 

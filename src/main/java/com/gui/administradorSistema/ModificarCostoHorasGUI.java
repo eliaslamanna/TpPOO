@@ -27,7 +27,7 @@ public class ModificarCostoHorasGUI extends JFrame {
         JButton cancelarButton = new JButton("Cancelar");
 
         JPanel seniorityForm = new JPanel();
-        seniorityForm.setLayout(new GridLayout(1,2,10,1));
+        seniorityForm.setLayout(new GridLayout(4,2,10,4));
         seniorityForm.add(seniorityLabel);
         seniorityForm.add(seniority);
         seniorityForm.add(costoLabel);

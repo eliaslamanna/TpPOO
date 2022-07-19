@@ -10,6 +10,10 @@ public class Cliente {
     private String Direccion;
     private Agenda agenda = new Agenda();
 
+    public Cliente(String dniCliente) {
+        this.dniCliente = dniCliente;
+    }
+
     public Cliente(String dniCliente, String nombre, String apellido, String direccion) {
 		super();
 		this.dniCliente = dniCliente;
@@ -18,15 +22,43 @@ public class Cliente {
         this.apellido = apellido;
 	}
 
+    public String getDniCliente() {
+        return this.dniCliente;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getDireccion() {
+        return Direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        Direccion = direccion;
+    }
+
     public Agenda getAgenda() {
         return agenda;
     }
-    
-    public String getDniCliente() {
-		return dniCliente;
-	}
 
-	public boolean disponible(String dia, Integer horarioInicio, Integer horarioFin) {
+    public void setAgenda(Agenda agenda) {
+        this.agenda = agenda;
+    }
+
+    public boolean disponible(String dia, Integer horarioInicio, Integer horarioFin) {
         /*Integer horario = horarioInicio;
 
         while(horario <= horarioFin + 30 && horario != 2000) {
@@ -44,10 +76,9 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente: \n" +
-                "    Dni: " + dniCliente + "\n" +
-                "    Nombre: " + nombre + "\n" +
-                "    Apellido: " + apellido + "\n" +
-                "    Direccion: " + Direccion;
+        return  " Dni: " + dniCliente +
+                " Nombre: " + nombre +
+                " Apellido: " + apellido +
+                " Direccion: " + Direccion;
     }
 }

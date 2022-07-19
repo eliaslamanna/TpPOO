@@ -1,13 +1,9 @@
 package com.gui.administradorSistema;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import static java.util.stream.Collectors.toList;
@@ -25,11 +21,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
-import com.Articulo;
-import com.Empresa;
-import com.Seniority;
-import com.Tecnico;
-import com.Usuario;
+import com.*;
 import com.gui.LoginGui;
 import com.gui.listeners.*;
 import com.gui.listeners.CreateStockListener;
@@ -96,7 +88,7 @@ public class AdministradorSistGui extends JFrame {
 		usuariosPanel.add(crearUsuarioButton);
 		crearUsuarioButton.addActionListener(new CreateUserListener(administradorSistema));
 		
-		JButton eliminarUsuarioButton = new JButton("Eliminar");
+		JButton eliminarUsuarioButton = new JButton("Cambiar Contrase\\u00f1a");
 		eliminarUsuarioButton.setBounds(834, 600, 131, 37);
 		eliminarUsuarioButton.setFocusable(false);
 		usuariosPanel.add(eliminarUsuarioButton);
@@ -173,6 +165,7 @@ public class AdministradorSistGui extends JFrame {
 		eliminarStockButton.setBounds(834, 562, 131, 37);
 		eliminarStockButton.setFocusable(false);
 		stockPanel.add(eliminarStockButton);
+		eliminarStockButton.addActionListener(new EliminarStockListener(administradorSistema));
 
 		JPanel costoHorasPanel = new JPanel();
 		tabbedPane.addTab("Costo Horas", null, costoHorasPanel, null);
@@ -201,25 +194,32 @@ public class AdministradorSistGui extends JFrame {
 			costoHorasList.setListData(costoHorasRefresh.entrySet().toArray());
 		});
 
-		JPanel panel = new JPanel();
-		tabbedPane.addTab("Clientes", null, panel, null);
-		panel.setLayout(null);
+		JPanel clientePanel = new JPanel();
+		tabbedPane.addTab("Clientes", null, clientePanel, null);
+		clientePanel.setLayout(null);
 		
 		JList clientesList = new JList();
 		clientesList.setBounds(352, 109, 665, 400);
-		panel.add(clientesList);
+		clientePanel.add(clientesList);
+		List<Cliente> clientes = new ArrayList<>(Empresa.getInstancia().getClientes().values());
+		clientesList.setListData(clientes.toArray());
+		clientePanel.add(clientesList);
 		
-		JButton refreshClientesList = new JButton("");
-		refreshClientesList.setFocusable(false);
-		refreshClientesList.setBounds(225, 109, 63, 58);
-		refreshClientesList.setIcon(refresh);
-		panel.add(refreshClientesList);
-		refreshCostoHorasButton.addActionListener(e1 -> {
-			/*HashMap<Seniority, Float> costoHorasRefresh = Empresa.getInstancia().getCostoHoras();
-			costoHorasList.setListData(costoHoras.entrySet().toArray());
-			costoHorasList.setListData(costoHorasRefresh.entrySet().toArray());
-			*/
+		JButton refreshClientesButton = new JButton("");
+		refreshClientesButton.setFocusable(false);
+		refreshClientesButton.setBounds(225, 109, 63, 58);
+		refreshClientesButton.setIcon(refresh);
+		clientePanel.add(refreshClientesButton);
+		refreshClientesButton.addActionListener(e -> {
+			List<Cliente> refreshClientes = new ArrayList<>(Empresa.getInstancia().getClientes().values());
+			clientesList.setListData(refreshClientes.toArray());
 		});
+
+		JButton modificarClienteButton = new JButton("Modificar");
+		modificarClienteButton.setBounds(610, 562, 131, 37);
+		modificarClienteButton.setFocusable(false);
+		clientePanel.add(modificarClienteButton);
+		modificarClienteButton.addActionListener(new ModificarClienteListener(administradorSistema));
 
 		this.setVisible(true);
 	}

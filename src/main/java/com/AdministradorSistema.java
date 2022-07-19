@@ -59,15 +59,11 @@ public class AdministradorSistema extends Rol {
         Empresa.getInstancia().getStock().put(nombre, new Articulo(nombre, cantidad, precio));
     }
 
-    public void eliminarArticulo() {
-        System.out.println("Ingrese el nombre del articulo a eliminar: ");
-        String nombreArticulo = read.nextLine();
-
+    public void eliminarArticulo(String nombreArticulo) throws ArticuloNoExisteException {
         if(!Empresa.getInstancia().getStock().containsKey(nombreArticulo)) {
-            System.out.println("\nEl articulo " + nombreArticulo + " no existe en el stock.");
+            throw new ArticuloNoExisteException();
         } else {
             Empresa.getInstancia().getStock().remove(nombreArticulo);
-            System.out.println("Se removio correctamente el articulo: " + nombreArticulo);
         }
     }
 
@@ -92,6 +88,37 @@ public class AdministradorSistema extends Rol {
         }
 
         Empresa.getInstancia().getStock().put(articulo.getNombre(), articulo);
+    }
+
+    public void modificarCliente(Cliente cliente) throws ClienteNoExisteException {
+        if(!Empresa.getInstancia().getClientes().containsKey(cliente.getDniCliente()) || cliente.getDniCliente() == null || cliente.getDniCliente().isBlank()) {
+            throw new ClienteNoExisteException(cliente.getDniCliente());
+        }
+
+        Cliente clienteExistente = Empresa.getInstancia().getClientes().get(cliente.getDniCliente());
+        Cliente clienteActualizado = new Cliente(cliente.getDniCliente());
+
+        if(!cliente.getNombre().isBlank() && cliente.getNombre() != null) {
+            clienteActualizado.setNombre(cliente.getNombre());
+        } else {
+            clienteActualizado.setNombre(clienteExistente.getNombre());
+        }
+
+        if(!cliente.getApellido().isBlank() && cliente.getApellido() != null) {
+            clienteActualizado.setApellido(cliente.getApellido());
+        } else {
+            clienteActualizado.setApellido(clienteExistente.getApellido());
+        }
+
+        if(!cliente.getDireccion().isBlank() && cliente.getDireccion() != null) {
+            clienteActualizado.setDireccion(cliente.getDireccion());
+        } else {
+            clienteActualizado.setDireccion(clienteExistente.getDireccion());
+        }
+
+        clienteActualizado.setAgenda(clienteExistente.getAgenda());
+
+        Empresa.getInstancia().getClientes().put(cliente.getDniCliente(), clienteActualizado);
     }
 
     public void restarStock() {
