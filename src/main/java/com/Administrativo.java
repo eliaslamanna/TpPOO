@@ -17,8 +17,9 @@ public class Administrativo extends Rol {
         this.rol = "Administrativo";
     }
 
-    public void revisarServicios(Integer idVisita) {
-        Visita visita = Empresa.getInstancia().getVisitas().get(idVisita);
+    public void revisarServicios(String idVisita) {
+        Integer idParse = Integer.valueOf(idVisita);
+    	Visita visita = Empresa.getInstancia().getVisitas().get(idParse);
         if(visita == null) {
         	JOptionPane.showMessageDialog(null, "La visita ingresada no existe", "Error", JOptionPane.ERROR_MESSAGE);
         }else if(visita.getEstado() == visita.getEstado().EN_CURSO) {

@@ -84,13 +84,13 @@ public class Empresa {
 		costosAdicionales.add(clavo);
 		costosAdicionales.add(pintura);
 		
-		Reparacion aVisita = new Reparacion(aCliente, tecnicos, "Martes", 1600, 1800);
+		Reparacion aVisita = new Reparacion(aCliente, tecnicos, 1, 12, 1600, 1800);
 		aVisita.setGastosAdicionales(gastosAdicionales);
 		aVisita.setOtrosCostos(costosAdicionales);
 		aVisita.setEstado(EN_CURSO);
 		this.visitas.put(aVisita.getIdVisita(), aVisita);
 
-		Instalacion bVisita = new Instalacion(bCliente, tecnicos, "Miercoles", 1600, 1800);
+		Instalacion bVisita = new Instalacion(bCliente, tecnicos, 9, 12, 1600, 1800);
 		bVisita.setGastosAdicionales(gastosAdicionales);
 		bVisita.setOtrosCostos(costosAdicionales);
 		bVisita.setEstado(EN_CURSO);

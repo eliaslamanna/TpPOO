@@ -133,9 +133,13 @@ private JTextField textoTecnico;
 			int answer = JOptionPane.showConfirmDialog(null, "Desea dar por finalizado un servicio?", "Finalizar servicio", JOptionPane.YES_NO_OPTION); 
         	if(answer == 0) {
         		Administrativo admin = new Administrativo();
-        		Integer idVisita = Integer.valueOf(JOptionPane.showInputDialog(null, "Ingrese el id de la visita a finalizar", "Finalizar servicio", JOptionPane.INFORMATION_MESSAGE));
-        		admin.revisarServicios(idVisita);
-      
+        		String idVisita = JOptionPane.showInputDialog(null, "Ingrese el id de la visita a finalizar", "Finalizar servicio", JOptionPane.INFORMATION_MESSAGE);
+        		try {
+        			admin.revisarServicios(idVisita);
+        		}catch (NumberFormatException nf){
+        			JOptionPane.showMessageDialog(null, "El id ingresado es incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
+        		}
+        		
     			List<Visita> visitasTecnico = new ArrayList<>();
     			for(Visita visita : new ArrayList<>(Empresa.getInstancia().getVisitas().values())) {
     				for(Usuario tecnico : visita.getTecnicos()) {
