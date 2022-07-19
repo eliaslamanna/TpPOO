@@ -150,8 +150,8 @@ public class Tecnico extends Rol {
     @Override
     public String toString() {
         return " id: " + id +
-                " seniority: " + seniority +
-                " turno: " + turno;
+                " -- seniority: " + seniority +
+                " -- turno: " + turno;
     }
 
     public Integer mostrarMenu() {
