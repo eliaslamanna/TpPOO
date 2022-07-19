@@ -2,10 +2,7 @@ package com.gui.listeners;
 
 import com.CallCenter;
 import com.Usuario;
-import com.exception.HorarioParaTurnoIncorrectoException;
-import com.exception.HorarioReservadoException;
-import com.exception.StockInsuficienteException;
-import com.exception.TecnicosInsuficientesException;
+import com.exception.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -41,6 +38,10 @@ public class AgendarVisitaListener implements ActionListener {
             JOptionPane.showMessageDialog(null,"La cantidad de tecnicos disponibles no alcanza para agendar una visita.", "Agendar visita", JOptionPane.INFORMATION_MESSAGE);
         } catch (HorarioReservadoException ex) {
             JOptionPane.showMessageDialog(null,"El horario elegido esta reservado, por favor elija otro.", "Agendar visita", JOptionPane.INFORMATION_MESSAGE);
+        } catch (TiempoMinimoInstalacionIncorrectoException ex) {
+            JOptionPane.showMessageDialog(null,"El tiempo minimo para una instalacion es de 100.", "Agendar visita", JOptionPane.INFORMATION_MESSAGE);
+        } catch (TiempoMinimoReparacionIncorrectoException ex) {
+            JOptionPane.showMessageDialog(null,"El tiempo minimo para una reparacion es de 30.", "Agendar visita", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

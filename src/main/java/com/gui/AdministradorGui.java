@@ -180,18 +180,11 @@ private JTextField textoTecnico;
 		
 		JButton searchButton = new JButton("Buscar");
 		searchButton.addActionListener(e -> {
-			/*Integer idVisita = Integer.valueOf(textoId.getText());
-			List<Visita> visitasTecnico = new ArrayList<>();
-			for(Visita visita : new ArrayList<>(Empresa.getInstancia().getVisitas().values())) {
-				for(Usuario tecnico : visita.getIdVisita()) {
-					if(((Tecnico) tecnico.getRol()).getId().intValue() == idTecnico.intValue()) {
-						visitasTecnico.add(visita);
-					}
-				}
-			}
-			serviciosList.setListData(visitasTecnico.toArray());
-			*/
+			Integer idVisita = Integer.valueOf(textoId.getText());
+			List<Visita> visitasTecnico = new ArrayList<>(Empresa.getInstancia().getVisitas().values()).stream().filter(visita -> visita.getIdVisita() == idVisita.intValue()).collect(toList());
+			facturasList.setListData(visitasTecnico.toArray());
 		});
+		
 		searchButton.setBounds(747, 81, 117, 38);
 		searchButton.setFocusable(false);
 		facturacionPanel.add(searchButton);
