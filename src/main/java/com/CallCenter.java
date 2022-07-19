@@ -7,10 +7,7 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-import com.exception.ClienteExistenteException;
-import com.exception.HorarioReservadoException;
-import com.exception.StockInsuficienteException;
-import com.exception.TecnicosInsuficientesException;
+import com.exception.*;
 
 public class CallCenter extends Rol {
 
@@ -34,7 +31,7 @@ public class CallCenter extends Rol {
 		return opcion;
 	}
 
-	public void agendarVisita(String dniCliente, Integer horarioInicio, Integer horarioFin, String dia, String tipoVisita, Integer cantidadTecnicos) throws HorarioReservadoException, StockInsuficienteException, TecnicosInsuficientesException{
+	public void agendarVisita(String dniCliente, Integer horarioInicio, Integer horarioFin, Integer dia, Integer mes, String tipoVisita, Integer cantidadTecnicos) throws HorarioReservadoException, StockInsuficienteException, TecnicosInsuficientesException, HorarioParaTurnoIncorrectoException {
 		/*System.out.println("Ingrese el dni del cliente: ");
 		String dniCliente = read.nextLine();
 
@@ -77,10 +74,10 @@ public class CallCenter extends Rol {
 
 					for (Usuario tecnico : new ArrayList<>(Empresa.getInstancia().getTecnicos().values())) {
 						Tecnico tec = (Tecnico) tecnico.getRol();
-						if (tec.disponible(dia, horarioInicio, horarioFin) && cliente.disponible(dia, horarioInicio, horarioFin)) {
+						if (tec.disponible(dia, mes, horarioInicio, horarioFin) && cliente.disponible(dia, mes, horarioInicio, horarioFin)) {
 							if (tecnicos.size() < cantidadTecnicos) {
-								tec.agendarVisita(dia, horarioInicio, horarioFin);
-								cliente.agendarVisita(dia, horarioInicio, horarioFin);
+								tec.agendarVisita(dia, mes, horarioInicio, horarioFin);
+								cliente.agendarVisita(dia, mes, horarioInicio, horarioFin);
 								tecnicos.add(tecnico);
 							}
 						}
@@ -92,11 +89,11 @@ public class CallCenter extends Rol {
 					}
 
 					if("Instalacion".equals(tipoVisita)) {
-						Empresa.getInstancia().agregarVisita(new Instalacion(Empresa.getInstancia().getClientes().get(dniCliente), tecnicos, dia, horarioInicio, horarioFin));
-						JOptionPane.showMessageDialog(null, "Crear visita", "Visita generada con éxito", JOptionPane.PLAIN_MESSAGE);
+						Empresa.getInstancia().agregarVisita(new Instalacion(Empresa.getInstancia().getClientes().get(dniCliente), tecnicos, dia, mes, horarioInicio, horarioFin));
+						JOptionPane.showMessageDialog(null, "Crear visita", "Visita generada con ï¿½xito", JOptionPane.PLAIN_MESSAGE);
 					} else {
-						Empresa.getInstancia().agregarVisita(new Reparacion(Empresa.getInstancia().getClientes().get(dniCliente), tecnicos, dia, horarioInicio, horarioFin));
-						JOptionPane.showMessageDialog(null, "Crear visita", "Visita generada con éxito", JOptionPane.PLAIN_MESSAGE);
+						Empresa.getInstancia().agregarVisita(new Reparacion(Empresa.getInstancia().getClientes().get(dniCliente), tecnicos, dia, mes, horarioInicio, horarioFin));
+						JOptionPane.showMessageDialog(null, "Crear visita", "Visita generada con ï¿½xito", JOptionPane.PLAIN_MESSAGE);
 					}
 				}
 			}

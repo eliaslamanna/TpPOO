@@ -8,7 +8,8 @@ public abstract class Visita {
 	private int idVisita;
 	private Cliente cliente;
 	private List<Usuario> tecnicos = new ArrayList<>();
-	private String dia;
+	private Integer dia;
+	private Integer mes;
 	private Integer horarioInicio;
 	private Integer horarioFin;
 	// el almuerzo se suma como articulo (se le da el costo que queramos)
@@ -31,12 +32,13 @@ public abstract class Visita {
 		this.materiales.add(articulo);
 	}
 
-	public Visita(Cliente cliente, List<Usuario> tecnicos, String dia, Integer horarioInicio, Integer horarioFin) {
+	public Visita(Cliente cliente, List<Usuario> tecnicos, Integer dia, Integer mes, Integer horarioInicio, Integer horarioFin) {
 		this.idVisita = new Random().nextInt(10000);
 		this.cliente = cliente;
 		this.tecnicos = tecnicos;
 		this.estado = EstadoVisita.PROGRAMADO;
 		this.dia = dia;
+		this.mes = mes;
 		this.horarioInicio = horarioInicio;
 		this.horarioFin = horarioFin;
 	}
@@ -95,12 +97,20 @@ public abstract class Visita {
 
 	public List<Usuario> getTecnicos() { return this.tecnicos;}
 
-	public String getDia() {
+	public Integer getDia() {
 		return dia;
 	}
 
-	public void setDia(String dia) {
+	public void setDia(Integer dia) {
 		this.dia = dia;
+	}
+
+	public Integer getMes() {
+		return mes;
+	}
+
+	public void setMes(Integer mes) {
+		this.mes = mes;
 	}
 
 	public Integer getHorarioInicio() {

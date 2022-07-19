@@ -23,20 +23,6 @@ public class Administrativo extends Rol {
         visita.setFactura(generarFactura(visita, visita.getTecnicos()));
         //JOptionPane.showMessageDialog(null, "Los servicios del tecnico nro " + idTecnico + " fueron finalizados con �xito", "Finalizar servicio", JOptionPane.INFORMATION_MESSAGE);
 
-        /*List<Visita> visitasTecnico = new ArrayList<>();
-        for(Visita visita : new ArrayList<>(Empresa.getInstancia().getVisitas().values())) {
-            for(Usuario tecnico : visita.getTecnicos()) {
-                if(((Tecnico) tecnico.getRol()).getId().intValue() == idTecnico.intValue() && EN_CURSO.equals(visita.getEstado())) {
-                    visitasTecnico.add(visita);
-                }
-            }
-        }
-
-        visitasTecnico.forEach(visita -> {
-           visita.setEstado(FINALIZADO);
-            visita.setFactura(generarFactura(visita, visita.getTecnicos()));
-            JOptionPane.showMessageDialog(null, "Los servicios del tecnico nro " + idTecnico + " fueron finalizados con �xito", "Finalizar servicio", JOptionPane.INFORMATION_MESSAGE);
-        });*/
     }
 
     public Factura generarFactura(Visita visita, List<Usuario> tecnicos) {
