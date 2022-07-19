@@ -55,9 +55,9 @@ public class TecnicoGui extends JFrame {
 		bienvenidoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		tabbedPane.addTab("Home", null, bienvenidoLabel, null);
 		
-		JPanel panel = new JPanel();
-		tabbedPane.addTab("Servicios", null, panel, null);
-		panel.setLayout(null);
+		JPanel serviciosPanel = new JPanel();
+		tabbedPane.addTab("Servicios", null, serviciosPanel, null);
+		serviciosPanel.setLayout(null);
 
 		JList serviciosList = new JList();
 		serviciosList.setBounds(279, 173, 783, 487);
@@ -65,17 +65,17 @@ public class TecnicoGui extends JFrame {
 		serviciosList.setSelectionBackground(Color.white);
 		DefaultListCellRenderer cellRenderer = (DefaultListCellRenderer)serviciosList.getCellRenderer();
 		cellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-		panel.add(serviciosList);
+		serviciosPanel.add(serviciosList);
 
 		JButton revisarServiciosButton = new JButton("Revisar servicios");
 		revisarServiciosButton.setBounds(556, 535, 158, 41);
-		panel.add(revisarServiciosButton);
+		serviciosPanel.add(revisarServiciosButton);
 		
 		JLabel serviciosLabel = new JLabel("Servicios");
 		serviciosLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		serviciosLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
 		serviciosLabel.setBounds(497, 45, 251, 39);
-		panel.add(serviciosLabel);
+		serviciosPanel.add(serviciosLabel);
 
 		List<Visita> visitasTecnico = new ArrayList<>();
 		Integer idTecnico = ((Tecnico) tecnico.getRol()).getId();
