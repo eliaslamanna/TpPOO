@@ -139,7 +139,6 @@ public class TecnicoGui extends JFrame {
 				} else {
 					JOptionPane.showMessageDialog(null, "La visita con id " + idVisita + " ya fue revisada.", "Revisar servicio", JOptionPane.ERROR_MESSAGE);
 				}
-
 			}
 		});
 		serviciosPanel.add(revisarBtn);
