@@ -5,13 +5,22 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
+import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import static com.EstadoVisita.FINALIZADO;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 public class Administrativo extends Rol {
 
@@ -53,15 +62,7 @@ public class Administrativo extends Rol {
 
         System.out.println(factura != null && !factura.yaSeImprimio() ? factura.toString() : "El id ingresado no corresponde con ninguna visita que no se haya impreso ya.");
         
-        /*
-        try {
-        	CreatePdf(factura.getNumeroFactura(), factura.getPrecioFinal());
-        }catch (DocumentException nf) {
-        	
-        }catch (FileNotFoundException ex) {
-        	
-        }
-        */
+        CreatePdf(factura.getNumeroFactura(), factura.getPrecioFinal(), id);
         
         factura.setYaSeImprimio(true);
         
@@ -81,17 +82,44 @@ public class Administrativo extends Rol {
         return opcion;
     }
     
-    /*
-    private void CreatePdf(int nroFactura, float precioFactura) throws DocumentException, FileNotFoundException{
+    
+    private void CreatePdf(int nroFactura, float precioFactura, Integer id) throws DocumentException, FileNotFoundException{
     	
+    	try {
     	Document document = new Document();
-    	PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("bills/Factura_" + nroFactura + ".png") );
+    	PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("bills/Factura_" + nroFactura + ".pdf") );
     	document.open();
     	
     	PdfContentByte cb = writer.getDirectContent();
+    	Graphics g = cb.createGraphicsShapes(PageSize.LETTER.getWidth(), PageSize.LETTER.getHeight());
     	
+    	
+    	ImageIcon logoFact = new ImageIcon("images/logoFact.png");
+    	g.drawImage(logoFact.getImage(), 200, 250, 100, 0, null);
+    
+    	
+    	Font font = new Font("Roboto", Font.BOLD, 20);
+    	g.setFont(font);
+    	g.setColor(Color.BLACK);
+    	g.drawString("Factura Numero " + nroFactura, 0, 100);
+    	
+    	Font font2 = new Font("Helvetica", Font.PLAIN, 15);
+    	g.setFont(font2);
+    	g.drawString("Id de visita: " + id, 0, 150);
+    	g.drawString("Precio final: " + precioFactura, 0, 200);
     	
     	document.close();
+    	
+    	JOptionPane.showMessageDialog(null, "La factura de la visita "+ id + " se guardo en el siguiente archivo images/Factura_" + nroFactura + ".png", "Imprimir factura", JOptionPane.INFORMATION_MESSAGE);
+    	
+    	}catch (DocumentException de) {
+    		
+    	}catch (FileNotFoundException nf) {
+    		
+    	}
+    	
+    	
+   
     }
-    */
+    
 }

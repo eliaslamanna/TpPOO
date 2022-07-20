@@ -186,9 +186,9 @@ private Administrativo admin;
         		}catch (NumberFormatException nf){
         			JOptionPane.showMessageDialog(null, "El id ingresado es incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
         		}catch (DocumentException de) {
-        			
+        			JOptionPane.showMessageDialog(null, "La factura no se pudo imprimir", "Error", JOptionPane.ERROR_MESSAGE);
         		}catch (FileNotFoundException nf) {
-        			
+        			JOptionPane.showMessageDialog(null, "La factura no se pudo imprimir", "Error", JOptionPane.ERROR_MESSAGE);
         		}
         		
     			List<Visita> visitasTecnico = new ArrayList<>();
