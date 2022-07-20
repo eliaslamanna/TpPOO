@@ -6,19 +6,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
-
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfDocument;
-import com.itextpdf.text.pdf.PdfWriter;
-
-import static com.EstadoVisita.EN_CURSO;
 import static com.EstadoVisita.FINALIZADO;
-import static java.util.stream.Collectors.toList;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 public class Administrativo extends Rol {
 

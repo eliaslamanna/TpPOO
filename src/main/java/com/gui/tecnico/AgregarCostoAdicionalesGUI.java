@@ -23,7 +23,7 @@ public class AgregarCostoAdicionalesGUI extends JFrame {
         JLabel cantidadLabel = new JLabel(" Cantidad");
         JTextField cantidad = new JTextField();
 
-        JLabel precioUnidadLabel = new JLabel(" PrecioUnidad");
+        JLabel precioUnidadLabel = new JLabel(" Precio");
         JTextField precioUnidad = new JTextField();
 
         JButton agregarCostoButton = new JButton("Agregar");

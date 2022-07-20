@@ -37,8 +37,8 @@ public class RevisarVisitaGUI extends JFrame {
         JButton otrosCostosButton = new JButton("Agregar otros costos");
         otrosCostosButton.setBounds(551, 70, 202, 23);
 
-        JButton materialesAdicionalesButton = new JButton("Agregar materiales adicionales");
-        materialesAdicionalesButton.setBounds(141, 70, 202, 23);
+        JButton gastosAdicionalesButton = new JButton("Agregar gastos adicionales");
+        gastosAdicionalesButton.setBounds(141, 70, 202, 23);
 
         JButton revisarButton = new JButton("Revisar");
         revisarButton.setBounds(670, 471, 105, 23);
@@ -53,7 +53,7 @@ public class RevisarVisitaGUI extends JFrame {
         revisarVisitaForm.add(tiempoTrabajado);
 
         revisarVisitaForm.add(otrosCostosButton);
-        revisarVisitaForm.add(materialesAdicionalesButton);
+        revisarVisitaForm.add(gastosAdicionalesButton);
         revisarVisitaForm.add(revisarButton);
         revisarVisitaForm.add(cancelarButton);
 
@@ -64,34 +64,27 @@ public class RevisarVisitaGUI extends JFrame {
         JList adicionalList = new JList();
         adicionalList.setBounds(114, 104, 256, 259);
         revisarVisitaForm.add(adicionalList);
+        ArrayList<Articulo> gastosAdicionales = new ArrayList<>();
 
         JList costosList = new JList();
         costosList.setBounds(527, 104, 256, 259);
         revisarVisitaForm.add(costosList);
         ArrayList<Articulo> otrosCostos = new ArrayList<>();
 
-        JButton refreshMaterialesAdicionalesButton = new JButton("Actualizar materiales adicionales");
-        refreshMaterialesAdicionalesButton.setBounds(131, 374, 212, 23);
-        revisarVisitaForm.add(refreshMaterialesAdicionalesButton);
+        JButton refreshGastosAdicionalesButton = new JButton("Actualizar materiales adicionales");
+        refreshGastosAdicionalesButton.setBounds(131, 374, 212, 23);
+        revisarVisitaForm.add(refreshGastosAdicionalesButton);
+        refreshGastosAdicionalesButton.addActionListener(e -> adicionalList.setListData(gastosAdicionales.toArray()));
         
         JButton refreshCostosAdicionalesButton = new JButton("Actualizar costos adicionales");
         refreshCostosAdicionalesButton.setBounds(551, 374, 202, 23);
         revisarVisitaForm.add(refreshCostosAdicionalesButton);
-        refreshCostosAdicionalesButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                costosList.setListData(otrosCostos.toArray());
-            }
-        });
+        refreshCostosAdicionalesButton.addActionListener(e -> costosList.setListData(otrosCostos.toArray()));
 
         revisarVisitaPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
-        otrosCostosButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new AgregarCostoAdicionalesGUI(otrosCostos);
-            }
-        });
+        otrosCostosButton.addActionListener(e -> new AgregarCostoAdicionalesGUI(otrosCostos));
+        gastosAdicionalesButton.addActionListener(e -> new AgregarGastosAdicionalesGUI(gastosAdicionales));
 
         cancelarButton.addActionListener(e -> cerrarVentana(e));
 
