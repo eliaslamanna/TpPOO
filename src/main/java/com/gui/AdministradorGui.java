@@ -9,6 +9,7 @@ import com.Visita;
 import com.exception.HorarioReservadoException;
 import com.exception.StockInsuficienteException;
 import com.exception.TecnicosInsuficientesException;
+import com.itextpdf.text.DocumentException;
 
 import static com.EstadoVisita.EN_CURSO;
 import static java.util.stream.Collectors.toList;
@@ -36,6 +37,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
@@ -183,6 +185,10 @@ private Administrativo admin;
         			admin.imprimirFactura(idVisita);
         		}catch (NumberFormatException nf){
         			JOptionPane.showMessageDialog(null, "El id ingresado es incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
+        		}catch (DocumentException de) {
+        			
+        		}catch (FileNotFoundException nf) {
+        			
         		}
         		
     			List<Visita> visitasTecnico = new ArrayList<>();
