@@ -1,23 +1,22 @@
 package com;
 
+import java.awt.*;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import static com.EstadoVisita.FINALIZADO;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
@@ -84,17 +83,18 @@ public class Administrativo extends Rol {
     
     private void CreatePdf(int nroFactura, float precioFactura, Integer id) throws DocumentException, FileNotFoundException{
     	
-    	try {
+    	/*try {
     	Document document = new Document();
     	PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("bills/Factura_" + nroFactura + ".pdf") );
     	document.open();
     	
     	PdfContentByte cb = writer.getDirectContent();
     	Graphics g = cb.createGraphicsShapes(PageSize.LETTER.getWidth(), PageSize.LETTER.getHeight());
-    	
+
+        cb.saveState();
     	
     	ImageIcon logoFact = new ImageIcon("images/logoFact.png");
-    	g.drawImage(logoFact.getImage(), 200, 250, 100, 0, null);
+    	g.drawImage(logoFact.getImage(), 200, 250, 200, 100, null);
     
     	
     	Font font = new Font("Roboto", Font.BOLD, 20);
@@ -115,8 +115,20 @@ public class Administrativo extends Rol {
     		
     	}catch (FileNotFoundException nf) {
     		
-    	}
-    	
+    	}*/
+
+        try {
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream("bills/Factura_" + nroFactura + ".pdf"));
+            document.open();
+            document.add(new Paragraph("Factura nro: " + nroFactura));
+            document.close();
+        }
+        catch(Exception e)  {
+            System.out.println("No se imprimio.");
+        }
+
+        JOptionPane.showMessageDialog(null, "La factura de la visita "+ id + " se guardo en el siguiente archivo images/Factura_" + nroFactura + ".pdf", "Imprimir factura", JOptionPane.INFORMATION_MESSAGE);
     	
    
     }
