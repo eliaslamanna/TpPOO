@@ -40,12 +40,12 @@ public class Tecnico extends Rol {
     public boolean disponible(Integer dia, Integer mes, Integer horarioInicio, Integer horarioFin) throws HorarioParaTurnoIncorrectoException, HorarioReservadoException {
         if((horarioInicio < 1400 && "Tarde".equalsIgnoreCase(turno)) ||
                 (horarioFin > 1400 && "Mañana".equalsIgnoreCase(turno))){
-            throw new HorarioParaTurnoIncorrectoException();
+            return false;
         } else {
             for(Reserva reserva : agenda) {
                 if(dia.equals(reserva.getDia()) && mes.equals(reserva.getMes())) {
                     if(horarioInicio.intValue() >= reserva.getHoraInicio() && horarioFin <= reserva.getHoraFin() + 30) {
-                        throw new HorarioReservadoException();
+                        return false;
                     }
                 }
             }

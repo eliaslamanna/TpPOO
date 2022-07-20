@@ -25,6 +25,10 @@ public class CallCenter extends Rol {
 			throw new FormatoHoraIncorrecto();
 		}
 
+		if(horarioInicio >= horarioFin) {
+			throw new FormatoHoraIncorrecto();
+		}
+
 		if ("Instalacion".equals(tipoVisita)) {
 			if (stockInsuficienteInstalacion()) {
 				System.out.println("Materiales insuficientes para continuar con el servicio.");
@@ -67,7 +71,7 @@ public class CallCenter extends Rol {
 		}
 	}
 
-	public boolean validarHora(String hora) {
+	private boolean validarHora(String hora) {
 		if (hora == null) {
 			return false;
 		}
@@ -107,7 +111,7 @@ public class CallCenter extends Rol {
 		return true;
 	}
 
-	public boolean stockInsuficienteInstalacion() {
+	private boolean stockInsuficienteInstalacion() {
 		HashMap<String, Articulo> stock = Empresa.getInstancia().getStock();
 		return stock.get("Cable Coaxil").getCantidad() < 4.5F ||
 				stock.get("Decodificador de TV").getCantidad() < 1 ||
