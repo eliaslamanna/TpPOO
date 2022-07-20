@@ -20,6 +20,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.Usuario;
 import javax.swing.SwingConstants;
+import javax.swing.JList;
 
 public class RevisarVisitaGUI extends JFrame {
 
@@ -29,21 +30,21 @@ public class RevisarVisitaGUI extends JFrame {
 
         JLabel tiempoTrabajadoLabel = new JLabel(" Tiempo trabajado");
         tiempoTrabajadoLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        tiempoTrabajadoLabel.setBounds(0, 0, 202, 23);
+        tiempoTrabajadoLabel.setBounds(178, 11, 202, 23);
         JTextField tiempoTrabajado = new JTextField();
-        tiempoTrabajado.setBounds(212, 0, 202, 23);
+        tiempoTrabajado.setBounds(390, 11, 202, 23);
 
         JButton otrosCostosButton = new JButton("Agregar Otros Costos");
-        otrosCostosButton.setBounds(0, 34, 202, 23);
+        otrosCostosButton.setBounds(513, 59, 202, 23);
         JButton materialesAdicionalesButton = new JButton("Agregar Materiales Adicionales");
-        materialesAdicionalesButton.setBounds(0, 68, 202, 23);
+        materialesAdicionalesButton.setBounds(104, 59, 202, 23);
         JButton revisarButton = new JButton("Revisar");
-        revisarButton.setBounds(0, 117, 202, 23);
+        revisarButton.setBounds(273, 410, 105, 23);
         JButton cancelarButton = new JButton("Cancelar");
-        cancelarButton.setBounds(212, 117, 202, 23);
+        cancelarButton.setBounds(459, 410, 105, 23);
 
         JPanel revisarVisitaForm = new JPanel();
-        revisarVisitaForm.setBounds(10, 10, 414, 151);
+        revisarVisitaForm.setBounds(10, 10, 821, 455);
         revisarVisitaForm.setLayout(null);
         revisarVisitaForm.add(tiempoTrabajadoLabel);
         revisarVisitaForm.add(tiempoTrabajado);
@@ -56,13 +57,21 @@ public class RevisarVisitaGUI extends JFrame {
         JPanel revisarVisitaPanel = new JPanel();
         revisarVisitaPanel.setLayout(null);
         revisarVisitaPanel.add(revisarVisitaForm);
+        
+        JList adicionalList = new JList();
+        adicionalList.setBounds(80, 104, 256, 259);
+        revisarVisitaForm.add(adicionalList);
+        
+        JList costosList = new JList();
+        costosList.setBounds(485, 104, 256, 259);
+        revisarVisitaForm.add(costosList);
         revisarVisitaPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
         cancelarButton.addActionListener(e -> cerrarVentana(e));
 
         getContentPane().add(revisarVisitaPanel);
 
-        setSize(450,200);
+        setSize(857,515);
         setMinimumSize(new Dimension(450, 200));
         setLocationRelativeTo(null);
         setVisible(true);
@@ -73,5 +82,4 @@ public class RevisarVisitaGUI extends JFrame {
         Window win = SwingUtilities.getWindowAncestor(comp);
         win.dispose();
     }
-
 }
