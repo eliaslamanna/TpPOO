@@ -90,7 +90,7 @@ public class LoginGui extends JFrame implements ActionListener, KeyListener {
 			rolMenu = usuarioLoggeado.getRol().getRol();
 			switch (rolMenu) {
 				case "Administrativo": {
-					new AdministradorGui(usuarioLoggeado);
+					new AdministrativoGui(usuarioLoggeado);
 					cerrarVentana(e);
 					break;
 				}
@@ -133,7 +133,7 @@ public class LoginGui extends JFrame implements ActionListener, KeyListener {
 				rolMenu = usuarioLoggeado.getRol().getRol();
 				switch (rolMenu) {
 					case "Administrativo": {
-						new AdministradorGui(usuarioLoggeado);
+						new AdministrativoGui(usuarioLoggeado);
 						cerrarVentana(e);
 						break;
 					}

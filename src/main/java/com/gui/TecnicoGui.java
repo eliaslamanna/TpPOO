@@ -50,7 +50,7 @@ public class TecnicoGui extends JFrame {
 		tabbedPane.setBounds(532, 29, 1324, 904);
 		contentPane.add(tabbedPane);
 		
-		JLabel bienvenidoLabel = new JLabel("Bienvenid@");
+		JLabel bienvenidoLabel = new JLabel("Bienvenid@\n " + tecnico.getUsuario() + " \n,Id de tecnico: " + ((Tecnico) tecnico.getRol()).getId());
 		bienvenidoLabel.setFont(new Font("Tahoma", Font.PLAIN, 33));
 		bienvenidoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		tabbedPane.addTab("Home", null, bienvenidoLabel, null);

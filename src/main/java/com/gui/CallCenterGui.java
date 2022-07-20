@@ -66,7 +66,7 @@ public class CallCenterGui extends JFrame implements ActionListener{
 		tabbedPanel.setBounds(532, 29, 1324, 904);
 		contentPane.add(tabbedPanel);
 		
-		JLabel bienvenidoLabel = new JLabel("Bienvenid@");
+		JLabel bienvenidoLabel = new JLabel("Bienvenid@ " + callCenter.getUsuario());
 		bienvenidoLabel.setFont(new Font("Tahoma", Font.PLAIN, 33));
 		bienvenidoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		tabbedPanel.addTab("Home", null, bienvenidoLabel, null);
