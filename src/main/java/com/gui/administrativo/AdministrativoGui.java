@@ -5,6 +5,7 @@ import com.Empresa;
 import com.Tecnico;
 import com.Usuario;
 import com.Visita;
+import com.exception.FacturaNoSePuedeImprimirException;
 import com.gui.LoginGui;
 import com.itextpdf.text.DocumentException;
 
@@ -219,9 +220,11 @@ private Administrativo admin;
         			JOptionPane.showMessageDialog(null, "La factura no se pudo imprimir", "Error", JOptionPane.ERROR_MESSAGE);
         		}catch (FileNotFoundException nf) {
         			JOptionPane.showMessageDialog(null, "La factura no se pudo imprimir", "Error", JOptionPane.ERROR_MESSAGE);
-        		}
-        		
-    			List<Visita> visitasTecnico = new ArrayList<>();
+        		} catch (FacturaNoSePuedeImprimirException ex) {
+					JOptionPane.showMessageDialog(null, "La factura no se pudo imprimir", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+
+				List<Visita> visitasTecnico = new ArrayList<>();
     			for(Visita visita : new ArrayList<>(Empresa.getInstancia().getVisitas().values())) {
     				for(Usuario tecnico : visita.getTecnicos()) {
     					if(((Tecnico) tecnico.getRol()).getId().intValue() == Integer.valueOf(textoTecnico.getText()).intValue()) {

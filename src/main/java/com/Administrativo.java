@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.swing.*;
 
+import com.exception.FacturaNoSePuedeImprimirException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
@@ -57,13 +58,15 @@ public class Administrativo extends Rol {
         return new Factura(new Random().nextInt(1000), costoFactura, costoFactura+(costoFactura*(0.21F + 0.30F)));
     }
 
-    public void imprimirFactura(String idVisita) throws DocumentException, FileNotFoundException {
+    public void imprimirFactura(String idVisita) throws DocumentException, FileNotFoundException, FacturaNoSePuedeImprimirException {
 
         Integer id = Integer.valueOf(idVisita);
         Factura factura = Empresa.getInstancia().getVisitas().get(Integer.valueOf(id)).getFactura();
 
-        System.out.println(factura != null && !factura.yaSeImprimio() ? factura.toString() : "El id ingresado no corresponde con ninguna visita que no se haya impreso ya.");
-        
+        if(factura == null || factura.yaSeImprimio()) {
+            throw new FacturaNoSePuedeImprimirException();
+        }
+
         CreatePdf(factura.getNumeroFactura(), factura.getPrecioFinal(), id);
         
         factura.setYaSeImprimio(true);
