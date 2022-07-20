@@ -75,21 +75,27 @@ public class Administrativo extends Rol {
         
     }
     
-    private void CreatePdf(int nroFactura, float precioFactura, Integer id) throws DocumentException, FileNotFoundException{
 
+    private void CreatePdf(int nroFactura, float precioFactura, Integer id){
         try {
+            Visita visita = Empresa.getInstancia().getVisitas().get(id);
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream("bills/Factura_" + nroFactura + ".pdf"));
             document.open();
-            document.add(new Paragraph("Factura nro: " + nroFactura));
+            document.add(new Paragraph("Cable e Internet"));
+            document.add(new Paragraph("Factura n�mero: " + nroFactura));
+            document.add(new Paragraph("Cliente: " + visita.getCliente().getNombre() + " " + visita.getCliente().getApellido()));
+            document.add(new Paragraph("DNI cliente: " + visita.getCliente().getDniCliente()));
+            document.add(new Paragraph("Direccion cliente: " + visita.getCliente().getDireccion()));
+            document.add(new Paragraph("ID de visita: " + id));
+            document.add(new Paragraph("Precio final(Se incluye IVA + 30% de margen): $" + precioFactura));
             document.close();
         }
         catch(Exception e)  {
-            System.out.println("No se imprimio.");
+        	JOptionPane.showMessageDialog(null, "La factura de la visita "+ id + " no se pudo imprimir", "Imprimir factura", JOptionPane.ERROR_MESSAGE);
         }
 
-        JOptionPane.showMessageDialog(null, "La factura de la visita "+ id + " se guardo en el siguiente archivo images/Factura_" + nroFactura + ".pdf", "Imprimir factura", JOptionPane.INFORMATION_MESSAGE);
-
+        JOptionPane.showMessageDialog(null, "La factura de la visita "+ id + " se guardo en el siguiente archivo bills/Factura_" + nroFactura + ".pdf", "Imprimir factura", JOptionPane.INFORMATION_MESSAGE);
     }
     
 }

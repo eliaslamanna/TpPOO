@@ -97,6 +97,10 @@ public abstract class Visita {
 
 	public List<Usuario> getTecnicos() { return this.tecnicos;}
 
+	public Cliente getCliente() {
+		return cliente;
+	}
+
 	public Integer getDia() {
 		return dia;
 	}
