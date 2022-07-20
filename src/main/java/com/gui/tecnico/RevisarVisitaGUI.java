@@ -1,11 +1,11 @@
 package com.gui.tecnico;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.GridLayout;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -16,8 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-import javax.swing.border.EmptyBorder;
 
+import com.Articulo;
 import com.Usuario;
 import javax.swing.SwingConstants;
 import javax.swing.JList;
@@ -36,10 +36,13 @@ public class RevisarVisitaGUI extends JFrame {
 
         JButton otrosCostosButton = new JButton("Agregar Otros Costos");
         otrosCostosButton.setBounds(513, 59, 202, 23);
+
         JButton materialesAdicionalesButton = new JButton("Agregar Materiales Adicionales");
         materialesAdicionalesButton.setBounds(104, 59, 202, 23);
+
         JButton revisarButton = new JButton("Revisar");
         revisarButton.setBounds(273, 410, 105, 23);
+
         JButton cancelarButton = new JButton("Cancelar");
         cancelarButton.setBounds(459, 410, 105, 23);
 
@@ -61,11 +64,19 @@ public class RevisarVisitaGUI extends JFrame {
         JList adicionalList = new JList();
         adicionalList.setBounds(80, 104, 256, 259);
         revisarVisitaForm.add(adicionalList);
-        
+
         JList costosList = new JList();
         costosList.setBounds(485, 104, 256, 259);
         revisarVisitaForm.add(costosList);
         revisarVisitaPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        ArrayList<Articulo> otrosCostos = new ArrayList<>();
+        otrosCostosButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AgregarCostoAdicionalesGUI(otrosCostos);
+                costosList.setListData(otrosCostos.toArray());
+            }
+        });
 
         cancelarButton.addActionListener(e -> cerrarVentana(e));
 
