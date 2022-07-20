@@ -40,7 +40,7 @@ public class Empresa {
 		costoHoras.put(SR, 300F);
 
 		List<Articulo> articulos = new ArrayList<>();
-		
+
 		Articulo artCable = new Articulo("Cable Coaxil",  100F, 50F);
 		Articulo deco = new Articulo("Decodificador de TV",  15F, 100.3F);
 		Articulo modem = new Articulo("Modem de internet",  25F, 200.3F);
@@ -63,48 +63,12 @@ public class Empresa {
 		Usuario cUsuario = new Usuario(new Administrativo(), "admin", "admin");
 		Usuario dUsuario = new Usuario(new CallCenter(), "callcenter", "callcenter");
 		
-		((Tecnico)bUsuario.getRol()).getAgenda().add(new Reserva(2,8,1700,1800));
-		
 		this.usuarios.put(aUsuario.getUsuario(), aUsuario);
 		this.usuarios.put(bUsuario.getUsuario(), bUsuario);
 		this.usuarios.put(cUsuario.getUsuario(), cUsuario);
 		this.usuarios.put(dUsuario.getUsuario(), dUsuario);
 
 		this.tecnicos.put(((Tecnico)bUsuario.getRol()).getId(), bUsuario);
-
-		Cliente aCliente = new Cliente("202020", "Ramon", "Lorca","falsa 123");
-		this.clientes.put(aCliente.getDniCliente(), aCliente);
-		
-		Cliente bCliente = new Cliente("101010", "Hector", "Lorcar","falsa 1234");
-		this.clientes.put(bCliente.getDniCliente(), bCliente);
-		
-		bCliente.getAgenda().add(new Reserva(2,8,1700,1800));
-		
-		List<Usuario> tecnicos = new ArrayList<>(getTecnicos().values());
-		
-		Articulo almuerzo = new Articulo("Almuerzo",(float) 2, (float) 200.00);
-		
-		Articulo combustible = new Articulo("Combustible", (float) 10, (float) 120.3);
-		Articulo pintura = new Articulo("Pintura", (float) 2, (float) 130);
-		Articulo clavo = new Articulo("Clavos", (float)200, (float) 2);
-		
-		List<Articulo> gastosAdicionales = new ArrayList<>();
-		gastosAdicionales.add(combustible);
-		gastosAdicionales.add(almuerzo);
-		
-		List<Articulo> costosAdicionales = new ArrayList<>();
-		costosAdicionales.add(clavo);
-		costosAdicionales.add(pintura);
-		
-		Reparacion aVisita = new Reparacion(aCliente, tecnicos, 1, 12, 1600, 1800);
-		aVisita.setGastosAdicionales(gastosAdicionales);
-		aVisita.setOtrosCostos(costosAdicionales);
-		aVisita.setEstado(EN_CURSO);
-		this.visitas.put(aVisita.getIdVisita(), aVisita);
-
-		Instalacion bVisita = new Instalacion(bCliente, tecnicos, 9, 12, 1600, 1800);
-		bVisita.setEstado(PROGRAMADO);
-		this.visitas.put(bVisita.getIdVisita(), bVisita);
 	}
 
 	public static Empresa getInstancia() {
