@@ -171,7 +171,7 @@ private Administrativo admin;
 		idVisitaLabel.setBounds(463, 47, 230, 30);
 		facturacionPanel.add(idVisitaLabel);
 		
-		JButton imprimirButton = new JButton("Generar factura");
+		JButton imprimirButton = new JButton("Imprimir factura");
 		imprimirButton.setBounds(605, 604, 150, 38);
 		imprimirButton.setFocusable(false);
 		imprimirButton.addActionListener(e-> {
