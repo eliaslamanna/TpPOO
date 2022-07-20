@@ -32,6 +32,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 public class AdministrativoGui extends JFrame {
 
@@ -41,7 +43,44 @@ private JTextField textoTecnico;
 private Administrativo admin;
 	
 	public AdministrativoGui(Usuario administrativo) {
+		
+		addWindowListener(new WindowListener() {
+			@Override
+			public void windowOpened(WindowEvent e) {
 
+			}
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+				new LoginGui();
+			}
+
+			@Override
+			public void windowClosed(WindowEvent e) {
+
+			}
+
+			@Override
+			public void windowIconified(WindowEvent e) {
+
+			}
+
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+
+			}
+
+			@Override
+			public void windowActivated(WindowEvent e) {
+
+			}
+
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+
+			}
+		});
+		
 		this.setBounds(100, 100, 1900, 1000);
 		this.setTitle("Cable e Internet - Administrador");
 		this.setLocationRelativeTo(null);
