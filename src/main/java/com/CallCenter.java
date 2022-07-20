@@ -5,9 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-import javax.swing.JOptionPane;
-
-import com.exception.*;
+import com.exception.ClienteExistenteException;
+import com.exception.HorarioParaTurnoIncorrectoException;
+import com.exception.HorarioReservadoException;
+import com.exception.StockInsuficienteException;
+import com.exception.TecnicosInsuficientesException;
+import com.exception.TiempoMinimoInstalacionIncorrectoException;
+import com.exception.TiempoMinimoReparacionIncorrectoException;
 
 public class CallCenter extends Rol {
 
@@ -106,4 +110,5 @@ public class CallCenter extends Rol {
 	}
 
 }
+
 

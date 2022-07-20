@@ -81,54 +81,24 @@ public class Administrativo extends Rol {
     }
     
     
-    private void CreatePdf(int nroFactura, float precioFactura, Integer id) throws DocumentException, FileNotFoundException{
+    private void CreatePdf(int nroFactura, float precioFactura, Integer id){
     	
-    	/*try {
-    	Document document = new Document();
-    	PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("bills/Factura_" + nroFactura + ".pdf") );
-    	document.open();
-    	
-    	PdfContentByte cb = writer.getDirectContent();
-    	Graphics g = cb.createGraphicsShapes(PageSize.LETTER.getWidth(), PageSize.LETTER.getHeight());
-
-        cb.saveState();
-    	
-    	ImageIcon logoFact = new ImageIcon("images/logoFact.png");
-    	g.drawImage(logoFact.getImage(), 200, 250, 200, 100, null);
-    
-    	
-    	Font font = new Font("Roboto", Font.BOLD, 20);
-    	g.setFont(font);
-    	g.setColor(Color.BLACK);
-    	g.drawString("Factura Numero " + nroFactura, 0, 100);
-    	
-    	Font font2 = new Font("Helvetica", Font.PLAIN, 15);
-    	g.setFont(font2);
-    	g.drawString("Id de visita: " + id, 0, 150);
-    	g.drawString("Precio final: " + precioFactura, 0, 200);
-    	
-    	document.close();
-    	
-    	JOptionPane.showMessageDialog(null, "La factura de la visita "+ id + " se guardo en el siguiente archivo images/Factura_" + nroFactura + ".png", "Imprimir factura", JOptionPane.INFORMATION_MESSAGE);
-    	
-    	}catch (DocumentException de) {
-    		
-    	}catch (FileNotFoundException nf) {
-    		
-    	}*/
 
         try {
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream("bills/Factura_" + nroFactura + ".pdf"));
             document.open();
-            document.add(new Paragraph("Factura nro: " + nroFactura));
+            document.add(new Paragraph("Cable e Internet"));
+            document.add(new Paragraph("Factura número: " + nroFactura));
+            document.add(new Paragraph("ID de visita: " + id));
+            document.add(new Paragraph("Precio final(Se incluye IVA + 30% de margen): $" + precioFactura));
             document.close();
         }
         catch(Exception e)  {
-            System.out.println("No se imprimio.");
+        	JOptionPane.showMessageDialog(null, "La factura de la visita "+ id + " no se pudo imprimir", "Imprimir factura", JOptionPane.ERROR_MESSAGE);
         }
 
-        JOptionPane.showMessageDialog(null, "La factura de la visita "+ id + " se guardo en el siguiente archivo images/Factura_" + nroFactura + ".pdf", "Imprimir factura", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "La factura de la visita "+ id + " se guardo en el siguiente archivo bills/Factura_" + nroFactura + ".pdf", "Imprimir factura", JOptionPane.INFORMATION_MESSAGE);
     	
    
     }
