@@ -73,31 +73,13 @@ public class Tecnico extends Rol {
         }
     }*/
 
-    public void revisarVisita(String idVisita){
+    public void revisarVisita(String idVisita, String tiempoTrabajado, List<Articulo> gastosAdicionales, List<Articulo> costosAdicionales){
         Visita visita = Empresa.getInstancia().getVisitas().get(Integer.valueOf(idVisita));
-        Scanner read = new Scanner(System.in);
-
-        System.out.println("Complete los datos solicitados para la visita " + visita.getIdVisita());
-        System.out.println("Tiempo trabajado: ");
-        int tiempoTrabajado = read.nextInt();
-        read.nextLine();
-        System.out.println("---------------------------------------");
-        System.out.println("Lista de materiales usados: ");
-        List<Articulo> materialesUsados = cargarArticulos();
-
-        System.out.println("---------------------------------------");
-        System.out.println("Lista de otros costos: ");
-        List<Articulo> otrosCostos = cargarArticulos();
-
-        System.out.println("---------------------------------------");
-        System.out.println("Lista de gastos adicionales: ");
-        List<Articulo> gastos = cargarArticulos();
 
         visita.setEstado(EstadoVisita.EN_CURSO);
-        visita.setTiempoTrabajado(tiempoTrabajado);
-        visita.setMateriales(materialesUsados);
-        visita.setOtrosCostos(otrosCostos);
-        visita.setGastosAdicionales(gastos);
+        visita.setTiempoTrabajado(Integer.valueOf(tiempoTrabajado));
+        visita.setOtrosCostos(costosAdicionales);
+        visita.setGastosAdicionales(gastosAdicionales);
     }
 
     public List<Articulo> cargarArticulos() {

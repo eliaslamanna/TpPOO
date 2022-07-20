@@ -82,7 +82,7 @@ public class AdministradorSistema extends Rol {
         else if(articulo.getCantidad() != null && articulo.getCantidad() < 0) {
             throw new CantidadNegativaException();
         }
-        else if(articulo.getPrecioUnidad() != null && articulo.getPrecioUnidad() < 0) {
+        else if(articulo.getPrecio() != null && articulo.getPrecio() < 0) {
             throw new PrecioNegativoException();
         }
 

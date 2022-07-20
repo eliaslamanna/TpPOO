@@ -1,17 +1,12 @@
 package com.gui;
 
 import com.Administrativo;
-import com.CallCenter;
 import com.Empresa;
 import com.Tecnico;
 import com.Usuario;
 import com.Visita;
-import com.exception.HorarioReservadoException;
-import com.exception.StockInsuficienteException;
-import com.exception.TecnicosInsuficientesException;
 import com.itextpdf.text.DocumentException;
 
-import static com.EstadoVisita.EN_CURSO;
 import static java.util.stream.Collectors.toList;
 
 import java.awt.Color;
@@ -33,24 +28,19 @@ import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
-import javax.swing.JScrollBar;
 
-public class AdministradorGui extends JFrame {
+public class AdministrativoGui extends JFrame {
 
 private JPanel contentPane;
 private JTextField textoId;
 private JTextField textoTecnico;
 private Administrativo admin;
 	
-	public AdministradorGui(Usuario administrativo) {
+	public AdministrativoGui(Usuario administrativo) {
 
 		this.setBounds(100, 100, 1900, 1000);
 		this.setTitle("Cable e Internet - Administrador");
@@ -83,7 +73,7 @@ private Administrativo admin;
 		tabbedPane.setBounds(532, 29, 1324, 904);
 		contentPane.add(tabbedPane);
 		
-		JLabel bienvenidoLabel = new JLabel("Bienvenid@");
+		JLabel bienvenidoLabel = new JLabel("Bienvenid@ " + administrativo.getUsuario());
 		bienvenidoLabel.setFont(new Font("Tahoma", Font.PLAIN, 33));
 		bienvenidoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		tabbedPane.addTab("Home", null, bienvenidoLabel, null);

@@ -69,7 +69,7 @@ public class AdministradorSistGui extends JFrame {
 		tabbedPane.setBounds(532, 29, 1324, 904);
 		contentPane.add(tabbedPane);
 		
-		JLabel homeLabel = new JLabel("Bienvenid@");
+		JLabel homeLabel = new JLabel("Bienvenid@ " + administradorSistema.getUsuario());
 		homeLabel.setFont(new Font("Tahoma", Font.PLAIN, 33));
 		homeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		tabbedPane.addTab("Home", null, homeLabel, null);

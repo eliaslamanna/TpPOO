@@ -7,20 +7,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 
 import com.Articulo;
+import com.Tecnico;
 import com.Usuario;
-import javax.swing.SwingConstants;
-import javax.swing.JList;
 
 public class RevisarVisitaGUI extends JFrame {
 
@@ -75,24 +66,36 @@ public class RevisarVisitaGUI extends JFrame {
         refreshGastosAdicionalesButton.setBounds(131, 374, 212, 23);
         revisarVisitaForm.add(refreshGastosAdicionalesButton);
         refreshGastosAdicionalesButton.addActionListener(e -> adicionalList.setListData(gastosAdicionales.toArray()));
-        
+
         JButton refreshCostosAdicionalesButton = new JButton("Actualizar costos adicionales");
         refreshCostosAdicionalesButton.setBounds(581, 374, 202, 23);
         revisarVisitaForm.add(refreshCostosAdicionalesButton);
-        
-        JButton btnEliminarGastoAdicional = new JButton("Eliminar gasto adicional");
-        btnEliminarGastoAdicional.setBounds(236, 70, 202, 23);
-        revisarVisitaForm.add(btnEliminarGastoAdicional);
-        
-        JButton btnEliminarOtroCosto = new JButton("Eliminar otro costo");
-        btnEliminarOtroCosto.setBounds(688, 70, 202, 23);
-        revisarVisitaForm.add(btnEliminarOtroCosto);
         refreshCostosAdicionalesButton.addActionListener(e -> costosList.setListData(otrosCostos.toArray()));
+
+        JButton eliminarGastoAdicionalButton = new JButton("Eliminar gasto adicional");
+        eliminarGastoAdicionalButton.setBounds(236, 70, 202, 23);
+        revisarVisitaForm.add(eliminarGastoAdicionalButton);
+        
+        JButton eliminarOtroCostoButton = new JButton("Eliminar otro costo");
+        eliminarOtroCostoButton.setBounds(688, 70, 202, 23);
+        revisarVisitaForm.add(eliminarOtroCostoButton);
 
         revisarVisitaPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
         otrosCostosButton.addActionListener(e -> new AgregarCostoAdicionalesGUI(otrosCostos));
         gastosAdicionalesButton.addActionListener(e -> new AgregarGastosAdicionalesGUI(gastosAdicionales));
+        eliminarOtroCostoButton.addActionListener(e -> new EliminarCostoAdicionalGUI(otrosCostos));
+        eliminarGastoAdicionalButton.addActionListener(e -> new EliminarGastoAdicionalGUI(gastosAdicionales));
+
+        revisarButton.addActionListener(e -> {
+            try {
+                ((Tecnico) tecnico.getRol()).revisarVisita(idVisita, tiempoTrabajado.getText(), gastosAdicionales, otrosCostos);
+                JOptionPane.showMessageDialog(null,"El servicio con id " + idVisita +" se reviso con exito.", "Revisar Servicio", JOptionPane.INFORMATION_MESSAGE);
+                cerrarVentana(e);
+            } catch(NumberFormatException nf) {
+                JOptionPane.showMessageDialog(null,"Los datos ingresados no son validos", "Revisar visita", JOptionPane.ERROR_MESSAGE);
+            }
+        });
 
         cancelarButton.addActionListener(e -> cerrarVentana(e));
 
