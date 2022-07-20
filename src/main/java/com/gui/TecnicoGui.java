@@ -128,7 +128,7 @@ public class TecnicoGui extends JFrame {
 		serviciosList.setListData(visitasTecnico.toArray());
 		
 		JButton revisarBtn = new JButton("Revisar servicios");
-		revisarBtn.setBounds(607, 686, 157, 41);
+		revisarBtn.setBounds(374, 686, 157, 41);
 		revisarBtn.setFocusable(false);
 		revisarBtn.addActionListener(e -> {
 			int answer = JOptionPane.showConfirmDialog(null, "Desea dar por revisar un servicio?", "Revisar servicio", JOptionPane.YES_NO_OPTION);
@@ -146,7 +146,6 @@ public class TecnicoGui extends JFrame {
 		JButton refreshServBtn = new JButton("");
 		refreshServBtn.setBounds(205, 46, 63, 58);
 		refreshServBtn.setIcon(refresh);
-		serviciosPanel.add(refreshServBtn);
 		refreshServBtn.addActionListener(e -> {
 			List<Visita> visitas = new ArrayList<>();
 			Integer id = ((Tecnico) tecnico.getRol()).getId();
@@ -160,6 +159,13 @@ public class TecnicoGui extends JFrame {
 			serviciosList.setListData(visitas.toArray());
 		});
 
+		serviciosPanel.add(refreshServBtn);
+		
+		JButton cancelarBtn = new JButton("Cancelar servicios");
+		cancelarBtn.setFocusable(false);
+		cancelarBtn.setBounds(786, 686, 157, 41);
+		serviciosPanel.add(cancelarBtn);
+		
 		JPanel agendaPanel = new JPanel();
 		tabbedPane.addTab("Agenda", null, agendaPanel, null);
 		agendaPanel.setLayout(null);
