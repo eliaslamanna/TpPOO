@@ -83,7 +83,8 @@ public class Administrativo extends Rol {
             PdfWriter.getInstance(document, new FileOutputStream("bills/Factura_" + nroFactura + ".pdf"));
             document.open();
             document.add(new Paragraph("Cable e Internet"));
-            document.add(new Paragraph("Factura nï¿½mero: " + nroFactura));
+            document.add(new Paragraph(" "));
+            document.add(new Paragraph("Factura número: " + nroFactura));
             document.add(new Paragraph("Cliente: " + visita.getCliente().getNombre() + " " + visita.getCliente().getApellido()));
             document.add(new Paragraph("DNI cliente: " + visita.getCliente().getDniCliente()));
             document.add(new Paragraph("Direccion cliente: " + visita.getCliente().getDireccion()));

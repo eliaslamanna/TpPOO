@@ -1,5 +1,6 @@
 package com.gui.tecnico;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
@@ -54,11 +55,19 @@ public class RevisarVisitaGUI extends JFrame {
         
         JList adicionalList = new JList();
         adicionalList.setBounds(57, 104, 359, 259);
+        adicionalList.setFocusable(false);
+		adicionalList.setSelectionBackground(Color.white);
+		DefaultListCellRenderer cellRenderer = (DefaultListCellRenderer)adicionalList.getCellRenderer();
+		cellRenderer.setHorizontalAlignment(SwingConstants .CENTER);
         revisarVisitaForm.add(adicionalList);
         ArrayList<Articulo> gastosAdicionales = new ArrayList<>();
 
         JList costosList = new JList();
         costosList.setBounds(499, 104, 359, 259);
+        costosList.setFocusable(false);
+		costosList.setSelectionBackground(Color.white);
+		DefaultListCellRenderer cellRendererr = (DefaultListCellRenderer)costosList.getCellRenderer();
+		cellRendererr.setHorizontalAlignment(SwingConstants .CENTER);
         revisarVisitaForm.add(costosList);
         ArrayList<Articulo> otrosCostos = new ArrayList<>();
 

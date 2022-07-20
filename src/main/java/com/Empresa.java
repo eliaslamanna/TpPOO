@@ -55,6 +55,8 @@ public class Empresa {
 		Usuario cUsuario = new Usuario(new Administrativo(), "admin", "admin");
 		Usuario dUsuario = new Usuario(new CallCenter(), "callcenter", "callcenter");
 		
+		((Tecnico)bUsuario.getRol()).getAgenda().add(new Reserva(2,8,1700,1800));
+		
 		this.usuarios.put(aUsuario.getUsuario(), aUsuario);
 		this.usuarios.put(bUsuario.getUsuario(), bUsuario);
 		this.usuarios.put(cUsuario.getUsuario(), cUsuario);
@@ -67,6 +69,8 @@ public class Empresa {
 		
 		Cliente bCliente = new Cliente("101010", "Hector", "Lorcar","falsa 1234");
 		this.clientes.put(bCliente.getDniCliente(), bCliente);
+		
+		bCliente.getAgenda().add(new Reserva(2,8,1700,1800));
 		
 		List<Usuario> tecnicos = new ArrayList<>(getTecnicos().values());
 		
