@@ -76,7 +76,7 @@ public class AdministradorSistGui extends JFrame {
 			}
 		});
 		
-		this.setBounds(100, 100, 1900, 1000);
+		this.setBounds(100, 100, 1336, 748);
 		this.setTitle("Cable e Internet - Administrador Sistema");
 		this.setLocationRelativeTo(null);
 		contentPane = new JPanel();
@@ -91,12 +91,12 @@ public class AdministradorSistGui extends JFrame {
 		this.setIconImage(logo.getImage());
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(45, 386, 447, 228);
+		lblNewLabel.setBounds(29, 279, 364, 182);
 		lblNewLabel.setIcon(centro);
 		contentPane.add(lblNewLabel);
 		
 		JButton logoutButton = new JButton("Logout");
-		logoutButton.setBounds(190, 843, 141, 48);
+		logoutButton.setBounds(149, 602, 141, 48);
 		logoutButton.setFocusable(false);
 		contentPane.add(logoutButton);
 		logoutButton.addActionListener(e -> {
@@ -105,7 +105,7 @@ public class AdministradorSistGui extends JFrame {
 		});
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(532, 29, 1324, 904);
+		tabbedPane.setBounds(420, 44, 889, 647);
 		contentPane.add(tabbedPane);
 		
 		JLabel homeLabel = new JLabel("Bienvenid@ " + administradorSistema.getUsuario());
@@ -118,7 +118,7 @@ public class AdministradorSistGui extends JFrame {
 		usuariosPanel.setLayout(null);
 		
 		JList usuariosList = new JList();
-		usuariosList.setBounds(350, 109, 665, 400);
+		usuariosList.setBounds(276, 109, 376, 400);
 		usuariosList.setFocusable(false);
 		usuariosList.setSelectionBackground(Color.white);
 		DefaultListCellRenderer cellRenderer = (DefaultListCellRenderer)usuariosList.getCellRenderer();
@@ -128,19 +128,19 @@ public class AdministradorSistGui extends JFrame {
 		usuariosPanel.add(usuariosList);
 		
 		JButton crearUsuarioButton = new JButton("Crear");
-		crearUsuarioButton.setBounds(434, 600, 131, 37);
+		crearUsuarioButton.setBounds(190, 541, 131, 37);
 		crearUsuarioButton.setFocusable(false);
 		usuariosPanel.add(crearUsuarioButton);
 		crearUsuarioButton.addActionListener(new CreateUserListener(administradorSistema));
 		
-		JButton modificarPasswordButton = new JButton("Cambiar Contrase\\u00f1a");
-		modificarPasswordButton.setBounds(834, 600, 131, 37);
+		JButton modificarPasswordButton = new JButton("Cambiar Contrase\u00F1a");
+		modificarPasswordButton.setBounds(592, 541, 168, 37);
 		modificarPasswordButton.setFocusable(false);
 		usuariosPanel.add(modificarPasswordButton);
 		modificarPasswordButton.addActionListener(new ModificarPasswordListener(administradorSistema));
 
 		JButton refreshButton = new JButton("");
-		refreshButton.setBounds(225, 109, 63, 58);
+		refreshButton.setBounds(69, 109, 63, 58);
 		refreshButton.setFocusable(false);
 		refreshButton.setIcon(refresh);
 		usuariosPanel.add(refreshButton);
@@ -154,13 +154,13 @@ public class AdministradorSistGui extends JFrame {
 		tecnicosPanel.setLayout(null);
 
 		JButton modificarTecnicoButton = new JButton("Modificar");
-		modificarTecnicoButton.setBounds(638, 600, 131, 37);
+		modificarTecnicoButton.setBounds(406, 537, 131, 37);
 		modificarTecnicoButton.setFocusable(false);
 		tecnicosPanel.add(modificarTecnicoButton);
 		modificarTecnicoButton.addActionListener(new ModificarTecnicoListener(administradorSistema));
 		
 		JList tecnicosList = new JList();
-		tecnicosList.setBounds(352, 109, 665, 400);
+		tecnicosList.setBounds(188, 109, 565, 400);
 		tecnicosList.setFocusable(false);
 		tecnicosList.setSelectionBackground(Color.white);
 		DefaultListCellRenderer cellRendererr = (DefaultListCellRenderer)tecnicosList.getCellRenderer();
@@ -170,7 +170,7 @@ public class AdministradorSistGui extends JFrame {
 		tecnicosPanel.add(tecnicosList);
 
 		JButton refreshTecnicosButton = new JButton("");
-		refreshTecnicosButton.setBounds(225, 109, 63, 58);
+		refreshTecnicosButton.setBounds(69, 109, 63, 58);
 		refreshTecnicosButton.setFocusable(false);
 		refreshTecnicosButton.setIcon(refresh);
 		tecnicosPanel.add(refreshTecnicosButton);
@@ -184,7 +184,7 @@ public class AdministradorSistGui extends JFrame {
 		stockPanel.setLayout(null);
 
 		JList stockList = new JList();
-		stockList.setBounds(352, 109, 665, 400);
+		stockList.setBounds(201, 106, 540, 400);
 		stockList.setFocusable(false);
 		stockList.setSelectionBackground(Color.white);
 		DefaultListCellRenderer cellRenderer_3 = (DefaultListCellRenderer)stockList.getCellRenderer();
@@ -194,7 +194,7 @@ public class AdministradorSistGui extends JFrame {
 		stockPanel.add(stockList);
 
 		JButton refreshStockButton = new JButton("");
-		refreshStockButton.setBounds(218, 110, 63, 58);
+		refreshStockButton.setBounds(69, 109, 63, 58);
 		refreshStockButton.setFocusable(false);
 		refreshStockButton.setIcon(refresh);
 		stockPanel.add(refreshStockButton);
@@ -204,19 +204,19 @@ public class AdministradorSistGui extends JFrame {
 		});
 		
 		JButton crearStockButton = new JButton("Crear");
-		crearStockButton.setBounds(392, 562, 131, 37);
+		crearStockButton.setBounds(201, 546, 131, 37);
 		crearStockButton.setFocusable(false);
 		stockPanel.add(crearStockButton);
 		crearStockButton.addActionListener(new CreateStockListener(administradorSistema));
 
 		JButton modificarStockButton = new JButton("Modificar");
-		modificarStockButton.setBounds(610, 562, 131, 37);
+		modificarStockButton.setBounds(418, 546, 131, 37);
 		modificarStockButton.setFocusable(false);
 		stockPanel.add(modificarStockButton);
 		modificarStockButton.addActionListener(new ModicarStockListener(administradorSistema));
 		
 		JButton eliminarStockButton = new JButton("Eliminar");
-		eliminarStockButton.setBounds(834, 562, 131, 37);
+		eliminarStockButton.setBounds(611, 546, 131, 37);
 		eliminarStockButton.setFocusable(false);
 		stockPanel.add(eliminarStockButton);
 		eliminarStockButton.addActionListener(new EliminarStockListener(administradorSistema));
@@ -226,13 +226,13 @@ public class AdministradorSistGui extends JFrame {
 		costoHorasPanel.setLayout(null);
 
 		JButton modificarCostoHorasButton = new JButton("Modificar");
-		modificarCostoHorasButton.setBounds(638, 600, 131, 37);
+		modificarCostoHorasButton.setBounds(400, 538, 131, 37);
 		modificarCostoHorasButton.setFocusable(false);
 		costoHorasPanel.add(modificarCostoHorasButton);
 		modificarCostoHorasButton.addActionListener(new ModificarCostoHorasListener(administradorSistema));
 
 		JList costoHorasList = new JList();
-		costoHorasList.setBounds(352, 109, 665, 400);
+		costoHorasList.setBounds(237, 109, 461, 400);
 		costoHorasList.setFocusable(false);
 		costoHorasList.setSelectionBackground(Color.white);
 		DefaultListCellRenderer cellRenderer_1 = (DefaultListCellRenderer)costoHorasList.getCellRenderer();
@@ -242,7 +242,7 @@ public class AdministradorSistGui extends JFrame {
 		costoHorasPanel.add(costoHorasList);
 
 		JButton refreshCostoHorasButton = new JButton("");
-		refreshCostoHorasButton.setBounds(225, 109, 63, 58);
+		refreshCostoHorasButton.setBounds(69, 109, 63, 58);
 		refreshCostoHorasButton.setFocusable(false);
 		refreshCostoHorasButton.setIcon(refresh);
 		costoHorasPanel.add(refreshCostoHorasButton);
@@ -257,7 +257,7 @@ public class AdministradorSistGui extends JFrame {
 		clientePanel.setLayout(null);
 		
 		JList clientesList = new JList();
-		clientesList.setBounds(352, 109, 665, 400);
+		clientesList.setBounds(215, 109, 518, 400);
 		clientesList.setFocusable(false);
 		clientesList.setSelectionBackground(Color.white);
 		DefaultListCellRenderer cellRenderer_2 = (DefaultListCellRenderer)clientesList.getCellRenderer();
@@ -269,7 +269,7 @@ public class AdministradorSistGui extends JFrame {
 		
 		JButton refreshClientesButton = new JButton("");
 		refreshClientesButton.setFocusable(false);
-		refreshClientesButton.setBounds(225, 109, 63, 58);
+		refreshClientesButton.setBounds(69, 109, 63, 58);
 		refreshClientesButton.setIcon(refresh);
 		clientePanel.add(refreshClientesButton);
 		refreshClientesButton.addActionListener(e -> {
@@ -278,7 +278,7 @@ public class AdministradorSistGui extends JFrame {
 		});
 
 		JButton modificarClienteButton = new JButton("Modificar");
-		modificarClienteButton.setBounds(610, 562, 131, 37);
+		modificarClienteButton.setBounds(419, 537, 131, 37);
 		modificarClienteButton.setFocusable(false);
 		clientePanel.add(modificarClienteButton);
 		modificarClienteButton.addActionListener(new ModificarClienteListener(administradorSistema));

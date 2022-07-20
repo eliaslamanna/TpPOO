@@ -1,22 +1,39 @@
 package com.gui.tecnico;
 
-import com.*;
-import com.exception.CambioEstadoVisitaException;
-import com.exception.VisitaNoExisteException;
-import com.gui.LoginGui;
-import com.gui.tecnico.RevisarVisitaGUI;
-
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
-import static com.EstadoVisita.PROGRAMADO;
+import com.Empresa;
+import com.EstadoVisita;
+import com.Reserva;
+import com.Tecnico;
+import com.Usuario;
+import com.Visita;
+import com.exception.CambioEstadoVisitaException;
+import com.exception.VisitaNoExisteException;
+import com.gui.LoginGui;
 
 public class TecnicoGui extends JFrame {
 
@@ -61,7 +78,7 @@ public class TecnicoGui extends JFrame {
 			}
 		});
 
-		this.setBounds(100, 100, 1900, 1000);
+		this.setBounds(100, 100, 1336, 748);
 		this.setTitle("Cable e Internet - Tecnico");
 		this.setLocationRelativeTo(null);
 		contentPane = new JPanel();
@@ -76,12 +93,12 @@ public class TecnicoGui extends JFrame {
 		this.setIconImage(logo.getImage());
 		JLabel contentLabel = new JLabel("");
 		contentLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		contentLabel.setBounds(45, 386, 447, 228);
+		contentLabel.setBounds(29, 279, 364, 182);
 		contentLabel.setIcon(centro);
 		contentPane.add(contentLabel);
 		
 		JButton logoutButton = new JButton("Logout");
-		logoutButton.setBounds(190, 843, 141, 48);
+		logoutButton.setBounds(149, 602, 141, 48);
 		contentPane.add(logoutButton);
 		logoutButton.addActionListener(e -> {
 			new LoginGui();
@@ -89,7 +106,7 @@ public class TecnicoGui extends JFrame {
 		});
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(532, 29, 1324, 904);
+		tabbedPane.setBounds(413, 43, 897, 630);
 		contentPane.add(tabbedPane);
 		
 		JLabel bienvenidoLabel = new JLabel("Bienvenid@\n " + tecnico.getUsuario() + " \n,Id de tecnico: " + ((Tecnico) tecnico.getRol()).getId());
@@ -102,7 +119,7 @@ public class TecnicoGui extends JFrame {
 		serviciosPanel.setLayout(null);
 
 		JList serviciosList = new JList();
-		serviciosList.setBounds(279, 173, 783, 487);
+		serviciosList.setBounds(208, 124, 604, 304);
 		serviciosList.setFocusable(false);
 		serviciosList.setSelectionBackground(Color.white);
 		DefaultListCellRenderer cellRenderer = (DefaultListCellRenderer)serviciosList.getCellRenderer();
@@ -110,13 +127,13 @@ public class TecnicoGui extends JFrame {
 		serviciosPanel.add(serviciosList);
 
 		JButton revisarServiciosButton = new JButton("Revisar servicios");
-		revisarServiciosButton.setBounds(556, 535, 158, 41);
+		revisarServiciosButton.setBounds(267, 460, 158, 41);
 		serviciosPanel.add(revisarServiciosButton);
 		
 		JLabel serviciosLabel = new JLabel("Servicios");
 		serviciosLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		serviciosLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
-		serviciosLabel.setBounds(554, 123, 251, 39);
+		serviciosLabel.setBounds(367, 75, 251, 39);
 		serviciosPanel.add(serviciosLabel);
 
 		List<Visita> visitasTecnico = new ArrayList<>();
@@ -138,7 +155,7 @@ public class TecnicoGui extends JFrame {
 			try {
 			if(answer == 0) {
 				String idVisita = JOptionPane.showInputDialog(null, "Ingrese el id de la visita a revisar", "Revisar servicio", JOptionPane.INFORMATION_MESSAGE);
-				if(Empresa.getInstancia().getVisitas().get(Integer.valueOf(idVisita)).getEstado() == PROGRAMADO) {
+				if(Empresa.getInstancia().getVisitas().get(Integer.valueOf(idVisita)).getEstado() == EstadoVisita.PROGRAMADO) {
 					new RevisarVisitaGUI(tecnico, idVisita);
 				} else {
 					JOptionPane.showMessageDialog(null, "La visita con id " + idVisita + " ya fue revisada.", "Revisar servicio", JOptionPane.ERROR_MESSAGE);
@@ -151,7 +168,7 @@ public class TecnicoGui extends JFrame {
 		serviciosPanel.add(revisarBtn);
 		
 		JButton refreshServBtn = new JButton("");
-		refreshServBtn.setBounds(205, 46, 63, 58);
+		refreshServBtn.setBounds(68, 46, 63, 58);
 		refreshServBtn.setIcon(refresh);
 		refreshServBtn.addActionListener(e -> {
 			List<Visita> visitas = new ArrayList<>();
@@ -170,7 +187,7 @@ public class TecnicoGui extends JFrame {
 		
 		JButton cancelarBtn = new JButton("Cancelar servicios");
 		cancelarBtn.setFocusable(false);
-		cancelarBtn.setBounds(786, 686, 157, 41);
+		cancelarBtn.setBounds(611, 460, 157, 41);
 		serviciosPanel.add(cancelarBtn);
 		cancelarBtn.addActionListener(e -> {
 			String idVisita = JOptionPane.showInputDialog(null, "Ingrese el id de la visita que quiere cancelar", "Cancelar visita", JOptionPane.INFORMATION_MESSAGE);
@@ -191,7 +208,7 @@ public class TecnicoGui extends JFrame {
 		agendaPanel.setLayout(null);
 
 		JList agendaList = new JList();
-		agendaList.setBounds(350, 109, 665, 400);
+		agendaList.setBounds(158, 122, 665, 400);
 		agendaList.setFocusable(false);
 		agendaList.setSelectionBackground(Color.white);
 		DefaultListCellRenderer cellRend = (DefaultListCellRenderer)agendaList.getCellRenderer();
@@ -201,7 +218,7 @@ public class TecnicoGui extends JFrame {
 		agendaPanel.add(agendaList);
 		
 		JButton refreshAgendaButton = new JButton("");
-		refreshAgendaButton.setBounds(205, 46, 63, 58);
+		refreshAgendaButton.setBounds(66, 41, 63, 58);
 		refreshAgendaButton.setIcon(refresh);
 		agendaPanel.add(refreshAgendaButton);
 		this.setVisible(true);

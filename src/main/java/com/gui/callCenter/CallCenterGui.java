@@ -72,7 +72,7 @@ public class CallCenterGui extends JFrame implements ActionListener{
 
 			}
 		});
-		this.setBounds(100, 100, 1900, 1000);
+		this.setBounds(100, 100, 1336, 748);
 		this.setTitle("Cable e Internet - Call Center");
 		this.setLocationRelativeTo(null);
 		contentPane = new JPanel();
@@ -86,12 +86,12 @@ public class CallCenterGui extends JFrame implements ActionListener{
 		this.setIconImage(logo.getImage());
 		JLabel contentLabel = new JLabel("");
 		contentLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		contentLabel.setBounds(45, 386, 447, 228);
+		contentLabel.setBounds(29, 279, 364, 182);
 		contentLabel.setIcon(centro);
 		contentPane.add(contentLabel);
 		
 		JButton logoutButton = new JButton("Logout");
-		logoutButton.setBounds(190, 843, 141, 48);
+		logoutButton.setBounds(149, 602, 141, 48);
 		logoutButton.setFocusable(false);
 		logoutButton.addActionListener(e -> {
 			new LoginGui();
@@ -101,7 +101,7 @@ public class CallCenterGui extends JFrame implements ActionListener{
 		contentPane.add(logoutButton);
 		
 		JTabbedPane tabbedPanel = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPanel.setBounds(532, 29, 1324, 904);
+		tabbedPanel.setBounds(437, 27, 859, 623);
 		contentPane.add(tabbedPanel);
 		
 		JLabel bienvenidoLabel = new JLabel("Bienvenid@ " + callCenter.getUsuario());
@@ -114,24 +114,24 @@ public class CallCenterGui extends JFrame implements ActionListener{
 		programarVisitaPanel.setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(563, 88, 169, 33);
+		textField.setBounds(363, 57, 169, 33);
 		programarVisitaPanel.add(textField);
 		textField.setColumns(10);
 		
 		JLabel dniClienteLabel = new JLabel("Ingresar DNI del cliente");
 		dniClienteLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		dniClienteLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		dniClienteLabel.setBounds(384, 86, 169, 33);
+		dniClienteLabel.setBounds(197, 55, 169, 33);
 		programarVisitaPanel.add(dniClienteLabel);
 		
 		buscarButton = new JButton("Buscar");
-		buscarButton.setBounds(761, 88, 89, 33);
+		buscarButton.setBounds(542, 57, 89, 33);
 		buscarButton.addActionListener(this);
 		buscarButton.setFocusable(false);
 		programarVisitaPanel.add(buscarButton);
 		
 		JButton cargarClienteButton = new JButton("Cargar Cliente");
-		cargarClienteButton.setBounds(879, 88, 120, 33);
+		cargarClienteButton.setBounds(641, 57, 120, 33);
 		cargarClienteButton.setFocusable(false);
 		cargarClienteButton.addActionListener(new CreateCustomerListener(callCenter));
 		programarVisitaPanel.add(cargarClienteButton);
@@ -140,12 +140,12 @@ public class CallCenterGui extends JFrame implements ActionListener{
 		clienteNoExisteLabel.setForeground(Color.RED);
 		clienteNoExisteLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		clienteNoExisteLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		clienteNoExisteLabel.setBounds(545, 55, 201, 33);
+		clienteNoExisteLabel.setBounds(348, 27, 201, 33);
 		clienteNoExisteLabel.setVisible(false);
 		programarVisitaPanel.add(clienteNoExisteLabel);
 
 		registrarVisitaPanel = new JPanel();
-		registrarVisitaPanel.setBounds(293, 156, 833, 550);
+		registrarVisitaPanel.setBounds(151, 117, 599, 403);
 		programarVisitaPanel.add(registrarVisitaPanel);
 		registrarVisitaPanel.setLayout(null);
 		registrarVisitaPanel.setVisible(false);
@@ -153,44 +153,44 @@ public class CallCenterGui extends JFrame implements ActionListener{
 		JLabel ingresarDiaLabel = new JLabel("Ingresar d\u00EDa");
 		ingresarDiaLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		ingresarDiaLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		ingresarDiaLabel.setBounds(226, 28, 169, 33);
+		ingresarDiaLabel.setBounds(44, 11, 169, 33);
 		registrarVisitaPanel.add(ingresarDiaLabel);
 		
 		JLabel ingresarHorarioInicioLabel = new JLabel("Ingresar horario inicio");
 		ingresarHorarioInicioLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		ingresarHorarioInicioLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		ingresarHorarioInicioLabel.setBounds(226, 162, 169, 33);
+		ingresarHorarioInicioLabel.setBounds(44, 102, 169, 33);
 		registrarVisitaPanel.add(ingresarHorarioInicioLabel);
 
 		JLabel ingresarMesLabel = new JLabel("Ingresar mes");
 		ingresarMesLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		ingresarMesLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		ingresarMesLabel.setBounds(226, 93, 169, 33);
+		ingresarMesLabel.setBounds(44, 55, 169, 33);
 		registrarVisitaPanel.add(ingresarMesLabel);
 
 		textoMes = new JTextField();
 		textoMes.setColumns(10);
-		textoMes.setBounds(420, 101, 169, 33);
+		textoMes.setBounds(215, 58, 169, 33);
 		registrarVisitaPanel.add(textoMes);
 
 		textoInicio = new JTextField();
 		textoInicio.setColumns(10);
-		textoInicio.setBounds(420, 162, 169, 33);
+		textoInicio.setBounds(215, 104, 169, 33);
 		registrarVisitaPanel.add(textoInicio);
 
 		textoFin = new JTextField();
 		textoFin.setColumns(10);
-		textoFin.setBounds(420, 224, 169, 33);
+		textoFin.setBounds(215, 146, 169, 33);
 		registrarVisitaPanel.add(textoFin);
 
 		JLabel ingresarHorarioFinLabel = new JLabel("Ingresar horario fin");
 		ingresarHorarioFinLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		ingresarHorarioFinLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		ingresarHorarioFinLabel.setBounds(226, 224, 169, 33);
+		ingresarHorarioFinLabel.setBounds(44, 146, 169, 33);
 		registrarVisitaPanel.add(ingresarHorarioFinLabel);
 
 		textoDia = new JTextField();
-		textoDia.setBounds(420, 30, 169, 33);
+		textoDia.setBounds(215, 13, 169, 33);
 		registrarVisitaPanel.add(textoDia);
 		textoDia.setColumns(10);
 		this.setVisible(true);
@@ -198,7 +198,7 @@ public class CallCenterGui extends JFrame implements ActionListener{
 		JRadioButton instalacionButton = new JRadioButton("Instalaci\u00F3n");
 		instalacionButton.setSelected(true);
 		instalacionButton.setHorizontalAlignment(SwingConstants.CENTER);
-		instalacionButton.setBounds(262, 305, 109, 23);
+		instalacionButton.setBounds(137, 201, 109, 23);
 		instalacionButton.addActionListener(e -> {
 			if(e.getSource() == instalacionButton) {
 				tipoVisita = "Instalacion";
@@ -208,7 +208,7 @@ public class CallCenterGui extends JFrame implements ActionListener{
 		
 		JRadioButton reparacionButton = new JRadioButton("Reparaci\u00F3n");
 		reparacionButton.setHorizontalAlignment(SwingConstants.CENTER);
-		reparacionButton.setBounds(456, 305, 109, 23);
+		reparacionButton.setBounds(356, 201, 109, 23);
 		reparacionButton.addActionListener(e -> {
 			if(e.getSource() == reparacionButton) {
 				tipoVisita = "Reparacion";
@@ -224,16 +224,16 @@ public class CallCenterGui extends JFrame implements ActionListener{
 		JLabel tecnicosRequeridosLabel = new JLabel("Cantidad de tecnicos requeridos");
 		tecnicosRequeridosLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		tecnicosRequeridosLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		tecnicosRequeridosLabel.setBounds(155, 371, 216, 33);
+		tecnicosRequeridosLabel.setBounds(0, 252, 216, 33);
 		registrarVisitaPanel.add(tecnicosRequeridosLabel);
 		
 		textoTecnicos = new JTextField();
 		textoTecnicos.setColumns(10);
-		textoTecnicos.setBounds(420, 373, 169, 33);
+		textoTecnicos.setBounds(215, 254, 169, 33);
 		registrarVisitaPanel.add(textoTecnicos);
 
 		JButton crearVisitaButton = new JButton("Crear visita");
-		crearVisitaButton.setBounds(348, 475, 131, 33);
+		crearVisitaButton.setBounds(232, 335, 131, 33);
 		crearVisitaButton.setFocusable(false);
 		registrarVisitaPanel.add(crearVisitaButton);
 
@@ -299,3 +299,4 @@ public class CallCenterGui extends JFrame implements ActionListener{
 		
 	}
 }
+

@@ -83,7 +83,7 @@ private Administrativo admin;
 			}
 		});
 		
-		this.setBounds(100, 100, 1900, 1000);
+		this.setBounds(100, 100, 1336, 748);
 		this.setTitle("Cable e Internet - Administrador");
 		this.setLocationRelativeTo(null);
 		contentPane = new JPanel();
@@ -97,12 +97,12 @@ private Administrativo admin;
 		this.setIconImage(logo.getImage());
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(45, 386, 447, 228);
+		lblNewLabel.setBounds(29, 279, 364, 182);
 		lblNewLabel.setIcon(centro);
 		contentPane.add(lblNewLabel);
 		
 		JButton logout = new JButton("Logout");
-		logout.setBounds(190, 843, 141, 48);
+		logout.setBounds(149, 602, 141, 48);
 		logout.setFocusable(false);
 		logout.addActionListener(e -> {
 			new LoginGui();
@@ -111,7 +111,7 @@ private Administrativo admin;
 		contentPane.add(logout);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(532, 29, 1324, 904);
+		tabbedPane.setBounds(430, 40, 880, 637);
 		contentPane.add(tabbedPane);
 		
 		JLabel bienvenidoLabel = new JLabel("Bienvenid@ " + administrativo.getUsuario());
@@ -126,16 +126,16 @@ private Administrativo admin;
 		JLabel idTecnicoLabel = new JLabel("Ingresar ID de tecnico");
 		idTecnicoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		idTecnicoLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		idTecnicoLabel.setBounds(463, 50, 230, 30);
+		idTecnicoLabel.setBounds(244, 51, 230, 30);
 		panel.add(idTecnicoLabel);
 
 		textoTecnico = new JTextField();
 		textoTecnico.setColumns(10);
-		textoTecnico.setBounds(463, 81, 230, 38);
+		textoTecnico.setBounds(244, 81, 230, 38);
 		panel.add(textoTecnico);
 
 		JList serviciosList = new JList();
-		serviciosList.setBounds(279, 173, 783, 487);
+		serviciosList.setBounds(112, 151, 660, 282);
 		serviciosList.setFocusable(false);
 		serviciosList.setSelectionBackground(Color.white);
 		DefaultListCellRenderer cellRenderer = (DefaultListCellRenderer)serviciosList.getCellRenderer();
@@ -144,7 +144,7 @@ private Administrativo admin;
 		
 		JButton buscarServiciosButton = new JButton("Buscar");
 		buscarServiciosButton.setFocusable(false);
-		buscarServiciosButton.setBounds(768, 81, 117, 38);
+		buscarServiciosButton.setBounds(527, 81, 117, 38);
 		buscarServiciosButton.addActionListener(e -> {
 			List<Visita> visitasTecnico = new ArrayList<>();
 			try {
@@ -164,7 +164,7 @@ private Administrativo admin;
 		
 		JButton finalizarButton = new JButton("Finalizar servicio");
 		finalizarButton.setFocusable(false);
-		finalizarButton.setBounds(610, 699, 150, 38);
+		finalizarButton.setBounds(389, 484, 150, 38);
 		finalizarButton.addActionListener(e -> {
 			int answer = JOptionPane.showConfirmDialog(null, "Desea dar por finalizado un servicio?", "Finalizar servicio", JOptionPane.YES_NO_OPTION); 
         	if(answer == 0) {
@@ -194,18 +194,18 @@ private Administrativo admin;
 		facturacionPanel.setLayout(null);
 		
 		textoId = new JTextField();
-		textoId.setBounds(463, 81, 230, 38);
+		textoId.setBounds(256, 81, 230, 38);
 		facturacionPanel.add(textoId);
 		textoId.setColumns(10);
 		
 		JLabel idVisitaLabel = new JLabel("Ingresar ID de visita");
 		idVisitaLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		idVisitaLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		idVisitaLabel.setBounds(463, 47, 230, 30);
+		idVisitaLabel.setBounds(256, 52, 230, 30);
 		facturacionPanel.add(idVisitaLabel);
 		
 		JButton imprimirButton = new JButton("Imprimir factura");
-		imprimirButton.setBounds(605, 604, 150, 38);
+		imprimirButton.setBounds(384, 532, 150, 38);
 		imprimirButton.setFocusable(false);
 		imprimirButton.addActionListener(e-> {
 			int answer = JOptionPane.showConfirmDialog(null, "Desea imprimir la factura?", "Imprimir factura", JOptionPane.YES_NO_OPTION); 
@@ -239,7 +239,7 @@ private Administrativo admin;
 		facturacionPanel.add(imprimirButton);
 		
 		JList facturasList = new JList();
-		facturasList.setBounds(283, 173, 794, 371);
+		facturasList.setBounds(126, 150, 675, 371);
 		facturasList.setFocusable(false);
 		facturasList.setSelectionBackground(Color.white);
 		DefaultListCellRenderer cellRenderera = (DefaultListCellRenderer)facturasList.getCellRenderer();
@@ -259,7 +259,7 @@ private Administrativo admin;
 			facturasList.setListData(visitasTecnico.toArray());
 		});
 
-		searchButton.setBounds(747, 81, 117, 38);
+		searchButton.setBounds(516, 81, 117, 38);
 		searchButton.setFocusable(false);
 		facturacionPanel.add(searchButton);
 		this.setVisible(true);
@@ -272,3 +272,4 @@ private Administrativo admin;
 	}
 
 }
+
