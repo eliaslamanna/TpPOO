@@ -18,33 +18,20 @@ public class Reserva {
         return dia;
     }
 
-    public void setDia(Integer dia) {
-        this.dia = dia;
-    }
 
     public Integer getMes() {
         return mes;
     }
 
-    public void setMes(Integer mes) {
-        this.mes = mes;
-    }
 
     public Integer getHoraInicio() {
         return horaInicio;
-    }
-
-    public void setHoraInicio(Integer horaInicio) {
-        this.horaInicio = horaInicio;
     }
 
     public Integer getHoraFin() {
         return horaFin;
     }
 
-    public void setHoraFin(Integer horaFin) {
-        this.horaFin = horaFin;
-    }
 
     @Override
     public String toString() {
