@@ -40,15 +40,24 @@ public class Empresa {
 		costoHoras.put(SR, 300F);
 
 		List<Articulo> articulos = new ArrayList<>();
-
+		
 		Articulo artCable = new Articulo("Cable Coaxil",  100F, 50F);
 		Articulo deco = new Articulo("Decodificador de TV",  15F, 100.3F);
+		Articulo modem = new Articulo("Modem de internet",  25F, 200.3F);
+		Articulo divisor = new Articulo("Divisor coaxial",  15F, 175.5F);
+		Articulo conector = new Articulo("Conector RG6",  30F, 100.5F);
 		articulos.add(artCable);
 		articulos.add(deco);
+		articulos.add(modem);
+		articulos.add(divisor);
+		articulos.add(conector);
 
 		this.stock.put("Cable Coaxil", artCable);
 		this.stock.put("Decodificador de TV", deco);
-		
+		this.stock.put("Modem de internet", deco);
+		this.stock.put("Divisor coaxial", deco);
+		this.stock.put("Conector RG6", deco);
+
 		Usuario aUsuario = new Usuario(new AdministradorSistema(), "ad", "ad");
 		Usuario bUsuario = new Usuario(new Tecnico(SR, "Tarde"), "tecnico", "tecnico");
 		Usuario cUsuario = new Usuario(new Administrativo(), "admin", "admin");
