@@ -13,6 +13,7 @@ import javax.swing.*;
 import com.Articulo;
 import com.Tecnico;
 import com.Usuario;
+import com.exception.StockInsuficienteException;
 
 public class RevisarVisitaGUI extends JFrame {
 
@@ -103,6 +104,8 @@ public class RevisarVisitaGUI extends JFrame {
                 cerrarVentana(e);
             } catch(NumberFormatException nf) {
                 JOptionPane.showMessageDialog(null,"Los datos ingresados no son validos", "Revisar visita", JOptionPane.ERROR_MESSAGE);
+            } catch (StockInsuficienteException ex) {
+                JOptionPane.showMessageDialog(null,"El stock es insuficiente para realizar la visita, comuniquese con un administrador de sistema.", "Revisar visita", JOptionPane.ERROR_MESSAGE);
             }
         });
 

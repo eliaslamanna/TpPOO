@@ -2,11 +2,11 @@ package com;
 
 import com.exception.HorarioParaTurnoIncorrectoException;
 import com.exception.HorarioReservadoException;
+import com.exception.StockInsuficienteException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Tecnico extends Rol {
 
@@ -59,62 +59,23 @@ public class Tecnico extends Rol {
         agenda.add(new Reserva(dia,mes,horarioInicio,horarioFin));
     }
 
-    /*public void ejecutarServicios() {
-        List<Visita> visitasRevisadas = new ArrayList<>();
-
-        for(Visita visita : new ArrayList<>(Empresa.getInstancia().getVisitas().values())) {
-            for(Usuario tecnico : visita.getTecnicos()) {
-                if(((Tecnico) tecnico.getRol()).getId() == id) {
-                    revisarVisita(visita);
-                    Empresa.getInstancia().getVisitas().put(visita.getIdVisita(), visita);
-                }
-            }
-        }
-    }*/
-
-    public void revisarVisita(String idVisita, String tiempoTrabajado, List<Articulo> gastosAdicionales, List<Articulo> costosAdicionales){
+    public void revisarVisita(String idVisita, String tiempoTrabajado, List<Articulo> gastosAdicionales, List<Articulo> costosAdicionales) throws StockInsuficienteException {
         Visita visita = Empresa.getInstancia().getVisitas().get(Integer.valueOf(idVisita));
 
         visita.setEstado(EstadoVisita.EN_CURSO);
         visita.setTiempoTrabajado(Integer.valueOf(tiempoTrabajado));
         visita.setOtrosCostos(costosAdicionales);
         visita.setGastosAdicionales(gastosAdicionales);
-    }
 
-    public List<Articulo> cargarArticulos() {
-        Scanner read = new Scanner(System.in);
-        boolean continuar = true;
-        List<Articulo> articulos = new ArrayList<>();
+        List<Articulo> materialesUsados = visita.getMateriales();
 
-        while(continuar) {
-            System.out.print("Descripcion: ");
-            String material = read.next();
-            read.nextLine();
-            System.out.print("Precio: ");
-            float cantidad = read.nextFloat();
-            read.nextLine();
-            articulos.add(new Articulo(material, cantidad));
-            System.out.print("¿Desea agregar mas materiales? [s/n]: ");
-            String opcion = read.next();
-            if ("n".equalsIgnoreCase(opcion)) {
-                continuar = false;
-            }
-        }
-        return articulos;
-    }
-
-    public List<Visita> listarServicios() {
-        List<Visita> visitasTecnico = new ArrayList<>();
-
-        for(Visita visita : new ArrayList<>(Empresa.getInstancia().getVisitas().values())) {
-            for(Usuario tecnico : visita.getTecnicos()) {
-                if(((Tecnico) tecnico.getRol()).getId() == id) {
-                    visitasTecnico.add(visita);
-                }
+        for(Articulo articulo : materialesUsados) {
+            Empresa.getInstancia().getStock().get(articulo.getNombre()).setCantidad(Empresa.getInstancia().getStock().get(articulo.getNombre()).getCantidad() - articulo.getCantidad());
+            if(Empresa.getInstancia().getStock().get(articulo.getNombre()).getCantidad() < 0) {
+                throw new StockInsuficienteException();
             }
         }
 
-        return visitasTecnico;
     }
 
     public Seniority getSeniority() { return seniority; }

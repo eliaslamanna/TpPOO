@@ -147,6 +147,18 @@ public class TecnicoGui extends JFrame {
 		refreshServBtn.setBounds(205, 46, 63, 58);
 		refreshServBtn.setIcon(refresh);
 		serviciosPanel.add(refreshServBtn);
+		refreshServBtn.addActionListener(e -> {
+			List<Visita> visitas = new ArrayList<>();
+			Integer id = ((Tecnico) tecnico.getRol()).getId();
+			for(Visita visita : new ArrayList<>(Empresa.getInstancia().getVisitas().values())) {
+				for(Usuario tec : visita.getTecnicos()) {
+					if(((Tecnico) tec.getRol()).getId().intValue() == id.intValue()) {
+						visitas.add(visita);
+					}
+				}
+			}
+			serviciosList.setListData(visitas.toArray());
+		});
 
 		JPanel agendaPanel = new JPanel();
 		tabbedPane.addTab("Agenda", null, agendaPanel, null);
