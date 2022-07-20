@@ -1,5 +1,7 @@
 package com;
 
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,13 +15,19 @@ public class CallCenter extends Rol {
 		this.rol = "Call Center";
 	}
 
-	public void agendarVisita(String dniCliente, Integer horarioInicio, Integer horarioFin, Integer dia, Integer mes, String tipoVisita, Integer cantidadTecnicos) throws HorarioReservadoException, StockInsuficienteException, TecnicosInsuficientesException, HorarioParaTurnoIncorrectoException, TiempoMinimoInstalacionIncorrectoException, TiempoMinimoReparacionIncorrectoException, MesIncorrectoException, DiaIncorrectoException {
-		if(dia > 31 || dia <= 0) {
+	public void agendarVisita(String dniCliente, Integer horarioInicio, Integer horarioFin, Integer dia, Integer mes, String tipoVisita, Integer cantidadTecnicos) throws HorarioReservadoException, StockInsuficienteException, TecnicosInsuficientesException, HorarioParaTurnoIncorrectoException, TiempoMinimoInstalacionIncorrectoException, TiempoMinimoReparacionIncorrectoException, MesIncorrectoException, DiaIncorrectoException, FormatoHoraIncorrecto {
+		if(dia > 31 || dia <= 0 || dia == null) {
 			throw new DiaIncorrectoException();
 		}
-		if(mes > 12 || mes <= 0) {
+
+		if(mes > 12 || mes <= 0 || mes == null) {
 			throw new MesIncorrectoException();
 		}
+
+		if(!validarHora(horarioInicio.toString()) || !validarHora(horarioFin.toString())) {
+			throw new FormatoHoraIncorrecto();
+		}
+
 		if ("Instalacion".equals(tipoVisita)) {
 			if (stockInsuficienteInstalacion()) {
 				System.out.println("Materiales insuficientes para continuar con el servicio.");
@@ -62,6 +70,45 @@ public class CallCenter extends Rol {
 		}
 	}
 
+	public boolean validarHora(String hora) {
+		if (hora == null) {
+			return false;
+		}
+
+		if (hora.length() != 4) {
+			return false;
+		}
+
+		char horaUno = hora.charAt(0);
+		char horaDos = hora.charAt(1);
+		char minutoUno = hora.charAt(2);
+		char minutoDos = hora.charAt(3);
+
+		if (horaUno != '0' && horaUno != '1' && horaUno != '2') {
+			return false;
+		}
+
+		if (horaUno == '0' || horaUno == '1') {
+			if (horaDos < '0' || horaDos > '9') {
+				return false;
+			}
+		} else {
+
+			if (horaDos < '0' || horaDos > '3') {
+				return false;
+			}
+		}
+
+		if (minutoUno < '0' || minutoUno > '5') {
+			return false;
+		}
+
+		if (minutoDos < '0' || minutoDos > '9') {
+			return false;
+		}
+
+		return true;
+	}
 
 	public boolean stockInsuficienteInstalacion() {
 		HashMap<String, Articulo> stock = Empresa.getInstancia().getStock();

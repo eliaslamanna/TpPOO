@@ -46,6 +46,8 @@ public class AgendarVisitaListener implements ActionListener {
             JOptionPane.showMessageDialog(null,"El mes es incorrecto.", "Agendar visita", JOptionPane.ERROR_MESSAGE);
         } catch (DiaIncorrectoException ex) {
             JOptionPane.showMessageDialog(null,"El dia es incorrecto.", "Agendar visita", JOptionPane.ERROR_MESSAGE);
+        } catch (FormatoHoraIncorrecto ex) {
+            JOptionPane.showMessageDialog(null,"El formato de la hora es incorrecto.", "Agendar visita", JOptionPane.ERROR_MESSAGE);
         }
     }
 
