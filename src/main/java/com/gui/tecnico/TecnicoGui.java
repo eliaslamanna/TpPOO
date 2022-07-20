@@ -135,6 +135,7 @@ public class TecnicoGui extends JFrame {
 		revisarBtn.setFocusable(false);
 		revisarBtn.addActionListener(e -> {
 			int answer = JOptionPane.showConfirmDialog(null, "Desea dar por revisar un servicio?", "Revisar servicio", JOptionPane.YES_NO_OPTION);
+			try {
 			if(answer == 0) {
 				String idVisita = JOptionPane.showInputDialog(null, "Ingrese el id de la visita a revisar", "Revisar servicio", JOptionPane.INFORMATION_MESSAGE);
 				if(Empresa.getInstancia().getVisitas().get(Integer.valueOf(idVisita)).getEstado() == PROGRAMADO) {
@@ -142,6 +143,9 @@ public class TecnicoGui extends JFrame {
 				} else {
 					JOptionPane.showMessageDialog(null, "La visita con id " + idVisita + " ya fue revisada.", "Revisar servicio", JOptionPane.ERROR_MESSAGE);
 				}
+			}
+			}catch (NumberFormatException nf) {
+				
 			}
 		});
 		serviciosPanel.add(revisarBtn);
