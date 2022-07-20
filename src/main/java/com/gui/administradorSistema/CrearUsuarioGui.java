@@ -1,7 +1,6 @@
 package com.gui.administradorSistema;
 
 import com.AdministradorSistema;
-import com.Seniority;
 import com.exception.RolNoExisteException;
 import com.exception.SeniorityNoExisteException;
 import com.exception.TurnoNoExisteException;
@@ -12,7 +11,6 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class CrearUsuarioGui extends JFrame {
 

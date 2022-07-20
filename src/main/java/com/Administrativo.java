@@ -1,18 +1,13 @@
 package com;
 
-import java.awt.*;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 import javax.swing.*;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfContentByte;
-import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import static com.EstadoVisita.FINALIZADO;

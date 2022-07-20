@@ -1,10 +1,11 @@
-package com.gui;
+package com.gui.administrativo;
 
 import com.Administrativo;
 import com.Empresa;
 import com.Tecnico;
 import com.Usuario;
 import com.Visita;
+import com.gui.LoginGui;
 import com.itextpdf.text.DocumentException;
 
 import static java.util.stream.Collectors.toList;

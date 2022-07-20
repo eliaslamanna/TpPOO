@@ -1,9 +1,7 @@
 package com.gui.tecnico;
 
 import com.Articulo;
-import com.exception.CantidadNegativaException;
 import com.exception.OtroCostoNoExisteException;
-import com.exception.PrecioNegativoException;
 
 import javax.swing.*;
 import java.awt.*;

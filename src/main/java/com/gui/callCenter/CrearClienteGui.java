@@ -1,9 +1,6 @@
 package com.gui.callCenter;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.GridLayout;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,13 +15,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.CallCenter;
 import com.exception.ClienteExistenteException;
-import com.exception.RolNoExisteException;
-import com.exception.UsuarioYaExisteException;
 import javax.swing.SwingConstants;
 
 public class CrearClienteGui extends JFrame {
@@ -93,25 +87,17 @@ public class CrearClienteGui extends JFrame {
         jpMainPanel.setLayout(null);
         jpMainPanel.add(jpForm);
         
-        crearButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    callCenter.guardarCliente(dni.getText(),nombre.getText(),apellido.getText(),address.getText());
-                    JOptionPane.showMessageDialog(jpMainPanel,"El cliente se guardo con exito.", "Crear cliente", JOptionPane.INFORMATION_MESSAGE);
-                    cerrarVentana(e);
-                } catch (ClienteExistenteException ex) {
-                    JOptionPane.showMessageDialog(jpMainPanel,"El cliente que desea agregar ya existe", "Crear cliente", JOptionPane.ERROR_MESSAGE);
-                }
+        crearButton.addActionListener(e -> {
+            try {
+                callCenter.guardarCliente(dni.getText(),nombre.getText(),apellido.getText(),address.getText());
+                JOptionPane.showMessageDialog(jpMainPanel,"El cliente se guardo con exito.", "Crear cliente", JOptionPane.INFORMATION_MESSAGE);
+                cerrarVentana(e);
+            } catch (ClienteExistenteException ex) {
+                JOptionPane.showMessageDialog(jpMainPanel,"El cliente que desea agregar ya existe", "Crear cliente", JOptionPane.ERROR_MESSAGE);
             }
         });
         
-        cancelarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cerrarVentana(e);
-            }
-        });
+        cancelarButton.addActionListener(e -> cerrarVentana(e));
         contentPane.setLayout(null);
         
         getContentPane().add(jpMainPanel);

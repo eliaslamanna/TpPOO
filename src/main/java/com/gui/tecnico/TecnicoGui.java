@@ -1,6 +1,9 @@
-package com.gui;
+package com.gui.tecnico;
 
 import com.*;
+import com.exception.CambioEstadoVisitaException;
+import com.exception.VisitaNoExisteException;
+import com.gui.LoginGui;
 import com.gui.tecnico.RevisarVisitaGUI;
 
 import java.awt.*;
@@ -165,6 +168,19 @@ public class TecnicoGui extends JFrame {
 		cancelarBtn.setFocusable(false);
 		cancelarBtn.setBounds(786, 686, 157, 41);
 		serviciosPanel.add(cancelarBtn);
+		cancelarBtn.addActionListener(e -> {
+			String idVisita = JOptionPane.showInputDialog(null, "Ingrese el id de la visita que quiere cancelar", "Cancelar visita", JOptionPane.INFORMATION_MESSAGE);
+			try {
+				((Tecnico) tecnico.getRol()).cancelarVisita(idVisita);
+				JOptionPane.showMessageDialog(null,"La visita con id " + idVisita + " fue cancelada con exito.", "Cancelar visita", JOptionPane.INFORMATION_MESSAGE);
+			} catch (VisitaNoExisteException ex) {
+				JOptionPane.showMessageDialog(null,"La visita con el id " + idVisita + " no existe.", "Cancelar visita", JOptionPane.ERROR_MESSAGE);
+			} catch (NumberFormatException nf) {
+				JOptionPane.showMessageDialog(null,"El id es incorrecto.", "Cancelar visita", JOptionPane.ERROR_MESSAGE);
+			} catch (CambioEstadoVisitaException ex) {
+				JOptionPane.showMessageDialog(null,"La visita no se puede cancelar.", "Cancelar visita", JOptionPane.ERROR_MESSAGE);
+			}
+		});
 		
 		JPanel agendaPanel = new JPanel();
 		tabbedPane.addTab("Agenda", null, agendaPanel, null);

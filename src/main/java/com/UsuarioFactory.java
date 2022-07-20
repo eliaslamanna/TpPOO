@@ -4,9 +4,6 @@ import com.exception.RolNoExisteException;
 import com.exception.SeniorityNoExisteException;
 import com.exception.TurnoNoExisteException;
 
-import java.util.Arrays;
-import java.util.Scanner;
-
 public class UsuarioFactory {
 
     private static UsuarioFactory instancia;

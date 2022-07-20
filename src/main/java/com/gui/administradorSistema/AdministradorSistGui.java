@@ -36,7 +36,6 @@ import com.gui.listeners.ModificarTecnicoListener;
 public class AdministradorSistGui extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
 	
 	public AdministradorSistGui(Usuario administradorSistema) {
 		

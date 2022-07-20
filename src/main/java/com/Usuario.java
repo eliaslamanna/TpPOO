@@ -18,10 +18,6 @@ public class Usuario {
 		return usuario;
 	}
 
-	public String getRolString() {
-		return rol.getRol();
-	}
-
 	public Rol getRol() {
 		return rol;
 	}

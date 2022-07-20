@@ -1,6 +1,5 @@
 package com;
 
-import com.exception.HorarioParaTurnoIncorrectoException;
 import com.exception.HorarioReservadoException;
 
 import java.util.ArrayList;

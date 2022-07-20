@@ -32,10 +32,6 @@ public class Articulo {
         return precio;
     }
 
-    public void setPrecio(float precio) {
-        this.precio = precio;
-    }
-
     @Override
     public String toString() {
         return " Nombre: " + nombre +

@@ -4,9 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.*;
 
@@ -14,6 +12,7 @@ import com.Articulo;
 import com.Tecnico;
 import com.Usuario;
 import com.exception.StockInsuficienteException;
+import com.exception.VisitaNoExisteException;
 
 public class RevisarVisitaGUI extends JFrame {
 
@@ -106,6 +105,8 @@ public class RevisarVisitaGUI extends JFrame {
                 JOptionPane.showMessageDialog(null,"Los datos ingresados no son validos", "Revisar visita", JOptionPane.ERROR_MESSAGE);
             } catch (StockInsuficienteException ex) {
                 JOptionPane.showMessageDialog(null,"El stock es insuficiente para realizar la visita, comuniquese con un administrador de sistema.", "Revisar visita", JOptionPane.ERROR_MESSAGE);
+            } catch (VisitaNoExisteException ex) {
+                JOptionPane.showMessageDialog(null,"La visita con el id " + idVisita + " no existe.", "Revisar visita", JOptionPane.ERROR_MESSAGE);
             }
         });
 

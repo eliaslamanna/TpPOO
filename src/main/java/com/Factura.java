@@ -16,10 +16,6 @@ public class Factura {
         return numeroFactura;
     }
 
-    public void setNumeroFactura(int numeroFactura) {
-        this.numeroFactura = numeroFactura;
-    }
-
     public float getCosto() {
         return costo;
     }
@@ -30,10 +26,6 @@ public class Factura {
 
     public float getPrecioFinal() {
         return precioFinal;
-    }
-
-    public void setPrecioFinal(float precioFinal) {
-        this.precioFinal = precioFinal;
     }
 
     public boolean yaSeImprimio() {

@@ -1,10 +1,10 @@
-package com.gui;
+package com.gui.callCenter;
 
 import com.CallCenter;
 import com.Empresa;
 import com.Usuario;
 import com.exception.*;
-import com.gui.listeners.AgendarVisitaListener;
+import com.gui.LoginGui;
 import com.gui.listeners.CreateCustomerListener;
 
 import java.awt.Font;

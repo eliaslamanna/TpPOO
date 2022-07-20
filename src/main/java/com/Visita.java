@@ -12,17 +12,12 @@ public abstract class Visita {
 	private Integer mes;
 	private Integer horarioInicio;
 	private Integer horarioFin;
-	// el almuerzo se suma como articulo (se le da el costo que queramos)
 	private List<Articulo> materiales = new ArrayList<>();
 	private EstadoVisita estado;
-	//Estas cosas las setea el tecnico
 	private int tiempoTrabajado;
 	private List<Articulo> otrosCostos = new ArrayList<>();
 	private List<Articulo> gastosAdicionales = new ArrayList<>();
-	//Esto los setea el administrativo
 	private Factura factura;
-
-	public Visita() {}
 
 	public List<Articulo> getMateriales() {
 		return this.materiales;
@@ -55,20 +50,12 @@ public abstract class Visita {
 		this.tiempoTrabajado = tiempoTrabajado;
 	}
 
-	public void setMateriales(List<Articulo> materiales) {
-		this.materiales = materiales;
-	}
-
 	public void setOtrosCostos(List<Articulo> otrosCostos) {
 		this.otrosCostos = otrosCostos;
 	}
 
 	public void setGastosAdicionales(List<Articulo> gastosAdicionales) {
 		this.gastosAdicionales = gastosAdicionales;
-	}
-
-	public void setIdVisita(int idVisita) {
-		this.idVisita = idVisita;
 	}
 
 	public int getIdVisita() {
@@ -101,38 +88,6 @@ public abstract class Visita {
 		return cliente;
 	}
 
-	public Integer getDia() {
-		return dia;
-	}
-
-	public void setDia(Integer dia) {
-		this.dia = dia;
-	}
-
-	public Integer getMes() {
-		return mes;
-	}
-
-	public void setMes(Integer mes) {
-		this.mes = mes;
-	}
-
-	public Integer getHorarioInicio() {
-		return horarioInicio;
-	}
-
-	public void setHorarioInicio(Integer horarioInicio) {
-		this.horarioInicio = horarioInicio;
-	}
-
-	public Integer getHorarioFin() {
-		return horarioFin;
-	}
-
-	public void setHorarioFin(Integer horarioFin) {
-		this.horarioFin = horarioFin;
-	}
-
 	@Override
 	public String toString() {
 		return  " idVisita: " + idVisita +
@@ -144,18 +99,4 @@ public abstract class Visita {
 				" -- estado: " + estado;
 	}
 
-	public void  obtenerDatosVisita() {
-		System.out.println("Visita: \n" + "\t - Id: " + idVisita + "\n" + "\t - " + cliente.toString() + "\n" + "\t - Estado: " + estado + "\n" + "\t - Tiempo Trabajado: " + tiempoTrabajado + "\n");
-
-		System.out.println("\t - Materiales: ");
-		materiales.forEach(material -> System.out.println(("\t \t " + material.getNombre() + "(" + material.getCantidad() + ")\n")));
-		System.out.println("\t - Otros costos: ");
-		otrosCostos.forEach(otroCosto -> System.out.println("\t \t " + otroCosto.getNombre() + "(" + otroCosto.getCantidad() + ")\n"));
-		System.out.println("\t - Gastos Adicionales: ");
-		gastosAdicionales.forEach(gastoAdicional -> System.out.println(("\t \t " + gastoAdicional.getNombre() + "(" + gastoAdicional.getCantidad() + ")\n")));
-
-		if(this.factura != null) {
-			System.out.println(this.factura.toString());
-		}
-	}
 }

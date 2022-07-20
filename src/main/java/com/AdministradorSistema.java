@@ -4,11 +4,8 @@ import com.exception.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class AdministradorSistema extends Rol {
-
-    private final Scanner read = new Scanner(System.in);
 
     public AdministradorSistema() {
         this.rol = "AdministradorSist";
@@ -24,25 +21,7 @@ public class AdministradorSistema extends Rol {
             if("Tecnico".equals(rol)) {
                 Empresa.getInstancia().agregarTecnico(nuevoUsuario, ((Tecnico) nuevoUsuario.getRol()).getId());
             }
-
-            //System.out.println("\nEl usuario " + usuario + " se dio de alta exitosamente.");
         }
-    }
-
-    public List<Cliente> listarClientes() {
-        return new ArrayList<>(Empresa.getInstancia().getClientes().values());
-    }
-
-    public List<Usuario> listarUsuarios() {
-        return new ArrayList<>(Empresa.getInstancia().getUsuarios().values());
-    }
-
-    public List<Usuario> listarTecnicos() {
-        return new ArrayList<>(Empresa.getInstancia().getTecnicos().values());
-    }
-
-    public List<Articulo> listarStock() {
-        return new ArrayList<>(Empresa.getInstancia().getStock().values());
     }
 
     public void crearArticulo(String nombre, float cantidad, float precio) throws PrecioNegativoException, CantidadNegativaException, ArticuloYaExisteException {
@@ -63,15 +42,6 @@ public class AdministradorSistema extends Rol {
             throw new ArticuloNoExisteException();
         } else {
             Empresa.getInstancia().getStock().remove(nombreArticulo);
-        }
-    }
-
-    public void agregarStock(String nombreArticulo, float cantidad) {
-        if(!Empresa.getInstancia().getStock().containsKey(nombreArticulo)) {
-            System.out.println("\nEl articulo " + nombreArticulo + " no existe en el stock.");
-        } else {
-            Empresa.getInstancia().getStock().get(nombreArticulo).setCantidad(Empresa.getInstancia().getStock().get(nombreArticulo).getCantidad() + cantidad);
-            System.out.println("Se actualizo correctamente el stock de " + nombreArticulo + " , ahora hay un stock de " + Empresa.getInstancia().getStock().get(nombreArticulo).getCantidad());
         }
     }
 
@@ -130,30 +100,6 @@ public class AdministradorSistema extends Rol {
         }
 
         Empresa.getInstancia().getUsuarios().get(usuario).setPassword(password);
-    }
-
-    public void restarStock() {
-        System.out.println("\nIngrese el articulo que desea modificar: ");
-        String articulo = read.nextLine();
-
-        if(!Empresa.getInstancia().getStock().containsKey(articulo)) {
-            System.out.println("El articulo " + articulo + " no existe en el stock.");
-        }
-
-        System.out.println("\nExiste un stock de: " + Empresa.getInstancia().getStock().get(articulo).getCantidad());
-
-        System.out.println("\nIngrese la cantidad que desea restar: ");
-        float cantidad = read.nextFloat();
-        read.nextLine();
-
-        if(Empresa.getInstancia().getStock().get(articulo).getCantidad() - cantidad < 0) {
-            System.out.println("\nNo se puede restar la cantidad deseada de stock");
-        } else {
-            Empresa.getInstancia().getStock().get(articulo).setCantidad(Empresa.getInstancia().getStock().get(articulo).getCantidad() - cantidad);
-
-            System.out.println("\nSe actualizo correctamente el stock de: " + articulo);
-            System.out.println("Hay un stock de: " + Empresa.getInstancia().getStock().get(articulo).getCantidad());
-        }
     }
 
     public void configurarCostoHora(Seniority seniority, Float costo) {

@@ -4,12 +4,10 @@ import com.AdministradorSistema;
 import com.Seniority;
 import com.exception.CostoNegativoException;
 import com.exception.SeniorityNoExisteException;
-import com.exception.TecnicoNoExisteException;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ModificarCostoHorasGUI extends JFrame {
 
@@ -41,35 +39,27 @@ public class ModificarCostoHorasGUI extends JFrame {
         seniorityPanel.add(seniorityForm,BorderLayout.NORTH);
         seniorityPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
-        aceptarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    if(!"SR".equalsIgnoreCase(seniority.getText()) && !"SSR".equalsIgnoreCase(seniority.getText()) && !"JR".equalsIgnoreCase(seniority.getText())) {
-                        throw new SeniorityNoExisteException();
-                    }
-                    else if(Float.valueOf(costo.getText()) < 0) {
-                        throw new CostoNegativoException();
-                    }
-                    administradorSistema.configurarCostoHora(Seniority.valueOf(seniority.getText()), Float.valueOf(costo.getText()));
-                    JOptionPane.showMessageDialog(null,"El valor del Seniority " + seniority.getText() + " se modifico con exito.", "Configurar costo horas", JOptionPane.INFORMATION_MESSAGE);
-                    cerrarVentana(e);
-                } catch (SeniorityNoExisteException ex) {
-                    JOptionPane.showMessageDialog(null,"El seniority ingresado no existe.", "Configurar costo horas", JOptionPane.ERROR_MESSAGE);
-                } catch (NumberFormatException nf) {
-                    JOptionPane.showMessageDialog(null,"El costo ingresado es incorrecto.", "Configurar costo horas", JOptionPane.ERROR_MESSAGE);
-                } catch (CostoNegativoException ex) {
-                    JOptionPane.showMessageDialog(null,"El costo ingresado no puede ser negativo.", "Configurar costo horas", JOptionPane.ERROR_MESSAGE);
+        aceptarButton.addActionListener(e -> {
+            try {
+                if(!"SR".equalsIgnoreCase(seniority.getText()) && !"SSR".equalsIgnoreCase(seniority.getText()) && !"JR".equalsIgnoreCase(seniority.getText())) {
+                    throw new SeniorityNoExisteException();
                 }
+                else if(Float.valueOf(costo.getText()) < 0) {
+                    throw new CostoNegativoException();
+                }
+                administradorSistema.configurarCostoHora(Seniority.valueOf(seniority.getText()), Float.valueOf(costo.getText()));
+                JOptionPane.showMessageDialog(null,"El valor del Seniority " + seniority.getText() + " se modifico con exito.", "Configurar costo horas", JOptionPane.INFORMATION_MESSAGE);
+                cerrarVentana(e);
+            } catch (SeniorityNoExisteException ex) {
+                JOptionPane.showMessageDialog(null,"El seniority ingresado no existe.", "Configurar costo horas", JOptionPane.ERROR_MESSAGE);
+            } catch (NumberFormatException nf) {
+                JOptionPane.showMessageDialog(null,"El costo ingresado es incorrecto.", "Configurar costo horas", JOptionPane.ERROR_MESSAGE);
+            } catch (CostoNegativoException ex) {
+                JOptionPane.showMessageDialog(null,"El costo ingresado no puede ser negativo.", "Configurar costo horas", JOptionPane.ERROR_MESSAGE);
             }
         });
 
-        cancelarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cerrarVentana(e);
-            }
-        });
+        cancelarButton.addActionListener(e -> cerrarVentana(e));
 
         add(seniorityPanel);
 
