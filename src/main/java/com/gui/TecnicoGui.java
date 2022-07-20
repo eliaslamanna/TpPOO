@@ -142,6 +142,11 @@ public class TecnicoGui extends JFrame {
 			}
 		});
 		serviciosPanel.add(revisarBtn);
+		
+		JButton refreshServBtn = new JButton("");
+		refreshServBtn.setBounds(205, 46, 63, 58);
+		refreshServBtn.setIcon(refresh);
+		serviciosPanel.add(refreshServBtn);
 
 		JPanel agendaPanel = new JPanel();
 		tabbedPane.addTab("Agenda", null, agendaPanel, null);
