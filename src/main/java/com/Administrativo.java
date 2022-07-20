@@ -6,7 +6,11 @@ import java.util.Random;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
-import javax.swing.text.Document;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfDocument;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import static com.EstadoVisita.EN_CURSO;
 import static com.EstadoVisita.FINALIZADO;
@@ -57,7 +61,8 @@ public class Administrativo extends Rol {
         System.out.println(factura != null && !factura.yaSeImprimio() ? factura.toString() : "El id ingresado no corresponde con ninguna visita que no se haya impreso ya.");
         factura.setYaSeImprimio(true);
 
-        /*final String dest = "bills/Factura_" + factura.getNumeroFactura() + ".pdf";
+       /*
+        final String dest = "bills/Factura_" + factura.getNumeroFactura() + ".pdf";
         File file = new File(dest);
         file.getParentFile().mkdirs();
         
@@ -84,6 +89,8 @@ public class Administrativo extends Rol {
     
     /*
     private void CreatePdf(String dest) throws IOException{
+    	
+    	
     	FileOutputStream fos = new FileOutputStream(dest);
     	PdfWriter writer = new PdfWriter(fos);
     	PdfDocument pdf = new PdfDocument(writer);

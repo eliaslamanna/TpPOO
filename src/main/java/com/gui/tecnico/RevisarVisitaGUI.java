@@ -34,20 +34,20 @@ public class RevisarVisitaGUI extends JFrame {
         JTextField tiempoTrabajado = new JTextField();
         tiempoTrabajado.setBounds(390, 11, 202, 23);
 
-        JButton otrosCostosButton = new JButton("Agregar Otros Costos");
-        otrosCostosButton.setBounds(513, 59, 202, 23);
+        JButton otrosCostosButton = new JButton("Agregar otros costos");
+        otrosCostosButton.setBounds(551, 70, 202, 23);
 
-        JButton materialesAdicionalesButton = new JButton("Agregar Materiales Adicionales");
-        materialesAdicionalesButton.setBounds(104, 59, 202, 23);
+        JButton materialesAdicionalesButton = new JButton("Agregar materiales adicionales");
+        materialesAdicionalesButton.setBounds(141, 70, 202, 23);
 
         JButton revisarButton = new JButton("Revisar");
-        revisarButton.setBounds(273, 410, 105, 23);
+        revisarButton.setBounds(670, 471, 105, 23);
 
         JButton cancelarButton = new JButton("Cancelar");
-        cancelarButton.setBounds(459, 410, 105, 23);
+        cancelarButton.setBounds(785, 471, 105, 23);
 
         JPanel revisarVisitaForm = new JPanel();
-        revisarVisitaForm.setBounds(10, 10, 821, 455);
+        revisarVisitaForm.setBounds(10, 10, 900, 505);
         revisarVisitaForm.setLayout(null);
         revisarVisitaForm.add(tiempoTrabajadoLabel);
         revisarVisitaForm.add(tiempoTrabajado);
@@ -62,12 +62,20 @@ public class RevisarVisitaGUI extends JFrame {
         revisarVisitaPanel.add(revisarVisitaForm);
         
         JList adicionalList = new JList();
-        adicionalList.setBounds(80, 104, 256, 259);
+        adicionalList.setBounds(114, 104, 256, 259);
         revisarVisitaForm.add(adicionalList);
 
         JList costosList = new JList();
-        costosList.setBounds(485, 104, 256, 259);
+        costosList.setBounds(527, 104, 256, 259);
         revisarVisitaForm.add(costosList);
+        
+        JButton btnNewButton = new JButton("Actualizar materiales adicionales");
+        btnNewButton.setBounds(131, 374, 212, 23);
+        revisarVisitaForm.add(btnNewButton);
+        
+        JButton btnNewButton_1 = new JButton("Actualizar costos adicionales");
+        btnNewButton_1.setBounds(551, 374, 202, 23);
+        revisarVisitaForm.add(btnNewButton_1);
         revisarVisitaPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
         ArrayList<Articulo> otrosCostos = new ArrayList<>();
         otrosCostosButton.addActionListener(new ActionListener() {
@@ -82,7 +90,7 @@ public class RevisarVisitaGUI extends JFrame {
 
         getContentPane().add(revisarVisitaPanel);
 
-        setSize(857,515);
+        setSize(936,565);
         setMinimumSize(new Dimension(450, 200));
         setLocationRelativeTo(null);
         setVisible(true);
