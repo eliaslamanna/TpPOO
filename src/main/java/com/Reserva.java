@@ -46,4 +46,12 @@ public class Reserva {
         this.horaFin = horaFin;
     }
 
+    @Override
+    public String toString() {
+        return  " -- dia: " + dia +
+                " -- mes: " + mes +
+                " -- horaInicio: " + horaInicio +
+                " -- horaFin: " + horaFin;
+    }
+
 }

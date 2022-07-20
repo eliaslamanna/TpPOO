@@ -15,7 +15,6 @@ public class Tecnico extends Rol {
     private String turno;
     private List<Reserva> agenda = new ArrayList<>();
 
-    
     public Tecnico(Seniority seniority, String turno, List<Reserva> agenda) {
 		super();
         this.id = new Random().nextInt(1000);
@@ -130,6 +129,10 @@ public class Tecnico extends Rol {
         return this.id;
     }
 
+    public List<Reserva> getAgenda() {
+        return agenda;
+    }
+
     @Override
     public String toString() {
         return " id: " + id +
@@ -137,18 +140,4 @@ public class Tecnico extends Rol {
                 " -- turno: " + turno;
     }
 
-    public Integer mostrarMenu() {
-    	Scanner read = new Scanner(System.in);
-
-        System.out.println("\n---------------------------------------------");
-		System.out.println("*****\t\tTecnico\t\t*****\n\n");
-		System.out.println("1) Ejecutar Servicios");
-        System.out.println("2) Ver Servicios Asignados");
-        System.out.println("3) Salir");
-
-        int opcion = read.nextInt();
-        read.nextLine();
-
-        return opcion;
-    }
 }

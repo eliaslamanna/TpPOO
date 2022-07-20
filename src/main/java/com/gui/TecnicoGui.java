@@ -108,10 +108,16 @@ public class TecnicoGui extends JFrame {
 		JPanel agendaPanel = new JPanel();
 		tabbedPane.addTab("Agenda", null, agendaPanel, null);
 		agendaPanel.setLayout(null);
-		
-		table = new JTable();
-		table.setBounds(205, 149, 972, 581);
-		agendaPanel.add(table);
+
+		JList agendaList = new JList();
+		agendaList.setBounds(350, 109, 665, 400);
+		agendaList.setFocusable(false);
+		agendaList.setSelectionBackground(Color.white);
+		DefaultListCellRenderer cellRend = (DefaultListCellRenderer)agendaList.getCellRenderer();
+		cellRend.setHorizontalAlignment(SwingConstants .CENTER);
+		List<Reserva> reservas = ((Tecnico) tecnico.getRol()).getAgenda();
+		agendaList.setListData(reservas.toArray());
+		agendaPanel.add(agendaList);
 		
 		JButton refreshAgendaButton = new JButton("");
 		refreshAgendaButton.setBounds(205, 46, 63, 58);

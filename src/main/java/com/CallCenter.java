@@ -15,24 +15,8 @@ import com.exception.TiempoMinimoReparacionIncorrectoException;
 
 public class CallCenter extends Rol {
 
-	private Scanner read = new Scanner(System.in);
-
 	public CallCenter() {
 		this.rol = "Call Center";
-	}
-
-	public Integer mostrarMenu() {
-		Scanner read = new Scanner(System.in);
-
-		System.out.println("\n---------------------------------------------");
-		System.out.println("*****\t\tCall Center\t\t*****\n\n");
-		System.out.println("1) Programar visita");
-		System.out.println("2) Salir");
-
-		int opcion = read.nextInt();
-		read.nextLine();
-
-		return opcion;
 	}
 
 	public void agendarVisita(String dniCliente, Integer horarioInicio, Integer horarioFin, Integer dia, Integer mes, String tipoVisita, Integer cantidadTecnicos) throws HorarioReservadoException, StockInsuficienteException, TecnicosInsuficientesException, HorarioParaTurnoIncorrectoException, TiempoMinimoInstalacionIncorrectoException, TiempoMinimoReparacionIncorrectoException {
@@ -89,19 +73,6 @@ public class CallCenter extends Rol {
 	}
 
 	public void guardarCliente(String dniCliente, String nombreCliente, String apellidoCliente, String direccionCliente) throws ClienteExistenteException {
-		
-		/*
-		System.out.println("Ingrese el DNI del cliente: ");
-		String dniCliente = read.nextLine();
-
-		System.out.println("\nIngrese el nombre del cliente: ");
-		String nombreCliente = read.nextLine();
-		System.out.println("\nIngrese el apellido del cliente: ");
-		String apellidoCliente = read.nextLine();
-		System.out.println("\nIngrese la direccion del cliente: \n");
-		String direccionCliente = read.nextLine();
-		*/
-		
 		if(Empresa.getInstancia().getClientes().containsKey(dniCliente)) {
 			throw new ClienteExistenteException(dniCliente);
 			}else {
