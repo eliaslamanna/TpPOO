@@ -6,8 +6,12 @@ import java.util.Random;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
+
+import com.itextpdf.text.DocumentException;
+
 import static com.EstadoVisita.FINALIZADO;
 
+import java.io.FileNotFoundException;
 
 public class Administrativo extends Rol {
 
@@ -42,24 +46,25 @@ public class Administrativo extends Rol {
         return new Factura(new Random().nextInt(1000), costoFactura, costoFactura+(costoFactura*(0.21F + 0.30F)));
     }
 
-    public void imprimirFactura(String idVisita) {
+    public void imprimirFactura(String idVisita) throws DocumentException, FileNotFoundException {
 
         Integer id = Integer.valueOf(idVisita);
         Factura factura = Empresa.getInstancia().getVisitas().get(Integer.valueOf(id)).getFactura();
 
         System.out.println(factura != null && !factura.yaSeImprimio() ? factura.toString() : "El id ingresado no corresponde con ninguna visita que no se haya impreso ya.");
-        factura.setYaSeImprimio(true);
-
-       /*
-        final String dest = "bills/Factura_" + factura.getNumeroFactura() + ".pdf";
-        File file = new File(dest);
-        file.getParentFile().mkdirs();
         
+        /*
         try {
-        	CreatePdf(dest);
-        }catch (IOException nf) {
+        	CreatePdf(factura.getNumeroFactura(), factura.getPrecioFinal());
+        }catch (DocumentException nf) {
+        	
+        }catch (FileNotFoundException ex) {
+        	
         }
         */
+        
+        factura.setYaSeImprimio(true);
+        
     }
 
     public Integer mostrarMenu() {
@@ -77,14 +82,15 @@ public class Administrativo extends Rol {
     }
     
     /*
-    private void CreatePdf(String dest) throws IOException{
+    private void CreatePdf(int nroFactura, float precioFactura) throws DocumentException, FileNotFoundException{
+    	
+    	Document document = new Document();
+    	PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("bills/Factura_" + nroFactura + ".png") );
+    	document.open();
+    	
+    	PdfContentByte cb = writer.getDirectContent();
     	
     	
-    	FileOutputStream fos = new FileOutputStream(dest);
-    	PdfWriter writer = new PdfWriter(fos);
-    	PdfDocument pdf = new PdfDocument(writer);
-    	Document document = new Document(pdf);
-    	document.add(new Paragraph("HelloWorld"));
     	document.close();
     }
     */
