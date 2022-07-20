@@ -101,22 +101,6 @@ public class TecnicoGui extends JFrame {
 					JOptionPane.showMessageDialog(null, "La visita con id " + idVisita + " ya fue revisada.", "Revisar servicio", JOptionPane.ERROR_MESSAGE);
 				}
 
-				/*try {
-					((Tecnico) tecnico.getRol()).revisarVisita(idVisita);
-				} catch (NumberFormatException nf) {
-					JOptionPane.showMessageDialog(null, "El id ingresado es incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
-				}
-
-				List<Visita> visitas = new ArrayList<>();
-				for(Visita visita : new ArrayList<>(Empresa.getInstancia().getVisitas().values())) {
-					for(Usuario tec : visita.getTecnicos()) {
-						if(((Tecnico) tec.getRol()).getId().intValue() == Integer.valueOf(((Tecnico) tecnico.getRol()).getId()).intValue()) {
-							visitas.add(visita);
-						}
-					}
-				}
-				serviciosList.setListData(visitas.toArray());*/
-
 			}
 		});
 		serviciosPanel.add(revisarBtn);
