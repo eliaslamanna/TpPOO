@@ -5,13 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-import com.exception.ClienteExistenteException;
-import com.exception.HorarioParaTurnoIncorrectoException;
-import com.exception.HorarioReservadoException;
-import com.exception.StockInsuficienteException;
-import com.exception.TecnicosInsuficientesException;
-import com.exception.TiempoMinimoInstalacionIncorrectoException;
-import com.exception.TiempoMinimoReparacionIncorrectoException;
+import com.exception.*;
 
 public class CallCenter extends Rol {
 
@@ -19,7 +13,13 @@ public class CallCenter extends Rol {
 		this.rol = "Call Center";
 	}
 
-	public void agendarVisita(String dniCliente, Integer horarioInicio, Integer horarioFin, Integer dia, Integer mes, String tipoVisita, Integer cantidadTecnicos) throws HorarioReservadoException, StockInsuficienteException, TecnicosInsuficientesException, HorarioParaTurnoIncorrectoException, TiempoMinimoInstalacionIncorrectoException, TiempoMinimoReparacionIncorrectoException {
+	public void agendarVisita(String dniCliente, Integer horarioInicio, Integer horarioFin, Integer dia, Integer mes, String tipoVisita, Integer cantidadTecnicos) throws HorarioReservadoException, StockInsuficienteException, TecnicosInsuficientesException, HorarioParaTurnoIncorrectoException, TiempoMinimoInstalacionIncorrectoException, TiempoMinimoReparacionIncorrectoException, MesIncorrectoException, DiaIncorrectoException {
+		if(dia > 31 || dia <= 0) {
+			throw new DiaIncorrectoException();
+		}
+		if(mes > 12 || mes <= 0) {
+			throw new MesIncorrectoException();
+		}
 		if ("Instalacion".equals(tipoVisita)) {
 			if (stockInsuficienteInstalacion()) {
 				System.out.println("Materiales insuficientes para continuar con el servicio.");
@@ -48,7 +48,7 @@ public class CallCenter extends Rol {
 					}
 				}
 
-				if(tecnicos.size() != cantidadTecnicos) {
+				if(tecnicos.size() != cantidadTecnicos || cantidadTecnicos < 0) {
 					System.out.println("No alcanza la cantidad de tecnicos requerida para el servicio");
 					throw new TecnicosInsuficientesException();
 				}

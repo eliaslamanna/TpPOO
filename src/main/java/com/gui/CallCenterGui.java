@@ -224,6 +224,10 @@ public class CallCenterGui extends JFrame implements ActionListener{
 				JOptionPane.showMessageDialog(null,"El tiempo minimo para una instalacion es de 100.", "Agendar visita", JOptionPane.ERROR_MESSAGE);
 			} catch (TiempoMinimoReparacionIncorrectoException ex) {
 				JOptionPane.showMessageDialog(null,"El tiempo minimo para una reparacion es de 30.", "Agendar visita", JOptionPane.ERROR_MESSAGE);
+			} catch (MesIncorrectoException ex) {
+				JOptionPane.showMessageDialog(null,"El mes es incorrecto.", "Agendar visita", JOptionPane.ERROR_MESSAGE);
+			} catch (DiaIncorrectoException ex) {
+				JOptionPane.showMessageDialog(null,"El dia es incorrecto.", "Agendar visita", JOptionPane.ERROR_MESSAGE);
 			}
 		});
 

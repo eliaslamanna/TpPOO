@@ -31,17 +31,21 @@ public class AgendarVisitaListener implements ActionListener {
             JOptionPane.showMessageDialog(null,"Se agendo la visita con exito.", "Agendar visita", JOptionPane.INFORMATION_MESSAGE);
             cerrarVentana(e);
         } catch (StockInsuficienteException ex) {
-            JOptionPane.showMessageDialog(null,"Stock insuficiente, comuiniquese con un administrador de sistemas para cargar mas stock.", "Agendar visita", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Stock insuficiente, comuiniquese con un administrador de sistemas para cargar mas stock.", "Agendar visita", JOptionPane.ERROR_MESSAGE);
         } catch (HorarioParaTurnoIncorrectoException ex) {
-            JOptionPane.showMessageDialog(null,"El horario no corresponde con el turno de los tecnicos disponibles.", "Agendar visita", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"El horario no corresponde con el turno de los tecnicos disponibles.", "Agendar visita", JOptionPane.ERROR_MESSAGE);
         } catch (TecnicosInsuficientesException ex) {
-            JOptionPane.showMessageDialog(null,"La cantidad de tecnicos disponibles no alcanza para agendar una visita.", "Agendar visita", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"La cantidad de tecnicos disponibles no alcanza para agendar una visita.", "Agendar visita", JOptionPane.ERROR_MESSAGE);
         } catch (HorarioReservadoException ex) {
-            JOptionPane.showMessageDialog(null,"El horario elegido esta reservado, por favor elija otro.", "Agendar visita", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"El horario elegido esta reservado, por favor elija otro.", "Agendar visita", JOptionPane.ERROR_MESSAGE);
         } catch (TiempoMinimoInstalacionIncorrectoException ex) {
-            JOptionPane.showMessageDialog(null,"El tiempo minimo para una instalacion es de 100.", "Agendar visita", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"El tiempo minimo para una instalacion es de 100.", "Agendar visita", JOptionPane.ERROR_MESSAGE);
         } catch (TiempoMinimoReparacionIncorrectoException ex) {
-            JOptionPane.showMessageDialog(null,"El tiempo minimo para una reparacion es de 30.", "Agendar visita", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"El tiempo minimo para una reparacion es de 30.", "Agendar visita", JOptionPane.ERROR_MESSAGE);
+        } catch (MesIncorrectoException ex) {
+            JOptionPane.showMessageDialog(null,"El mes es incorrecto.", "Agendar visita", JOptionPane.ERROR_MESSAGE);
+        } catch (DiaIncorrectoException ex) {
+            JOptionPane.showMessageDialog(null,"El dia es incorrecto.", "Agendar visita", JOptionPane.ERROR_MESSAGE);
         }
     }
 
