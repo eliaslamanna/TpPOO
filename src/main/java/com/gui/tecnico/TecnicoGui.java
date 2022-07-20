@@ -24,6 +24,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
+import static com.EstadoVisita.PROGRAMADO;
 
 import com.Empresa;
 import com.EstadoVisita;
@@ -119,16 +120,12 @@ public class TecnicoGui extends JFrame {
 		serviciosPanel.setLayout(null);
 
 		JList serviciosList = new JList();
-		serviciosList.setBounds(208, 124, 604, 304);
+		serviciosList.setBounds(169, 124, 701, 304);
 		serviciosList.setFocusable(false);
 		serviciosList.setSelectionBackground(Color.white);
 		DefaultListCellRenderer cellRenderer = (DefaultListCellRenderer)serviciosList.getCellRenderer();
 		cellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
 		serviciosPanel.add(serviciosList);
-
-		JButton revisarServiciosButton = new JButton("Revisar servicios");
-		revisarServiciosButton.setBounds(267, 460, 158, 41);
-		serviciosPanel.add(revisarServiciosButton);
 		
 		JLabel serviciosLabel = new JLabel("Servicios");
 		serviciosLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -148,14 +145,14 @@ public class TecnicoGui extends JFrame {
 		serviciosList.setListData(visitasTecnico.toArray());
 		
 		JButton revisarBtn = new JButton("Revisar servicios");
-		revisarBtn.setBounds(374, 686, 157, 41);
+		revisarBtn.setBounds(262, 460, 157, 41);
 		revisarBtn.setFocusable(false);
 		revisarBtn.addActionListener(e -> {
 			int answer = JOptionPane.showConfirmDialog(null, "Desea dar por revisar un servicio?", "Revisar servicio", JOptionPane.YES_NO_OPTION);
 			try {
 			if(answer == 0) {
 				String idVisita = JOptionPane.showInputDialog(null, "Ingrese el id de la visita a revisar", "Revisar servicio", JOptionPane.INFORMATION_MESSAGE);
-				if(Empresa.getInstancia().getVisitas().get(Integer.valueOf(idVisita)).getEstado() == EstadoVisita.PROGRAMADO) {
+				if(Empresa.getInstancia().getVisitas().get(Integer.valueOf(idVisita)).getEstado() == PROGRAMADO) {
 					new RevisarVisitaGUI(tecnico, idVisita);
 				} else {
 					JOptionPane.showMessageDialog(null, "La visita con id " + idVisita + " ya fue revisada.", "Revisar servicio", JOptionPane.ERROR_MESSAGE);
@@ -187,7 +184,7 @@ public class TecnicoGui extends JFrame {
 		
 		JButton cancelarBtn = new JButton("Cancelar servicios");
 		cancelarBtn.setFocusable(false);
-		cancelarBtn.setBounds(611, 460, 157, 41);
+		cancelarBtn.setBounds(652, 460, 157, 41);
 		serviciosPanel.add(cancelarBtn);
 		cancelarBtn.addActionListener(e -> {
 			String idVisita = JOptionPane.showInputDialog(null, "Ingrese el id de la visita que quiere cancelar", "Cancelar visita", JOptionPane.INFORMATION_MESSAGE);
