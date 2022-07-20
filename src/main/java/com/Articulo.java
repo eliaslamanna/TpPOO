@@ -3,17 +3,17 @@ package com;
 public class Articulo {
     private String nombre;
     private Float cantidad;
-    private Float precioUnidad;
+    private Float precio;
 
     public Articulo(String nombre, Float cantidad) {
         this.nombre = nombre;
         this.cantidad = cantidad;
     }
 
-    public Articulo(String nombre, Float cantidad, Float precioUnidad) {
+    public Articulo(String nombre, Float cantidad, Float precio) {
         this.nombre = nombre;
         this.cantidad = cantidad;
-        this.precioUnidad = precioUnidad;
+        this.precio = precio;
     }
 
     public String getNombre() {
@@ -28,18 +28,18 @@ public class Articulo {
         this.cantidad = cantidad;
     }
 
-    public Float getPrecioUnidad() {
-        return precioUnidad;
+    public Float getPrecio() {
+        return precio;
     }
 
-    public void setPrecioUnidad(float precioUnidad) {
-        this.precioUnidad = precioUnidad;
+    public void setPrecio(float precio) {
+        this.precio = precio;
     }
 
     @Override
     public String toString() {
         return " Nombre: " + nombre +
                 " -- Cantidad: " + cantidad +
-                " -- PrecioUnidad: $" + precioUnidad;
+                " -- Precio: $" + precio;
     }
 }
